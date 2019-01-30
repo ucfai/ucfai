@@ -2,7 +2,7 @@ particlesJS("particles-js", {
     particles: {
       number: {
         value: 260,
-        density: { enable: true, value_area: 481.0236182596568 }
+        density: { enable: true, value_area: 481 }
       },
       color: { value: "#fff000" },
       shape: {
@@ -12,22 +12,22 @@ particlesJS("particles-js", {
         image: { src: "img/github.svg", width: 100, height: 100 }
       },
       opacity: {
-        value: 1,
+        value: 0.8,
         random: true,
-        anim: { enable: true, speed: 1, opacity_min: 0, sync: false }
+        anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
       },
       size: {
-        value: 3,
+        value: 4,
         random: true,
-        anim: { enable: false, speed: 4, size_min: 0.3, sync: false }
+        anim: { enable: true, speed: 4, size_min: 0.4, sync: false }
       },
       line_linked: {
         enable: true,
-        distance: 78.91476416322726,
-        color: "#555555",
-        opacity: 0.2367442924896818,
+        distance: 78,
+        color: "#fdde3c",
+        opacity: 0.20,
         width: 1
-      },
+      },"detect_on": "window",
       move: {
         enable: true,
         speed: 2,
@@ -36,20 +36,20 @@ particlesJS("particles-js", {
         straight: false,
         out_mode: "out",
         bounce: false,
-        attract: { enable: true, rotateX: 1420.4657549380909, rotateY: 600 }
+        attract: { enable: true, rotateX: 1420, rotateY: 600 }
       }
     },
     interactivity: {
-      detect_on: "canvas",
+      detect_on: "window",
       events: {
-        onhover: { enable: true, mode: "bubble" },
+        onhover: { enable: true, mode: "grab" },
         onclick: { enable: false, mode: "bubble" },
         resize: true
       },
       modes: {
         grab: {
-          distance: 155.84415584415586,
-          line_linked: { opacity: 0.2509491544632522 }
+          distance: 100,
+          line_linked: { opacity: 0.60 }
         },
         bubble: {
           distance: 146.17389821424212,

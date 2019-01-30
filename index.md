@@ -4,7 +4,7 @@ title:  Home
 ---
 
 <img id="landing-logomark" class="pb-3"
-     src="/assets/brand/ucfai-fullmark-darkbg-ready.svg"
+     src="/assets/brand/fullmark/dark-bg-ready.svg"
      />
 
 We're forging a path to turn UCF into a hotspot for researchers and engineers

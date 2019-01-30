@@ -16,8 +16,8 @@
     {% endif %}
 </div>
 
-{% comment %} 24 * 7 * 60 * 60 = 604,800 {% endcomment %}
-{% assign this_week = site.time | date: "%s" | plus: 604800 %}
+{% comment %} 24 * 6 * 60 * 60 = 518,400 == 6 days {% endcomment %}
+{% assign this_week = site.time | date: "%s" | plus: 518400 %}
 
 {% for post_ in site.posts %}
     {% assign post_date = post_.date | date: "%s" | plus: 0 %}
