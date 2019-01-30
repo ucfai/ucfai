@@ -1,0 +1,29 @@
+<header>
+    <div id="nav-container" class="container">
+        {% unless page.url == "/" %}
+        <div id="nav-logo">
+            <img id="logomark" src="/assets/brand/ucfai-fullmark-darkbg-ready.svg" />
+            <a class="nav-menu__item" href="/"> home </a>
+        </div>
+        {% endunless %}
+
+        <nav id="nav-menu">
+            <div id="nav-visible">
+                {% assign group = page.url | split: "/" | slice: 1 %}
+                <a  id="current-group" class="nav-menu__item"
+                    href="/{{ group }}/">
+                    {{ group }}
+                </a>
+                <button class="nav-menu__item" id="nav-menu__toggle"> menu </button>
+            </div>
+            <ul>
+                <!-- <li> <a href=""></a> </li>
+                <li class="nav-menu__social">
+                    <a href="/github"><i class="fab fa-github"></i></a>
+                    <a href="/slack"><i class="fab fa-slack"></i></a>
+                    <a href="/discord"><i class="fab fa-discord"></i></a>
+                </li> -->
+            </ul>
+        </nav>
+    </div>
+</header>

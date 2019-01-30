@@ -1,0 +1,45 @@
+div#nb-heading {
+    text-align: center;
+    h1#nb-title {
+
+    }
+    p#nb-date {
+        font-style: italic;
+    }
+}
+
+div#notebook-links {
+    a[id^="notebook-links"] {
+        height: 3em;
+        width: 100%;
+        border-radius: 0.25em;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        line-height: 3em;
+
+        &:not(last-child) {
+            margin-bottom: 1em;
+        }
+    }
+}
+
+div#nb-next {
+    background: #f9f9f9;
+}
+
+div#nb-toc__container {
+    div#nb-toc__content {
+
+    }
+}
+
+a[id$="__github"], a[class$="__github"] {
+    color: #f5f5f5;
+    background-color: #333333;
+}
+
+a[id$="__colab"], a[class$="__colab"] {
+    color: #252525;
+    background-color: #fdde3c;
+}

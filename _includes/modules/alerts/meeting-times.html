@@ -1,0 +1,9 @@
+{% assign mtgs = site.data[include.grp][include.sem].meetings %}
+
+<div class="alert alert-warning mt-4 mb-0">
+    <h3> Finding us, in person </h3>
+    <p class="m-0">
+        This semester, we meet at {{ mtgs.prim.time }} on {{ mtgs.prim.wday }}s
+        in {{ mtgs.prim.room }}.
+    </p>
+</div>

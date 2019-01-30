@@ -1,0 +1,10 @@
+{% assign c = include.coord %}
+
+<div class="card coordinator-entry my-3">
+    <img class="coordinator-entry__img card-img-top" src="https://avatars.githubusercontent.com/{{ c.github }}" />
+    <div class="pt-2">
+        <h6 class="card-title my-1"> {{ c.name }} </h6>
+        <p class="card-subtitle my-1"> {{ c.role }} </p>
+        <a class="card-text my-1 coordinator-entry__github" href="https://github.com/{{ c.github }}"> @{{ c.github }} </a>
+    </div>
+</div>

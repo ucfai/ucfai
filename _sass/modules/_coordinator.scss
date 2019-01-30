@@ -1,0 +1,35 @@
+div.coordinator-entry {
+    background: #fefefe;
+	border-radius: 0.5em;
+    border: 2px solid #e4e4e4;
+    padding: 0.5em;
+    text-overflow: ellipsis;
+    color: #252525;
+
+    img.coordinator-entry__img {
+        border-radius: 0.25em;
+        width: 100%;
+    }
+
+
+
+    div {
+        text-overflow: ellipsis;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+
+        p.coordinator-entry__name {
+
+        }
+
+        a.coordinator-entry__github {
+            color: #252525;
+            background: transparent;
+        }
+
+        p.coordinator-entry__role {
+
+        }
+    }
+}

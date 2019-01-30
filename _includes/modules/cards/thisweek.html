@@ -1,0 +1,32 @@
+{% if include.grp %}
+    {% assign group = include.grp %}
+{% endif %}
+
+{% if include.sem %}
+    {% assign semester = include.sem %}
+{% endif %}
+
+
+<div id="thisweek" class="flex-lg-row py-2">
+    <h2> This week's lecture </h2>
+    {% if include.syllabus %}
+    <a id="semester-syllabus" href="/{{ group }}/{{ semester }}">
+        View the syllabus
+    </a>
+    {% endif %}
+</div>
+
+{% comment %} 24 * 7 * 60 * 60 = 604,800 {% endcomment %}
+{% assign this_week = site.time | date: "%s" | plus: 604800 %}
+
+{% for post_ in site.posts %}
+    {% assign post_date = post_.date | date: "%s" | plus: 0 %}
+    {% assign post = post_ %}
+    {% if post_date <= this_week and group contains post_.categories[0] %}
+        {% break %}
+    {% else %}
+        {% assign post = nil %}
+    {% endif %}
+{% endfor %}
+
+{% include modules/cards/meeting.html %}

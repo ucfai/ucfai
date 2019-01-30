@@ -1,0 +1,13 @@
+{% if include.big %}
+<a class="nb-author lg" href="https://github.com/{{ include.author }}">
+    <img class="profile"
+         src="https://avatars.githubusercontent.com/{{ include.author }}" />
+    <span> @{{ include.author }} </span>
+</a>
+{% else %}
+<a class="nb-author sm" href="https://github.com/{{ include.author }}">
+    <img class="profile"
+         src="https://avatars.githubusercontent.com/{{ include.author }}" />
+    <span> @{{ include.author }} </span>
+</a>
+{% endif %}

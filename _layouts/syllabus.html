@@ -1,0 +1,57 @@
+---
+layout: base
+---
+
+{% assign group = page.url | split: "/" | slice: 1 %}
+{% assign title = "" %}
+{% for grp in site.data.groups %}
+    {% if group contains grp.url %}
+        {% assign title = grp.title %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+{% assign semester = page.title | downcase %}
+<div class="row">
+    <div class="col-12">
+        <h1 id="group-title"> {{ title }}, {{ site.data.conv[semester] }} Edition </h1>
+
+        <p>
+            This is our custom-built course which we offer every semester. The
+            goal of the course is to get your feet wet in a variety of topics
+            and prepare you to move on to the other, more advanced, groups soon
+            after. Our expectation of you, a student in this course, is that
+            you'll attend as many lectures as possible and chunk out a few
+            hours every week in addition to the meetings.
+        </p>
+
+        <p>
+            This has been the club's bread-and-butter material since our
+            inception, and every semester we made refinements based on feedback.
+            Originally started in the Fall of 2018, by John Muchovej, Evan
+            Waldmann, Aidan Lakshman, and Chas Kane; this material is now
+            edited and tuned by ...
+        </p>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-12">
+        {% include modules/cards/thisweek.html
+            grp=group
+            sem=semester %}
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-12">
+            <h2> Syllabus </h2>
+            {% assign meetings = site.categories[semester] | reverse %}
+
+            {% for post in meetings %}
+                {% include modules/cards/meeting.html
+                    group=group
+                    semester=semester %}
+            {% endfor %}
+    </div>
+</div>

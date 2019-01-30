@@ -1,0 +1,19 @@
+$font-base:  "Fira Sans", sans-serif !important;
+$font-brand: "PT Sans", $font-base;
+$font-code:  "Fira Code", sans-serif !important;
+
+span, p, h1, h2, h3, h4, h5, h6, a, li, div, b, strong, i, em {
+	font-family: $font-base;
+}
+
+h1.sigai-section-title {
+	color: #09de6b;
+	text-align: center;
+	font-size: 27px;
+	line-height: 64px;
+	height: 64px;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	border-bottom: 1px solid #c8c8c8;
+}

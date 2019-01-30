@@ -1,0 +1,40 @@
+.sigai-brand {
+	font-weight: bold;
+	font-family: $font-brand;
+
+	&:before {
+		content: "sigai";
+		color: $brand-white;
+	}
+	&:after {
+		content: "@ucf";
+		color: $brand-gold;
+	}
+}
+
+.navbar-brand {
+	padding: 16px 32px !important;
+	margin: 0 !important;
+	display: flex !important;
+	flex-direction: row;
+	span {
+		color: $brand-white;
+		font-size: 17px;
+		line-height: 32px;
+		height: 32px;
+	}
+}
+.navbar-brand.group, .navbar-brand.active {
+	background: $nav-active;
+}
+
+.alert.alert-sigai-mission {
+	background: #464d54;
+}
+
+.group-meet {
+	color: $brand-white;
+	a, span {
+		color: $brand-gold;
+	}
+}

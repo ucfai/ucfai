@@ -1,0 +1,25 @@
+{% capture gh_ln %}https://github.com/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+{% capture co_ln %}https://colab.research.google.com/github/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+
+<div class="syllabus-entry mb-3 col-12 flex-column flex-lg-row">
+    <div class="entry-banner col-lg-4">
+        <img class="entry-banner__img" src="{{ 'banner.jpg' | prepend: post.url }}">
+    </div>
+    <div class="entry-body col-lg-8 mt-lg-0 mt-3 pl-lg-3">
+        <div class="entry-text">
+            <a class="entry-title" href="{{ post.url | prepend: site.baseurl }}"> <h4> {{ post.title }} </h4> </a>
+            <p class="entry-desc my-lg-0 my-3"> {{ post.description | remove: '"' }} </p>
+        </div>
+        <div class="entry-meta">
+            <div class="entry-links">
+                <a class="entry-link entry-github" href="{{ gh_ln }}"> <i class="fab fa-github"></i> </a>
+                <a class="entry-link entry-colab"  href="{{ co_ln }}"> <i class="fas fa-infinity"></i> </a>
+            </div>
+            <div class="nb-authors">
+                {% for author in post.authors %}
+                    {% include modules/buttons/author.html author=author %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

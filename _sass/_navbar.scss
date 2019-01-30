@@ -1,0 +1,103 @@
+$header-height: 5em;
+$ucfai-logo-pad: 1em;
+
+body#ucfai-dark {
+	header {
+		background-color: transparent;
+	}
+}
+
+body#ucfai-light {
+	header {
+		background-color: #222222;
+	}
+}
+
+
+header {
+	padding: 0;
+	margin: 0;
+	height: 5em;
+	position: relative;
+	z-index: 1000000000000;
+
+	div#nav-container {
+		height: $header-height;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	div#nav-logo {
+		display: flex;
+		flex-direction: row;
+
+		img#logomark {
+			margin: $ucfai-logo-pad 0;
+			height: $header-height - 2 * $ucfai-logo-pad;
+		}
+	}
+
+	.nav-menu__item {
+		height: $header-height;
+		padding: $ucfai-logo-pad;
+		line-height: $header-height - 2 * $ucfai-logo-pad;
+		color: $brand-white;
+		background: transparent;
+		border: 0;
+	}
+
+	nav#nav-menu {
+		div#nav-visible {
+			display: flex;
+			flex-direction: row;
+
+			#current-group {
+				font-weight: bold;
+				color: $brand-gold;
+			}
+
+			#nav-menu__button {
+
+			}
+			#nav-menu__toggle {
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+nav.sigai-navbar {
+	height: 64px;
+	padding: 0;
+	margin: 0;
+	background: $nav-def-bg;
+	z-index: 1000000000000;
+
+	div.sigai-nav {
+		padding: 0 16px;
+		background: $nav-def-bg;
+		a.nav-item.nav-link {
+			padding: 16px;
+			font-weight: 500;
+			line-height: 32px;
+			color: $brand-white;
+			text-decoration: none;
+			&:hover {
+				cursor: pointer;
+			}
+
+			&.active {
+				background: $nav-active;
+			}
+		}
+	}
+
+	.navbar-toggler {
+		height: 64px;
+		width: 64px;
+		svg.fa-bars > path {
+			fill: $brand-white !important;
+		}
+	}
+}

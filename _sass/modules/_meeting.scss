@@ -1,0 +1,152 @@
+div#thisweek {
+    min-height: 3em;
+    line-height: 3em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    h2 {
+
+    }
+
+    a#semester-syllabus {
+        border-radius: 0.25em;
+        color: #074C5a;
+        background-color: #2dc2e0;
+        font-weight: bold;
+        height: 3em;
+        padding: 0 2em;
+        text-align: center;
+    }
+}
+
+div.syllabus-entry {
+	background: #fefefe;
+	border-radius: 0.5em;
+	border: 2px solid #e4e4e4;
+	padding: 1em;
+	display: flex;
+     margin: inherit 0 !important;
+
+	div.entry-banner {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+		img {
+            width: 100%;
+			border-radius: 0.25em;
+			background-color: #252525;
+        }
+	}
+
+	div.entry-body {
+        padding: 0;
+		color: #252525;
+        display: flex;
+        justify-content: space-between;
+		flex-direction: column;
+        position: relative;
+
+        div.entry-text {
+            a.entry-title {
+                h4 {
+                    font-size: 1.25em;
+                    line-height: 1.5em;
+                    margin: 0 0 0.75em 0;
+                }
+            }
+
+            p.entry-desc {
+                font-size: 1em;
+                line-height: 1.125em;
+                margin: 0.5em 0;
+            }
+        }
+
+		div.entry-meta {
+            margin: 0.75em 0 0 0;
+            width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-self: flex-end;
+			position: relative;
+
+			div.entry-links {
+				display: flex;
+                flex-direction: row;
+
+				a.entry-link {
+					text-align: center;
+					height: 2em;
+					min-width: 2em;
+					line-height: 2em;
+					border-radius: 0.25em;
+					margin-right: 0.5em;
+					position: relative;
+
+					svg {
+						margin: (2em - 1.25em) / 2;
+						width: 1.25em;
+						height: 1.25em;
+					}
+
+					&.entry-github {
+						background-color: #333333; color: #fefefe;
+					}
+					&.entry-colab  {
+						background-color: #fdde3c; color: #252525;
+					}
+				}
+			}
+		}
+	}
+}
+
+div.nb-authors {
+    display: flex;
+    a.nb-author {
+        display: flex;
+        background-color: #e4e4e4;
+
+        img.profile {
+            background-color: #252525;
+        }
+        span {
+            font-weight: bold;
+            padding: 0 1em 0 0.5em;
+            font-size: 0.875em;
+        }
+
+        &.sm {
+            $height: 2em;
+            height: $height;
+            line-height: $height;
+            border-radius: $height / 2;
+
+            img.profile {
+                width: $height;
+                height: $height;
+                border-radius: $height / 2;
+            }
+        }
+
+        &.lg {
+            $height: 3em;
+            height: $height;
+            line-height: $height;
+            border-radius: $height / 2;
+
+            img.profile {
+                width: $height;
+                height: $height;
+                border-radius: $height / 2;
+            }
+        }
+        &:not(first-child) {
+            margin-left: 0.5em;
+        }
+    }
+}

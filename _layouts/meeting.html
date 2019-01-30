@@ -1,0 +1,89 @@
+---
+layout: base
+---
+
+{% assign group = page.categories | slice: 0 %}
+{% assign semester = page.categories | slice: 1 %}
+{% assign name = page.path | split: "/" | last | split: "." | first %}
+
+{% capture gh_ln %}https://github.com/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+{% capture co_ln %}https://colab.research.google.com/github/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+
+<div class="row py-3">
+    <div class="col-12 col-lg-8">
+        <div id="nb-heading">
+            <h1 id="nb-title"> {{ page.title }} </h1>
+            <p id="nb-date">On {{ page.date | date: "%b %d, %Y" }} </p>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div id="notebook-links">
+            <a id="notebook-links__github" href="{{ gh_ln }}">Open on GitHub</a>
+            <a id="notebook-links__colab"  href="{{ co_ln }}">Open on Colaboratory</a>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-12 col-lg-8">
+        <div class="nb-authors pb-3">
+        {% for author in page.authors %}
+            {% include modules/buttons/author.html author=author big=true %}
+        {% endfor %}
+        </div>
+        <div id="nb-content">
+            {{ content }}
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div id="nb-toc__container" class="card">
+            <div id="nb-toc__header" class="card-header">Table of Contents</div>
+            <div id="nb-toc__body" class="card-body">
+                <ul id="nb-content__toc" class="list-unstyled m-0"></ul>
+            </div>
+        </div>
+
+        <div id="nb-next" class="mt-3">
+            {% assign next = page.next %}
+            <img id="nb-next__banner" class="rounded-top" width="100%" src="{{ 'banner.jpg' | prepend: next.url | prepend: site.baseurl }}">
+            <div id="nb-next__content" class="card-body">
+                <p id="nb-next__description">
+                    {{ next.description | remove: '"' }}
+                </p>
+                <a id="nb-next__cta" class="btn btn-primary"
+                    href="{{ next.url | prepend: site.baseurl }}">
+                    Take a look!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let anchors = document.getElementsByClassName("anchor-link");
+        for (let a of anchors) {
+            a.innerHTML = "";
+        }
+
+        let tables = document.getElementsByClassName("dataframe");
+        for (let t of tables) {
+            t.setAttribute("class", "dataframe table");
+        }
+
+        let nav = document.getElementById("nb-content__toc");
+        let hs = document.getElementById("nb-content")
+            .querySelectorAll("h2, h3");
+        for (let h of hs) {
+            let cls;
+            switch (h.localName) {
+                case "h2":  cls = `ln-${h.localName}`;  break;
+                case "h3":  cls = `ln-${h.localName} pl-3`;  break;
+            }
+            nav.insertAdjacentHTML("beforeend",
+                `<li class="${cls}"><a href="#${h.id}"> ${h.textContent} </a></li>`);
+        }
+    });
+    </script>

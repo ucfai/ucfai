@@ -1,0 +1,51 @@
+semester: sp19
+
+## site title
+title: AI@UCF
+email: admins@ucfai.org
+
+## SIGAI@UCF mission
+description: >-
+  We're forging the path to turn UCF into a hotspot for researchers and
+  engineers passionate about computational intelligence and data science.
+
+## subpath, for the site, it's just ""
+baseurl: ""
+## protocol (http[s]) and tld (ucfsigai.github.io)
+url: "https://ucfai.org"
+
+# Build settings
+markdown: kramdown
+future: true
+drafts: true
+
+excerpt_separator: <!--more-->
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - docker-compose.yml
+
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: meeting
+      permalink: /:categories/:title/
+  - scope:
+      type: "semidx"
+    values:
+      layout: syllabus
+
+collections:
+  redirects:
+    output: true
+    permalink: /:title/
+  semidx:
+    output: true
+    permalink: /:path/

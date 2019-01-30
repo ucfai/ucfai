@@ -1,0 +1,15 @@
+- name: Course
+  url:  course
+  desc: >-
+    Some description
+  title: Topics in Artificial Intelligence
+- name: Intelligence
+  url:  intelligence
+  desc: >-
+    Some description
+  title: Intelligence Group
+- name: Data Science
+  url:  data-science
+  desc: >-
+    Some description
+  title: Data Science Group

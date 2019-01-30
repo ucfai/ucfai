@@ -1,0 +1,45 @@
+{% include meta/head.html %}
+
+<body id="ucfai-dark" onload="sizeBanner()" onresize="sizeBanner()">
+
+	{% include meta/nav.html %}
+
+	<main id="home" class="container px-3 py-5 mx-auto">
+        <div id="landing-page" class="row">
+            <div id="landing-text" class="col-lg-6 col-12">
+                {{ content }}
+            </div>
+        </div>
+        <div id="group-cards" class="row">
+            {% assign sem_info = site.data.semesters[site.semester] %}
+            {% assign len = sem_info | size %}
+            {% assign col = 12 | divided_by: len | at_least: 4 | at_most: 6 %}
+            {% for group in site.data.groups %}
+                {% if sem_info[group.url] %}
+                    <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3">
+                        <div class="card">
+                            <a class="card-header" href="{{ group.url | prepend: site.baseurl }}">
+                                <h4 class="m-0"> {{ group.name }} </h4>
+                            </a>
+                            <div class="card-body">
+                                {% assign meet = sem_info[group.url] %}
+                                <h5 class="card-subtitle mb-2">
+                                    {{ meet.wday }} at {{ meet.time }} in {{ meet.room}}
+                                </h5>
+                                <p class="card-text"> {{ group.desc }} </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+	</main>
+
+	<!-- particles.js container -->
+	<div id="particles-js">
+        <div id="fade"></div>
+    </div>
+	<!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
+	<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<script src="{{ '/assets/scripts/particles-config.js' | prepend: site.baseurl }}"></script>
+</body>
