@@ -1,5 +1,5 @@
 ---
-permalink: /discord
+permalink: /github/
 redirect_to:
-  - https://discord.gg/SYjDmGp
+  - https://github.com/ucfai/
 ---

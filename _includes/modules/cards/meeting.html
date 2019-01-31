@@ -1,3 +1,5 @@
+{% assign name = post.path | split: "/" | last | remove: ".md" %}
+
 {% capture gh_ln %}https://github.com/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 {% capture co_ln %}https://colab.research.google.com/github/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 

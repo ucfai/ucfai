@@ -1,5 +1,9 @@
 <head>
-    <title> {{ page.title }} </title>
+	{% if include.title %}
+	<title> {{ include.title }} | AI@UCF</title>
+	{% else %}
+	<title> {{ page.title }} | AI@UCF </title>
+	{% endif %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Font Awesome -->
