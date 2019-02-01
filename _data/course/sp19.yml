@@ -33,19 +33,6 @@ coordinators:
     role: Lecturer
     name: Alec Kerrigan
 
-
-ionlights: 0
-brandons209: 1
-JarvisEQ: 2
-irenelt97: 3
-danielzgsilva: 4
-SirRoboto: 5
-Aestrus: 6
-cg021: 7
-algorithmicpersuasion: 8
-2sebs: 9
-AHKerrigan: 10
-
 meetings:
   prim:
     wday: Wed

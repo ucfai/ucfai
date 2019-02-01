@@ -1,0 +1,14 @@
+coordinators:
+  - github: ionlights
+    role: Co-Director
+    name: John Muchovej
+  - github: waldmannly
+    role: Co-Director
+    name: Evan Waldmann
+
+meetings:
+  wday: Mon
+  time: 7:30pm
+  room: HEC 119
+
+sponsors: ""
