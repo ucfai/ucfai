@@ -18,7 +18,6 @@ url: "https://ucfai.org"
 markdown: kramdown
 future: true
 drafts: true
-permalinks: pretty
 
 excerpt_separator: <!--more-->
 
