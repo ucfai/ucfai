@@ -1,5 +1,5 @@
 ---
-title: "Starting with the basics, regression and plotting"
+title: "Starting with the Basics, Regression"
 categories: ["sp19"]
 authors: ['JarvisEQ', 'ionlights']
 description: >-
