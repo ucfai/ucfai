@@ -54,9 +54,11 @@
                     {% assign meetings = site.categories[semester] | reverse %}
 
                     {% for post in meetings %}
-                        {% include modules/cards/meeting.html
-                            group=group
-                            semester=semester %}
+                        {% if group contains post.categories[0] %}
+                            {% include modules/cards/meeting.html
+                                group=group
+                                semester=semester %}
+                        {% endif %}
                     {% endfor %}
             </div>
         </div>
