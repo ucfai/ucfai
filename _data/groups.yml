@@ -1,12 +1,14 @@
 - name: Course
   url:  course
   desc: >-
-    Some description
+    Course, intended for newcomers and those looking to supplement their studies of AI, is AI@UCF's custom made lecture series! 
+    Here we explore topics in AI, Data Science, Statistics, and more! The goal of course is to deconstruct each topic to build a foundation of knowledge, enabling you to apply what you learn to research, industry, and personal life.
   title: Topics in Artificial Intelligence
 - name: Intelligence
   url:  intelligence
   desc: >-
-    Some description
+    Intelligence, tailored for members versed in topics discussed throughout Course, reads various research papers and articles in AI. 
+    The goal of Intelligence is to hold lively, constructive discussions to further expand upon your foundational knowledge.
   title: Intelligence Group
 - name: Data Science
   url:  data-science
