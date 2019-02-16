@@ -3,12 +3,10 @@
   url:  course
   title: Topics in Artificial Intelligence
   desc: >-
-    Our custom lecture series intent on educating newcomers and those looking 
-    to supplement their studies of Machine Learning and Artificial Intelligence!
-    Here we explore topics in Machine Learning, Data Science, and more! The goal
-    of Course is to deconstruct each topic, providing you with intuitions and
-    practical understandings – enabling you to apply what you learn to research,
-    industry, and personal life.
+    Our custom lecture series designed to educate newcomers and those looking 
+    to supplement their studies of Artificial Intelligence and Machine Learning!
+    Here we provide you with intuitions and practical understandings – enabling 
+    you to apply what you learn to research, industry, and personal life.
 
 ################################################################################
 - name: Intelligence
@@ -17,8 +15,8 @@
   desc: >-
     A research-oriented group for members versed in topics discussed in Course.
     You'll find us reading a variety of research in AI/ML. The goal of 
-    Intelligence is to hold lively, constructive, discussions to further expand
-    your knowledge of the happenings and expand your research horizons.
+    Intelligence is to hold lively, constructive discussions to further expand
+    your knowledge of the happenings in AI and expand your research horizons.
 
 ################################################################################
 - name: Data Science
