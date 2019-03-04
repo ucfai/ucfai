@@ -26,9 +26,6 @@ coordinators:
   - github: causallycausal
     role: Lecturer
     name: Stephen Testa
-  - github: 2sebs
-    role: Sponsorship
-    name: Sebastian Lopez
   - github: AHKerrigan
     role: Lecturer
     name: Alec Kerrigan
