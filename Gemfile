@@ -25,7 +25,7 @@ group :jekyll_plugins do
   gem "jekyll-postfiles"
   gem "jekyll-avatar"
   gem "jekyll-redirect-from"
-  gem "jekyll-mentions"
+  # gem "jekyll-mentions"
   gem "jekyll-titles-from-headings"
   gem "jekyll-sass-converter"
   gem "jekyll-relative-links"  
