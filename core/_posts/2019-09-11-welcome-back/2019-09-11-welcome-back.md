@@ -12,7 +12,7 @@ description: >-
     
 ---
 
-<img src="https://ucfai.org//core/fa19/intro-interest-meeting/banner.jpg">
+<img src="https://ucfai.org//core/fa19/welcome-back/banner.jpg">
 
 <div class="col-12">
     <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
@@ -21,7 +21,7 @@ description: >-
 </div>
 
 <div class="col-12">
-    <h1> Intro/Interest Meeting </h1>
+    <h1> Welcome back! Introducing Data Science </h1>
     <hr>
 </div>
 
