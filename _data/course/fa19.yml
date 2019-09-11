@@ -1,0 +1,31 @@
+coordinators:
+  - github: brandons209
+    role: Director
+    name: Brandon Silva
+  - github: JarvisEQ
+    role: Lecturer
+    name: Liam Jarvis
+  - github: danielzgsilva
+    role: Lecturer
+    name: Daniel Silva
+  - github: cg021
+    role: Lecturer
+    name: Christian Gonzalez
+  - github: AHKerrigan
+    role: Lecturer
+    name: Alec Kerrigan
+  - github: ionlights
+    role: Lecturer
+    name: John Muchovej
+
+meetings:
+  prim:
+    wday: Wed
+    time: 5:30pm
+    room: MSB 359
+  supp:
+    wday: Mon
+    time: 5:30pm
+    room: MSB 360
+
+sponsors: ""
