@@ -1,7 +1,7 @@
 ---
 layout: group
-title:  Course Group
-group:  course
+title:  Core Group
+group:  core
 ---
 
 This is a custom-built course which we offer every semester. The goal of this
