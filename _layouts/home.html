@@ -18,7 +18,7 @@
                 {% if sem_info[group.url] %}
                     <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3">
                         <div class="card bg-dark">
-                            <a class="card-header" href="{{ group.url | prepend: site.baseurl }}">
+                            <a class="card-header" href="{{ group.url | prepend: '/' }}">
                                 <i class="fas fa-link"></i>
                                 <h4 class="m-0 ml-3"> {{ group.name }} </h4>
                             </a>
