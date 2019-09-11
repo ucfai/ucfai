@@ -1,14 +1,20 @@
 .sigai-brand {
 	font-weight: bold;
 	font-family: $font-brand;
+	text-transform: uppercase;
 
 	&:before {
-		content: "sigai";
+		content: "ai";
 		color: $brand-white;
 	}
 	&:after {
 		content: "@ucf";
 		color: $brand-gold;
+	}
+	&.dark {
+		&:before{
+			color: $brand-dark;
+		}
 	}
 }
 

@@ -1,5 +1,5 @@
 <header>
-    <div id="nav-container" class="container">
+    <div id="nav-container" class="container d-flex">
         {% unless page.url == "/" %}
         <div id="nav-logo">
             <img id="logomark" src="/assets/brand/fullmark/dark-bg-ready.svg" />
@@ -7,23 +7,24 @@
         </div>
         {% endunless %}
 
-        <!-- <nav id="nav-menu">
-            <div id="nav-visible">
-                {% assign group = page.url | split: "/" | slice: 1 %}
-                <a  id="current-group" class="nav-menu__item"
-                    href="/{{ group }}/">
-                    {{ group }}
-                </a>
-                <button class="nav-menu__item" id="nav-menu__toggle"> menu </button>
+        <div class="d-flex ml-auto">
+            <a class="my-auto ml-3 text-white" href="/github"> <i class="fab fa-github fa-2x fa-fw"> </i> </a>
+            <a class="my-auto ml-3 text-white" href="/discord"> <i class="fab fa-discord fa-2x fa-fw"> </i> </a>
+            <div class="vertical-divider mx-4"> </div>
+            <!-- <a class="btn btn-primary my-auto mr-3" href="https://auth.ucfai.org"> Login </a> -->
+            <button type="button" class="btn btn-dark dropdown-toggle my-auto" data-toggle="dropdown">
+                <b>menu</b>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <h6 class="dropdown-header"> Groups </h6>
+                {% for group in site.data.groups %}
+                    <a class="dropdown-item" href="{{ site.url }}/{{ group.url }}"> {{ group.name }}</a>
+                {% endfor %}
+                <div class="dropdown-divider"> </div>
+                <h6 class="dropdown-header"> <span class="sigai-brand dark"></span> </h6>
+                <a class="dropdown-item" href="{{ '/about' | prepend: site.url }}"> About Us </a>
+                <a class="dropdown-item" href="{{ '/sponsors' | prepend: site.url }}"> Sponsor Us </a>
             </div>
-            <ul>
-                <li> <a href=""></a> </li>
-                <li class="nav-menu__social">
-                    <a href="/github"><i class="fab fa-github"></i></a>
-                    <a href="/slack"><i class="fab fa-slack"></i></a>
-                    <a href="/discord"><i class="fab fa-discord"></i></a>
-                </li>
-            </ul>
-        </nav> -->
+        </div>
     </div>
 </header>
