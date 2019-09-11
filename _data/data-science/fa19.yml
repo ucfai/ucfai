@@ -1,0 +1,20 @@
+coordinators:
+  - github: AHKerrigan
+    role: Director
+    name: Alec Kerrigan
+  - github: ionlights
+    role: Lecturer
+    name: John Muchovej
+  - github: causallycausal
+    role: Lecturer
+    name: Stephen Testa
+  - github: AEHevia
+    role: Lecturer
+    name: Anthony Hevia
+
+meetings:
+  wday: Thu
+  time: 5:30pm
+  room: BIO 209
+
+sponsors: ""
