@@ -17,16 +17,16 @@
             {% for group in site.data.groups %}
                 {% if sem_info[group.url] %}
                     <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3">
-                        <div class="card">
-                            <a class="card-header" href="{{ group.url | prepend: site.baseurl }}">
-                                <h4 class="m-0"> {{ group.name }} </h4>
+                        <div class="card bg-dark">
+                            <a class="card-header" href="{{ group.url | prepend: '/' }}">
+                                <i class="fas fa-link"></i>
+                                <h4 class="m-0 ml-3"> {{ group.name }} </h4>
                             </a>
                             <div class="card-body">
                                 {% assign meet = sem_info[group.url] %}
-                                <h5 class="card-subtitle mb-2">
+                                <h5 class="card-subtitle">
                                     {{ meet.wday }} at {{ meet.time }} in {{ meet.room}}
                                 </h5>
-                                <p class="card-text"> {{ group.desc }} </p>
                             </div>
                         </div>
                     </div>

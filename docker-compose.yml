@@ -4,8 +4,8 @@ services:
     command: jekyll s --incremental
     image: jekyll/jekyll:3.8
     volumes:
-      - $PWD:/srv/jekyll
-      - $PWD/vendor/bundle:/usr/local/bundle
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
     ports:
       - 8234:4000
       - 8235:35729

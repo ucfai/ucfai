@@ -35,6 +35,14 @@ main#home.container {
 
 	div#group-cards {
 		display: flex;
+		color: #fefefe;
+		a {
+			color: inherit;
+			display: flex;
+			svg {
+				margin: auto 0;
+			}
+		}
 	}
 
 

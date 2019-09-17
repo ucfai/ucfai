@@ -1,5 +1,5 @@
 ---
 permalink: /signin/
 redirect_to:
-  - https://docs.google.com/forms/d/e/1FAIpQLSd0owlmMt0jT4xyr6SI4wyqcVHXtD82ttORRX0hskIygYsMiw/viewform
+  - https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform
 ---
