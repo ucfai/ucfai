@@ -1,0 +1,14 @@
+core:
+  wday: Wed
+  time: 5:30PM
+  room: MSB 359
+
+intelligence:
+  wday: Tue
+  time: 5:30PM
+  room: PSY 111
+
+data-science:
+  wday: Thu
+  time: 5:30PM
+  room: BIO 209

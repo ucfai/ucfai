@@ -1,0 +1,43 @@
+coordinators:
+  - github: ionlights
+    role: Director
+    name: John Muchovej
+  - github: brandons209
+    role: Lecturer
+    name: Brandon Silva
+  - github: JarvisEQ
+    role: Lecturer
+    name: Liam Jarvis
+  - github: irenelt97
+    role: Lecturer
+    name: Irene Tanner
+  - github: danielzgsilva
+    role: Lecturer
+    name: Daniel Silva
+  - github: SirRoboto
+    role: Sponsorship
+    name: Justin TenEyck
+  - github: Aestrus
+    role: Automation
+    name: Shyam Parikh
+  - github: cg021
+    role: Lecturer
+    name: Christian Gonzalez
+  - github: causallycausal
+    role: Lecturer
+    name: Stephen Testa
+  - github: AHKerrigan
+    role: Lecturer
+    name: Alec Kerrigan
+
+meetings:
+  prim:
+    wday: Wed
+    time: 7:30pm
+    room: HEC 119
+  supp:
+    wday: Thu
+    time: 7:30pm
+    room: HEC 117
+
+sponsors: ""
