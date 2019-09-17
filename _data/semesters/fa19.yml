@@ -1,12 +1,17 @@
-core:
-  wday: Wed
+supplementary:
+  wday: Mon
   time: 5:30PM
-  room: MSB 359
+  room: MSB 360
 
 intelligence:
   wday: Tue
   time: 5:30PM
-  room: PSY 111
+  room: HPA1 117
+
+core:
+  wday: Wed
+  time: 5:30PM
+  room: MSB 359
 
 data-science:
   wday: Thu

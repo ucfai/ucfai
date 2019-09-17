@@ -13,11 +13,16 @@
         <div id="group-cards" class="row">
             {% assign sem_info = site.data.semesters[site.semester] %}
             {% assign len = sem_info | size %}
-            {% assign col = 12 | divided_by: len | at_least: 4 | at_most: 6 %}
+            {% assign col = 12 | divided_by: len | at_least: 6 | at_most: 6 %}
             {% for group in site.data.groups %}
                 {% if sem_info[group.url] %}
+<<<<<<< Updated upstream
                     <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3">
                         <div class="card">
+=======
+                    <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3 my-3">
+                        <div class="card bg-dark">
+>>>>>>> Stashed changes
                             <a class="card-header" href="{{ group.url | prepend: site.baseurl }}">
                                 <h4 class="m-0"> {{ group.name }} </h4>
                             </a>
