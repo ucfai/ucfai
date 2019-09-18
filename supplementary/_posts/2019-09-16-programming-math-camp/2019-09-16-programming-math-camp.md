@@ -1,50 +1,108 @@
-
-
 ---
-layout: post
-title: 
-date: 
-authors: 
+layout: meeting
+title: A Math Refresher and Scientic Computing Crash Course
+date: 2019-09-16
+authors:
+    - ionlights
     
-categories: []
+categories: ['fa19']
 tags: []
 description: >-
-    
+    We'll be covering the foundational mathematics for Machine Learning, spanning Multivariate Calculus to Linear Algebra, with a sprinkling of Statistics. Followed by coverage of fundamental programming ideas for Data Science, Machine Learning, and generally intelligence research and engineering.
 ---
-
-## Math Background
-
-Hopefully, you've either taken or are taking Multivariate Calculus (Calc 3)
-and/or Matrix Theory & Linear Algebra (Matrix). If not, though, this should get
-you up to speed on all you need to know for Course.
-
-Tonight we'll be covering:
-- Calculus:
-  - Derivatives
-  - Partial Derivatives
-  - Gradients
-  - Chain Rule
-- Linear Algebra:
-  - Vectors
-    - Addition
-    - Multiplication
-  - Matrices
-    - Dot Product
-    - Element-wise Multiplication (Hadamard Product)
-    - Transposition
+{% raw %}
 
 
-{% highlight python %}
-import numpy as np
-import plotly.offline as py
-import plotly.graph_objs as go
 
-py.init_notebook_mode(connected=False)
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-from utils import *
-{% endhighlight %}
+  
+
+  <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Math-Background">Math Background<a class="anchor-link" href="#Math-Background">&#182;</a></h2><p>Hopefully, you've either taken or are taking Multivariate Calculus (Calc 3) and/or Matrix Theory &amp; Linear Algebra (Matrix). If not, though, this should get you up to speed on all you need to know for Course.</p>
+<p>Tonight we'll be covering:</p>
+<ul>
+<li>Calculus:<ul>
+<li>Derivatives</li>
+<li>Partial Derivatives</li>
+<li>Gradients</li>
+<li>Chain Rule</li>
+</ul>
+</li>
+<li>Linear Algebra:<ul>
+<li>Vectors<ul>
+<li>Addition</li>
+<li>Multiplication</li>
+</ul>
+</li>
+<li>Matrices<ul>
+<li>Dot Product</li>
+<li>Element-wise Multiplication (Hadamard Product)</li>
+<li>Transposition</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">py</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="n">py</span><span class="o">.</span><span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+<div class="output_html rendered_html output_subarea ">
         <script type="text/javascript">
         window.PlotlyConfig = {MathJaxConfig: 'local'};
         if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
@@ -65,25 +123,51 @@ from utils import *
         }
         </script>
         
+</div>
+
+</div>
 
 
+</div>
+</div>
 
-Recall from your earlier days in learning math, where we only lived in a world
-of straight lines. If you wanted to know the slope of the line below, it never
-changed, so we could use a wonderful piece of math to figure it out.
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall from your earlier days in learning math, where we only lived in a world of straight lines. If you wanted to know the slope of the line below, it never changed, so we could use a wonderful piece of math to figure it out.
 $$y = mx + b$$
-All we needed to do was determine $m$ and we were done. If we didn't have $m$,
-then it's a tad more complex, but boils down to... pick two points on the line,
-$(3, 3)$ and $(4, 4)$, then plug them into...
-$$\frac{y_2 - y_1}{x_2 - x_1}$$ or, in our case more specifically &ndash;
-$$\frac{4 - 3}{4 - 3} = \frac{1}{1} = 1$$
+All we needed to do was determine $m$ and we were done. If we didn't have $m$, then it's a tad more complex, but boils down to... pick two points on the line, $(3, 3)$ and $(4, 4)$, then plug them into...
+$$\frac{y_2 - y_1}{x_2 - x_1}$$ or, in our case more specifically &ndash; $$\frac{4 - 3}{4 - 3} = \frac{1}{1} = 1$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
-{% highlight python %}
-graph_x()
-{% endhighlight %}
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph_x</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 
+  
+<div class="output_area">
+
+
+
+
+
+<div class="output_html rendered_html output_subarea ">
 <div>
         
         
@@ -127,26 +211,49 @@ if (outputEl) {{
                 });
             </script>
         </div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, the problem here is that we can't model the world in strictly straight lines. Because of that, we need to upgrade to polynomials to have a better chance. <strong>Take a look at the graph below.</strong> However, while we might have a better chance at modelling the world with this, we can't use our beautiful template equation from above to figure it out. We need a new way to describe the slope at any given point.</p>
+<p>Below is the graph of $f(x) = x^2$, something you'll notice is that we can't use our $$\frac{y_2 - y_1}{x_2 - x_1}$$ equation... Because $f(2) = 4$, but $f(3) = 9$. The change isn't constant! :o</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph_x2</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
 
 
 
-However, the problem here is that we can't model the world in strictly straight
-lines. Because of that, we need to upgrade to polynomials to have a better
-chance. **Take a look at the graph below.** However, while we might have a
-better chance at modelling the world with this, we can't use our beautiful
-template equation from above to figure it out. We need a new way to describe the
-slope at any given point.
-
-Below is the graph of $f(x) = x^2$, something you'll notice is that we can't use
-our $$\frac{y_2 - y_1}{x_2 - x_1}$$ equation... Because $f(2) = 4$, but $f(3) =
-9$. The change isn't constant! :o
 
 
-{% highlight python %}
-graph_x2()
-{% endhighlight %}
-
-
+<div class="output_html rendered_html output_subarea ">
 <div>
         
         
@@ -190,39 +297,60 @@ if (outputEl) {{
                 });
             </script>
         </div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, our good friend Isaac Newton comes to our rescue. :D There's a way we can determine the slope at any point on a line, curved or not. It's called the <strong>derivative</strong>.</p>
+<p>Let's say we have an equation $f(x) = x^2 - x + 4$. We can apply the <strong>power rule</strong> to determine what the slope is at any given point in the graph above.</p>
+<p>Here's the end-result of the <strong>power rule</strong> applied to the graph: $f'(x) = 2x - 1$. Now let's decompose this, the general idea is to start with some $x$, which is raised to some power $k$; so... $x^k$. Next, we'll pull the power down and subtract one from the power. Which means, we end up with... $$k(x^{k-1})$$</p>
+<p>So, if we apply this to our equation above: we'll end up with $$f'(x) = 2 \cdot x^{2-1} - 1 \cdot x^{1-1} + 0 \cdot 4x^{0-1}$$ Whoa! Where'd that $x^0$ come from??</p>
+<p>Oh, right. So, anything raised to the 0th-power is just $1$, right? This also means that our equation $f(x) = x^2 - x + 4$ can be written (exactly the same) as $$f(x) = x^2 - x^1 + 4x^0$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What if, though, we have something like this equation? $$f(x) = (3x^2+x-4)^3$$ Taking a look at it, the slope seems rather odd, no?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph_chain</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
 
 
 
-However, our good friend Isaac Newton comes to our rescue. :D There's a way we
-can determine the slope at any point on a line, curved or not. It's called the
-**derivative**.
-
-Let's say we have an equation $f(x) = x^2 - x + 4$. We can apply the **power
-rule** to determine what the slope is at any given point in the graph above.
-
-Here's the end-result of the **power rule** applied to the graph: $f'(x) = 2x -
-1$. Now let's decompose this, the general idea is to start with some $x$, which
-is raised to some power $k$; so... $x^k$. Next, we'll pull the power down and
-subtract one from the power. Which means, we end up with... $$k(x^{k-1})$$
-
-So, if we apply this to our equation above: we'll end up with $$f'(x) = 2 \cdot
-x^{2-1} - 1 \cdot x^{1-1} + 0 \cdot 4x^{0-1}$$ Whoa! Where'd that $x^0$ come
-from??
-
-Oh, right. So, anything raised to the 0th-power is just $1$, right? This also
-means that our equation $f(x) = x^2 - x + 4$ can be written (exactly the same)
-as $$f(x) = x^2 - x^1 + 4x^0$$
 
 
-What if, though, we have something like this equation? $$f(x) = (3x^2+x-4)^3$$
-Taking a look at it, the slope seems rather odd, no?
-
-
-{% highlight python %}
-graph_chain()
-{% endhighlight %}
-
-
+<div class="output_html rendered_html output_subarea ">
 <div>
         
         
@@ -266,63 +394,87 @@ if (outputEl) {{
                 });
             </script>
         </div>
+</div>
+
+</div>
 
 
+</div>
+</div>
 
-If you hover over the graph, you'll see that the slope definitely changes, but
-calculating it is a wee difficult because of that $f(x) = (...)^3$ term.
-However, there's a way around this, which works quite well – it's called the
-**chain rule**. So, let's walk through that with our equation: $f(x) =
-(3x^2+x-4)^3$
-
-$$
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you hover over the graph, you'll see that the slope definitely changes, but calculating it is a wee difficult because of that $f(x) = (...)^3$ term. However, there's a way around this, which works quite well – it's called the <strong>chain rule</strong>. So, let's walk through that with our equation: $f(x) = (3x^2+x-4)^3$</p>
+<p>$$
 \begin{align}
-    f(x) &= (3x^2 + x - 4)^3 \\
-    f'(x) &= (6x + 1) \cdot 3(3x^2 + x - 4)^2
+    f(x) &amp;= (3x^2 + x - 4)^3 \\
+    f'(x) &amp;= (6x + 1) \cdot 3(3x^2 + x - 4)^2
 \end{align}
-$$
+$$</p>
+<p>So, what's going on here is that we're taking two derivatives.</p>
+<ol>
+<li>We take the derivative of the inside of $f(x)$, so we take the derivative over $3x^2 + x - 3$, which is $6x + 1$</li>
+<li>We then take the derivative of the outside of $f(x)$, which is that $(...)^3$ component, which gives us $3(...)^2$</li>
+</ol>
+<p>Now, when we take the derivative of that outer section of the function, we leave the inside alone and carry it around with us. Leaving us with... $$f'(x) = (6x + 1) \cdot 3(3x^2 + x - 4)^2$$</p>
 
-So, what's going on here is that we're taking two derivatives.
-1. We take the derivative of the inside of $f(x)$, so we take the derivative
-over $3x^2 + x - 3$, which is $6x + 1$
-2. We then take the derivative of the outside of $f(x)$, which is that $(...)^3$
-component, which gives us $3(...)^2$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Awesome, now you know what derivatives are – so we can set out and conquer the world of machine learning, right?! Erm... well... no. We can't do that just yet because this "definition" of the derivative is only good for 2-dimensional data, it's very rare we have such low-dimensional data.</p>
+<blockquote><p>Erm, "dimensional?" – ahh, yes. So, let's imagine we have some housing data (<a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">I got it here</a>)... Look at the code-snippet, below. You'll see a slew of "Data Columns" like... <code>LotFrontage</code>, <code>LotArea</code>, <code>Street</code>, <code>Alley</code>, etc. In Machine Learning, we refer to each one of these as "features" of our data, and they correspond to a "dimension" as well.</p>
+<p>In this particular case, the housing data here has 80-odd dimensions.</p>
+</blockquote>
 
-Now, when we take the derivative of that outer section of the function, we leave
-the inside alone and carry it around with us. Leaving us with... $$f'(x) = (6x +
-1) \cdot 3(3x^2 + x - 4)^2$$
-
-
-Awesome, now you know what derivatives are – so we can set out and conquer the
-world of machine learning, right?! Erm... well... no. We can't do that just yet
-because this "definition" of the derivative is only good for 2-dimensional data,
-it's very rare we have such low-dimensional data.
-
-> Erm, "dimensional?" – ahh, yes. So, let's imagine we have some housing data
-([I got it here][kaggle-ames])... Look at the code-snippet, below. You'll see a
-slew of "Data Columns" like... `LotFrontage`, `LotArea`, `Street`, `Alley`, etc.
-In Machine Learning, we refer to each one of these as "features" of our data,
-and they correspond to a "dimension" as well.
->
-> In this particular case, the housing data here has 80-odd dimensions.
-
-[kaggle-ames]: https://www.kaggle.com/c/house-prices-advanced-regression-
-techniques/data
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
-{% highlight python %}
-import pandas as pd
-ames = pd.read_csv("ames-train.csv")
-print(f"Ames has {len(ames.columns)} columns")
-ames.iloc[:5, :10]
-{% endhighlight %}
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ames-train.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Ames has {len(ames.columns)} columns&quot;</span><span class="p">)</span>
+<span class="n">ames</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
 
-    Ames has 81 columns
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ames has 81 columns
+</pre>
+</div>
+</div>
+
+
+  
+<div class="output_area">
 
 
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -422,22 +574,48 @@ ames.iloc[:5, :10]
   </tbody>
 </table>
 </div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can't take the derivative we've just learned about over 80-dimensions. However, there's a more general form of the derivative, called the <strong>partial derivative</strong>. It works just like a normal derivative, but requires you only determine the "rate of change" of one variable at a time. For example, let's say you have the graph below:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph_saddle</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
 
 
 
 
-We can't take the derivative we've just learned about over 80-dimensions.
-However, there's a more general form of the derivative, called the **partial
-derivative**. It works just like a normal derivative, but requires you only
-determine the "rate of change" of one variable at a time. For example, let's say
-you have the graph below:
 
-
-{% highlight python %}
-graph_saddle()
-{% endhighlight %}
-
-
+<div class="output_html rendered_html output_subarea ">
 <div>
         
         
@@ -481,156 +659,380 @@ if (outputEl) {{
                 });
             </script>
         </div>
+</div>
 
+</div>
 
 
-So, while this is only a 3D graph, the ideas that follow extend to all
-dimensions. The key take away here, though, is that we can't take a normal
-derivative because there are more variables affecting the "rate of change" – if
-this is unclear, do ping one of the coordinators on Discord and we'll definitely
-clarify that intuition.
+</div>
+</div>
 
-Since there's more than one variable affecting the "rate of change," this means
-we should figure out a way to look at
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, while this is only a 3D graph, the ideas that follow extend to all dimensions. The key take away here, though, is that we can't take a normal derivative because there are more variables affecting the "rate of change" – if this is unclear, do ping one of the coordinators on Discord and we'll definitely clarify that intuition.</p>
+<p>Since there's more than one variable affecting the "rate of change," this means we should figure out a way to look at</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-{% highlight python %}
-import numpy as np
-{% endhighlight %}
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
 
-{% highlight python %}
-to_transpose = np.full((7, 7), 42)
-{% endhighlight %}
+    </div>
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-{% highlight python %}
-to_transpose[3:] = 0
-to_transpose
-{% endhighlight %}
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_transpose</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mi">42</span><span class="p">)</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-    array([[42, 42, 42, 42, 42, 42, 42],
-           [42, 42, 42, 42, 42, 42, 42],
-           [42, 42, 42, 42, 42, 42, 42],
-           [ 0,  0,  0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0,  0,  0]])
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_transpose</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">to_transpose</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
+<div class="output_wrapper">
+<div class="output">
 
-{% highlight python %}
-to_transpose.T
-{% endhighlight %}
 
+  
+<div class="output_area">
 
 
 
-    array([[42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0],
-           [42, 42, 42,  0,  0,  0,  0]])
 
 
 
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[42, 42, 42, 42, 42, 42, 42],
+       [42, 42, 42, 42, 42, 42, 42],
+       [42, 42, 42, 42, 42, 42, 42],
+       [ 0,  0,  0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0,  0,  0]])</pre>
+</div>
 
-{% highlight python %}
-to_transpose[:5, :5] * np.random.rand(5, 5)
-{% endhighlight %}
+</div>
 
 
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-    array([[29.89851148, 11.66751482, 17.84807538, 29.5089274 , 28.50361937],
-           [23.14228247, 11.26879919,  0.31040172, 15.98490979, 18.72447895],
-           [36.9518974 , 38.70146179, 11.96699729,  0.67814903, 12.67707339],
-           [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
-           [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ]])
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_transpose</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
+<div class="output_wrapper">
+<div class="output">
 
-{% highlight python %}
-np.dot(to_transpose[:5, :5], np.random.rand(5))
-{% endhighlight %}
 
+  
+<div class="output_area">
 
 
 
-    array([128.38854111, 128.38854111, 128.38854111,   0.        ,
-             0.        ])
 
 
 
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0],
+       [42, 42, 42,  0,  0,  0,  0]])</pre>
+</div>
 
-{% highlight python %}
-to_transpose[:5, :5]
-{% endhighlight %}
+</div>
 
 
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-    array([[42, 42, 42, 42, 42],
-           [42, 42, 42, 42, 42],
-           [42, 42, 42, 42, 42],
-           [ 0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0]])
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_transpose</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
+<div class="output_wrapper">
+<div class="output">
 
-{% highlight python %}
-np.expand_dims(np.random.rand(5), axis=0).T
-{% endhighlight %}
 
+  
+<div class="output_area">
 
 
 
-    array([[0.80824678],
-           [0.586337  ],
-           [0.89331961],
-           [0.34858028],
-           [0.77375319]])
 
 
 
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[29.89851148, 11.66751482, 17.84807538, 29.5089274 , 28.50361937],
+       [23.14228247, 11.26879919,  0.31040172, 15.98490979, 18.72447895],
+       [36.9518974 , 38.70146179, 11.96699729,  0.67814903, 12.67707339],
+       [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ]])</pre>
+</div>
 
------
+</div>
 
 
-{% highlight python %}
-"ucfai"[::-1]
-{% endhighlight %}
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
 
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">to_transpose</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
 
-    'iafcu'
+    </div>
+</div>
+</div>
 
+<div class="output_wrapper">
+<div class="output">
 
 
+  
+<div class="output_area">
 
-{% highlight python %}
-import pandas as pd
-ames = pd.read_csv("ames-train.csv")
-print(f"Ames has {len(ames.columns)} columns")
-ames.iloc[-10::2, 0:10:2]
-# slice(lo, hi, step)
-{% endhighlight %}
 
-    Ames has 81 columns
 
 
 
 
+<div class="output_text output_subarea output_execute_result">
+<pre>array([128.38854111, 128.38854111, 128.38854111,   0.        ,
+         0.        ])</pre>
+</div>
 
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_transpose</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[42, 42, 42, 42, 42],
+       [42, 42, 42, 42, 42],
+       [42, 42, 42, 42, 42],
+       [ 0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0]])</pre>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.80824678],
+       [0.586337  ],
+       [0.89331961],
+       [0.34858028],
+       [0.77375319]])</pre>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="s2">&quot;ucfai&quot;</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;iafcu&#39;</pre>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">ames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ames-train.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Ames has {len(ames.columns)} columns&quot;</span><span class="p">)</span>
+<span class="n">ames</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="c1"># slice(lo, hi, step)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ames has 81 columns
+</pre>
+</div>
+</div>
+
+
+  
+<div class="output_area">
+
+
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -700,284 +1102,319 @@ ames.iloc[-10::2, 0:10:2]
   </tbody>
 </table>
 </div>
-
-
-
-
-{% highlight python %}
-ames.loc[1454]
-{% endhighlight %}
-
-
-
-
-    Id                 1455
-    MSSubClass           20
-    MSZoning             FV
-    LotFrontage          62
-    LotArea            7500
-                      ...  
-    MoSold               10
-    YrSold             2009
-    SaleType             WD
-    SaleCondition    Normal
-    SalePrice        185000
-    Name: 1454, Length: 81, dtype: object
-
-
-
-
-{% highlight python %}
-ames.info()
-{% endhighlight %}
-
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 1460 entries, 0 to 1459
-    Data columns (total 81 columns):
-    Id               1460 non-null int64
-    MSSubClass       1460 non-null int64
-    MSZoning         1460 non-null object
-    LotFrontage      1201 non-null float64
-    LotArea          1460 non-null int64
-    Street           1460 non-null object
-    Alley            91 non-null object
-    LotShape         1460 non-null object
-    LandContour      1460 non-null object
-    Utilities        1460 non-null object
-    LotConfig        1460 non-null object
-    LandSlope        1460 non-null object
-    Neighborhood     1460 non-null object
-    Condition1       1460 non-null object
-    Condition2       1460 non-null object
-    BldgType         1460 non-null object
-    HouseStyle       1460 non-null object
-    OverallQual      1460 non-null int64
-    OverallCond      1460 non-null int64
-    YearBuilt        1460 non-null int64
-    YearRemodAdd     1460 non-null int64
-    RoofStyle        1460 non-null object
-    RoofMatl         1460 non-null object
-    Exterior1st      1460 non-null object
-    Exterior2nd      1460 non-null object
-    MasVnrType       1452 non-null object
-    MasVnrArea       1452 non-null float64
-    ExterQual        1460 non-null object
-    ExterCond        1460 non-null object
-    Foundation       1460 non-null object
-    BsmtQual         1423 non-null object
-    BsmtCond         1423 non-null object
-    BsmtExposure     1422 non-null object
-    BsmtFinType1     1423 non-null object
-    BsmtFinSF1       1460 non-null int64
-    BsmtFinType2     1422 non-null object
-    BsmtFinSF2       1460 non-null int64
-    BsmtUnfSF        1460 non-null int64
-    TotalBsmtSF      1460 non-null int64
-    Heating          1460 non-null object
-    HeatingQC        1460 non-null object
-    CentralAir       1460 non-null object
-    Electrical       1459 non-null object
-    1stFlrSF         1460 non-null int64
-    2ndFlrSF         1460 non-null int64
-    LowQualFinSF     1460 non-null int64
-    GrLivArea        1460 non-null int64
-    BsmtFullBath     1460 non-null int64
-    BsmtHalfBath     1460 non-null int64
-    FullBath         1460 non-null int64
-    HalfBath         1460 non-null int64
-    BedroomAbvGr     1460 non-null int64
-    KitchenAbvGr     1460 non-null int64
-    KitchenQual      1460 non-null object
-    TotRmsAbvGrd     1460 non-null int64
-    Functional       1460 non-null object
-    Fireplaces       1460 non-null int64
-    FireplaceQu      770 non-null object
-    GarageType       1379 non-null object
-    GarageYrBlt      1379 non-null float64
-    GarageFinish     1379 non-null object
-    GarageCars       1460 non-null int64
-    GarageArea       1460 non-null int64
-    GarageQual       1379 non-null object
-    GarageCond       1379 non-null object
-    PavedDrive       1460 non-null object
-    WoodDeckSF       1460 non-null int64
-    OpenPorchSF      1460 non-null int64
-    EnclosedPorch    1460 non-null int64
-    3SsnPorch        1460 non-null int64
-    ScreenPorch      1460 non-null int64
-    PoolArea         1460 non-null int64
-    PoolQC           7 non-null object
-    Fence            281 non-null object
-    MiscFeature      54 non-null object
-    MiscVal          1460 non-null int64
-    MoSold           1460 non-null int64
-    YrSold           1460 non-null int64
-    SaleType         1460 non-null object
-    SaleCondition    1460 non-null object
-    SalePrice        1460 non-null int64
-    dtypes: float64(3), int64(35), object(43)
-    memory usage: 924.0+ KB
-
-
-
-{% highlight python %}
-year_built = ames.groupby("YearBuilt")
-{% endhighlight %}
-
-
-{% highlight python %}
-ames["Street"].unique()
-{% endhighlight %}
-
-
-
-
-    array(['Pave', 'Grvl'], dtype=object)
-
-
-
-
-{% highlight python %}
-counter = 0
-for year, group in year_built:
-    counter += 1
-    if year > 1900:
-        break
-    print(year, group["YrSold"].unique())
-print(f"Ran for {counter:4d} times.")
-{% endhighlight %}
-
-    1872 [2008]
-    1875 [2010]
-    1880 [2008 2006 2009 2007]
-    1882 [2009]
-    1885 [2007 2010]
-    1890 [2007 2009]
-    1892 [2006 2009]
-    1893 [2008]
-    1898 [2009]
-    1900 [2006 2008 2010 2007 2009]
-    Ran for   11 times.
-
-
-
-{% highlight python %}
-["string", 10, 10.0, True]
-{% endhighlight %}
-
-
-
-
-    ['string', 10, 10.0, True]
-
-
-
-
-<img src="https://ucfai.org//supplementary/fa19/programming-math-
-camp/banner.jpg">
-
-<div class="col-12">
-    <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
-        First Attendance? Sign Up!
-    </a>
 </div>
 
-<div class="col-12">
-    <h1> A Math Refresher and Scientic Computing Crash Course </h1>
-    <hr>
-</div>
-
-<div style="line-height: 2em;">
-    <p>by:
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-09-16</p>
 </div>
 
 
-<img src="https://ucfai.org//supplementary/fa19/programming-math-
-camp/banner.jpg">
-
-<div class="col-12">
-    <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
-        First Attendance? Sign Up!
-    </a>
+</div>
 </div>
 
-<div class="col-12">
-    <h1> A Math Refresher and Scientic Computing Crash Course </h1>
-    <hr>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ames</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1454</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
 </div>
 
-<div style="line-height: 2em;">
-    <p>by:
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-09-16</p>
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Id                 1455
+MSSubClass           20
+MSZoning             FV
+LotFrontage          62
+LotArea            7500
+                  ...  
+MoSold               10
+YrSold             2009
+SaleType             WD
+SaleCondition    Normal
+SalePrice        185000
+Name: 1454, Length: 81, dtype: object</pre>
 </div>
 
-
-<img src="https://ucfai.org//supplementary/fa19/programming-math-
-camp/banner.jpg">
-
-<div class="col-12">
-    <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
-        First Attendance? Sign Up!
-    </a>
-</div>
-
-<div class="col-12">
-    <h1> A Math Refresher and Scientic Computing Crash Course </h1>
-    <hr>
-</div>
-
-<div style="line-height: 2em;">
-    <p>by:
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-09-16</p>
-</div>
-
-
-<img src="https://ucfai.org//supplementary/fa19/programming-math-
-camp/banner.jpg">
-
-<div class="col-12">
-    <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
-        First Attendance? Sign Up!
-    </a>
-</div>
-
-<div class="col-12">
-    <h1> A Math Refresher and Scientic Computing Crash Course </h1>
-    <hr>
-</div>
-
-<div style="line-height: 2em;">
-    <p>by:
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-09-16</p>
 </div>
 
 
-<img src="https://ucfai.org//supplementary/fa19/programming-math-
-camp/banner.jpg">
-
-<div class="col-12">
-    <a class="btn btn-success btn-block" href="https://ucfai.org/signup">
-        First Attendance? Sign Up!
-    </a>
+</div>
 </div>
 
-<div class="col-12">
-    <h1> A Math Refresher and Scientic Computing Crash Course </h1>
-    <hr>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ames</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
 </div>
 
-<div style="line-height: 2em;">
-    <p>by:
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-09-16</p>
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1460 entries, 0 to 1459
+Data columns (total 81 columns):
+Id               1460 non-null int64
+MSSubClass       1460 non-null int64
+MSZoning         1460 non-null object
+LotFrontage      1201 non-null float64
+LotArea          1460 non-null int64
+Street           1460 non-null object
+Alley            91 non-null object
+LotShape         1460 non-null object
+LandContour      1460 non-null object
+Utilities        1460 non-null object
+LotConfig        1460 non-null object
+LandSlope        1460 non-null object
+Neighborhood     1460 non-null object
+Condition1       1460 non-null object
+Condition2       1460 non-null object
+BldgType         1460 non-null object
+HouseStyle       1460 non-null object
+OverallQual      1460 non-null int64
+OverallCond      1460 non-null int64
+YearBuilt        1460 non-null int64
+YearRemodAdd     1460 non-null int64
+RoofStyle        1460 non-null object
+RoofMatl         1460 non-null object
+Exterior1st      1460 non-null object
+Exterior2nd      1460 non-null object
+MasVnrType       1452 non-null object
+MasVnrArea       1452 non-null float64
+ExterQual        1460 non-null object
+ExterCond        1460 non-null object
+Foundation       1460 non-null object
+BsmtQual         1423 non-null object
+BsmtCond         1423 non-null object
+BsmtExposure     1422 non-null object
+BsmtFinType1     1423 non-null object
+BsmtFinSF1       1460 non-null int64
+BsmtFinType2     1422 non-null object
+BsmtFinSF2       1460 non-null int64
+BsmtUnfSF        1460 non-null int64
+TotalBsmtSF      1460 non-null int64
+Heating          1460 non-null object
+HeatingQC        1460 non-null object
+CentralAir       1460 non-null object
+Electrical       1459 non-null object
+1stFlrSF         1460 non-null int64
+2ndFlrSF         1460 non-null int64
+LowQualFinSF     1460 non-null int64
+GrLivArea        1460 non-null int64
+BsmtFullBath     1460 non-null int64
+BsmtHalfBath     1460 non-null int64
+FullBath         1460 non-null int64
+HalfBath         1460 non-null int64
+BedroomAbvGr     1460 non-null int64
+KitchenAbvGr     1460 non-null int64
+KitchenQual      1460 non-null object
+TotRmsAbvGrd     1460 non-null int64
+Functional       1460 non-null object
+Fireplaces       1460 non-null int64
+FireplaceQu      770 non-null object
+GarageType       1379 non-null object
+GarageYrBlt      1379 non-null float64
+GarageFinish     1379 non-null object
+GarageCars       1460 non-null int64
+GarageArea       1460 non-null int64
+GarageQual       1379 non-null object
+GarageCond       1379 non-null object
+PavedDrive       1460 non-null object
+WoodDeckSF       1460 non-null int64
+OpenPorchSF      1460 non-null int64
+EnclosedPorch    1460 non-null int64
+3SsnPorch        1460 non-null int64
+ScreenPorch      1460 non-null int64
+PoolArea         1460 non-null int64
+PoolQC           7 non-null object
+Fence            281 non-null object
+MiscFeature      54 non-null object
+MiscVal          1460 non-null int64
+MoSold           1460 non-null int64
+YrSold           1460 non-null int64
+SaleType         1460 non-null object
+SaleCondition    1460 non-null object
+SalePrice        1460 non-null int64
+dtypes: float64(3), int64(35), object(43)
+memory usage: 924.0+ KB
+</pre>
 </div>
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">year_built</span> <span class="o">=</span> <span class="n">ames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;YearBuilt&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ames</span><span class="p">[</span><span class="s2">&quot;Street&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Pave&#39;, &#39;Grvl&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">year_built</span><span class="p">:</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">1900</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;YrSold&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Ran for </span><span class="si">{counter:4d}</span><span class="s2"> times.&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1872 [2008]
+1875 [2010]
+1880 [2008 2006 2009 2007]
+1882 [2009]
+1885 [2007 2010]
+1890 [2007 2009]
+1892 [2006 2009]
+1893 [2008]
+1898 [2009]
+1900 [2006 2008 2010 2007 2009]
+Ran for   11 times.
+</pre>
+</div>
+</div>
+
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+
+<div class="inner_cell">
+    <div class="input_area">
+        <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+  
+<div class="output_area">
+
+
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;string&#39;, 10, 10.0, True]</pre>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+  
+ 
+
+
+{% endraw %}

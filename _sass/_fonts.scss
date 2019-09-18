@@ -2,8 +2,16 @@ $font-base:  "Fira Sans", sans-serif !important;
 $font-brand: "PT Sans", $font-base;
 $font-code:  "Fira Code", sans-serif !important;
 
-span, p, h1, h2, h3, h4, h5, h6, a, li, div, b, strong, i, em {
+p, h1, h2, h3, h4, h5, h6, a, li, div, b, strong, i, em {
 	font-family: $font-base;
+}
+
+span {
+	font-family: inherit;
+}
+
+pre {
+	font-family: $font-code;
 }
 
 h1.sigai-section-title {

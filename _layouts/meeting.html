@@ -6,8 +6,9 @@ layout: base
 {% assign semester = page.categories | slice: 1 %}
 {% assign name = page.path | split: "/" | last | split: "." | first %}
 
-{% capture gh_ln %}https://github.com/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
-{% capture co_ln %}https://colab.research.google.com/github/ucfai/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+{% capture gh_ln %}{{ site.platforms.github }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ name }}{% endcapture %}
+{% capture co_ln %}{{ site.platforms.colab  }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 
 <div class="row py-3">
     <div class="col-12 col-lg-8">
@@ -20,6 +21,7 @@ layout: base
     <div class="col-12 col-lg-4">
         <div id="notebook-links">
             <a id="notebook-links__github" href="{{ gh_ln }}">Open on GitHub</a>
+            <a id="notebook-links__kaggle" href="{{ kg_ln }}">Open on Kaggle Kernels</a>
             <a id="notebook-links__colab"  href="{{ co_ln }}">Open on Colaboratory</a>
         </div>
     </div>
@@ -50,13 +52,13 @@ layout: base
 
         <div id="nb-next" class="mt-3">
             {% assign next = page.next %}
-            <img id="nb-next__banner" class="rounded-top" width="100%" src="{{ 'banner.jpg' | prepend: next.url | prepend: site.baseurl }}">
+            <img id="nb-next__banner" class="rounded-top" width="100%" src="{{ site.banner | prepend: next.url }}">
             <div id="nb-next__content" class="card-body">
                 <p id="nb-next__description">
                     {{ next.description | remove: '"' }}
                 </p>
                 <a id="nb-next__cta" class="btn btn-primary"
-                    href="{{ next.url | prepend: site.baseurl }}">
+                    href="{{ next.url }}">
                     Take a look!
                 </a>
             </div>
@@ -73,7 +75,8 @@ layout: base
 
         let tables = document.getElementsByClassName("dataframe");
         for (let t of tables) {
-            t.setAttribute("class", "dataframe table");
+            t.setAttribute("border", 0);
+            t.setAttribute("class", "dataframe table table-striped table-hover");
         }
 
         let nav = document.getElementById("nb-content__toc");

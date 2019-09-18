@@ -34,12 +34,17 @@ div#nb-toc__container {
     }
 }
 
-a[id$="__github"], a[class$="__github"] {
+a[id$="github"], a[class$="github"] {
     color: #f5f5f5;
     background-color: #333333;
 }
 
-a[id$="__colab"], a[class$="__colab"] {
+a[id$="colab"], a[class$="colab"] {
     color: #252525;
     background-color: #fdde3c;
+}
+
+a[id$="kaggle"], a[class$="kaggle"] {
+    color: #20beff;
+    background-color: #47494d;
 }

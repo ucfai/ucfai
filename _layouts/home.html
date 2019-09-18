@@ -13,19 +13,19 @@
         <div id="group-cards" class="row">
             {% assign sem_info = site.data.semesters[site.semester] %}
             {% assign len = sem_info | size %}
-            {% assign col = 12 | divided_by: len | at_least: 4 | at_most: 6 %}
+            {% assign col = 12 | divided_by: len | at_least: 6 | at_most: 6 %}
             {% for group in site.data.groups %}
                 {% if sem_info[group.url] %}
-                    <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3">
+                    <div class="col-lg-{{ col }} col-12 pb-lg-0 pb-3 my-lg-3 my-1">
                         <div class="card bg-dark">
-                            <a class="card-header" href="{{ group.url | prepend: '/' }}">
+                            <a class="card-header" href="{{ group.url | prepend: site.baseurl }}">
                                 <i class="fas fa-link"></i>
                                 <h4 class="m-0 ml-3"> {{ group.name }} </h4>
                             </a>
                             <div class="card-body">
                                 {% assign meet = sem_info[group.url] %}
                                 <h5 class="card-subtitle">
-                                    {{ meet.wday }} at {{ meet.time }} in {{ meet.room}}
+                                    {{ meet.wday }} at {{ meet.time }} in {{ meet.room }}
                                 </h5>
                             </div>
                         </div>

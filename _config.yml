@@ -9,9 +9,8 @@ description: >-
   We're forging the path to turn UCF into a hotspot for researchers and
   engineers passionate about computational intelligence and data science.
 
-## subpath, for the site, it's just ""
-baseurl: ""
-## protocol (http[s]) and tld (ucfsigai.github.io)
+baseurl: "/"
+
 url: "https://ucfai.org"
 
 # Build settings
@@ -49,3 +48,10 @@ collections:
   semidx:
     output: true
     permalink: /:path/
+
+platforms:
+  github: https://github.com/ucfai
+  kaggle: https://kaggle.com/ucfai-
+  colab:  https://colab.research.google.com/github/ucfai
+
+banner: "banner.png"

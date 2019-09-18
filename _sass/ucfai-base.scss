@@ -11,6 +11,10 @@
 @import "modules/coordinator";
 @import "modules/meeting";
 
+@import "meetings";
+
+@import "syntax-highlighting";
+
 body {
 	background-color: $site-bg;
 }
