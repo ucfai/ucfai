@@ -5,9 +5,10 @@ layout: base
 {% assign group = page.categories | slice: 0 %}
 {% assign semester = page.categories | slice: 1 %}
 {% assign name = page.path | split: "/" | last | split: "." | first %}
+{% assign date = page.date | date: "%Y-%m-%d-" %}
 
 {% capture gh_ln %}{{ site.platforms.github }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
-{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ name }}{% endcapture %}
+{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ semester }}-{{ name | remove: date}}{% endcapture %}
 {% capture co_ln %}{{ site.platforms.colab  }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 
 <div class="row py-3">
