@@ -27,5 +27,5 @@ passionate about computational intelligence and data science.
 [intelligence]: {{ "/intelligence/" | prepend: site.baseurl }}
 [supplementary]: {{ "/supplementary/" | prepend: site.baseurl }}
 
-<a class="mr-4 btn btn-info" href="/about"> Learn More </a>
-<a class="mr-4 btn btn-warning" href="/sponsors"> Sponsor Us </a>
+<!-- <a class="mr-4 btn btn-info" href="/about"> Learn More </a> -->
+<!-- <a class="mr-4 btn btn-warning" href="/sponsors"> Sponsor Us </a> -->

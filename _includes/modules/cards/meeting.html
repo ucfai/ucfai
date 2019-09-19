@@ -1,7 +1,11 @@
-{% assign name = post.path | split: "/" | last | remove: ".md" %}
+
+{% assign group = post.categories | slice: 0 %}
+{% assign semester = post.categories | slice: 1 %}
+{% assign name = post.path | split: "/" | last | split: "." | first %}
+{% assign date = post.date | date: "%Y-%m-%d-" %}
 
 {% capture gh_ln %}{{ site.platforms.github }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
-{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ name }}{% endcapture %}
+{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ semester }}-{{ name | remove: date}}{% endcapture %}
 {% capture co_ln %}{{ site.platforms.colab  }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 
 <div class="syllabus-entry mb-3 col-12 flex-column flex-lg-row">
