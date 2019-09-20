@@ -12,8 +12,8 @@ layout: base
 {% capture co_ln %}{{ site.platforms.colab  }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
 
 <div class="row py-3">
-    <div class="col-12 col-lg-8">
-        <div id="nb-heading">
+    <div class="col-12 col-lg-8 d-flex justify-content-center">
+        <div id="nb-heading" class="m-auto">
             <h1 id="nb-title"> {{ page.title }} </h1>
             <p id="nb-date">On {{ page.date | date: "%b %d, %Y" }} </p>
         </div>
@@ -30,10 +30,10 @@ layout: base
 
 <div class="row py-3">
     <div class="col-12 col-lg-8">
-        <div id="nb-desc">
-            {{ post.description | remove: '"' }}
+        <div id="nb-desc" class="pb-3">
+            <strong>Abstract:</strong> {{ page.description | remove: '"' }}
         </div>
-        <div class="nb-authors pb-3">
+        <div class="nb-authors">
         {% for author in page.authors %}
             {% include modules/buttons/author.html author=author big=true %}
         {% endfor %}

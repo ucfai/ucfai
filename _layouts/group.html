@@ -46,9 +46,5 @@
         {% endif %}
 	</main>
 
-	<div id="particles-js">
-        <div id="fade"></div>
-    </div>
-	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-	<script src="{{ '/assets/scripts/particles-config.js' | prepend: site.baseurl }}"></script>
+    {% include particles.html %}
 </body>
