@@ -1,0 +1,65 @@
+---
+layout: base
+---
+
+{% assign group = page.categories | slice: 0 %}
+{% assign semester = page.categories | slice: 1 %}
+{% assign name = page.path | split: "/" | last | split: "." | first %}
+{% assign date = page.date | date: "%Y-%m-%d-" %}
+
+{% capture gh_ln %}{{ site.platforms.github }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+{% capture kg_ln %}{{ site.platforms.kaggle }}/{{ group }}-{{ semester }}-{{ name | remove: date }}{% endcapture %}
+{% capture co_ln %}{{ site.platforms.colab  }}/{{ group }}/blob/master/{{ semester }}/{{ name }}/{{ name }}.ipynb{% endcapture %}
+
+<div class="row py-3">
+    <div class="col-12 col-lg-8 d-flex justify-content-center">
+        <div id="nb-heading" class="m-auto">
+            <h1 id="nb-title"> {{ page.title }} </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-12 col-lg-8">
+        <div id="nb-content">
+            {{ content }}
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div id="nb-toc__container" class="card">
+            <div id="nb-toc__header" class="card-header">Table of Contents</div>
+            <div id="nb-toc__body" class="card-body">
+                <ul id="nb-content__toc" class="list-unstyled m-0"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let anchors = document.getElementsByClassName("anchor-link");
+        for (let a of anchors) {
+            a.innerHTML = "";
+        }
+
+        let tables = document.getElementsByClassName("dataframe");
+        for (let t of tables) {
+            t.setAttribute("border", 0);
+            t.setAttribute("class", "dataframe table table-striped table-hover");
+        }
+
+        let nav = document.getElementById("nb-content__toc");
+        let hs = document.getElementById("nb-content")
+            .querySelectorAll("h2, h3");
+        for (let h of hs) {
+            let cls;
+            switch (h.localName) {
+                case "h2":  cls = `ln-${h.localName}`;  break;
+                case "h3":  cls = `ln-${h.localName} pl-3`;  break;
+            }
+            nav.insertAdjacentHTML("beforeend",
+                `<li class="${cls}"><a href="#${h.id}"> ${h.textContent} </a></li>`);
+        }
+    });
+</script>
