@@ -1,6 +1,6 @@
 ---
 layout: meeting
-title: Using Data Science and Machine Learning to Answer the Important Question: Where's My Money?
+title: Answering the Important Question: Where's My Money?
 date: 2019-10-03
 authors:
     - causallycausal
