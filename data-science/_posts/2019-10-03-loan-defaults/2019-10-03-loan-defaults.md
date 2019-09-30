@@ -1,9 +1,9 @@
 ---
-layout: meeting
-title: Answering the Important Question: Where's My Money?
-date: 2019-10-03
+layout: "meeting"
+title: "Answering the Important Question: Where's My Money?"
+date: "2019-10-03"
 authors:
-    - causallycausal
+    - "causallycausal"
     
 categories: ['fa19']
 tags: ['machine learning', 'data science', 'finance', 'statistics']

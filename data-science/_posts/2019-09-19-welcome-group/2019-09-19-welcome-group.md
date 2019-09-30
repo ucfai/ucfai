@@ -1,12 +1,12 @@
 ---
-layout: meeting
-title: Welcome and Group Selection
-date: 2019-09-19
+layout: "meeting"
+title: "Welcome and Group Selection"
+date: "2019-09-19"
 authors:
-    - ahkerrigan
-    - ionlights
-    - causallycausal
-    - aehevia
+    - "ahkerrigan"
+    - "ionlights"
+    - "causallycausal"
+    - "aehevia"
     
 categories: ['fa19']
 tags: ['club']
