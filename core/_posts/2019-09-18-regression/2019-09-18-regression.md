@@ -1,9 +1,9 @@
 ---
-layout: meeting
-title: Getting Started, Regression
-date: 2019-09-18
+layout: "meeting"
+title: "Getting Started, Regression"
+date: "2019-09-18"
 authors:
-    - jarviseq
+    - "jarviseq"
     
 categories: ['fa19']
 tags: ['Regresssion', 'Linear Regression', 'Logistic Regression', 'non-nn']

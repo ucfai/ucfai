@@ -1,9 +1,9 @@
 ---
-layout: meeting
-title: Welcome back! Introducing Data Science
-date: 2019-09-11
+layout: "meeting"
+title: "Welcome back! Introducing Data Science"
+date: "2019-09-11"
 authors:
-    - sirroboto
+    - "sirroboto"
     
 categories: ['fa19']
 tags: ['club']

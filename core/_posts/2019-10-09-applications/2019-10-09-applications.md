@@ -1,9 +1,9 @@
 ---
-layout: meeting
-title: Applications
-date: 2019-10-09
+layout: "meeting"
+title: "Applications"
+date: "2019-10-09"
 authors:
-    - jarviseq
+    - "jarviseq"
     
 categories: ['fa19']
 tags: ['neural-nets', 'applications', 'random-forest', 'svms']
