@@ -1,10 +1,10 @@
 ---
-layout: meeting
-title: Building Machines That Learn and Think Like People
-date: 2019-11-12
+layout: "meeting"
+title: "Building Machines That Learn and Think Like People"
+date: "2019-11-12"
 authors:
-    - ionlights
-    - ahl98
+    - "ionlights"
+    - "ahl98"
     
 categories: ['fa19']
 tags: ['long-paper']

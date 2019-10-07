@@ -1,10 +1,10 @@
 ---
-layout: meeting
-title: Deep Learning
-date: 2019-10-01
+layout: "meeting"
+title: "Deep Learning"
+date: "2019-10-01"
 authors:
-    - ionlights
-    - ahl98
+    - "ionlights"
+    - "ahl98"
     
 categories: ['fa19']
 tags: ['intro-paper', 'review-paper', 'deep-learning']

@@ -1,10 +1,10 @@
 ---
-layout: meeting
-title: Building Machines That Learn and Think For Themselves
-date: 2019-11-19
+layout: "meeting"
+title: "Building Machines That Learn and Think For Themselves"
+date: "2019-11-19"
 authors:
-    - ionlights
-    - ahl98
+    - "ionlights"
+    - "ahl98"
     
 categories: ['fa19']
 tags: ['long-paper']
