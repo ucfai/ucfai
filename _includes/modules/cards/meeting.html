@@ -6,6 +6,7 @@
 {% unless semester %}
     {% assign semester = post.categories | slice: 1 %}
 {% endunless %}
+
 {% assign name = post.path | split: "/" | last | split: "." | first %}
 {% assign date = post.date | date: "%Y-%m-%d-" %}
 
