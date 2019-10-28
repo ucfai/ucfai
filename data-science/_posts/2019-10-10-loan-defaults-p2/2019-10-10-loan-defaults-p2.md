@@ -6,7 +6,7 @@ authors:
     - "causallycausal"
     
 categories: ['fa19']
-tags: ['machine learning', 'data science', 'finance', 'statistics']
+tags: ['machine-learning', 'data science', 'finance', 'statistics']
 description: >-
     We continue our deep dive into the wonderful world of loan defaults. Does the loan grading of creditors line up with what reality shows? Use machine learning to find out!
 ---

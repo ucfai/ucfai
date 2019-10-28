@@ -6,7 +6,7 @@ authors:
     - "ahkerrigan"
     
 categories: ['fa19']
-tags: ['machine learning', 'data science', 'finance', 'statistics']
+tags: ['machine-learning', 'data science', 'finance', 'statistics']
 description: >-
     Placeholder
 ---

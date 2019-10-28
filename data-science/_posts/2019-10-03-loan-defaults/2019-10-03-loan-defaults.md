@@ -6,7 +6,7 @@ authors:
     - "causallycausal"
     
 categories: ['fa19']
-tags: ['machine learning', 'data science', 'finance', 'statistics']
+tags: ['machine-learning', 'data science', 'finance', 'statistics']
 description: >-
     Perhaps the most common and popular application of data science is in the financial world. For years, loan providers have had to work on intuition (and perhaps intellegence of underemployed math majors) to determine who should and should not be recieving a loan. But now days, we can use fancy statistics and machine learning to determine who will default on a loan.
 ---

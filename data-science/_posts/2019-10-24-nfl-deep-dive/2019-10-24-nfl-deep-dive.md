@@ -6,7 +6,7 @@ authors:
     - "ahkerrigan"
     
 categories: ['fa19']
-tags: ['machine learning', 'data science', 'football', 'competition']
+tags: ['machine-learning', 'data science', 'football', 'competition']
 description: >-
     This week we dive even deeper in to the NFL Big Data Bowl and try to understand  what techniques are needed to achieve a competitive result. Let's fill the leaderboard with [AI@UCF]!
 ---
