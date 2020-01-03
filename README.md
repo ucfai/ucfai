@@ -7,7 +7,7 @@
 1. Checkout the `hugo-migration` branch, this is what we'll be working from.
 1. Make sure you run `git submodule update --init --recursive` to properly
    "install" `hugo-academic`.
-1. From the repository root, run: `docker-compose up -d`.
+1. From the repository root, run: `docker-compose up`.
 
 You'll find the site is live at `[http://localhost:8234](http://localhost:8234)`.
 
