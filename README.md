@@ -1,42 +1,46 @@
-# [Academic Kickstart](https://sourcethemes.com/academic/)
+# ucfai.org
+**Hugo Rewrite edition**
 
-**Academic** makes it easy to create a beautiful website for free using Markdown, Jupyter, or RStudio. Customize anything on your site with widgets, themes, and language packs. [Check out the latest demo](https://academic-demo.netlify.com/) of what you'll get in less than 10 minutes, or [view the showcase](https://sourcethemes.com/academic/#expo).
+## Installation and setup
+1. Clone this repository, using something like...
+   `git clone git@github.com:ucfai/ucfai.github.io`.
+1. Checkout the `hugo-migration` branch, this is what we'll be working from.
+1. Make sure you run `git submodule update --init --recursive` to properly
+   "install" `hugo-academic`.
+1. From the repository root, run: `docker-compose up -d`.
 
-**Academic Kickstart** provides a minimal template to kickstart your new website.
+## Interaction with the Docker Container
+We're using `docker-compose` to simplify and standardize the development/build
+process. Because of this, you need to become semi-familiar with the
+`docker-compose` CLI interface.
 
-- [**Get Started**](#install)
-- [View the documentation](https://sourcethemes.com/academic/docs/)
-- [Ask a question](http://discuss.gohugo.io/)
-- [Request a feature or report a bug](https://github.com/gcushen/hugo-academic/issues)
-- Updating? View the [Update Guide](https://sourcethemes.com/academic/docs/update/) and [Release Notes](https://sourcethemes.com/academic/updates/)
-- Support development of Academic:
-  - [Donate a coffee](https://paypal.me/cushen)
-  - [Become a backer on Patreon](https://www.patreon.com/cushen)
-  - [Decorate your laptop or journal with an Academic sticker](https://www.redbubble.com/people/neutreno/works/34387919-academic)
-  - [Wear the T-shirt](https://academic.threadless.com/)
+**To start the container:**
 
-[![Screenshot](https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png)](https://github.com/gcushen/hugo-academic/)
+```bash
+docker-compose up
+```
+This will start the container and attach the log output to your current terminal window.
 
-## Install
 
-You can choose from one of the following four methods to install:
+**To start the container in a `detached` state:**
 
-* [**one-click install using your web browser (recommended)**](https://sourcethemes.com/academic/docs/install/#install-with-web-browser)
-* [install on your computer using **Git** with the Command Prompt/Terminal app](https://sourcethemes.com/academic/docs/install/#install-with-git)
-* [install on your computer by downloading the **ZIP files**](https://sourcethemes.com/academic/docs/install/#install-with-zip)
-* [install on your computer with **RStudio**](https://sourcethemes.com/academic/docs/install/#install-with-rstudio)
+```bash
+docker-compose up -d
+```
+This will start the container in a `detached` state, which allows it to persist
+(continue running) beyond the terminal window. All it requires is that `docker`
+is running on your host machine. 
 
-Then [personalize your new site](https://sourcethemes.com/academic/docs/get-started/).
+**To access the log from this container:**
+```bash
+docker-compose logs hugo-ucfai-org
+```
+As this container is named, you'll only be able to spawn a single instance of it
+(which makes it trivial to access the logs, too). As a build system, `hugo` dumps
+all errors to this log, so you'll be able to catch a glimpse of what's going on
+by running the above command.
 
-## Ecosystem
-
-* **[Academic Admin](https://github.com/sourcethemes/academic-admin):** An admin tool to import publications from BibTeX or import assets for an offline site
-* **[Academic Scripts](https://github.com/sourcethemes/academic-scripts):** Scripts to help migrate content to new versions of Academic
-
-## License
-
-Copyright 2017-present [George Cushen](https://georgecushen.com).
-
-Released under the [MIT](https://github.com/sourcethemes/academic-kickstart/blob/master/LICENSE.md) license.
-
-[![Analytics](https://ga-beacon.appspot.com/UA-78646709-2/academic-kickstart/readme?pixel)](https://github.com/igrigorik/ga-beacon)
+**Personal recommendation:** Run `docker-compose up` whenever you're developing,
+the latter methods of running are useful, but can make it a bit difficult to
+track down errors until you've gotten into the headspace work with `docker`,
+which takes a bit.
