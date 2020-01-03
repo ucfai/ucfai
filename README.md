@@ -9,6 +9,8 @@
    "install" `hugo-academic`.
 1. From the repository root, run: `docker-compose up -d`.
 
+You'll find the site is live at `[http://localhost:8234](http://localhost:8234)`.
+
 ## Interaction with the Docker Container
 We're using `docker-compose` to simplify and standardize the development/build
 process. Because of this, you need to become semi-familiar with the
