@@ -4,7 +4,7 @@ services:
     image: jojomi/hugo:0.60.0
     container_name: hugo-ucfai-org
     environment:
-      - HUGO_THEME="academic"
+      - HUGO_THEME=academic
       - HUGO_WATCH=true
       # - HUGO_BASEURL=
     volumes:
