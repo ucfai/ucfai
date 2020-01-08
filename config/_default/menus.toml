@@ -1,36 +1,31 @@
-# Navigation Links
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
-
-[[main]]
+[[ main ]]
   name = "Home"
-  url = "#about"
+  url = "/"
   weight = 10
 
-[[main]]
-  name = "Posts"
-  url = "#posts"
+[[ main ]]
+  name = "Groups"
+  identifier = "group"
+  weight = 50
+  hasChildren = true
+
+[[ main ]]
+  name = "Core"
+  parent = "group"
+  url = "/core/"
+  weight = 10
+
+[[ main ]]
+  name = "Supplementary"
+  parent = "group"
+  url = "/supplementary/"
   weight = 20
 
-[[main]]
-  name = "Projects"
-  url = "#projects"
+[[ main ]]
+  name = "Intelligence"
+  parent = "group"
+  url = "/intelligence/"
   weight = 30
 
-[[main]]
-  name = "Publications"
-  url = "#featured"
-  weight = 40
-
-[[main]]
-  name = "Contact"
-  url = "#contact"
-  weight = 60
-
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# [[main]]
-#    name = "CV"
-#    url = "files/cv.pdf"
-#    weight = 70
+[[ docs ]]
+  name = "Intelligence"

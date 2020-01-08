@@ -1,0 +1,39 @@
+{{- define "main" -}}
+
+{{/* Check that user fully installed Academic. */}}
+{{ if not (isset site.Params "theme") }}
+{{ errorf "Please complete the installation of Academic by following the steps at https://sourcethemes.com/academic/docs/install/" }}
+{{ end }}
+
+
+<main id="home" class="container px-3 py-5 mx-auto" role="main">
+    <div class="row" id="landing-page">
+        <div id="landing-text" class="col-lg-6 col-12">
+            <img id="landing-logomark" class="pb-3"
+                src="/brand/fullmark/dark-bg-ready.svg" />
+            <p>
+                We're forging UCF into a hotspot for researchers and engineers
+                passionate about computational intelligence and data science.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        {{ range site.Data.active.groups }}
+        {{ partial "module/group-card" . }}
+        {{ end }}
+    </div>
+    {{ .Content }}
+</main>
+
+<!-- particles.js container -->
+<div id="particles-js">
+    <div id="fade"></div>
+</div>
+
+<!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
+<script
+    src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="/js/particles-config.js"></script>
+
+
+{{- end -}}
