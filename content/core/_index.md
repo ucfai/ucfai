@@ -18,14 +18,10 @@ move into our other, more advanced groups soon after. **We expect you to attend 
 lectures as possible and chunk out a few hours – _roughly 5-10 every week in addition to
 these meetings_ – to become successful.**
 
-The material here has been a part of the core of AI@UCF since [Felix Sosa][felix],
-[John Muchovej][john], and [Richard DiBacco][richard] reworked the structure of the club
-at UCF. As the university doesn’t provide such coursework until your final semesters
-in degree programs, we created `core` as a stand-in, to cultivate your skills for
-research and industry before you graduate.
-
-[felix]: /authors/felix-sosa/
-[john]: /authors/john-muchovej/
-[richard]: /authors/richard-dibacco/
+The material here has been a part of the core of AI@UCF since {{< mention flxsosa >}},
+{{< mention ionlights >}}, and {{< mention thedibaccle >}} reworked the structure of the
+club at UCF. As the university doesn't provide such coursework until your final
+semesters in degree programs, we created `core` as a stand-in, to cultivate your skills
+for research and industry before you graduate.
 
 ## Current and Past Offerings
