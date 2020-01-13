@@ -24,3 +24,34 @@
   for = "index.xml"
   [headers.values]
     Content-Type = "application/rss+xml"
+
+# https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
+[[ redirects ]]
+  from = "/discord"
+  to = "https://discord.gg/7vwjC8P"
+  status = 301
+
+[[ redirects ]]
+  from = "/calendar"
+  to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
+  status = 301
+
+[[ redirects ]]
+  from = "/github"
+  to = "https://github.com/ucfai"
+  status = 301
+
+[[ redirects ]]
+  from = "/kaggle"
+  to = "https://kaggle.com/ucfaibot"
+  status = 301
+
+[[ redirects ]]
+  from = "/feedback"
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSdOZLuDIJebQ5bLHsghTxEBjm57Eb6Oe-qQ48WmTeFv7uBdEw/viewform"
+  status = 301
+
+[[ redirects ]]
+  from = "/signin"
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
+  status = 301
