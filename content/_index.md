@@ -1,5 +1,6 @@
 ---
 title: home
+layout: coming_soon
 tags:
 - machine learning
 - artificial intelligence

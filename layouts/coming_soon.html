@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Under Construction | AI@UCF</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
+
+	<link rel="stylesheet" type="text/css"
+		href="vendor/bootstrap/css/bootstrap.min.css">
+
+	<!-- <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+
+	<!-- <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+
+	<link rel="stylesheet" type="text/css"
+		href="vendor/select2/select2.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+{{ partial "site_head" . }}
+
+<body style="margin: 0;" class="ucfai-home">
+
+	<div id="construction" class="px-1 py-3">
+		<span></span>
+		<div class="flex-column py-5 text-center">
+			{{ "# Coming soon :rocket:" | markdownify | emojify }}
+
+			{{ "## We're in the midst of giving our site a facelift :building_construction:" | markdownify | emojify }}
+
+			<div class="flex-wrap d-flex flex-row justify-content-center cd100 py-5">
+				<div class="construction-counter how-countdown">
+					<h2 class="days"></h2>
+					<p>days</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="hours"></h2>
+					<p>hours</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="minutes"></h2>
+					<p>minutes</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="seconds"></h2>
+					<p>seconds</p>
+				</div>
+			</div>
+		</div>
+
+		{{ ":copyright: 2020 AI@UCF. Inspired by Colorlib \"Coming Soon\" Template 4." | markdownify | emojify}}
+	</div>
+
+    {{ partial "particles" . }}
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+	<!-- <script src="vendor/bootstrap/js/popper.js"></script> -->
+	<!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
+
+	<script src="vendor/select2/select2.min.js"></script>
+
+	<script src="vendor/countdowntime/moment.min.js"></script>
+	<script src="vendor/countdowntime/moment-timezone.min.js"></script>
+	<script
+		src="vendor/countdowntime/moment-timezone-with-data.min.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script>
+		$('.cd100').countdown100({
+			// Set Endtime here
+			endtimeYear: 2020,
+			endtimeMonth: 1,
+			endtimeDate: 20,
+			endtimeHours: 18,
+			endtimeMinutes: 0,
+			endtimeSeconds: 0,
+			timeZone: "America/New_York"
+			// go to " http://momentjs.com/timezone/ " to get timezone
+		});
+	</script>
+
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+<body style="margin: 0;" class="ucfai-home">
+</body>
+
+</html>
