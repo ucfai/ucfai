@@ -71,7 +71,7 @@ privacy_pack = false
 
 # Enable visitors to edit pages?
 #   `repo` defines the repository URL. `editable` defines which page types can be edited.
-edit_page = {repo_url = "https://github.com/ucfai/ucfai.github.io", content_dir = "", repo_branch = "master", editable = {docs = true, page = false, post = false}}
+edit_page = {repo_url = "https://github.com/ucfai/ucfai.org", content_dir = "content", repo_branch = "master", editable = {docs = true, page = false, post = false}}
 
 ############################
 ## Contact details
@@ -160,8 +160,8 @@ link_authors = true
 
 # Load JS plugins
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_js  = ["particles-config"]
-plugins_css = ["authors"]
+# plugins_js  = ["particles-config", "moment", "countdowntime"]
+# plugins_css = ["authors"]
 
 # Available address formats.
 [address_formats]

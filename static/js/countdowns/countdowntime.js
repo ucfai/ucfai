@@ -1,11 +1,11 @@
 (function ($) {
     "use strict";
 
-    $.fn.extend({
+    $.fn.extend({ 
 
       countdown100: function(options) {
         var defaults = {
-          timeZone: "America/New_York",
+          timeZone: "",
           endtimeYear: 0,
           endtimeMonth: 0,
           endtimeDate: 0,
@@ -30,19 +30,19 @@
 
           if(tZ == "") {
             var deadline = new Date(endYear, endMonth - 1, endDate, endHours, endMinutes, endSeconds);
-          }
+          } 
           else {
             var deadline = moment.tz([endYear, endMonth - 1, endDate, endHours, endMinutes, endSeconds], tZ).format();
           }
 
           if(Date.parse(deadline) < Date.parse(timeNow)) {
-            var deadline = new Date(Date.parse(new Date()) + endDate * 24 * 60 * 60 * 1000 + endHours * 60 * 60 * 1000);
+            var deadline = new Date(Date.parse(new Date()) + endDate * 24 * 60 * 60 * 1000 + endHours * 60 * 60 * 1000); 
           }
-
-
+          
+          
           initializeClock(deadline);
 
-          function getTimeRemaining(endtime) {
+          function getTimeRemaining(endtime) { 
             var t = Date.parse(endtime) - Date.parse(new Date());
             var seconds = Math.floor((t / 1000) % 60);
             var minutes = Math.floor((t / 1000 / 60) % 60);
@@ -57,13 +57,13 @@
             };
           }
 
-          function initializeClock(endtime) {
+          function initializeClock(endtime) { 
             var daysSpan = $(obj).find('.days');
             var hoursSpan = $(obj).find('.hours');
             var minutesSpan = $(obj).find('.minutes');
             var secondsSpan = $(obj).find('.seconds');
 
-            function updateClock() {
+            function updateClock() { 
               var t = getTimeRemaining(endtime);
 
               daysSpan.html(t.days);
@@ -80,11 +80,13 @@
             var timeinterval = setInterval(updateClock, 1000);
           }
 
+          
+
 
         });
       }
     });
 
-
+    
 
 })(jQuery);
