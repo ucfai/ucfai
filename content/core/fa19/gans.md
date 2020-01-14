@@ -1,24 +1,38 @@
-<img src="https://ucfai.org/core/fa19/2019-10-30-gans/gans/banner.png">
+---
+title: "A look behind DeepFake - GANs"
+linktitle: "A look behind DeepFake - GANs"
+date: "2019-10-30T00:00:00Z"
+lastmod: "2019-10-30T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 8   
 
-<div class="col-12">
-    <h1> A look behind DeepFake - GANs </h1>
-    <hr>
-</div>
+weight: 8
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Brandon</strong>
-        (<a href="https://github.com/brandons209">@brandons209</a>)
-     on 2019-10-30</p>
-</div>
+authors: ["brandons209"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["GANs",  "generative", "adversial", "cyclegan", "deepfake", "cGAN"]
+description: >-
+  GANs are relativity new in the machine learning world, but they have proven to be a very
+  powerful model. Recently, they made headlines in the DeepFake network, being able to mimic
+  someone else in real time video and audio. There has also been cycleGAN, which takes one domain (horses)
+  and makes it look like something similar (zebras). Come and learn the secret behind these type of networks,
+  you will be suprised how intuitive it is! The lecture will cover the basics of GANs and different types,
+  with the workshop covering how we can generate human faces, cats, dogs, and other cute creatures!
+--- 
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
 <span class="kn">import</span> <span class="nn">os</span>

@@ -1,24 +1,36 @@
-<img src="https://ucfai.org/core/fa19/2019-10-09-applications/applications/banner.png">
+---
+title: "Applications"
+linktitle: "Applications"
+date: "2019-10-09T00:00:00Z"
+lastmod: "2019-10-09T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 5   
 
-<div class="col-12">
-    <h1> Applications </h1>
-    <hr>
-</div>
+weight: 5
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Liam Jarvis</strong>
-        (<a href="https://github.com/jarviseq">@jarviseq</a>)
-     on 2019-10-09</p>
-</div>
+authors: ["jarviseq"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["neural-nets", "applications", "random-forest", "svms"]
+description: >-
+  You know what they are, but "how do?" In this meeting, we let you loose on a   
+  dataset to help you apply your newly developed or honed data science skills. 
+  Along the way, we go over the importance of visulisations and why it is 
+  important to be able to pick apart a dataset.
+---
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
 <span class="kn">import</span> <span class="nn">os</span>

@@ -1,24 +1,36 @@
-<img src="https://ucfai.org/core/fa19/2019-10-02-nns/nns/banner.png">
+---
+title: "Getting Started with Neural Networks"
+linktitle: "Getting Started with Neural Networks"
+date: "2019-10-02T00:00:00Z"
+lastmod: "2019-10-02T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 4   
 
-<div class="col-12">
-    <h1> Getting Started with Neural Networks </h1>
-    <hr>
-</div>
+weight: 4
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Liam Jarvis</strong>
-        (<a href="https://github.com/jarviseq">@jarviseq</a>)
-     on 2019-10-02</p>
-</div>
+authors: ["jarviseq"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["neural-nets"]
+description: >-
+  You've heard about them: Beating humans at all types of games, driving cars,
+  and recommending your next Netflix series to watch, but what ARE neural 
+  networks? In this lecture, you'll actually learn step by step how neural
+  networks function and learn. Then, you'll deploy one yourself!
+---
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
 <span class="kn">import</span> <span class="nn">os</span>

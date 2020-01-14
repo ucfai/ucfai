@@ -16,6 +16,7 @@ lastmod: "2018-09-09T00:00:00Z"
 draft: false
 toc: true
 type: docs
+authors: ["Liam Jarvis", "ionlights"]
 
 menu:
   core_fa19:

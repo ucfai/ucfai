@@ -1,27 +1,38 @@
-<img src="https://ucfai.org/core/fa19/2019-10-23-rnns/rnns/banner.png">
+---
+title: "Writer's Block? RNNs can help!"
+linktitle: "Writer's Block? RNNs can help!"
+date: "2019-10-23T00:00:00Z"
+lastmod: "2019-10-23T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 7   
 
-<div class="col-12">
-    <h1> Writer's Block? RNNs can help! </h1>
-    <hr>
-</div>
+weight: 7
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Brandon</strong>
-        (<a href="https://github.com/brandons209">@brandons209</a>)
-    
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2019-10-23</p>
-</div>
+authors: ["brandons209", "ionlights"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["neural-nets", "recurrent-nets", "LSTMs", "Embeddings"]
+description: >-
+  This lecture is all about Recurrent Neural Networks. These are networks
+  with memory, which means they can learn from sequential data such as speech,
+  text, videos, and more. Different types of RNNs and strategies for building 
+  them will also be covered. The project will be building a LSTM-RNN to generate
+  new original scripts for the TV series “The Simpsons”. Come and find out if our
+  networks can become better writers for the show!
+--- 
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
 <span class="kn">import</span> <span class="nn">os</span>

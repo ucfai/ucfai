@@ -14,7 +14,7 @@ menu:
 
 weight: 2
 
-authors: ["Liam Jarvis", "John Muchovej"]
+authors: ["jarviseq", "ionlights"]
 
 urls:
   youtube: "#"

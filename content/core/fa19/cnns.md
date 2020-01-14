@@ -1,27 +1,37 @@
-<img src="https://ucfai.org/core/fa19/2019-10-16-cnns/cnns/banner.png">
+---
+title: "How We Can Give Our Computers Eyes and Ears"
+linktitle: "How We Can Give Our Computers Eyes and Ears"
+date: "2019-10-16T00:00:00Z"
+lastmod: "2019-10-16T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 6   
 
-<div class="col-12">
-    <h1> How We Can Give Our Computers Eyes and Ears </h1>
-    <hr>
-</div>
+weight: 6
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Daniel Silva</strong>
-        (<a href="https://github.com/danielzgsilva">@danielzgsilva</a>)
-    
-        <strong> Brandon</strong>
-        (<a href="https://github.com/brandons209">@brandons209</a>)
-     on 2019-10-16</p>
-</div>
+authors: ["danielzgsilva", "brandons209"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["Computer Vision", "CNNs", "Convolutional Neural Networks"]
+description: >-
+  Ever wonder how Facebook tells you which friends to tag in your photos,
+  or how Siri can even understand your request? In this meeting we'll dive
+  into convolutional neural networks and give you all the tools to build
+  smart systems such as these. Join us in learning how we can grant our 
+  computers the gifts of hearing and sight!
+---
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
 <span class="kn">import</span> <span class="nn">os</span>

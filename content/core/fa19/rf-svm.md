@@ -1,24 +1,36 @@
-<img src="https://ucfai.org/core/fa19/2019-09-25-rf-svm/rf-svm/banner.png">
+---
+title: "A Walk Through the Random Forest"
+linktitle: "A Walk Through the Random Forest"
+date: "2019-09-25T00:00:00Z"
+lastmod: "2019-09-25T00:00:00Z"
+draft: false # Is this a draft? true/false
+toc: true # Show table of contents? true/false
+type: docs # Do not modify.
 
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
+menu:
+  core_fa19:
+    parent: Fall 2019
+    weight: 3   
 
-<div class="col-12">
-    <h1> A Walk Through the Random Forest </h1>
-    <hr>
-</div>
+weight: 3
 
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Liam Jarvis</strong>
-        (<a href="https://github.com/jarviseq">@jarviseq</a>)
-     on 2019-09-25</p>
-</div>
+authors: ["jarviseq"]
 
+urls:
+  youtube: "#"
+  slides:  "#"
+  github:  "#"
+  kaggle:  "#"
+  colab:   "#"
 
+categories: ["fa19"]
+tags: ["random-forests", "svms", "weak-models", "non-nn"]
+description: >-
+  In this lecture, we explore powerful yet lightweight models that are often 
+  overlooked. We will see the power of combining multiple simple models together
+  and how they can yield amazing results. You won't believe how easy it is to 
+  classify with just a line!
+---
 
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
