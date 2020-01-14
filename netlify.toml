@@ -25,7 +25,24 @@
   [headers.values]
     Content-Type = "application/rss+xml"
 
-# https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
+# Netlify Redirect docs:
+#   - https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
+
+# ------------------------------------------------------------------------------
+# Website redirects:
+#   These take the form of... https://ucfai.org/<from>
+#   - <from> is specified below as "from = ..." (ignore the leading slash)
+# We currently have the following redirects (sorted alphabetically:
+#   - https://ucfai.org/calendar
+#   - https://ucfai.org/discord
+#   - https://ucfai.org/facebook-page
+#   - https://ucfai.org/feedback
+#   - https://ucfai.org/github
+#   - https://ucfai.org/instagram
+#   - https://ucfai.org/kaggle
+#   - https://ucfai.org/signin
+# ------------------------------------------------------------------------------
+
 [[ redirects ]]
   from = "/discord"
   to = "https://discord.gg/7vwjC8P"
