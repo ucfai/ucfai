@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 1
+weight: 9
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 1
+    weight: 9
 
 authors: ["ahkerrigan", ]
 
@@ -30,10 +30,6 @@ tags: ["machine learning", "deep learning", "reinforcement learning", "DoTA", ]
 description: >-
   It's easy enough to navigate a 16x16 maze with tables and some dynamic programming, but how exactly do we extend that to play video games with millions of pixels as input, or board games like Go with more states than particals in the observable universe? The answer, as it often is, is deep reinforcement learning.
 ---
-```
-
-
-```
 
 **What does it formally mean for an agent to explore?**
 
@@ -50,7 +46,7 @@ Let's start with imports
 
 ```
 import gym
-import numpy as np 
+import numpy as np
 import torch
 from torch import nn
 from torch.autograd import Variable
@@ -95,14 +91,14 @@ Now, let's create the frozen lake enviroment. As mentioned in the slides, frozen
 lake = gym.make('FrozenLake-v0')
 ```
 
-We can go ahead and see what this enviroment looks like 
+We can go ahead and see what this enviroment looks like
 
 ```
 lake.reset()
 lake.render()
 ```
 
-    
+
     [41mS[0mFFF
     FHFH
     FFFH
@@ -110,7 +106,7 @@ lake.render()
 
 
 
-Let's take a step and see what it looks like. 
+Let's take a step and see what it looks like.
 
 0 - Left
 
@@ -166,29 +162,29 @@ For this enviroment, the only time a reward other than 0 is recieved is when you
 
 ```
 class Agent(nn.Module):
-  
+
     """
     Observation Space - How big is the state that the agent needs to observe?
     In this case, the only thing that changes about the lake is the position of the agent.
     Therefore, the observation space is 1
-    
-    Action Space - Similar to the O-Space, we can move up, down, left, and right 
-    Because we need to measure the Q-value of every action, the action space in this 
+
+    Action Space - Similar to the O-Space, we can move up, down, left, and right
+    Because we need to measure the Q-value of every action, the action space in this
     case will be 4
     """
     def __init__(self, observation_space_size, action_space_size):
         super(Agent, self).__init__()
         self.observation_space_size = observation_space_size
         self.hidden_size = observation_space_size
-        
+
         # What is the difference between observation and state space?
-         
+
         """
-        Let's build the nueral network. In RL, you'll find that large networks 
+        Let's build the nueral network. In RL, you'll find that large networks
         are largely unessesary. Oftentimes, you can get away with just 1 or 2 hidden layers
         The reason should be intuitive. What makes something a cat or a dog has many, many variables
         But "wich direction should I walk on a 2D grid" has a lot fewer.
-        
+
         As you can see, the output layer is our action space size. This will be a table
         of our possible actions, each with a q-value
         """
@@ -202,9 +198,9 @@ class Agent(nn.Module):
         uniform_linear_layer(self.l1)
         uniform_linear_layer(self.l2)
         ### END SOLUTION
-        
+
         # Why might a nueral network for deep RL be relatively smaller than what you might expect in something like image classification
-    
+
     # Forward feed of our network
     def forward(self, state):
         obs_emb = one_hot([int(state)], self.observation_space_size)
@@ -224,12 +220,12 @@ class Trainer:
         self.success = []
         self.jList = []
         self.running_success = []
-    
+
     def train(self, epoch):
-      
+
       # Let's start by resetting our enviroment
       # We don't want to just wander back and forth forever when the simulation starts
-      # Therefore, we use a j value that stops our agent from taking more than 200 
+      # Therefore, we use a j value that stops our agent from taking more than 200
       # actions in a simulation
         for i in range(epoch):
             s = lake.reset()
@@ -239,7 +235,7 @@ class Trainer:
             # Rearrange these in the correct order
                 self.optimizer.zero_grad()
                 s = s1
-                target_q = r + 0.99 * torch.max(self.agent(s1).detach()) 
+                target_q = r + 0.99 * torch.max(self.agent(s1).detach())
                 self.optimizer.step()
                 if d == True: break
                 a = self.choose_action(s)
@@ -250,7 +246,7 @@ class Trainer:
                 if d == True and r == 0: r = -1
             """
             while j < 200:
-                
+
                 ### BEGIN SOLUTION
                 # perform chosen action
                 a = self.choose_action(s)
@@ -258,7 +254,7 @@ class Trainer:
 
                 s1, r, d, _ = lake.step(a)
                 if d == True and r == 0: r = -1
-                
+
                 # calculate target and loss`
                 # Now, we forward feed the NEW STATE, and find the MAX Q-value that the network thinks we acan get in the future
                 # 0.99 here is our gamma. Usually, this should be a variable, but lets not worry about it right now
@@ -266,12 +262,12 @@ class Trainer:
                 # Kind of, but in the end the Bellman equation is recursive, so this is our only way of getting that info
                 target_q = r + 0.99 * torch.max(self.agent(s1).detach()) # detach from the computing flow
                 loss = F.smooth_l1_loss(self.agent(s)[a], target_q)
-                
+
                 # update model to optimize Q
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-                
+
                 # update state
                 s = s1
                 j += 1
@@ -288,11 +284,11 @@ class Trainer:
               self.running_success.append(sum(self.success[-100:]))
 
     def choose_action(self, s):
-      
+
       # 0.1 is our epsilon
       # Normally, we want some fancy way to degrade this (over time, we should be taking fewer random actions)
       # We will cover this a little more, but for this really, really simple example, we can just use a set epsilon
-        if (np.random.rand(1) < 0.1): 
+        if (np.random.rand(1) < 0.1):
             return lake.action_space.sample()
       # Now, if we don't want to act randomly, we are going to feed forward the network
       # Then, we take the action that has the highest Q-value (max index)

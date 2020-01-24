@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 1
+weight: 10
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 1
+    weight: 10
 
 authors: ["ionlights", ]
 
