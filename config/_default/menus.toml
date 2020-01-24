@@ -26,6 +26,3 @@
   parent = "group"
   url = "/intelligence/"
   weight = 30
-
-[[ docs ]]
-  name = "Intelligence"

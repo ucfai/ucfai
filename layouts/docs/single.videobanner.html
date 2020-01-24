@@ -1,0 +1,80 @@
+{{ partial "site_head" . }}
+
+<body id="video-background">
+  <div id="recording-banner">
+    <main id="primary-content">
+      <div id="video-player" class="video-panel">
+        <div id="recording-content"></div>
+      </div>
+      <div id="video-metadata" class="metadata-panel">
+        <div id="recording-speaker"></div>
+        <div id="recording-metadata">
+          <div id="title">
+            <h1> {{ .Title }} </h1>
+          </div>
+          <div id="authors">
+            {{ with .Param "authors" }}
+                {{ range . }}
+                    {{ partial "cards/author" . }}
+                {{ end }}
+            {{ end }}
+          </div>
+          <div id="date"> {{ .Date.Format "on 01 Jan, 2006" }} </div>
+        </div>
+      </div>
+    </main>
+    <footer id="recording-footer">
+      <div id="follow-along" class="video-panel">
+        <p id="text">follow along:</p>
+        <p id="link"> {{ .Permalink }} </p>
+      </div>
+      <div id="ucfai-logo" class="metadata-panel">
+        <img id="logo" src="https://ucfai.org/brand/fullmark/dark-bg-ready.svg" />
+      </div>
+    </footer>
+  </div>
+
+  {{ partial "particles" }}
+
+  <script>
+    function calculate_sizes(aspect_ratio) {
+      var container = document.getElementById("recording-banner");
+      var footer = document.getElementById("recording-footer");
+      var content = document.getElementById("primary-content");
+
+      content.style.height =
+        container.offsetHeight -
+        footer.offsetHeight -
+        2 *
+          parseInt(
+            window.getComputedStyle(container, null).getPropertyValue("padding-top")
+          );
+
+      var recording = {
+        content: document.getElementById("recording-content"),
+        speaker: document.getElementById("recording-speaker"),
+        metadata: document.getElementById("recording-metadata")
+      };
+
+      function correct_video_size(el) {
+        el.style.height = el.offsetWidth * aspect_ratio;
+      }
+
+      correct_video_size(recording.content);
+      correct_video_size(recording.speaker);
+
+      recording.metadata.style.minHeight =
+        recording.content.offsetHeight - recording.speaker.offsetHeight;
+      recording.metadata.style.maxHeight =
+        content.offsetHeight - recording.speaker.offsetHeight;
+    }
+
+    var aspect_ratio = 9 / 16; // 16:9 aspect ratio
+    document.addEventListener("DOMContentLoaded", function() {
+      calculate_sizes(aspect_ratio);
+    });
+    document.addEventListener("resize", function() {
+      calculate_sizes(aspect_ratio);
+    });
+  </script>
+</body>

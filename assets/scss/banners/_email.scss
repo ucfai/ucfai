@@ -1,0 +1,90 @@
+body#email-banner {
+  margin: 0;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PT Sans", "Fira Sans", sans-serif;
+    font-weight: bold;
+  }
+
+  div#banner {
+    width: 1920px;
+    height: 1005px;
+    background: #262d33;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+
+    div.half {
+      top: 0;
+      width: 50%;
+      height: 100%;
+      position: relative;
+
+      &#text {
+        padding: 36px;
+        padding-right: 0;
+        z-index: 10000;
+
+        h2 {
+          font-size: 72px;
+          line-height: 72px;
+          height: 90px;
+          padding-bottom: 18px;
+          &#date {
+            color: #6ad1ff;
+          }
+          &#room {
+            color: #fc4d9a;
+          }
+        }
+        div#title-container {
+          position: relative;
+          height: calc(100% - 90px - 90px - 143px);
+
+          h1#title {
+            color: #c5c8cf;
+            font-size: 120px;
+            line-height: 126px;
+          }
+        }
+
+        img#logo {
+          bottom: 36px;
+          height: 143px;
+          max-width: 414px;
+          padding-top: 18px;
+          position: absolute;
+        }
+      }
+
+      &#imgs {
+        overflow: hidden;
+        z-index: 100;
+
+        div#gradient {
+          width: 100%;
+          height: 100%;
+          z-index: 200;
+          position: absolute;
+          background: linear-gradient(
+            to right,
+            rgba(38, 45, 51, 1) 0%,
+            rgba(38, 45, 51, 0.98) 2%,
+            rgba(38, 45, 51, 0.1) 100%
+          );
+        }
+
+        img#mtbanner {
+          right: 50%;
+          margin-right: -50%;
+          height: 100%;
+          z-index: 1;
+          position: absolute;
+        }
+      }
+    }
+  }
+}

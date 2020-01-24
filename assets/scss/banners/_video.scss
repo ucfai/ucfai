@@ -1,0 +1,192 @@
+body#video-background {
+  margin: 0;
+  padding: 0;
+
+  * {
+    box-sizing: border-box;
+    font-family: "PT Sans", "Fira Sans", sans-serif;
+    margin: 0;
+  }
+
+  #recording-banner {
+    width: 1920px;
+    height: 1080px;
+    padding: 36px;
+    display: flex;
+    background: #262d33;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+
+    main#primary-content {
+      z-index: 100;
+      display: flex;
+      position: relative;
+      padding-bottom: 18px;
+
+      #video-player {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        /* background: #000000; */
+
+        div#recording-content {
+          background-color: #000000;
+          background-color: #345e7d;
+        }
+      }
+
+      #video-metadata {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        div#recording-speaker {
+          background-color: #000000;
+        }
+
+        div#recording-metadata {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          background-color: #c5c8cf;
+          padding: 18px;
+
+          div#title {
+            padding-bottom: 8px;
+            align-self: flex-start;
+            border-bottom: 1px solid rgba(37, 37, 37, 0.25);
+
+            h1 {
+              font-size: 42px;
+              line-height: 48px;
+              color: #152736;
+              text-align: center;
+            }
+          }
+
+          div#authors {
+            padding: 18px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            div.author-card {
+              border: 0;
+              height: 48px;
+              display: flex;
+              font-size: 24px;
+              font-weight: bold;
+              line-height: 48px;
+              margin-bottom: 16px;
+              justify-content: center;
+              margin-bottom: 16px !important;
+
+              &:last-child {
+                margin: 0 !important;
+              }
+
+              img {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+              }
+
+              p {
+                margin: 0 0 0 8px !important;
+              }
+              .card-text {
+                visibility: hidden;
+              }
+            }
+          }
+        }
+
+        div#date {
+          height: 36px;
+          margin: 0 auto;
+          font-size: 18px;
+          font-weight: bold;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+
+  .video-panel {
+    width: 70%;
+    padding-right: 18px !important;
+  }
+
+  .metadata-panel {
+    width: 30%;
+    text-align: center;
+    padding-left: 18px !important;
+  }
+
+  div[class$="-panel"] {
+    height: 100%;
+    z-index: 10;
+  }
+
+  footer#recording-footer {
+    height: 108px;
+    display: flex;
+    font-size: 32px;
+    font-weight: bold;
+    padding-top: 18px;
+    padding-bottom: 0;
+
+    p {
+      text-align: left !important;
+    }
+
+    div#follow-along {
+      p#text {
+        color: #c5c8cf;
+        font-size: 24px;
+        line-height: 24px;
+      }
+
+      p#link {
+        color: #6ad1ff;
+        font-size: 36px;
+        line-height: 48px;
+      }
+    }
+
+    div#ucfai-logo {
+      img {
+        height: 72px;
+        margin: 0 auto !important;
+      }
+    }
+  }
+
+  div#particles-js {
+    z-index: 1;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+
+    div#fade {
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      position: absolute;
+      // background: linear-gradient(
+      //   0deg,
+      //   rgba(37, 37, 37, 0.5) 0%,
+      //   rgba(37, 37, 37, 0)
+      // );
+      background: transparent;
+    }
+
+    canvas {
+      z-index: 10;
+      display: block;
+      position: absolute;
+      vertical-align: bottom;
+    }
+  }
+}

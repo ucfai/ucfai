@@ -6,4 +6,7 @@ layout: docs  # Do not modify.
 header:
   caption: ""
   image: ""
+
+menu:
+  docs:
 ---
