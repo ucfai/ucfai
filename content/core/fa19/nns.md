@@ -1,48 +1,48 @@
 ---
 title: "Getting Started with Neural Networks"
 linktitle: "Getting Started with Neural Networks"
-date: "2019-10-02T00:00:00Z"
-lastmod: "2019-10-02T00:00:00Z"
-draft: false # Is this a draft? true/false
-toc: true # Show table of contents? true/false
-type: docs # Do not modify.
+
+date: "2019-10-02T17:30:00"
+lastmod: "2019-10-02T17:30:00"
+
+draft: false
+toc: true
+type: docs
+
+weight: 3
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 4   
+    weight: 3
 
-weight: 4
-
-authors: ["jarviseq"]
+authors: ["jarviseq", ]
 
 urls:
-  youtube: "#"
-  slides:  "#"
-  github:  "#"
-  kaggle:  "#"
-  colab:   "#"
+  youtube: ""
+  slides:  ""
+  github:  "https://github.com/ucfai/core/blob/master/fa19/2019-10-02-nns/2019-10-02-nns.ipynb"
+  kaggle:  "https://kaggle.com/ucfaibot/core-fa19-nns"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-02-nns/2019-10-02-nns.ipynb"
+
+room: "MSB 359"
+cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
 
 categories: ["fa19"]
-tags: ["neural-nets"]
+tags: ["neural-nets", ]
 description: >-
-  You've heard about them: Beating humans at all types of games, driving cars,
-  and recommending your next Netflix series to watch, but what ARE neural 
-  networks? In this lecture, you'll actually learn step by step how neural
-  networks function and learn. Then, you'll deploy one yourself!
+  You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
 ---
+```python
+# This is a bit of code to make things work on Kaggle
+import os
+from pathlib import Path
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;/kaggle/input&quot;</span><span class="p">):</span>
-    <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/kaggle/input&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;We don&#39;t know this machine.&quot;</span><span class="p">)</span>
-</pre></div>
-
-
+if os.path.exists("/kaggle/input"):
+    DATA_DIR = Path("/kaggle/input")
+else:
+    raise ValueError("We don't know this machine.")
+```
 
 ## Before we get started
 
@@ -50,19 +50,16 @@ We need to import some non-sense
 
 Pytorch is imported as just torch, otherwise we've seen everything else before.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">torch</span> 
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
-<span class="kn">import</span> <span class="nn">time</span>
-</pre></div>
-
-
+```python
+import numpy as np
+import pandas as pd
+import torch 
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
+from torch import optim
+import time
+```
 
 ## Tensors
 
@@ -73,90 +70,72 @@ You can think of tensors as an Nth-dimensional data container similar to the con
 Below we have some *magical* tensor stuff 
 going on to show you how to make some tensors using the built-in tensor generating functions. 
 
+```python
+# create a tensor
+new_tensor = torch.Tensor([[1, 2], [3, 4]])
 
+# create a 2 x 3 tensor with random values
+empty_tensor = torch.Tensor(2, 3)
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># create a tensor</span>
-<span class="n">new_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+# create a 2 x 3 tensor with random values between -1and 1
+uniform_tensor = torch.Tensor(2, 3).uniform_(-1, 1)
 
-<span class="c1"># create a 2 x 3 tensor with random values</span>
-<span class="n">empty_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+# create a 2 x 3 tensor with random values from a uniform distribution on the interval [0, 1)
+rand_tensor = torch.rand(2, 3)
 
-<span class="c1"># create a 2 x 3 tensor with random values between -1and 1</span>
-<span class="n">uniform_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># create a 2 x 3 tensor with random values from a uniform distribution on the interval [0, 1)</span>
-<span class="n">rand_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
-<span class="c1"># create a 2 x 3 tensor of zeros</span>
-<span class="n">zero_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-
+# create a 2 x 3 tensor of zeros
+zero_tensor = torch.zeros(2, 3)
+```
 
 To see what's inside of the tensor, put the name of the tensor into a code block and run it. 
 
 These notebook environments are meant to be easy for you to debug your code, 
 so this will not work if you are writing a python script and running it in a command line.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_tensor</span>
-</pre></div>
-
-
+```python
+new_tensor
+```
 
 You can replace elements in tensors with indexing. 
 It works a lot like arrays you will see in many programming languages. 
 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">new_tensor</span>
-</pre></div>
-
-
+```python
+new_tensor[0][0] = 5
+new_tensor
+```
 
 How the tensor is put together is going to be important, so there are some 
 built-in commands in torch that allow you to find out some information about the tensor you are working with.
 
+```python
+# type of a tensor
+print(new_tensor.type())  
 
+# shape of a tensor
+print(new_tensor.shape)    
+print(new_tensor.size())   
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># type of a tensor</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">new_tensor</span><span class="o">.</span><span class="n">type</span><span class="p">())</span>  
-
-<span class="c1"># shape of a tensor</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">new_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>    
-<span class="nb">print</span><span class="p">(</span><span class="n">new_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>   
-
-<span class="c1"># dimension of a tensor</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">new_tensor</span><span class="o">.</span><span class="n">dim</span><span class="p">())</span>
-</pre></div>
-
-
+# dimension of a tensor
+print(new_tensor.dim())
+```
 
 ## Coming from Numpy
 
 Much of your data manipulation will be done in either pandas or numpy. 
 To feed that manipulated data into a tensor for use in torch, you will have to use the `.from_numpy` command.
 
+```python
+np_ndarray = np.random.randn(2,2)
+np_ndarray
+```
 
+```python
+# NumPy ndarray to PyTorch tensor
+to_tensor = torch.from_numpy(np_ndarray)
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np_ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">np_ndarray</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># NumPy ndarray to PyTorch tensor</span>
-<span class="n">to_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np_ndarray</span><span class="p">)</span>
-
-<span class="n">to_tensor</span>
-</pre></div>
-
-
+to_tensor
+```
 
 ## Checking for CUDA
 
@@ -166,12 +145,9 @@ Your notebook should already have CUDA enabled, but the following command can be
 
 TL:DR: CUDA rock for NNs
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
-</pre></div>
-
-
+```python
+torch.cuda.is_available()
+```
 
 ## Defining Networks
 
@@ -180,24 +156,18 @@ building a Neural Network using a randomly generated dataset. This will be a sim
 
 First, we need to set some placeholder variables to define how we want the network to be set up.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_in</span><span class="p">,</span> <span class="n">n_h</span><span class="p">,</span> <span class="n">n_out</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span>
-</pre></div>
-
-
+```python
+n_in, n_h, n_out, batch_size = 10, 5, 1, 10
+```
 
 Next, we are going to generate our lovely randomised dataset.
 
 We are not expecting any insights to come from this network as the data is generated randomly. 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_in</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]])</span>
-</pre></div>
-
-
+```python
+x = torch.randn(batch_size, n_in)
+y = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0], [1.0], [0.0], [0.0], [1.0], [1.0]])
+```
 
 Next, we are going to define what our model looks like. The `Linear()` part applies a linear transformation to the 
 incoming data, with `Sigmoid()` being the activation function that we use for that layer. 
@@ -205,26 +175,20 @@ incoming data, with `Sigmoid()` being the activation function that we use for th
 So, for this network, we have two fully connected layers with a sigmoid as the activation function. 
 This looks a lot like the network we saw in the slide deck with one input layer, one hidden layer, and one output layer. 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_in</span><span class="p">,</span> <span class="n">n_h</span><span class="p">),</span>
-                     <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">(),</span>
-                     <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_h</span><span class="p">,</span> <span class="n">n_out</span><span class="p">),</span>
-                     <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">())</span>
-</pre></div>
-
-
+```python
+model = nn.Sequential(nn.Linear(n_in, n_h),
+                     nn.Sigmoid(),
+                     nn.Linear(n_h, n_out),
+                     nn.Sigmoid())
+```
 
 Next, let's define what the loss fucntion will be.
 
 For this example, we are going to use Mean Squared Error, but there are a ton of different loss functions we can use.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
-</pre></div>
-
-
+```python
+criterion = nn.MSELoss()
+```
 
 Optimizer is how the network will be training. 
 
@@ -233,36 +197,30 @@ We are going to be using a standard gradient descent method in this example.
 We will have a learning rate of 0.01, which is pretty standard too.
  You are going to want to keep this learning rate pretty low, as high learning rates cause problems in training.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+```
 
 Now, let's train!
 
 To train, we combine all the different parts that we defined into one for loop.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
-    <span class="c1"># Forward Propagation</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="c1"># Compute and print loss</span>
-    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epoch: &#39;</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span><span class="s1">&#39; loss: &#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
-    <span class="c1"># Zero the gradients</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+```python
+for epoch in range(50):
+    # Forward Propagation
+    y_pred = model(x)
+    # Compute and print loss
+    loss = criterion(y_pred, y)
+    print('epoch: ', epoch,' loss: ', loss.item())
+    # Zero the gradients
+    optimizer.zero_grad()
     
-    <span class="c1"># perform a backward pass (backpropagation)</span>
-    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    # perform a backward pass (backpropagation)
+    loss.backward()
     
-    <span class="c1"># Update the parameters</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-</pre></div>
-
-
+    # Update the parameters
+    optimizer.step()
+```
 
 In this example, we printed out the loss each time we completed an epoch.
 
@@ -282,14 +240,11 @@ predict if someone is diabetic or not using *magical* neural networks.
 
 First though, let's get that dataset and see what's inside.
 
+```python
+dataset = pd.read_csv(DATA_DIR / "train.csv", header=None).values
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;train.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-
+pd.DataFrame(dataset).head()
+```
 
 ## What are we looking at?
 
@@ -301,14 +256,11 @@ The last column, `Outcome`, is a single digit that tells us if an individual has
 
 We need to clean up the data a bit, so let's get rid of the first row with the labels on them.
 
+```python
+dataset = np.delete(dataset, 0, 0)
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-
+pd.DataFrame(dataset).head()
+```
 
 Alright, now let's break up our data into test and train set.
 
@@ -316,31 +268,28 @@ Once we have those sets, we'll need to set them to be tensors.
 
 This bit of code below does just that!
 
+```python
+# split into x and y sets
 
+X = dataset[:,:-1].astype(np.float32)
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># split into x and y sets</span>
+Y = dataset[:,-1].astype(np.float32)
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Needed to make PyTorch happy
+Y = np.expand_dims(Y, axis = 1)
 
-<span class="n">Y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+# Test-Train split
+from sklearn.model_selection import train_test_split
 
-<span class="c1"># Needed to make PyTorch happy</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+xTrain, xTest, yTrain, yTest = train_test_split(X, Y, test_size=0.1)
 
-<span class="c1"># Test-Train split</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+# Here we're defining what component we'll use to train this model
+# We want to use the GPU if available, if not we use the CPU
+# If your device is not cuda, check the GPU option in the Kaggle Kernel
 
-<span class="n">xTrain</span><span class="p">,</span> <span class="n">xTest</span><span class="p">,</span> <span class="n">yTrain</span><span class="p">,</span> <span class="n">yTest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-
-<span class="c1"># Here we&#39;re defining what component we&#39;ll use to train this model</span>
-<span class="c1"># We want to use the GPU if available, if not we use the CPU</span>
-<span class="c1"># If your device is not cuda, check the GPU option in the Kaggle Kernel</span>
-
-<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
-<span class="n">device</span>
-</pre></div>
-
-
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device
+```
 
 ### PyTorch Dataset
 Our next step is to create PyTorch **Datasets** for our training and validation sets. 
@@ -350,41 +299,35 @@ has several handy attributes we'll utilize from here on out.
 To create one, we simply need to create a class which inherits from PyTorch's Dataset class and 
 override the constructor, as well as the __len__() and __getitem__() methods.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PyTorch_Dataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+```python
+class PyTorch_Dataset(Dataset):
   
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">outputs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="n">outputs</span>
+  def __init__(self, data, outputs):
+        self.data = data
+        self.outputs = outputs
 
-  <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s1">&#39;Returns the total number of samples in this dataset&#39;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+  def __len__(self):
+        'Returns the total number of samples in this dataset'
+        return len(self.data)
 
-  <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="s1">&#39;Returns a row of data and its output&#39;</span>
+  def __getitem__(self, index):
+        'Returns a row of data and its output'
       
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        x = self.data[index]
+        y = self.outputs[index]
 
-        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-</pre></div>
-
-
+        return x, y
+```
 
 With the class written, we can now create our training and validation 
 datasets by passing the corresponding data to our class
 
+```python
+train_dataset = PyTorch_Dataset(xTrain, yTrain)
+val_dataset = PyTorch_Dataset(xTest, yTest)
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">PyTorch_Dataset</span><span class="p">(</span><span class="n">xTrain</span><span class="p">,</span> <span class="n">yTrain</span><span class="p">)</span>
-<span class="n">val_dataset</span> <span class="o">=</span> <span class="n">PyTorch_Dataset</span><span class="p">(</span><span class="n">xTest</span><span class="p">,</span> <span class="n">yTest</span><span class="p">)</span>
-
-<span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Train&#39;</span><span class="p">:</span> <span class="n">train_dataset</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">:</span> <span class="n">val_dataset</span><span class="p">}</span>
-</pre></div>
-
-
+datasets = {'Train': train_dataset, 'Validation': val_dataset}
+```
 
 ### PyTorch Dataloaders
 
@@ -395,39 +338,33 @@ load up batches of data on the fly. We pass a batch size of 16,
 For the most part, Neural Networks are trained on **batches** of data so these DataLoaders greatly simplify 
 the process of loading and feeding data to our network. The rank 2 tensor returned by the dataloader is of size (16, 8).
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-              <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">]}</span>
-</pre></div>
-
-
+```python
+dataloaders = {x: DataLoader(datasets[x], batch_size=16, shuffle=True, num_workers = 4)
+              for x in ['Train', 'Validation']}
+```
 
 ### PyTorch Model
 
 We need to define how we want the neural network to be structured, 
 so let's set those hyper-parameters and create our model.
 
+```python
+inputSize =  8         # how many classes of input
+hiddenSize = 15        # Number of units in the middle
+numClasses = 1         # Only has two classes
+numEpochs = 20         # How many training cycles
+learningRate = .01     # Learning rate
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inputSize</span> <span class="o">=</span>  <span class="mi">8</span>         <span class="c1"># how many classes of input</span>
-<span class="n">hiddenSize</span> <span class="o">=</span> <span class="mi">15</span>        <span class="c1"># Number of units in the middle</span>
-<span class="n">numClasses</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># Only has two classes</span>
-<span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">20</span>         <span class="c1"># How many training cycles</span>
-<span class="n">learningRate</span> <span class="o">=</span> <span class="o">.</span><span class="mi">01</span>     <span class="c1"># Learning rate</span>
-
-<span class="k">class</span> <span class="nc">NeuralNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>  
+class NeuralNet(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(NeuralNet, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size) 
+        self.fc2 = nn.Linear(hidden_size, num_classes)  
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-
-
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return torch.sigmoid(self.fc2(x))
+```
 
 ### PyTorch Training
 
@@ -439,17 +376,14 @@ For the optimizer we'll use Adam, an easy to apply but powerful optimizer which 
 Stochastic Gradient Descent method. We need to pass it all of the parameters it'll train, 
 which PyTorch makes easy with model.parameters(), and also the learning rate we'll use.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Creating our model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">NeuralNet</span><span class="p">(</span><span class="n">inputSize</span><span class="p">,</span> <span class="n">hiddenSize</span><span class="p">,</span> <span class="n">numClasses</span><span class="p">)</span>
-<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="n">learningRate</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+# Creating our model
+model = NeuralNet(inputSize, hiddenSize, numClasses)
+criterion = nn.BCELoss()
+optimizer = optim.Adam(model.parameters(), lr = learningRate)
+model.to(device)
+print(model)
+```
 
 At this point we're finally ready to train our model! In PyTorch we have to write our own training loops 
 before getting to actually train the model. This can seem daunting at first, so let's break up each stage of the training process. 
@@ -469,151 +403,130 @@ and simply involves calculating and tracking the accuracy achieved in both phase
 A nifty addition to this training loop is that it tracks the highest validation accuracy 
 and only saves weights which beat that accuracy, ensuring that the best performing weights are returned from the function.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">run_epoch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">phase</span><span class="p">):</span>
+```python
+def run_epoch(model, dataloaders, device, phase):
   
-  <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
-  <span class="n">running_corrects</span> <span class="o">=</span> <span class="mi">0</span>
+  running_loss = 0.0
+  running_corrects = 0
     
-  <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">:</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+  if phase == 'Train':
+    model.train()
+  else:
+    model.eval()
   
-  <span class="c1"># Looping through batches</span>
-  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="n">phase</span><span class="p">]):</span>
+  # Looping through batches
+  for i, (inputs, labels) in enumerate(dataloaders[phase]):
     
-    <span class="c1"># ensures we&#39;re doing this calculation on our GPU if possible</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-    <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    # ensures we're doing this calculation on our GPU if possible
+    inputs = inputs.to(device)
+    labels = labels.to(device)
     
-    <span class="c1"># Zero parameter gradients</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    # Zero parameter gradients
+    optimizer.zero_grad()
     
-    <span class="c1"># Calculate gradients only if we&#39;re in the training phase</span>
-    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">):</span>
+    # Calculate gradients only if we're in the training phase
+    with torch.set_grad_enabled(phase == 'Train'):
       
-      <span class="c1"># This calls the forward() function on a batch of inputs</span>
-      <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+      # This calls the forward() function on a batch of inputs
+      outputs = model(inputs)
 
-      <span class="c1"># Calculate the loss of the batch</span>
-      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+      # Calculate the loss of the batch
+      loss = criterion(outputs, labels)
 
-      <span class="c1"># Adjust weights through backpropagation if we&#39;re in training phase</span>
-      <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">:</span>
-        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+      # Adjust weights through backpropagation if we're in training phase
+      if phase == 'Train':
+        loss.backward()
+        optimizer.step()
       
-    <span class="c1"># Get binary predictions</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+    # Get binary predictions
+    preds = torch.round(outputs)
 
-    <span class="c1"># Document statistics for the batch</span>
-    <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">running_corrects</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">preds</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span>
+    # Document statistics for the batch
+    running_loss += loss.item() * inputs.size(0)
+    running_corrects += torch.sum(preds == labels)
     
-  <span class="c1"># Calculate epoch statistics</span>
-  <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="n">datasets</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
-  <span class="n">epoch_acc</span> <span class="o">=</span> <span class="n">running_corrects</span><span class="o">.</span><span class="n">double</span><span class="p">()</span> <span class="o">/</span> <span class="n">datasets</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
+  # Calculate epoch statistics
+  epoch_loss = running_loss / datasets[phase].__len__()
+  epoch_acc = running_corrects.double() / datasets[phase].__len__()
   
-  <span class="k">return</span> <span class="n">epoch_loss</span><span class="p">,</span> <span class="n">epoch_acc</span>
-</pre></div>
+  return epoch_loss, epoch_acc
+```
 
+```python
+def train(model, criterion, optimizer, num_epochs, dataloaders, device):
+    start = time.time()
 
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-
-    <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
-    <span class="n">best_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
+    best_model_wts = model.state_dict()
+    best_acc = 0.0
     
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;| Epoch</span><span class="se">\t</span><span class="s1"> | Train Loss</span><span class="se">\t</span><span class="s1">| Train Acc</span><span class="se">\t</span><span class="s1">| Valid Loss</span><span class="se">\t</span><span class="s1">| Valid Acc</span><span class="se">\t</span><span class="s1">|&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">73</span><span class="p">)</span>
+    print('| Epoch\t | Train Loss\t| Train Acc\t| Valid Loss\t| Valid Acc\t|')
+    print('-' * 73)
     
-    <span class="c1"># Iterate through epochs</span>
-    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    # Iterate through epochs
+    for epoch in range(num_epochs):
         
-        <span class="c1"># Training phase</span>
-        <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="s1">&#39;Train&#39;</span><span class="p">)</span>
+        # Training phase
+        train_loss, train_acc = run_epoch(model, dataloaders, device, 'Train')
         
-        <span class="c1"># Validation phase</span>
-        <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+        # Validation phase
+        val_loss, val_acc = run_epoch(model, dataloaders, device, 'Validation')
            
-        <span class="c1"># Print statistics after the validation phase</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">{}</span><span class="se">\t</span><span class="s2"> | </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">|&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span><span class="p">))</span>
+        # Print statistics after the validation phase
+        print("| {}\t | {:.4f}\t| {:.4f}\t| {:.4f}\t| {:.4f}\t|".format(epoch + 1, train_loss, train_acc, val_loss, val_acc))
 
-        <span class="c1"># Copy and save the model&#39;s weights if it has the best accuracy thus far</span>
-        <span class="k">if</span> <span class="n">val_acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
-            <span class="n">best_acc</span> <span class="o">=</span> <span class="n">val_acc</span>
-            <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+        # Copy and save the model's weights if it has the best accuracy thus far
+        if val_acc > best_acc:
+            best_acc = val_acc
+            best_model_wts = model.state_dict()
 
-    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    total_time = time.time() - start
     
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">74</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training complete in </span><span class="si">{:.0f}</span><span class="s1">m </span><span class="si">{:.0f}</span><span class="s1">s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_time</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best validation accuracy: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_acc</span><span class="p">))</span>
+    print('-' * 74)
+    print('Training complete in {:.0f}m {:.0f}s'.format(total_time // 60, total_time % 60))
+    print('Best validation accuracy: {:.4f}'.format(best_acc))
 
-    <span class="c1"># load best model weights and return them</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">model</span>
-</pre></div>
-
-
+    # load best model weights and return them
+    model.load_state_dict(best_model_wts)
+    return model
+```
 
 Now, let's train the model!
 
+```python
+model = train(model, criterion, optimizer, numEpochs, dataloaders, device)
+```
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">numEpochs</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Function which generates predictions, given a set of inputs</span>
-<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-  <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+```python
+# Function which generates predictions, given a set of inputs
+def test(model, inputs, device):
+  model.eval()
+  inputs = torch.tensor(inputs).to(device)
   
-  <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+  outputs = model(inputs).cpu().detach().numpy()
   
-  <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">outputs</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+  preds = np.where(outputs > 0.5, 1, 0)
   
-  <span class="k">return</span> <span class="n">preds</span>
-</pre></div>
+  return preds
+```
 
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">xTest</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+preds = test(model, xTest, device)
+```
 
 Now that our model has made some predictions, let's find the mathew's 
 
+```python
+# import functions for matthews and confusion matrix
+from sklearn.metrics import confusion_matrix, matthews_corrcoef
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import functions for matthews and confusion matrix</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">matthews_corrcoef</span>
-
-<span class="n">matthews_corrcoef</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">yTest</span><span class="p">)</span>
-</pre></div>
-
-
+matthews_corrcoef(preds, yTest)
+```
 
 Let's check the confusion matrix
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">yTest</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+confusion_matrix(preds, yTest)
+```
 
 Ehhhhhh, that's not bad...
 
@@ -638,62 +551,56 @@ There are many aspects to this model that can be changed to increase accuracy, l
 
 [Just Do It](https://youtu.be/ZXsQAXx_ao0?t=2)
 
+```python
+#TODO, make a better model!
 
+### BEGIN SOLUTION
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#TODO, make a better model!</span>
+inputSize =  8         # how many classes of input
+hiddenSize = 15        # Number of units in the middle
+numClasses = 1         # Only has two classes
+numEpochs = 69         # How many training cycles
+learningRate = .01     # Learning rate
 
-<span class="c1">### BEGIN SOLUTION</span>
-
-<span class="n">inputSize</span> <span class="o">=</span>  <span class="mi">8</span>         <span class="c1"># how many classes of input</span>
-<span class="n">hiddenSize</span> <span class="o">=</span> <span class="mi">15</span>        <span class="c1"># Number of units in the middle</span>
-<span class="n">numClasses</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># Only has two classes</span>
-<span class="n">numEpochs</span> <span class="o">=</span> <span class="mi">69</span>         <span class="c1"># How many training cycles</span>
-<span class="n">learningRate</span> <span class="o">=</span> <span class="o">.</span><span class="mi">01</span>     <span class="c1"># Learning rate</span>
-
-<span class="k">class</span> <span class="nc">NeuralNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">NeuralNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>  
+class NeuralNet(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(NeuralNet, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size) 
+        self.fc3 = nn.Linear(hidden_size, num_classes)  
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        return torch.sigmoid(self.fc3(x))
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">numEpochs</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+model = train(model, criterion, optimizer, numEpochs, dataloaders, device)
 
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">xTest</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+predictions = test(model, xTest, device)
 
-<span class="c1">### END SOLUTION</span>
-</pre></div>
+### END SOLUTION
+```
 
+```python
+# Run this to generate the submission file for the competition!
+### Make sure to name your model variable "model" ###
 
+# load in test data:
+test_data = pd.read_csv(DATA_DIR / "test.csv", header=None).values
+# remove row with column labels:
+test_data = np.delete(test_data, 0, 0)
 
+# convert to float32 values
+X = test_data.astype(np.float32)
+# get indicies for each entry in test data
+indicies = [i for i in range(len(X))]
 
+# generate predictions
+preds = test(model, X, device)
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run this to generate the submission file for the competition!</span>
-<span class="c1">### Make sure to name your model variable &quot;model&quot; ###</span>
+# create our pandas dataframe for our submission file. Squeeze removes dimensions of 1 in a numpy matrix Ex: (161, 1) -> (161,)
+preds = pd.DataFrame({'Id': indicies, 'Class': np.squeeze(preds)})
 
-<span class="c1"># load in test data:</span>
-<span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-<span class="c1"># remove row with column labels:</span>
-<span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># convert to float32 values</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">test_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="c1"># get indicies for each entry in test data</span>
-<span class="n">indicies</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))]</span>
-
-<span class="c1"># generate predictions</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-
-<span class="c1"># create our pandas dataframe for our submission file. Squeeze removes dimensions of 1 in a numpy matrix Ex: (161, 1) -&gt; (161,)</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Id&#39;</span><span class="p">:</span> <span class="n">indicies</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">preds</span><span class="p">)})</span>
-
-<span class="c1"># save submission csv</span>
-<span class="n">preds</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;submission.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-
+# save submission csv
+preds.to_csv('submission.csv', header=['Id', 'Class'], index=False)
+```

@@ -1,47 +1,47 @@
 ---
 title: "A Walk Through the Random Forest"
 linktitle: "A Walk Through the Random Forest"
-date: "2019-09-25T00:00:00Z"
-lastmod: "2019-09-25T00:00:00Z"
-draft: false # Is this a draft? true/false
-toc: true # Show table of contents? true/false
-type: docs # Do not modify.
+
+date: "2019-09-25T17:30:00"
+lastmod: "2019-09-25T17:30:00"
+
+draft: false
+toc: true
+type: docs
+
+weight: 2
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 3   
+    weight: 2
 
-weight: 3
-
-authors: ["jarviseq"]
+authors: ["jarviseq", ]
 
 urls:
-  youtube: "#"
-  slides:  "#"
-  github:  "#"
-  kaggle:  "#"
-  colab:   "#"
+  youtube: ""
+  slides:  ""
+  github:  "https://github.com/ucfai/core/blob/master/fa19/2019-09-25-rf-svm/2019-09-25-rf-svm.ipynb"
+  kaggle:  "https://kaggle.com/ucfaibot/core-fa19-rf-svm"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-09-25-rf-svm/2019-09-25-rf-svm.ipynb"
+
+room: "MSB 359"
+cover: "https://upload.wikimedia.org/wikipedia/commons/1/17/Tarvasj%C3%B5gi.jpg"
 
 categories: ["fa19"]
-tags: ["random-forests", "svms", "weak-models", "non-nn"]
+tags: ["random-forests", "svms", "weak-models", "non-nn", ]
 description: >-
-  In this lecture, we explore powerful yet lightweight models that are often 
-  overlooked. We will see the power of combining multiple simple models together
-  and how they can yield amazing results. You won't believe how easy it is to 
-  classify with just a line!
+  In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!
 ---
+```python
+import os
+from pathlib import Path
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;/kaggle/input&quot;</span><span class="p">):</span>
-    <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/kaggle/input&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;We don&#39;t know this machine.&quot;</span><span class="p">)</span>
-</pre></div>
-
-
+if os.path.exists("/kaggle/input"):
+    DATA_DIR = Path("/kaggle/input")
+else:
+    raise ValueError("We don't know this machine.")
+```
 
 ## Overview
 
@@ -52,20 +52,17 @@ The final example deals with credit card fraud,
 and how to identify if fraud is taking place based a dataset of over 280,000 entries. 
 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Importing the important stuff</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">matthews_corrcoef</span>
-</pre></div>
-
-
+```python
+# Importing the important stuff
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+from sklearn import svm
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, matthews_corrcoef
+```
 
 ## Iris Data Set
 
@@ -80,28 +77,22 @@ Sklearn has the dataset built into the the library, so getting the data will be 
 Once we do that, we'll do a test-train split.
 
 
+```python
+from sklearn.datasets import load_iris
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-</pre></div>
-
-
+iris = load_iris()
+X_train, X_test, Y_train, Y_test = train_test_split(iris.data, iris.target, test_size=0.1)
+```
 
 ### Making the Model
 
 Making and Random Forests model is very easy, taking just two lines of code! 
 Training times can take a second, but in this example is small so the training time is minimal.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trees</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">trees</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+trees = RandomForestClassifier(n_estimators=150, n_jobs=-1)
+trees.fit(X_train, Y_train)
+```
 
 sklearn has a few parameters that we can tweak to tune our model. 
 We won't be going into those different parameters in this notebook, 
@@ -118,13 +109,10 @@ A Confusion Matrix shows us where the model is messing up. Below is an example f
 
 ![alt text](https://www.dataschool.io/content/images/2015/01/confusion_matrix_simple2.png)
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">trees</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+predictions = trees.predict(X_test)
+confusion_matrix(Y_test, predictions)
+```
 
 #### Matthews correlation coefficient
 
@@ -140,12 +128,9 @@ Matthews correlation coefficient ranges from -1 to 1.
 while 1 represents prefect prediction. 
 In other words, the closer to 1 we get the better the model is considered. 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">matthews_corrcoef</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
-</pre></div>
-
-
+```python
+print(matthews_corrcoef(Y_test, predictions))
+```
 
 ### Now, what about SVMs?
 
@@ -153,17 +138,14 @@ We want to see how well SVMs can work on the Iris, so let's see it in action.
 
 First, let's define the models; one for linear, ploy and rbf.
 
+```python
+# SVM regularization parameter, we'll keep it simple for now
+C = 1.0 
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># SVM regularization parameter, we&#39;ll keep it simple for now</span>
-<span class="n">C</span> <span class="o">=</span> <span class="mf">1.0</span> 
-
-<span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
-          <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
-          <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">))</span>
-</pre></div>
-
-
+models = (svm.SVC(kernel='linear', C=C),
+          svm.SVC(kernel='poly', degree=3, C=C),
+          svm.SVC(kernel='rbf', gamma=0.7, C=C))
+```
 
 So you know what the parameters mean:
 * degree refers to the degree of the polynomial
@@ -172,35 +154,26 @@ So you know what the parameters mean:
 
 Once we have the models defined, let's train them!
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+models = (clf.fit(X_train, Y_train) for clf in models)
+```
 
 Now we are see how the confusion matrices look like:
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
-</pre></div>
-
-
+```python
+for clf in models:
+    predictions = clf.predict(X_test)
+    print(confusion_matrix(Y_test, predictions))
+```
 
 The confusion matrix is all nice and dandy, 
 but let's check out what the Matthews Coefficient has to say about our models.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">matthews_corrcoef</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
-</pre></div>
-
-
+```python
+for clf in models:
+    predictions = clf.predict(X_test)
+    print(matthews_corrcoef(Y_test, predictions))
+```
 
 That wasn't too bad was it? 
 Both Random Forests and SVMs are very easy models to implement,
@@ -214,13 +187,10 @@ Credit card fraud detection is a serious issue, and as such is something that da
 
 Lets read in the data and use *.info()* to find out some meta-data
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-
+```python
+data = pd.read_csv(DATA_DIR / "train.csv")
+data.info()
+```
 
 What's going on with this V stuff?
 Credit Card information is a bit sensitive, and as such raw information had to be obscured in some way to protect that information.
@@ -235,12 +205,9 @@ Unfortunately, there is a lot that we want to cover in Core and not enough time 
 
 Next, let's get some basic statistical info from this data.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-
-
+```python
+data.describe()
+```
 
 ### Some important points about this data 
 
@@ -269,17 +236,14 @@ There are only 492 fraud examples in this data set, so we're looking for a needl
 
 Now that we have that out of the way, let's start making this model! We need to split our data first
 
+```python
+X = data.drop(columns='Class', axis=1)
+Y = data['Class']
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
-
-<span class="c1"># sklearn requires a shape with dimensions (N, 1), </span>
-<span class="c1"># so we expand dimensions of x and y to put a 1 in the second dimension</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X shape: </span><span class="si">{X.shape}</span><span class="s2"> Y shape: </span><span class="si">{Y.shape}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-
-
+# sklearn requires a shape with dimensions (N, 1), 
+# so we expand dimensions of x and y to put a 1 in the second dimension
+print(f"X shape: {X.shape} Y shape: {Y.shape}")
+```
 
 ### Some Points about Training
 
@@ -291,21 +255,18 @@ The area is left blank,
 but there's examples on how to make the models earlier in the notebook that can be used as an example if you need it. 
 What model and the parameters you choose are up to you, so have fun!
 
+```python
+# Make the magic happen!
+# https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+X_test = pd.read_csv(DATA_DIR / "test.csv")
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make the magic happen!</span>
-<span class="c1"># https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;test.csv&quot;</span><span class="p">)</span>
-
-<span class="c1"># to expedite things: pass `n_jobs=-1` so you can run across all available CPUs</span>
-<span class="c1">### BEGIN SOLUTION</span>
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="c1">### END SOLUTION</span>
-</pre></div>
-
-
+# to expedite things: pass `n_jobs=-1` so you can run across all available CPUs
+### BEGIN SOLUTION
+rf = RandomForestClassifier(n_estimators=10, n_jobs=-1)
+rf.fit(X, Y)
+predictions = rf.predict(X_test.values)
+### END SOLUTION
+```
 
 ### Submitting your Solution
 
@@ -313,14 +274,11 @@ To submit your solution to kaggle, you'll need to save you data.
 
 Luckily, we got the code you need to do that below. 
 
+```python
+predictions = pd.DataFrame({'Id': Y_test.index, 'Class': predictions})
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Id&#39;</span><span class="p">:</span> <span class="n">Y_test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">})</span>
-
-<span class="n">predictions</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;submission.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-
+predictions.to_csv('submission.csv', header=['Id', 'Class'], index=False)
+```
 
 ## Thank You
 

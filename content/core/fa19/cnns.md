@@ -1,52 +1,51 @@
 ---
 title: "How We Can Give Our Computers Eyes and Ears"
 linktitle: "How We Can Give Our Computers Eyes and Ears"
-date: "2019-10-16T00:00:00Z"
-lastmod: "2019-10-16T00:00:00Z"
-draft: false # Is this a draft? true/false
-toc: true # Show table of contents? true/false
-type: docs # Do not modify.
+
+date: "2019-10-16T17:30:00"
+lastmod: "2019-10-16T17:30:00"
+
+draft: false
+toc: true
+type: docs
+
+weight: 5
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 6   
+    weight: 5
 
-weight: 6
-
-authors: ["danielzgsilva", "brandons209"]
+authors: ["danielzgsilva", "brandons209", ]
 
 urls:
-  youtube: "#"
-  slides:  "#"
-  github:  "#"
-  kaggle:  "#"
-  colab:   "#"
+  youtube: ""
+  slides:  ""
+  github:  "https://github.com/ucfai/core/blob/master/fa19/2019-10-16-cnns/2019-10-16-cnns.ipynb"
+  kaggle:  "https://kaggle.com/ucfaibot/core-fa19-cnns"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-16-cnns/2019-10-16-cnns.ipynb"
+
+room: "MSB 359"
+cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/10/computer_vision-400x208.png"
 
 categories: ["fa19"]
-tags: ["Computer Vision", "CNNs", "Convolutional Neural Networks"]
+tags: ["Computer Vision", "CNNs", "Convolutional Neural Networks", ]
 description: >-
-  Ever wonder how Facebook tells you which friends to tag in your photos,
-  or how Siri can even understand your request? In this meeting we'll dive
-  into convolutional neural networks and give you all the tools to build
-  smart systems such as these. Join us in learning how we can grant our 
-  computers the gifts of hearing and sight!
+  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight!
 ---
+```python
+# This is a bit of code to make things work on Kaggle
+import os
+from pathlib import Path
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is a bit of code to make things work on Kaggle</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+if os.path.exists("/kaggle/input/ucfai-core-fa19-cnns"):
+    DATA_DIR = Path("/kaggle/input/ucfai-core-fa19-cnns")
+else:
+    raise ValueError("We don't know this machine.")
 
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;/kaggle/input/ucfai-core-fa19-cnns&quot;</span><span class="p">):</span>
-    <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/kaggle/input/ucfai-core-fa19-cnns&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;We don&#39;t know this machine.&quot;</span><span class="p">)</span>
-
-<span class="c1"># install torch summary</span>
-<span class="o">!</span>pip install torchsummary
-</pre></div>
-
-
+# install torch summary
+!pip install torchsummary
+```
 
 # Convolutional Neural Networks and Transfer Learning Workshop
 There is a notebook in the github repo for this workshop that has much of the content from the slides in there for your convenience. 
@@ -55,47 +54,41 @@ There is a notebook in the github repo for this workshop that has much of the co
 
 Importing some of the libraries we'll be using, as well as PyTorch:
 
+```python
+# standard imports (Numpy, Pandas, Matplotlib)
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.image as img
+from PIL import Image
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+# PyTorch imports 
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torchvision.utils
+from torch.utils.data import DataLoader, Dataset
+from torch import optim
+from torchvision.datasets import ImageFolder
+from torchvision.models import resnet18
+from torchvision import transforms
+from torchsummary import summary
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># standard imports (Numpy, Pandas, Matplotlib)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">img</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageFile</span>
-<span class="n">ImageFile</span><span class="o">.</span><span class="n">LOAD_TRUNCATED_IMAGES</span> <span class="o">=</span> <span class="kc">True</span>
+# Extras
+import time
+import os
+import glob
+```
 
-<span class="c1"># PyTorch imports </span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">torchvision.utils</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Dataset</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
-<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">ImageFolder</span>
-<span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">resnet18</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
-<span class="kn">from</span> <span class="nn">torchsummary</span> <span class="kn">import</span> <span class="n">summary</span>
-
-<span class="c1"># Extras</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">pylab</span> inline
-<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+%reload_ext autoreload
+%autoreload 2
+%matplotlib inline
+%pylab inline
+random.seed(42)
+```
 
 ## Building a Convolutional Neural Network with PyTorch
 
@@ -118,42 +111,36 @@ The first step in doing so is to define the transformations that will be applied
 
 As you can see above, the pictures are all different dimensions, while most CNNs expect each input to be a consistent size... So we define a fixed size for every image as well as a few other constants which I'll explain in a bit.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">num_workers</span> <span class="o">=</span> <span class="mi">4</span>
-</pre></div>
-
-
+```python
+input_size = (224,224)
+batch_size = 32
+num_workers = 4
+```
 
 This code defines the transformations for each of our datasets (Training, Validation, and Test sets). **Compose()** simply chains together PyTorch transformations. 
 
 The first transformation we apply is the resizing step we discussed above. The next step, **ToTensor()**, transforms the pixel array into a PyTorch **Tensor** and rescales each pixel value to be between 0 and 1. This is required for an input to be consumed by PyTorch. Finally, we normalize each Tensor to have a mean of 0 and variance of 1. Research supports that Neural Networks tend to perform much better on normalized data... 
 
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_transforms</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Train&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">input_size</span><span class="p">),</span>
-                          <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                          <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                                 <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-    <span class="p">]),</span>
-    <span class="s1">&#39;Validation&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">input_size</span><span class="p">),</span>
-                          <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                          <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                                 <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-    <span class="p">]),</span>
-    <span class="s1">&#39;Test&#39;</span><span class="p">:</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="n">input_size</span><span class="p">),</span>
-                               <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                               <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
-                                 <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-    <span class="p">])</span>
-<span class="p">}</span>
-</pre></div>
-
-
+```python
+data_transforms = {
+    'Train': transforms.Compose([transforms.Resize(input_size),
+                          transforms.ToTensor(),
+                          transforms.Normalize(mean=[0.5, 0.5, 0.5],
+                                 std=[0.5, 0.5, 0.5])
+    ]),
+    'Validation': transforms.Compose([transforms.Resize(input_size),
+                          transforms.ToTensor(),
+                          transforms.Normalize(mean=[0.5, 0.5, 0.5],
+                                 std=[0.5, 0.5, 0.5])
+    ]),
+    'Test': transforms.Compose([transforms.Resize(input_size),
+                               transforms.ToTensor(),
+                               transforms.Normalize(mean=[0.5, 0.5, 0.5],
+                                 std=[0.5, 0.5, 0.5])
+    ])
+}
+```
 
 #### PyTorch datasets and dataloaders
 
@@ -184,85 +171,70 @@ If you look at the folder of images we downloaded earlier you'll see it's struct
 ```
 This structure with subfolders for each class of image is so popular that PyTorch created this function, ImageFolder, which takes a folder and returns a Dataset class for us. The label for each image is automatically interpretted from the name of the folder it sits in. In the line of code below we use this function to create a dictionary of PyTorch Datasets (Train, Validation, Test), passing in the dictionary of transformations we defined above.
 
+```python
+image_datasets = {x: ImageFolder(os.path.join(DATA_DIR, x),data_transforms[x])
+                  for x in ['Train', 'Validation']}
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span><span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-                  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">]}</span>
-
-<span class="c1"># dataset class to load images with no labels, for our testing set to submit to the competition</span>
-<span class="k">class</span> <span class="nc">ImageLoader</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="c1"># get image file paths</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">glob_format</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+# dataset class to load images with no labels, for our testing set to submit to the competition
+class ImageLoader(Dataset):
+    def __init__(self, root, transform=None):
+        # get image file paths
+        self.images = sorted(glob.glob(os.path.join(root, "*")), key=self.glob_format)
+        self.transform = transform
         
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
+    def __len__(self):
+        return len(self.images)
     
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">img</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    def __getitem__(self, idx):
+        img = Image.open(self.images[idx])
+        if self.transform is not None:
+            img = self.transform(img)
+            return img
+        else:
+            return transforms.ToTensor(img)
         
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">glob_format</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>     
-        <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>     
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:04d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+    @staticmethod
+    def glob_format(key):     
+        key = key.split("/")[-1].split(".")[0]     
+        return "{:04d}".format(int(key))
     
-<span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ImageLoader</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;Test&quot;</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">[</span><span class="s2">&quot;Test&quot;</span><span class="p">])</span>
-</pre></div>
-
-
+image_datasets['Test'] = ImageLoader(str(DATA_DIR / "Test"), transform=data_transforms["Test"])
+```
 
 The pixel array of each image is actually quite large, so it'd be inefficient to load the entire dataset onto your RAM at once. Instead, we use PyTorch DataLoaders to load up batches of images on the fly. Earlier we defined a batch size of 32, so in each iteration the loaders will load 32 images and apply our transformations, before returning them to us.
 
 For the most part, Neural Networks are trained on **batches** of data so these DataLoaders greatly simplify the process of loading and feeding data to our network. The rank 4 tensor returned by the dataloader is of size (32, 224, 224, 3).
 
+```python
+dataloaders = {x: DataLoader(image_datasets[x], batch_size=batch_size, shuffle=True, num_workers = num_workers)
+              for x in ['Train', 'Validation']}
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataloaders</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span><span class="p">)</span>
-              <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">]}</span>
-
-<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">],</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-
+test_loader = DataLoader(dataset = image_datasets['Test'], batch_size = 1, shuffle=False)
+```
 
 Every PyTorch dataset has an attribute,  **classes**, which is an array containing all of the image classes in the dataset. In our case, breeds of dog in the dataset. 
 
+```python
+dog_breeds = image_datasets['Train'].classes
+print(dog_breeds)
+```
 
+```python
+# Just printing the number of images in each dataset we created
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dog_breeds</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">classes</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dog_breeds</span><span class="p">)</span>
-</pre></div>
+dataset_sizes = {x: len(image_datasets[x]) for x in ['Train', 'Validation', 'Test']}
 
+print('Train Length: {} | Valid Length: {} | Test Length: {}'.format(dataset_sizes['Train'], 
+                                                                     dataset_sizes['Validation'], dataset_sizes['Test']))
+```
 
+```python
+# Here we're defining what component we'll use to train this model
+# We want to use the GPU if available, if not we use the CPU
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Just printing the number of images in each dataset we created</span>
-
-<span class="n">dataset_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">]}</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train Length: </span><span class="si">{}</span><span class="s1"> | Valid Length: </span><span class="si">{}</span><span class="s1"> | Test Length: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset_sizes</span><span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">],</span> 
-                                                                     <span class="n">dataset_sizes</span><span class="p">[</span><span class="s1">&#39;Validation&#39;</span><span class="p">],</span> <span class="n">dataset_sizes</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]))</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Here we&#39;re defining what component we&#39;ll use to train this model</span>
-<span class="c1"># We want to use the GPU if available, if not we use the CPU</span>
-
-<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
-<span class="n">device</span>
-</pre></div>
-
-
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device
+```
 
 #### Visualizing the dataset
 
@@ -272,70 +244,61 @@ The first one here indexes into our training set, grabs a given number of random
 
 The second function allows us to plot a batch of images served up by our PyTorch dataloader.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span>  <span class="c1"># Plots a given number of images from a PyTorch Data</span>
-<span class="k">def</span> <span class="nf">show_random_imgs</span><span class="p">(</span><span class="n">num_imgs</span><span class="p">):</span>
+```python
+  # Plots a given number of images from a PyTorch Data
+def show_random_imgs(num_imgs):
   
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_imgs</span><span class="p">):</span>
-        <span class="c1"># We&#39;re plotting images from the training set</span>
-        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">]</span>
+    for i in range(num_imgs):
+        # We're plotting images from the training set
+        train_dataset = image_datasets['Train']
         
-        <span class="c1"># Choose a random image</span>
-        <span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        # Choose a random image
+        rand = np.random.randint(0, len(train_dataset) + 1)
         
-        <span class="c1"># Read in the image</span>
-        <span class="n">ex</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">imgs</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        # Read in the image
+        ex = img.imread(train_dataset.imgs[rand][0])
         
-        <span class="c1"># Get the image&#39;s label</span>
-        <span class="n">breed</span> <span class="o">=</span> <span class="n">dog_breeds</span><span class="p">[</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">imgs</span><span class="p">[</span><span class="n">rand</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+        # Get the image's label
+        breed = dog_breeds[train_dataset.imgs[rand][1]]
         
-        <span class="c1"># Show the image and print out the image&#39;s size (really the shape of it&#39;s array of pixels)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Image Shape: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">breed</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        # Show the image and print out the image's size (really the shape of it's array of pixels)
+        plt.imshow(ex)
+        print('Image Shape: ' + str(ex.shape))
+        plt.axis('off')
+        plt.title(breed)
+        plt.show()
        
-  <span class="c1"># Plots a batch of images served up by PyTorch    </span>
-<span class="k">def</span> <span class="nf">show_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+  # Plots a batch of images served up by PyTorch    
+def show_batch(batch):
   
-    <span class="c1"># Undo the transformations applied to the images when loading a batch</span>
-    <span class="n">batch</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-    <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-    <span class="n">batch</span> <span class="o">=</span> <span class="n">std</span> <span class="o">*</span> <span class="n">batch</span> <span class="o">+</span> <span class="n">mean</span>
-    <span class="n">batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    # Undo the transformations applied to the images when loading a batch
+    batch = batch.numpy().transpose((1, 2, 0))
+    mean = np.array([0.5, 0.5, 0.5])
+    std = np.array([0.5, 0.5, 0.5])
+    batch = std * batch + mean
+    batch = np.clip(batch, 0, 1)
     
-    <span class="c1"># Plot the batch</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+    # Plot the batch
+    plt.axis('off')
+    plt.imshow(batch)
     
-    <span class="c1"># pause a bit so that plots are updated</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
-</pre></div>
+    # pause a bit so that plots are updated
+    plt.pause(0.001)
+```
 
+```python
+show_random_imgs(3)
+```
 
+```python
+# Get a batch of training data (32 random images)
+imgs, classes = next(iter(dataloaders['Train']))
 
+# This PyTorch function makes a grid of images from a batch for us
+batch = torchvision.utils.make_grid(imgs)
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_random_imgs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get a batch of training data (32 random images)</span>
-<span class="n">imgs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">]))</span>
-
-<span class="c1"># This PyTorch function makes a grid of images from a batch for us</span>
-<span class="n">batch</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span>
-
-<span class="n">show_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
-</pre></div>
-
-
+show_batch(batch)
+```
 
 #### Defining a network in PyTorch
 
@@ -354,143 +317,134 @@ Below are the signatures of the PyTorch functions that create each of the layers
 -  nn.Dropout(p) - p is probability of an element to be zeroed
 -  nn.Linear(in_features, out_features) – fully connected layer (matrix multiplications used in the classification portion of a network)
 
+```python
+# It is good practice to maintain input dimensions as the image is passed through convolution layers
+# With a default stride of 1, and no padding, a convolution will reduce image dimenions to:
+            # out = in - m + 1, where m is the size of the kernel and in is a dimension of the input
 
+# Use this function to calculate the padding size neccessary to create an output of desired dimensions
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># It is good practice to maintain input dimensions as the image is passed through convolution layers</span>
-<span class="c1"># With a default stride of 1, and no padding, a convolution will reduce image dimenions to:</span>
-            <span class="c1"># out = in - m + 1, where m is the size of the kernel and in is a dimension of the input</span>
-
-<span class="c1"># Use this function to calculate the padding size neccessary to create an output of desired dimensions</span>
-
-<span class="k">def</span> <span class="nf">get_padding</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
-  <span class="c1"># Calculates padding necessary to create a certain output size,</span>
-  <span class="c1"># given a input size, kernel size and stride</span>
+def get_padding(input_dim, output_dim, kernel_size, stride):
+  # Calculates padding necessary to create a certain output size,
+  # given a input size, kernel size and stride
   
-  <span class="n">padding</span> <span class="o">=</span> <span class="p">(((</span><span class="n">output_dim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">stride</span><span class="p">)</span> <span class="o">-</span> <span class="n">input_dim</span> <span class="o">+</span> <span class="n">kernel_size</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+  padding = (((output_dim - 1) * stride) - input_dim + kernel_size) // 2
   
-  <span class="k">if</span> <span class="n">padding</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">return</span> <span class="mi">0</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">padding</span>
-</pre></div>
+  if padding < 0:
+    return 0
+  else:
+    return padding
+```
 
+```python
+# Make sure you calculate the padding amount needed to maintain the spatial size of the input
+# after each Conv layer
 
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make sure you calculate the padding amount needed to maintain the spatial size of the input</span>
-<span class="c1"># after each Conv layer</span>
-
-<span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+class CNN(nn.Module):
   
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    def __init__(self):
+        super(CNN, self).__init__()
         
-        <span class="c1"># nn.Sequential() is simply a container that groups layers into one object</span>
-        <span class="c1"># Pass layers into it separated by commas</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">block1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+        # nn.Sequential() is simply a container that groups layers into one object
+        # Pass layers into it separated by commas
+        self.block1 = nn.Sequential(
             
-            <span class="c1"># The first convolutional layer. Think about how many channels the input starts off with</span>
-            <span class="c1"># Let&#39;s have this first layer extract 32 features</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="c1">### END SOLUTION</span>
+            # The first convolutional layer. Think about how many channels the input starts off with
+            # Let's have this first layer extract 32 features
+            ### BEGIN SOLUTION
+            nn.Conv2d(3, 32, 3, 1, 1),
+            ### END SOLUTION
             
-            <span class="c1"># Don&#39;t forget to apply a non-linearity</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
-            <span class="c1">### END SOLUTION</span>
+            # Don't forget to apply a non-linearity
+            ### BEGIN SOLUTION
+            nn.ReLU())
+            ### END SOLUTION
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">block2</span> <span class="o">=</span>  <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+        self.block2 =  nn.Sequential(
             
-            <span class="c1"># The second convolutional layer. How many channels does it receive, given the number of features extracted by the first layer?</span>
-            <span class="c1"># Have this layer extract 64 features</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="c1">### END SOLUTION</span>
+            # The second convolutional layer. How many channels does it receive, given the number of features extracted by the first layer?
+            # Have this layer extract 64 features
+            ### BEGIN SOLUTION
+            nn.Conv2d(32, 64, 3, 1, 1),
+            ### END SOLUTION
             
-            <span class="c1"># Non linearity</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="c1">### END SOLUTION</span>
+            # Non linearity
+            ### BEGIN SOLUTION
+            nn.ReLU(),
+            ### END SOLUTION
             
-            <span class="c1"># Lets introduce a Batch Normalization layer</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
-            <span class="c1">### END SOLUTION</span>
+            # Lets introduce a Batch Normalization layer
+            ### BEGIN SOLUTION
+            nn.BatchNorm2d(64),
+            ### END SOLUTION
             
-            <span class="c1"># Downsample the input with Max Pooling</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="c1">### END SOLUTION</span>
-        <span class="p">)</span>
+            # Downsample the input with Max Pooling
+            ### BEGIN SOLUTION
+            nn.MaxPool2d(2, 2, 0)
+            ### END SOLUTION
+        )
         
-        <span class="c1"># Mimic the second block here, except have this block extract 128 features</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">block3</span> <span class="o">=</span>  <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="c1">### END SOLUTION</span>
-        <span class="p">)</span>
+        # Mimic the second block here, except have this block extract 128 features
+        self.block3 =  nn.Sequential(
+            ### BEGIN SOLUTION
+            nn.Conv2d(64, 128, 3, 1, 1),
+            nn.ReLU(),
+            nn.BatchNorm2d(128),
+            nn.MaxPool2d(2, 2, 0)
+            ### END SOLUTION
+        )
         
-        <span class="c1"># Applying a global pooling layer</span>
-        <span class="c1"># Turns the 128 channel rank 4 tensor into a rank 2 tensor of size 32 x 128 (32 128-length arrays, one for each of the inputs in a batch)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        # Applying a global pooling layer
+        # Turns the 128 channel rank 4 tensor into a rank 2 tensor of size 32 x 128 (32 128-length arrays, one for each of the inputs in a batch)
+        self.global_pool = nn.AdaptiveAvgPool2d(1)
         
-        <span class="c1"># Fully connected layer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+        # Fully connected layer
+        self.fc1 = nn.Linear(128, 512)
         
-        <span class="c1"># Introduce dropout to reduce overfitting</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">drop_out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        # Introduce dropout to reduce overfitting
+        self.drop_out = nn.Dropout(0.5)
         
-        <span class="c1"># Final fully connected layer creates the prediction array</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dog_breeds</span><span class="p">))</span>
+        # Final fully connected layer creates the prediction array
+        self.fc2 = nn.Linear(512, len(dog_breeds))
     
-    <span class="c1"># Feed the input through each of the layers we defined </span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    # Feed the input through each of the layers we defined 
+    def forward(self, x):
         
-        <span class="c1"># Input size changes from (32 x 3 x 224 x 224) to (32 x 32 x 224 x 224)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        # Input size changes from (32 x 3 x 224 x 224) to (32 x 32 x 224 x 224)
+        x = self.block1(x)
         
-        <span class="c1"># Size changes from (32 x 32 x 224 x 224) to (32 x 64 x 112 x 112) after max pooling</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        # Size changes from (32 x 32 x 224 x 224) to (32 x 64 x 112 x 112) after max pooling
+        x = self.block2(x)
         
-        <span class="c1"># Size changes from (32 x 64 x 112 x 112) to (32 x 128 x 56 x 56) after max pooling</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        # Size changes from (32 x 64 x 112 x 112) to (32 x 128 x 56 x 56) after max pooling
+        x = self.block3(x)
         
-        <span class="c1"># Reshapes the input from (32 x 128 x 56 x 56) to (32 x 128)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_pool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        # Reshapes the input from (32 x 128 x 56 x 56) to (32 x 128)
+        x = self.global_pool(x)
+        x = x.view(x.size(0), -1)
         
-        <span class="c1"># Fully connected layer, size changes from (32 x 128) to (32 x 512)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_out</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        # Fully connected layer, size changes from (32 x 128) to (32 x 512)
+        x = self.fc1(x)
+        x = self.drop_out(x)
         
-        <span class="c1"># Size change from (32 x 512) to (32 x 133) to create prediction arrays for each of the images in the batch</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        # Size change from (32 x 512) to (32 x 133) to create prediction arrays for each of the images in the batch
+        x = self.fc2(x)
         
-        <span class="k">return</span> <span class="n">x</span>
-</pre></div>
-
-
+        return x
+```
 
 Now we create an instance of this CNN() class and define the loss function and optimizer we'll use to train our model. In our case we'll use CrossEntropyLoss. You'll notice we never added a Softmax activation after our last layer. That's because PyTorch's CrossEntropyLoss applies a softmax before calculating log loss, a commonly used loss function for single label classification problems.
 
 For the optimizer we'll use Adam, an easy to apply but powerful optimizer which is an extension of the popular Stochastic Gradient Descent method. We need to pass it all of the parameters it'll train, which PyTorch makes easy with model.parameters(), and also the learning rate we'll use.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CNN</span><span class="p">()</span>
-<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">)</span>
-<span class="n">epochs</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">))</span>
-</pre></div>
-
-
+```python
+model = CNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr = 0.0001)
+epochs = 5
+model.to(device)
+summary(model, (3,224,224))
+```
 
 ## Training a model in PyTorch 
 
@@ -502,156 +456,145 @@ If we're in training mode, here is where we perform back-propagation and adjust 
 
 The remaining portion of one epoch is the same for both training and validation, and simply involves calculating and tracking the accuracy achieved in both phases. A nifty addition to this training loop is that it tracks the highest validation accuracy and only saves weights which beat that accuracy, ensuring that the best performing weights are returned from the function.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">run_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">phase</span><span class="p">):</span>
+```python
+def run_epoch(epoch, model, optimizer, dataloaders, device, phase):
   
-    <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="n">running_corrects</span> <span class="o">=</span> <span class="mi">0</span>
+    running_loss = 0.0
+    running_corrects = 0
 
-    <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">:</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    if phase == 'Train':
+        model.train()
+    else:
+        model.eval()
 
-    <span class="c1"># Looping through batches</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="n">phase</span><span class="p">]):</span>
+    # Looping through batches
+    for i, (inputs, labels) in enumerate(dataloaders[phase]):
     
-        <span class="c1"># ensures we&#39;re doing this calculation on our GPU if possible</span>
-        <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        # ensures we're doing this calculation on our GPU if possible
+        inputs = inputs.to(device)
+        labels = labels.to(device)
 
-        <span class="c1"># Zero parameter gradients</span>
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        # Zero parameter gradients
+        optimizer.zero_grad()
     
-        <span class="c1"># Calculate gradients only if we&#39;re in the training phase</span>
-        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">):</span>
+        # Calculate gradients only if we're in the training phase
+        with torch.set_grad_enabled(phase == 'Train'):
       
-            <span class="c1"># This calls the forward() function on a batch of inputs</span>
-            <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+            # This calls the forward() function on a batch of inputs
+            outputs = model(inputs)
 
-            <span class="c1"># Calculate the loss of the batch</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+            # Calculate the loss of the batch
+            loss = criterion(outputs, labels)
 
-            <span class="c1"># Gets the predictions of the inputs (highest value in the array)</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            # Gets the predictions of the inputs (highest value in the array)
+            _, preds = torch.max(outputs, 1)
 
-            <span class="c1"># Adjust weights through backpropagation if we&#39;re in training phase</span>
-            <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;Train&#39;</span><span class="p">:</span>
-                <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-                <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            # Adjust weights through backpropagation if we're in training phase
+            if phase == 'Train':
+                loss.backward()
+                optimizer.step()
 
-        <span class="c1"># Document statistics for the batch</span>
-        <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">running_corrects</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">preds</span> <span class="o">==</span> <span class="n">labels</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        # Document statistics for the batch
+        running_loss += loss.item() * inputs.size(0)
+        running_corrects += torch.sum(preds == labels.data)
     
-    <span class="c1"># Calculate epoch statistics</span>
-    <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="n">image_datasets</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
-    <span class="n">epoch_acc</span> <span class="o">=</span> <span class="n">running_corrects</span><span class="o">.</span><span class="n">double</span><span class="p">()</span> <span class="o">/</span> <span class="n">image_datasets</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
+    # Calculate epoch statistics
+    epoch_loss = running_loss / image_datasets[phase].__len__()
+    epoch_acc = running_corrects.double() / image_datasets[phase].__len__()
 
-    <span class="k">return</span> <span class="n">epoch_loss</span><span class="p">,</span> <span class="n">epoch_acc</span>
-</pre></div>
+    return epoch_loss, epoch_acc
 
+```
 
+```python
+def train(model, criterion, optimizer, num_epochs, dataloaders, device):
+    start = time.time()
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-
-    <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
-    <span class="n">best_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
+    best_model_wts = model.state_dict()
+    best_acc = 0.0
     
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;| Epoch</span><span class="se">\t</span><span class="s1"> | Train Loss</span><span class="se">\t</span><span class="s1">| Train Acc</span><span class="se">\t</span><span class="s1">| Valid Loss</span><span class="se">\t</span><span class="s1">| Valid Acc</span><span class="se">\t</span><span class="s1">| Epoch Time |&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">86</span><span class="p">)</span>
+    print('| Epoch\t | Train Loss\t| Train Acc\t| Valid Loss\t| Valid Acc\t| Epoch Time |')
+    print('-' * 86)
     
-    <span class="c1"># Iterate through epochs</span>
-    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    # Iterate through epochs
+    for epoch in range(num_epochs):
         
-        <span class="n">epoch_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        epoch_start = time.time()
        
-        <span class="c1"># Training phase</span>
-        <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="s1">&#39;Train&#39;</span><span class="p">)</span>
+        # Training phase
+        train_loss, train_acc = run_epoch(epoch, model, optimizer, dataloaders, device, 'Train')
         
-        <span class="c1"># Validation phase</span>
-        <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">run_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">)</span>
+        # Validation phase
+        val_loss, val_acc = run_epoch(epoch, model, optimizer, dataloaders, device, 'Validation')
         
-        <span class="n">epoch_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">epoch_start</span>
+        epoch_time = time.time() - epoch_start
            
-        <span class="c1"># Print statistics after the validation phase</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| </span><span class="si">{}</span><span class="se">\t</span><span class="s2"> | </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.4f}</span><span class="se">\t</span><span class="s2">| </span><span class="si">{:.0f}</span><span class="s2">m </span><span class="si">{:.0f}</span><span class="s2">s     |&quot;</span>
-                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span><span class="p">,</span> <span class="n">epoch_time</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">epoch_time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">))</span>
+        # Print statistics after the validation phase
+        print("| {}\t | {:.4f}\t| {:.4f}\t| {:.4f}\t| {:.4f}\t| {:.0f}m {:.0f}s     |"
+                      .format(epoch + 1, train_loss, train_acc, val_loss, val_acc, epoch_time // 60, epoch_time % 60))
 
-        <span class="c1"># Copy and save the model&#39;s weights if it has the best accuracy thus far</span>
-        <span class="k">if</span> <span class="n">val_acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
-            <span class="n">best_acc</span> <span class="o">=</span> <span class="n">val_acc</span>
-            <span class="n">best_model_wts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+        # Copy and save the model's weights if it has the best accuracy thus far
+        if val_acc > best_acc:
+            best_acc = val_acc
+            best_model_wts = model.state_dict()
 
-    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+    total_time = time.time() - start
     
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">74</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training complete in </span><span class="si">{:.0f}</span><span class="s1">m </span><span class="si">{:.0f}</span><span class="s1">s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_time</span> <span class="o">//</span> <span class="mi">60</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best validation accuracy: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_acc</span><span class="p">))</span>
+    print('-' * 74)
+    print('Training complete in {:.0f}m {:.0f}s'.format(total_time // 60, total_time % 60))
+    print('Best validation accuracy: {:.4f}'.format(best_acc))
 
-    <span class="c1"># load best model weights and return them</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">model</span>
-</pre></div>
-
-
+    # load best model weights and return them
+    model.load_state_dict(best_model_wts)
+    return model
+```
 
 #### Testing a model
 
 Creating a function that generates and prints predictions on a given number of images from our test set:
 
+```python
+def test_model(model, num_images):
+    was_training = model.training
+    model.eval()
+    images_so_far = 0
+    fig = plt.figure(num_images, (10,10))
 
+    with torch.no_grad():
+        for i, (images, labels) in enumerate(dataloaders['Validation']):
+            images = images.to(device)
+            labels = labels.to(device)
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">num_images</span><span class="p">):</span>
-    <span class="n">was_training</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">training</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-    <span class="n">images_so_far</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num_images</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+            outputs = model(images)
+            _, preds = torch.max(outputs, 1)
 
-    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;Validation&#39;</span><span class="p">]):</span>
-            <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-            <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-
-            <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">images</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]):</span>
-                <span class="n">images_so_far</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">num_images</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">images_so_far</span><span class="p">)</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Actual: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> Prediction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dog_breeds</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="n">dog_breeds</span><span class="p">[</span><span class="n">preds</span><span class="p">[</span><span class="n">j</span><span class="p">]]))</span>
+            for j in range(images.size()[0]):
+                images_so_far += 1
+                ax = plt.subplot(num_images//2, 2, images_so_far)
+                ax.axis('off')
+                ax.set_title('Actual: {} \n Prediction: {}'.format(dog_breeds[labels[j]], dog_breeds[preds[j]]))
                 
-                <span class="n">image</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                image = images.cpu().data[j].numpy().transpose((1, 2, 0))
                 
-                <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-                <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-                <span class="n">image</span> <span class="o">=</span> <span class="n">std</span> <span class="o">*</span> <span class="n">image</span> <span class="o">+</span> <span class="n">mean</span>
-                <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                mean = np.array([0.5, 0.5, 0.5])
+                std = np.array([0.5, 0.5, 0.5])
+                image = std * image + mean
+                image = np.clip(image, 0, 1)
                 
-                <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">images_so_far</span> <span class="o">==</span> <span class="n">num_images</span><span class="p">:</span>
-                    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">was_training</span><span class="p">)</span>
-                    <span class="k">return</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">was_training</span><span class="p">)</span>
-</pre></div>
-
-
+                plt.imshow(image)
+                if images_so_far == num_images:
+                    model.train(mode=was_training)
+                    return
+        model.train(mode=was_training)
+```
 
 After defining these functions, training and testing our model is straightforward from here on out. Simply call the train() function with the required parameters and let your GPU go to work!
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make sure to comment this out when you go to &quot;Commit&quot; the kaggle notebook!</span>
-<span class="c1"># otherwise, it&#39;ll run this model along with your other models down below.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+# Make sure to comment this out when you go to "Commit" the kaggle notebook!
+# otherwise, it'll run this model along with your other models down below.
+model = train(model, criterion, optimizer, epochs, dataloaders, device)
+```
 
 Ouch! Our model doesn't seem to be performing very well at all. After 20 epochs of training we're barely able to achieve a 10% accuracy on our validation set... Hang in there, in a bit I'll go into some methods we can use to achieve a much better accuracy.
 
@@ -665,58 +608,46 @@ The most important part to understand from the code below is what the model and 
 
 Other than the state_dicts, we also save the class used to build the model architecture, as well as the optimizer and loss function. Putting all of this together allows us to save, move around, and later restore our model to it's exact state after training.. A **.tar** file extension is commonly used to bundle all of this together.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
-            <span class="s1">&#39;model&#39;</span> <span class="p">:</span> <span class="n">CNN</span><span class="p">(),</span>
-            <span class="s1">&#39;epoch&#39;</span> <span class="p">:</span> <span class="n">epochs</span><span class="p">,</span>
-            <span class="s1">&#39;model_state_dict&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-            <span class="s1">&#39;optimizer&#39;</span> <span class="p">:</span> <span class="n">optimizer</span><span class="p">,</span>
-            <span class="s1">&#39;optimizer_state_dict&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-            <span class="s1">&#39;criterion&#39;</span> <span class="p">:</span> <span class="n">criterion</span><span class="p">,</span>
-            <span class="s1">&#39;device&#39;</span> <span class="p">:</span> <span class="n">device</span>
-            <span class="p">},</span> <span class="s1">&#39;base_model.tar&#39;</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+torch.save({
+            'model' : CNN(),
+            'epoch' : epochs,
+            'model_state_dict': model.state_dict(),
+            'optimizer' : optimizer,
+            'optimizer_state_dict': optimizer.state_dict(),
+            'criterion' : criterion,
+            'device' : device
+            }, 'base_model.tar')
+```
 
 Creating a function which unpacks the .tar file we saved earlier and loads up the model's saved weights and optimizer state:
 
+```python
+def load_checkpoint(filepath):
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    checkpoint = torch.load(filepath, map_location=device)
+    model = checkpoint['model']
+    model.load_state_dict(checkpoint['model_state_dict'])
+    optimizer = checkpoint['optimizer']
+    optimizer = optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    criterion = checkpoint['criterion']
+    epoch = checkpoint['epoch']
+    model.to(device)
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_checkpoint</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
-    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
-    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;model_state_dict&#39;</span><span class="p">])</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;optimizer&#39;</span><span class="p">]</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;optimizer_state_dict&#39;</span><span class="p">])</span>
-    <span class="n">criterion</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;criterion&#39;</span><span class="p">]</span>
-    <span class="n">epoch</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epoch</span>
-</pre></div>
-
-
+    return model, optimizer, criterion, epoch
+```
 
 Loading our model up...
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epoch</span> <span class="o">=</span> <span class="n">load_checkpoint</span><span class="p">(</span><span class="s1">&#39;base_model.tar&#39;</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+model, optimizer, criterion, epoch = load_checkpoint('base_model.tar')
+```
 
 Let's test our model on a couple of dogs!
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+test_model(model, 6)
+```
 
 As expected, our model is predicting the wrong breed for the majority of test images. Why is this?
 
@@ -733,77 +664,68 @@ PyTorch actually comes with a number of models which have already been trained o
 
 The next block of code might look a bit foreign. What we're doing is actually looping through all of the model's pretrained weights and **freezing** them. This means that during training, these weights will not be updating at all. We then take the entire ResNet model and put it into one block of our model, named feature_extraction. It's important to understand that when you load a pretrained model you are only receiving the feature extraction block, or the convolutional layers. It's up to us to define a classification block which can take all of the features the ResNet model extracted and use them to actually classify an image.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PreTrained_Resnet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PreTrained_Resnet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+```python
+class PreTrained_Resnet(nn.Module):
+    def __init__(self):
+        super(PreTrained_Resnet, self).__init__()
         
-        <span class="c1"># Loading up a pretrained ResNet18 model</span>
-        <span class="n">resnet</span> <span class="o">=</span> <span class="n">resnet18</span><span class="p">(</span><span class="n">pretrained</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        # Loading up a pretrained ResNet18 model
+        resnet = resnet18(pretrained = True)
         
-        <span class="c1"># Freeze the entire pretrained network</span>
-        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">resnet</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
-            <span class="n">layer</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
+        # Freeze the entire pretrained network
+        for layer in resnet.parameters():
+            layer.requires_grad = False
             
-        <span class="bp">self</span><span class="o">.</span><span class="n">feature_extraction</span> <span class="o">=</span> <span class="n">resnet</span>
+        self.feature_extraction = resnet
         
-        <span class="c1"># Write the classifier block for this network      </span>
-            <span class="c1"># Tip: ResNet18&#39;s feature extraction portion ends up with 1000 feature maps, and then implements a Global Average Pooling layer</span>
-            <span class="c1"># So what would the size and dimension of the output tensor be?</span>
-            <span class="c1"># Think about how can we take that output tensor and transform it into an array of dog breed predictions...</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="c1">### BEGIN SOLUTION</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dog_breeds</span><span class="p">))</span>
-            <span class="c1">### END SOLUTION</span>
-        <span class="p">)</span>
+        # Write the classifier block for this network      
+            # Tip: ResNet18's feature extraction portion ends up with 1000 feature maps, and then implements a Global Average Pooling layer
+            # So what would the size and dimension of the output tensor be?
+            # Think about how can we take that output tensor and transform it into an array of dog breed predictions...
+        self.classifier = nn.Sequential(
+            ### BEGIN SOLUTION
+            nn.Linear(1000, 512),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, len(dog_breeds))
+            ### END SOLUTION
+        )
     
-    <span class="c1"># Write the forward method for this network (it&#39;s quite simple since we&#39;ve defined the network in blocks already)</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="c1">### BEGIN SOLUTION</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_extraction</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x</span>
-        <span class="c1">### END SOLUTION</span>
-</pre></div>
+    # Write the forward method for this network (it's quite simple since we've defined the network in blocks already)
+    def forward(self, x):
+        ### BEGIN SOLUTION
+        x = self.feature_extraction(x)
+        x = self.classifier(x)
+        return x
+        ### END SOLUTION
+```
 
+```python
+# Instantiate a pretrained network using the class we've just defined (call it 'pretrained')
 
+### BEGIN SOLUTION
+pretrained = PreTrained_Resnet()
+### END SOLUTION
 
+# Then define the loss function and optimizer to use for training (let's use Adam again, with the same parameters as before)
+### BEGIN SOLUTION
+criterion2 = nn.CrossEntropyLoss()
+optimizer2 = optim.Adam(pretrained.classifier.parameters(), lr = 0.0001)
+### END SOLUTION
 
+# Define your number of epochs to train and map your model to the gpu
+# Keep epochs to 5 for time purposes during the workshop
+### BEGIN SOLUTION
+epochs2 = 5
+pretrained.to(device)
+### END SOLUTION
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Instantiate a pretrained network using the class we&#39;ve just defined (call it &#39;pretrained&#39;)</span>
+summary(pretrained, (3,224,224))
+```
 
-<span class="c1">### BEGIN SOLUTION</span>
-<span class="n">pretrained</span> <span class="o">=</span> <span class="n">PreTrained_Resnet</span><span class="p">()</span>
-<span class="c1">### END SOLUTION</span>
-
-<span class="c1"># Then define the loss function and optimizer to use for training (let&#39;s use Adam again, with the same parameters as before)</span>
-<span class="c1">### BEGIN SOLUTION</span>
-<span class="n">criterion2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="n">optimizer2</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">pretrained</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">)</span>
-<span class="c1">### END SOLUTION</span>
-
-<span class="c1"># Define your number of epochs to train and map your model to the gpu</span>
-<span class="c1"># Keep epochs to 5 for time purposes during the workshop</span>
-<span class="c1">### BEGIN SOLUTION</span>
-<span class="n">epochs2</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">pretrained</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="c1">### END SOLUTION</span>
-
-<span class="n">summary</span><span class="p">(</span><span class="n">pretrained</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">))</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pretrained</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">pretrained</span><span class="p">,</span> <span class="n">criterion2</span><span class="p">,</span> <span class="n">optimizer2</span><span class="p">,</span> <span class="n">epochs2</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+pretrained = train(pretrained, criterion2, optimizer2, epochs2, dataloaders, device)
+```
 
 This quick example shows the power of transfer learning. With relatively few lines of code we're able to achieve over an 80% accuracy on this dog breeds dataset! And there are still a number of things we could have done, or do from here, to achieve even better performance. This includes things such as:
  -  Unfreezing the last few layers of the ResNet base and training some more on our specific dataset (more on this in a bit)
@@ -813,36 +735,27 @@ This quick example shows the power of transfer learning. With relatively few lin
 
 We'll save the model, then load it back up using the function we defined earlier.
 
+```python
+torch.save({
+            'model' : PreTrained_Resnet(),
+            'epoch' : epochs2,
+            'model_state_dict': pretrained.state_dict(),
+            'optimizer' : optimizer2,
+            'optimizer_state_dict': optimizer2.state_dict(),
+            'criterion' : criterion2,
+            'device' : device
+            }, 'pretrained.tar')
+```
 
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
-            <span class="s1">&#39;model&#39;</span> <span class="p">:</span> <span class="n">PreTrained_Resnet</span><span class="p">(),</span>
-            <span class="s1">&#39;epoch&#39;</span> <span class="p">:</span> <span class="n">epochs2</span><span class="p">,</span>
-            <span class="s1">&#39;model_state_dict&#39;</span><span class="p">:</span> <span class="n">pretrained</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-            <span class="s1">&#39;optimizer&#39;</span> <span class="p">:</span> <span class="n">optimizer2</span><span class="p">,</span>
-            <span class="s1">&#39;optimizer_state_dict&#39;</span><span class="p">:</span> <span class="n">optimizer2</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-            <span class="s1">&#39;criterion&#39;</span> <span class="p">:</span> <span class="n">criterion2</span><span class="p">,</span>
-            <span class="s1">&#39;device&#39;</span> <span class="p">:</span> <span class="n">device</span>
-            <span class="p">},</span> <span class="s1">&#39;pretrained.tar&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pretrained</span><span class="p">,</span> <span class="n">optimizer2</span><span class="p">,</span> <span class="n">criterion2</span><span class="p">,</span> <span class="n">epoch2</span> <span class="o">=</span> <span class="n">load_checkpoint</span><span class="p">(</span><span class="s1">&#39;pretrained.tar&#39;</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+pretrained, optimizer2, criterion2, epoch2 = load_checkpoint('pretrained.tar')
+```
 
 Finally we can test our new pretrained ResNet model! As you can see, with transfer learning we can create quite accurate models relatively easily.
 
-
-
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_model</span><span class="p">(</span><span class="n">pretrained</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-</pre></div>
-
-
+```python
+test_model(pretrained, 6)
+```
 
 #### More on Transfer Learning
 
@@ -858,30 +771,27 @@ If you remember, ImageNet contains images that are *somewhat* similar to our dog
 
 Of course, much of what the deeper layers learned from ImageNet did **not** apply to dog images. This is why training the last few layers would be beneficial. It would allow the model to adjust and recognize rich features specific to **only dogs**. Things such as types of dog ears, tails, fur, noses, etc. etc.
 
+```python
+# Run this to generate the submission file for the competition!
+### Make sure to name your model variable "pretrained" ###
 
+# generate predictions
+preds = []
+pretrained = pretrained.to(device)
+pretrained.eval()
+for img in test_loader:
+    outputs = pretrained(img.to(device))
+    _, outputs = torch.max(outputs, 1)
+    preds += [outputs.item()]
 
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run this to generate the submission file for the competition!</span>
-<span class="c1">### Make sure to name your model variable &quot;pretrained&quot; ###</span>
+# create our pandas dataframe for our submission file. Squeeze removes dimensions of 1 in a numpy matrix Ex: (161, 1) -> (161,)
+indicies = ["{}.jpg".format(x) for x in range(len(image_datasets['Test']))]
+preds = pd.DataFrame({'Id': indicies, 'Class': np.squeeze(preds)})
 
-<span class="c1"># generate predictions</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">pretrained</span> <span class="o">=</span> <span class="n">pretrained</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="n">pretrained</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">pretrained</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">preds</span> <span class="o">+=</span> <span class="p">[</span><span class="n">outputs</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span>
-
-<span class="c1"># create our pandas dataframe for our submission file. Squeeze removes dimensions of 1 in a numpy matrix Ex: (161, 1) -&gt; (161,)</span>
-<span class="n">indicies</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.jpg&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]))]</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Id&#39;</span><span class="p">:</span> <span class="n">indicies</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">preds</span><span class="p">)})</span>
-
-<span class="c1"># save submission csv</span>
-<span class="n">preds</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;submission.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Submission generated!&quot;</span><span class="p">)</span>
-</pre></div>
-
-
+# save submission csv
+preds.to_csv('submission.csv', header=['Id', 'Class'], index=False)
+print("Submission generated!")
+```
 
 ## Thank you for coming out tonight! 
 
