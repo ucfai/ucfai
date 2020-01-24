@@ -1,0 +1,15 @@
+name: Crontab Rebuilds
+
+on:
+  schedule:
+    - cron: "0  8 * * *" # daily at 08am
+    - cron: "0 16 * * *" # daily at 04pm
+    - cron: "0  0 * * *" # daily at 12am
+    
+jobs:
+  crontab-rebuild:
+    name: Trigger [Multiple] Daily Rebuilds
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl Request
+        run: curl -X POST -d {} ${{ secrets.HUGO_MIGRATION_BUILD_HOOK }}
