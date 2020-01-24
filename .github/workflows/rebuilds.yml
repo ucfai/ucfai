@@ -2,10 +2,10 @@ name: Crontab Rebuilds
 
 on:
   schedule:
-    - cron: "0  8 * * *" # daily at 08am
-    - cron: "0 16 * * *" # daily at 04pm
-    - cron: "0  0 * * *" # daily at 12am
-    
+    - cron: "0  9 * * *" # daily at 09am
+    - cron: "0 17 * * *" # daily at 05pm
+    - cron: "0  1 * * *" # daily at 01am
+
 jobs:
   crontab-rebuild:
     name: Trigger [Multiple] Daily Rebuilds
