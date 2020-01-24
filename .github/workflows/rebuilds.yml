@@ -1,3 +1,4 @@
+# https://ericjinks.com/blog/2019/netlify-scheduled-build/
 name: Crontab Rebuilds
 
 on:
