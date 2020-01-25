@@ -1,0 +1,27 @@
+{{ $page := . }}
+<div class="alert alert-secondary">
+    <div>
+        <p>{{ "**Rundown on Finding Us**" | markdownify }}</p>
+
+        {{/* some "sensible defaults" */}}
+        {{ $wday := "TBD" }}
+        {{ $room := "TBD" }}
+        {{ $time := "TBD" }}
+        {{ $freq := "weekly" }}
+
+        {{ with $page.Date }} {{ $wday = .Format "Mon" }} {{ end }}
+        {{ with $page.Params.room }} {{ $room = . }} {{ end }}
+        {{ with $page.Date }}
+            {{ $time = .Format "03:04 PM" }}
+        {{ end }}
+        {{ with $page.Params.frequency }}
+            {{ $freq = .}}
+        {{ end }}
+
+        <p>
+            {{ (printf "We usually meet, **%s**, on **%s** in **%s** at **%s**." $freq $wday $room $time) | markdownify }}
+        </p>
+
+        {{ "**NOTE:** This is where we try to meet, but sometimes we have different dates, times, and/or locations. _Check each meeting for their actual info!_" | markdownify }}
+    </div>
+</div>
