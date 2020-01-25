@@ -1,25 +1,24 @@
 ---
 # Display name
-name: Brandon 
+name: Brandon Silva
 
 github: brandons209
 
 ucfai:
   roles:
-    - President
+    - Director
     - Coordinator
   teams:
     - 2018-2019
     - 2019-2020
 
 labs:
-# Username (this should match the folder name)
-authors:
-  - justin-teneyck
-  - sirroboto
+  - CRCV
 
-# Is this the primary user of the site?
-superuser: true
+authors:
+  - brandons209
+
+superuser: false
 
 # Role/position
 role: President of AI@UCF (2019-2021)
@@ -33,8 +32,7 @@ bio: >-
   passionate about home automation and assistive robotics.
 
 interests:
-  - Robotics
-  - Home Automation
+  - Computer Vision
 
 education:
   courses:
@@ -50,10 +48,11 @@ social:
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
-  - Presidents
+  - Directors
   - Coordinators
-  - 2018-2019 Team
-  - 2019-2020 Team
+  - sp19-core-coordinator
+  - fa19-core-director
+  - sp20-core-director
 ---
 
 If you're looking for random paragraphs, you've come to the right place. When a random

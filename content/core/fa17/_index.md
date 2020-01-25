@@ -8,20 +8,22 @@ summary: >-
 weight: 1000000
 
 # Page metadata.
-title: Overview of Fall 2017
+title: Core, Fall 2017
+
 date: "2017-08-20T00:00:00Z"
 lastmod: "2018-09-09T00:00:00Z"
+
 draft: false  # Is this a draft? true/false
 toc: true  # Show table of contents? true/false
 type: docs  # Do not modify.
 
-# Add menu entry to sidebar.
-# - name: Declare this menu item as a parent with ID `name`.
-# - weight: Position of link in menu.
 menu:
   core_fa17:
     name: Fall 2017
     weight: 1
+  core:
+    parent: "Core Group"
+    weight: 1000000
 ---
 
 {{% alert note %}}

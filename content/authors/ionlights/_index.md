@@ -77,10 +77,19 @@ user_groups:
   - CRCV
   - NLPGroup
   - CBMM
-  - 2016-2017 Team
-  - 2017-2018 Team
-  - 2018-2019 Team
-  - 2019-2020 Team
+  - fa17-core-director
+  - sp18-core-director
+  - fa18-core-director
+  - sp19-core-director
+  - sp19-intelligence-director
+  - sp19-supplementary-director
+  - fa19-core-coordinator
+  - fa19-intelligence-director
+  - fa19-data-science-coordinator
+  - fa19-supplementary-director
+  - sp20-core-coordinator
+  - sp20-intelligence-coordinator
+  - sp20-supplementary-coordinator
 ---
 
 ## Briefly

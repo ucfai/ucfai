@@ -9,21 +9,22 @@ summary: >-
   Science, and Cognitive Science.
 weight: 999996
 
-# Page metadata.
-title: Overview
-date: "2018-09-09T00:00:00Z"
-lastmod: "2018-09-09T00:00:00Z"
+title: "Core, Fall 2019"
+
+room: MSB 359
+date: "2019-09-11T17:30:00Z"
+lastmod: "2019-09-11T00:00:00Z"
+
 draft: false
 toc: true
 type: docs
-authors: ["Liam Jarvis", "ionlights"]
 
 menu:
   core_fa19:
     name: Fall 2019
     weight: 1
----
 
-{{% alert note %}}
-This semester, we met at **5:30pm** on **Wednesdays** in **MSB 359**.
-{{% /alert %}}
+user_groups:
+  - "fa19-core-director"
+  - "fa19-core-coordinator"
+---

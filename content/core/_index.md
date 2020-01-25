@@ -6,6 +6,10 @@ layout: docs  # Do not modify.
 header:
   caption: ""
   image: ""
+
+menu:
+  core:
+    name: "Core Group"
 ---
 
 Our custom lecture series designed to educate newcomers and those looking to supplement
