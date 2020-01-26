@@ -13,7 +13,8 @@
             class="docs-toc-title">{{ i18n "on_this_page" }}</a>
         </li>
       </ul>
-      {{ .TableOfContents }} {{ partial "docs_toc_foot" . }}
+      {{ .TableOfContents }}
+      {{ partial "docs_toc_foot" . }}
     </div>
 
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content"
@@ -22,20 +23,8 @@
       <article class="article">
         <div class="docs-article-container">
           <div class="docs-article-abstract"></div>
-          <div class="docs-article-facts">
-            <div class="docs-article-tags article-tags">
-              <strong>Topics:</strong>
-              {{ partial "module/tags" . }}
-            </div>
-          </div>
 
-          <div class="article-widget">
-            {{ partial "widgets/when2meet" . }}
-          </div>
-
-          <div class="article-widget">
-            {{ partial "widgets/coordinators" . }}
-          </div>
+          {{ .Content }}
 
           {{ if site.Params.docs_section_pager }}
           <div class="article-widget">

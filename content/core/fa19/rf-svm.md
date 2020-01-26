@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 2
+weight: 3
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 2
+    weight: 3
 
 authors: ["jarviseq", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-rf-svm"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-09-25-rf-svm/2019-09-25-rf-svm.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://upload.wikimedia.org/wikipedia/commons/1/17/Tarvasj%C3%B5gi.jpg"
 
 categories: ["fa19"]
 tags: ["random-forests", "svms", "weak-models", "non-nn", ]
-description: >-
+abstract: >-
   In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!
 ---
 ```python

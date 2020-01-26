@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 4
+weight: 5
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 4
+    weight: 5
 
 authors: ["jarviseq", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-applications"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-09-applications/2019-10-09-applications.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://www.autodesk.com/products/eagle/blog/wp-content/uploads/2018/04/shutterstock_1011096853.jpg"
 
 categories: ["fa19"]
 tags: ["neural-nets", "applications", "random-forest", "svms", ]
-description: >-
+abstract: >-
   You know what they are, but "how do?" In this meeting, we let you loose on a dataset to help you apply your newly developed or honed data science skills. Along the way, we go over the importance of visulisations and why it is important to be able to pick apart a dataset.
 ---
 ```python

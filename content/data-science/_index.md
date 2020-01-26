@@ -6,4 +6,8 @@ layout: docs  # Do not modify.
 header:
   caption: ""
   image: ""
+
+menu:
+  data-science:
+    name: "Data Science Group"
 ---

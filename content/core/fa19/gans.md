@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 7
+weight: 8
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 7
+    weight: 8
 
 authors: ["brandons209", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-gans"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-30-gans/2019-10-30-gans.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://i1.wp.com/cyxu.tv/wp-content/uploads/2019/03/horse2zebra.jpg?resize=386%2C385"
 
 categories: ["fa19"]
 tags: ["GANs", "generative", "adversial", "cyclegan", "deepfake", "cGAN", ]
-description: >-
+abstract: >-
   GANs are relativity new in the machine learning world, but they have proven to be a very powerful model. Recently, they made headlines in the DeepFake network, being able to mimic someone else in real time video and audio. There has also been cycleGAN, which takes one domain (horses) and makes it look like something similar (zebras). Come and learn the secret behind these type of networks, you will be suprised how intuitive it is! The lecture will cover the basics of GANs and different types, with the workshop covering how we can generate human faces, cats, dogs, and other cute creatures!
 ---
 ```python

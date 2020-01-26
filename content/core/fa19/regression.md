@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 1
+weight: 2
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 1
+    weight: 2
 
 authors: ["jarviseq", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-regression"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-09-18-regression/2019-09-18-regression.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://pbs.twimg.com/media/Dqb-Nk_XcAAm1_j.jpg"
 
 categories: ["fa19"]
 tags: ["Regresssion", "Linear Regression", "Logistic Regression", "non-nn", ]
-description: >-
+abstract: >-
   You always start with the basics, and in this meeting we are doing just that! We will be going over what Machine Learning consists of and how we can use models to do awesome stuff!
 ---
 First thing first, we to get some packages 

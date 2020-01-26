@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 8
+weight: 9
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 8
+    weight: 9
 
 authors: ["cg021", "danielzgsilva", "jarviseq", ]
 
@@ -25,11 +25,11 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-rl"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-11-06-rl/2019-11-06-rl.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://nulltx.com/wp-content/uploads/2018/10/robot-maze.jpg"
 
 categories: ["fa19"]
 tags: ["reinforcement learning", "machine learning", ]
-description: >-
+abstract: >-
   We all remember when DeepMind’s AlphaGo beat Lee Sedol, but what actually made the program powerful enough to outperform an international champion? In this lecture, we’ll dive into the mechanics of reinforcement learning and its applications.
 ---

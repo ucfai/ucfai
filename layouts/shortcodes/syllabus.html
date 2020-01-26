@@ -1,0 +1,15 @@
+{{ $page := .Page }}
+
+<style>
+    #syllabus {
+        list-style: none;
+        padding: 0;
+    }
+</style>
+
+<div id="syllabus">
+    {{ range $page.Pages }}
+    {{/* This is to trick Hugo Academic to display Meeting's like a talk would */}}
+    {{ partial "cards/meeting" . }}
+    {{ end }}
+</div>

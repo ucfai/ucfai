@@ -1,5 +1,5 @@
 ---
-title: Intelligence Group
+title: Groups
 layout: docs  # Do not modify.
 
 # Optional header image (relative to `static/img/` folder).
@@ -8,6 +8,6 @@ header:
   image: ""
 
 menu:
-  intelligence:
-    name: "Intelligence Group"
+  groups:
+    name: "Groups"
 ---

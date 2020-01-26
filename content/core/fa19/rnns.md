@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 6
+weight: 7
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 6
+    weight: 7
 
 authors: ["brandons209", "ionlights", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-rnns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-23-rnns/2019-10-23-rnns.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://i.imgur.com/EIt4Ilr.png"
 
 categories: ["fa19"]
 tags: ["neural-nets", "recurrent-nets", "LSTMs", "Embeddings", ]
-description: >-
+abstract: >-
   This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series “The Simpsons”. Come and find out if our networks can become better writers for the show!
 ---
 ```python

@@ -6,4 +6,8 @@ layout: docs  # Do not modify.
 header:
   caption: ""
   image: ""
+
+menu:
+  supplementary:
+    name: "Supplementary Group"
 ---

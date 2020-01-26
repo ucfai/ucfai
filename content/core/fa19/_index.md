@@ -28,3 +28,12 @@ user_groups:
   - "fa19-core-director"
   - "fa19-core-coordinator"
 ---
+
+## A note on our meetings for **Fall 2019**
+{{% when2meet %}}
+
+## Our planned content for the semester
+{{< syllabus >}}
+
+## This Semester's Coordinators
+{{< coordinators >}}

@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 5
+weight: 6
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 5
+    weight: 6
 
 authors: ["danielzgsilva", "brandons209", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-cnns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-16-cnns/2019-10-16-cnns.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/10/computer_vision-400x208.png"
 
 categories: ["fa19"]
 tags: ["Computer Vision", "CNNs", "Convolutional Neural Networks", ]
-description: >-
+abstract: >-
   Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight!
 ---
 ```python

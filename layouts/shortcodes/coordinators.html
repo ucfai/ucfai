@@ -1,8 +1,7 @@
-{{ $page := .}}
-{{ $show_social := $page.Params.design.show_social | default false }}
+{{ $page := .Page}}
+{{ $show_social := $page.Params.design.show_social | default true }}
 {{ $show_interests := $page.Params.design.show_interests | default false }}
 
-{{ "This Semester's Coordinators" | markdownify }}
 <div class="row justify-content-center people-widget">
   {{ range $page.Params.user_groups }}
     {{ $group := . }}
@@ -22,7 +21,7 @@
 
         <div class="portrait-title">
           <h2><a href="{{ $link }}">{{ .Params.name }}</a></h2>
-          <h3>{{ $page.Title | markdownify | emojify }} {{ title $group }}</h3>
+          <h3>{{ title $group }}</h3>
           {{ if $show_social }}{{ partial "social_links" . }}{{ end }}
           {{ if and $show_interests .Params.interests }}<p class="people-interests">{{ delimit .Params.interests ", " | markdownify | emojify }}</p>{{ end }}
         </div>

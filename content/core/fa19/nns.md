@@ -9,12 +9,12 @@ draft: false
 toc: true
 type: docs
 
-weight: 3
+weight: 4
 
 menu:
   core_fa19:
     parent: Fall 2019
-    weight: 3
+    weight: 4
 
 authors: ["jarviseq", ]
 
@@ -25,12 +25,12 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-nns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-10-02-nns/2019-10-02-nns.ipynb"
 
-room: "MSB 359"
+location: "MSB 359"
 cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
 
 categories: ["fa19"]
 tags: ["neural-nets", ]
-description: >-
+abstract: >-
   You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
 ---
 ```python

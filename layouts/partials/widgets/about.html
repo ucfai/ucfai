@@ -41,10 +41,6 @@
             </div>
 
             <ul class="network-icon" aria-hidden="true">
-                <li>
-                    <a href="https://github.com/{{ $person.github }}"><i
-                            class="fab fa-github big-icon"></i></a>
-                </li>
                 {{ range $person.social }}
                 {{ $pack := or .icon_pack "fas" }}
                 {{ $pack_prefix := $pack }}

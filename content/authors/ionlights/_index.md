@@ -9,6 +9,7 @@ ucfai:
     - President
     - Director
     - Coordinator
+    - Maintainer
   teams:
     - 2017-2018
     - 2018-2019
@@ -50,6 +51,9 @@ education:
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
 social:
+  - icon: github
+    icon_pack: fab
+    link: "https://github.com/ionlights"
   - icon: globe-americas
     icon_pack: fas
     link: "https://ionlights.com/"
@@ -71,12 +75,6 @@ user_groups:
   - Presidents
   - Directors
   - Coordinators
-  - Core
-  - Data Science
-  - Intelligence
-  - CRCV
-  - NLPGroup
-  - CBMM
   - fa17-core-director
   - sp18-core-director
   - fa18-core-director

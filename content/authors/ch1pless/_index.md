@@ -6,8 +6,9 @@ github: ch1pless
 ucfai:
   roles:
     - Coordinator
+    - Maintainer
   teams:
-    - 2020
+    - 2019-2020
 
 labs:
 
@@ -16,7 +17,7 @@ authors:
 
 superuser: true
 
-role: Working on stuff
+role: Projects & Supplementary Coordinator
 
 organizations:
 
@@ -37,13 +38,10 @@ education:
 social:
 
 
-# Organizational groups that you belong to (for People widget)
-#   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
   - Coordinators
-  - Data Science
-  - Maintainers
-  - Social - Squad
+  - sp20-projects-coordinator
+  - sp20-supplementary-coordinator
 ---
 
 ## Briefly
