@@ -1,9 +1,11 @@
 # ucfai.org
 **Hugo Rewrite edition**
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/41e1b3ac-aa3b-476b-bc9c-91e2c3ee5706/deploy-status)](https://app.netlify.com/sites/ucfai/deploys)
+
 ## Installation and setup
 1. Clone this repository, using something like...
-   `git clone git@github.com:ucfai/ucfai.github.io`.
+   `git clone git@github.com:ucfai/ucfai.org`.
 1. Checkout the `hugo-migration` branch, this is what we'll be working from.
 1. Make sure you run `git submodule update --init --recursive` to properly
    "install" `hugo-academic`.
