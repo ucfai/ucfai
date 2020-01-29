@@ -20,7 +20,7 @@ authors: ["jarviseq", "nspeer12", ]
 
 urls:
   youtube: ""
-  slides:  ""
+  slides:  "https://docs.google.com/presentation/d/1hoICW_Y9b85H5P2OVMZyUs-vsMPnsF0sTIzb-11auqM"
   github:  "https://github.com/ucfai/core/blob/master/sp20/2020-01-29-rf-svm/2020-01-29-rf-svm.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rf-svm"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/2020-01-29-rf-svm/2020-01-29-rf-svm.ipynb"

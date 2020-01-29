@@ -2,11 +2,16 @@ version: "3.4"
 services:
   hugo:
     image: jojomi/hugo:0.60.0
-    container_name: hugo-ucfai-org
+    container_name: ucfai-org
     environment:
       - HUGO_THEME=academic
       - HUGO_WATCH=true
       # - HUGO_BASEURL=
+    command:
+      - /run.sh  # from Dockerfile
+      - --buildFuture
+      - --disableFastRender
+      - --verbose
     volumes:
       - .:/src
       # use the volume mount below to inspect the hugo output, IFF needed
