@@ -1,0 +1,19 @@
+{{/* Derived from shortcodes/gdocs.html */}}
+{{- $page := .Page -}}
+{{- $src := "" -}}
+{{- if $page.Params.urls.gslides -}}
+  {{- $src = $page.Params.urls.gslides -}}
+{{- else -}}
+  {{- $src = (.Get "src") -}}
+{{- end -}}
+
+<div class="alert alert-primary">
+  <div>
+    <details>
+      <summary>View the Deck Below</summary>
+        <div class="responsive-wrap">
+          <iframe src="https://docs.google.com/presentation/d/e/{{ $src }}/embed" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        </div>
+    </details>
+  </div>
+</div>

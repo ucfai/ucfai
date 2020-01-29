@@ -8,9 +8,22 @@ body#video-background {
     margin: 0;
   }
 
+  .author-card {
+    box-sizing: content-box;
+    .media-body {
+      flex: unset !important;
+      font-size: 1.5em;
+      .network-icon {
+        display: none;
+      }
+    }
+  }
+
   #recording-banner {
-    width: 1920px;
-    height: 1080px;
+    // width: 1920px;
+    width: 100vw;
+    // height: 1080px;
+    height: 100vh;
     padding: 36px;
     display: flex;
     background: #262d33;
@@ -28,7 +41,7 @@ body#video-background {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        /* background: #000000; */
+        background: #000000;
 
         div#recording-content {
           background-color: #000000;
@@ -56,6 +69,7 @@ body#video-background {
             padding-bottom: 8px;
             align-self: flex-start;
             border-bottom: 1px solid rgba(37, 37, 37, 0.25);
+            width: 100%;
 
             h1 {
               font-size: 42px;
@@ -115,13 +129,13 @@ body#video-background {
 
   .video-panel {
     width: 70%;
-    padding-right: 18px !important;
+    margin-right: 18px !important;
   }
 
   .metadata-panel {
     width: 30%;
     text-align: center;
-    padding-left: 18px !important;
+    margin-left: 18px !important;
   }
 
   div[class$="-panel"] {
@@ -165,21 +179,21 @@ body#video-background {
 
   div#particles-js {
     z-index: 1;
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    height: 100vh;
     position: absolute;
 
     div#fade {
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: 100;
       position: absolute;
-      // background: linear-gradient(
-      //   0deg,
-      //   rgba(37, 37, 37, 0.5) 0%,
-      //   rgba(37, 37, 37, 0)
-      // );
-      background: transparent;
+      background: linear-gradient(
+        0deg,
+        rgba(37, 37, 37, 0.5) 0%,
+        rgba(37, 37, 37, 0)
+      );
+      // background: transparent;
     }
 
     canvas {

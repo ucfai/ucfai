@@ -20,7 +20,7 @@ authors: ["jarviseq", ]
 
 urls:
   youtube: ""
-  slides:  "https://docs.google.com/presentation/d/1PYhhxC4u6uAlZ9lbfuF_kiflC41-NBvDPTeHnVb6O4I"
+  gslides:  "2PACX-1vRiVl8Pa4W_OTS1eNZvXMsdp-OjnvnaZxRf1xRB8jTEXm5C7UaKGlWJ-tSYBfUjjkjPFMDP4A1uTCd6"
   github:  "https://github.com/ucfai/core/blob/master/fa19/2019-09-18-regression/2019-09-18-regression.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-fa19-regression"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/fa19/2019-09-18-regression/2019-09-18-regression.ipynb"
@@ -33,9 +33,13 @@ tags: ["Regresssion", "Linear Regression", "Logistic Regression", "non-nn", ]
 abstract: >-
   You always start with the basics, and in this meeting we are doing just that! We will be going over what Machine Learning consists of and how we can use models to do awesome stuff!
 ---
-First thing first, we to get some packages 
 
-*   matplotlib allows us to graph 
+{{< gslides >}}
+
+
+First thing first, we to get some packages
+
+*   matplotlib allows us to graph
 *   numpy is powerful package for data manipulation
 *   pandas is a tool for allowing us to interact with large datasets
 *   sklearn is what we'll use for making the models
@@ -50,19 +54,19 @@ import scipy.stats as st
 from sklearn import datasets, linear_model
 ```
 
-## Basic Example 
+## Basic Example
 
 The data for this example is arbitrary (we'll use real data in a bit), but there is a clear linear relationship here
 
 Graphing the data will make this relationship clear to see
 
 ```python
-# Get some data 
-x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+# Get some data
+x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 y = np.array([1, 3, 2, 5, 7, 8, 8, 9, 10, 12])
 
 # Let's plot the data to see what it looks like
-plt.scatter(x, y, color = "black") 
+plt.scatter(x, y, color = "black")
 plt.show()
 ```
 
@@ -72,32 +76,32 @@ This is using least squares estimation, which tries to minimize the squared erro
 
 SS_xy is the cross deviation about x, and SS_xx is the deviation about x
 
-[It's basically some roundabout algebra methods to optimize a function](https://www.amherst.edu/system/files/media/1287/SLR_Leastsquares.pdf) 
+[It's basically some roundabout algebra methods to optimize a function](https://www.amherst.edu/system/files/media/1287/SLR_Leastsquares.pdf)
 
 The concept isn't super complicated but it gets hairy when you do it by hand
 
 ```python
 # calculating the coefficients
 
-# number of observations/points 
-n = np.size(x) 
+# number of observations/points
+n = np.size(x)
 
-# mean of x and y vector 
-m_x, m_y = np.mean(x), np.mean(y) 
+# mean of x and y vector
+m_x, m_y = np.mean(x), np.mean(y)
 
-# calculating cross-deviation and deviation about x 
-SS_xy = np.sum(y*x - n*m_y*m_x) 
-SS_xx = np.sum(x*x - n*m_x*m_x) 
+# calculating cross-deviation and deviation about x
+SS_xy = np.sum(y*x - n*m_y*m_x)
+SS_xx = np.sum(x*x - n*m_x*m_x)
 
-# calculating regression coefficients 
-b_1 = SS_xy / SS_xx 
+# calculating regression coefficients
+b_1 = SS_xy / SS_xx
 b_0 = m_y - b_1*m_x
 
 #var to hold the coefficients
 b = (b_0, b_1)
 
 #print out the estimated coefficients
-print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1])) 
+print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1]))
 ```
 
 But, we don't need to directly program all of the maths everytime we do linear regression
@@ -120,21 +124,21 @@ regress.fit(x, y)
 ### And now, lets see what the model looks like
 
 ```python
-# plotting the actual points as scatter plot 
-plt.scatter(x, y, color = "black", 
-           marker = "o", s = 30) 
+# plotting the actual points as scatter plot
+plt.scatter(x, y, color = "black",
+           marker = "o", s = 30)
 
-# predicted response vector 
-y_pred = b[0] + b[1]*x 
+# predicted response vector
+y_pred = b[0] + b[1]*x
 
-# plotting the regression line 
-plt.plot(x, y_pred, color = "blue") 
+# plotting the regression line
+plt.plot(x, y_pred, color = "blue")
 
-# putting labels 
-plt.xlabel('x') 
-plt.ylabel('y') 
+# putting labels
+plt.xlabel('x')
+plt.ylabel('y')
 
-# function to show plot 
+# function to show plot
 plt.show()
 ```
 
@@ -146,12 +150,12 @@ print(regress.predict([[6]]))
 ```
 
 --------------------------------------------
-## Applied Linear Regression 
+## Applied Linear Regression
 --------------------------------------------
 
-### The Ames Housing Dataset 
+### The Ames Housing Dataset
 > Ames is a city located in Iowa.
-> 
+>
 > - This data set consists of all property sales
 collected by the Ames City Assessor’s Office between the years
 of 2006 and 2010.
@@ -159,21 +163,21 @@ of 2006 and 2010.
 pertaining to the sale of stand-alone garages, condos, storage
 areas, and of course residential property.
 > - Distributed to the public as a means to replace the old Boston
-Housing 1970’s data set.  
-> - [Link to Original](http://lib.stat.cmu.edu/datasets/boston) 
+Housing 1970’s data set.
+> - [Link to Original](http://lib.stat.cmu.edu/datasets/boston)
 > - The "cleaned" version of this dataset contains 2930 observations along with 80
 predictor variables and two identification variables.
 
-### What was the original purpose of this data set? 
+### What was the original purpose of this data set?
 
-Why did the City of Ames decide to collect this data? 
+Why did the City of Ames decide to collect this data?
 
 What does the prices of houses affect?
 
-### What's inside? 
+### What's inside?
 
 This ”new” data set contains 2930 (n=2930) observations along with 80
-predictor variables and two identification variables. 
+predictor variables and two identification variables.
 
 [Paper linked to dataset](http://jse.amstat.org/v19n3/decock.pdf)
 
@@ -187,7 +191,7 @@ Of the 80 predictor variables we have:
  - Garage Area, Wood Deck Area, Pool Area
 > - 14 discrete variables (items occurring)
  - Remodeling Dates, Month and Year Sold
- > - 23 nominal and 23 ordinal 
+ > - 23 nominal and 23 ordinal
  - Nominal: Condition of the Sale, Type of Heating and
 Foundation
  - Ordinal: Fireplace and Kitchen Quality, Overall
@@ -197,26 +201,26 @@ Condition of the House
 What is the linear relationship between sale price on above ground
 living room area?
 
-But first lets visually investigate what we are trying to predict. 
+But first lets visually investigate what we are trying to predict.
 
-We shall start our analysis with summary statistics. 
+We shall start our analysis with summary statistics.
 
 ```python
-housing_data =  pd.read_csv("AmesHousing.txt", delimiter="\t") 
+housing_data =  pd.read_csv("AmesHousing.txt", delimiter="\t")
 
-# Mean Sales price 
+# Mean Sales price
 mean_price = np.mean(housing_data["SalePrice"])
 print("Mean Price : " + str(mean_price))
 
-# Variance of the Sales Price 
+# Variance of the Sales Price
 var_price = np.var(housing_data["SalePrice"], ddof=1)
 print("Variance of Sales Price : " + str(var_price))
 
-# Median of Sales Price 
+# Median of Sales Price
 median_price = np.median(housing_data["SalePrice"])
 print("Median Sales Price : " + str(median_price))
 
-# Skew of Sales Price 
+# Skew of Sales Price
 skew_price = st.skew(housing_data["SalePrice"])
 print("Skew of Sales Price : " + str(skew_price))
 
@@ -224,21 +228,21 @@ housing_data["SalePrice"].describe()
 ```
 
 ```python
-housing_data =  pd.read_csv("AmesHousing.txt", delimiter="\t") 
+housing_data =  pd.read_csv("AmesHousing.txt", delimiter="\t")
 
-# Mean Sales price 
+# Mean Sales price
 mean_price = np.mean(housing_data["SalePrice"])
 print("Mean Price : " + str(mean_price))
- 
-# Variance of the Sales Price 
+
+# Variance of the Sales Price
 var_price = np.var(housing_data["SalePrice"], ddof=1)
 print("Variance of Sales Price : " + str(var_price))
 
-# Median of Sales Price 
+# Median of Sales Price
 median_price = np.median(housing_data["SalePrice"])
 print("Median Sales Price : " + str(median_price))
 
-# Skew of Sales Price 
+# Skew of Sales Price
 skew_price = st.skew(housing_data["SalePrice"])
 print("Skew of Sales Price : " + str(skew_price))
 
@@ -253,7 +257,7 @@ plt.ylabel("Sales Price")
 plt.show()
 ```
 
-### Now we shall look at sales price on above ground living room area. 
+### Now we shall look at sales price on above ground living room area.
 
 ```python
 plt.scatter(housing_data["Gr Liv Area"], housing_data["SalePrice"])
@@ -273,17 +277,17 @@ model = linear_model.LinearRegression(fit_intercept=True)
 model.fit(area_reshape, price_reshape)
 price_prediction = model.predict(area_reshape)
 
-# plotting the actual points as scatter plot 
-plt.scatter(area_reshape, price_reshape) 
+# plotting the actual points as scatter plot
+plt.scatter(area_reshape, price_reshape)
 
-# plotting the regression line 
-plt.plot(area_reshape, price_prediction, color = "red") 
+# plotting the regression line
+plt.plot(area_reshape, price_prediction, color = "red")
 
-# putting labels 
-plt.xlabel('Above Ground Living Area') 
-plt.ylabel('Sales Price') 
+# putting labels
+plt.xlabel('Above Ground Living Area')
+plt.ylabel('Sales Price')
 
-# function to show plot 
+# function to show plot
 plt.show()
 ```
 
@@ -299,22 +303,22 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 ```
 
-for Logistic Regression, we're going to be using a real dataset 
+for Logistic Regression, we're going to be using a real dataset
 
-This data set was provided by UCI's Machine Learning Repository: 
+This data set was provided by UCI's Machine Learning Repository:
 
 *  [Adult Data Set (Also know as Census Income)](https://archive.ics.uci.edu/ml/datasets/Adult)
 
 We already downloaded the dataset at the begining of the notebook, so now let's mess around with it.
 
 but before that, we need to read in the data. pandas has the functions we need to do this
- 
+
 
 ```python
 # read_csv allow us to easily import a whole dataset
 data = pd.read_csv("adult.data", names =["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","income"])
 
-# this tells us whats in it 
+# this tells us whats in it
 print(data.info())
 ```
 
@@ -323,11 +327,11 @@ print(data.info())
 data.head()
 ```
 
-The code below will show us some information about the *continunous* parameters that our dataset contains. 
+The code below will show us some information about the *continunous* parameters that our dataset contains.
 
-* Age is Age 
+* Age is Age
 
-* fnlwgt is final weight, or the number of people that are represented in this group relative to the overall population of this dataset. 
+* fnlwgt is final weight, or the number of people that are represented in this group relative to the overall population of this dataset.
 
 * Education-num is a numerical way of representing Education level
 
@@ -344,7 +348,7 @@ data.describe()
 
 Now here is the Qustion:
 * Which one of these parameters are best in figuring out if someone is going to be making more then 50k a year?
-* Make sure you choose a continunous parameter, as categorical stuff isn't going to work 
+* Make sure you choose a continunous parameter, as categorical stuff isn't going to work
 
 ```python
 # put the name of the parameter you want to test
@@ -366,7 +370,7 @@ def incomeFixer(x):
 # change the income data into 0's and 1's
 data["income"] = data.apply(lambda row: incomeFixer(row['income']), axis=1)
 
-# get the data we are going to make the model with 
+# get the data we are going to make the model with
 x = np.array(data[test])
 y = np.array(data["income"])
 

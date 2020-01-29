@@ -1,34 +1,28 @@
 ---
-name: Justin TenEyck
-
-github: sirroboto
+name: Brandon Silva
+github: brandons209
 
 ucfai:
   roles:
-    - President
     - Director
     - Coordinator
   teams:
     - 2018-2019
-    - 2019-2020
     - 2020-2021
 
 labs:
 
 authors:
-  - sirroboto
+  - brandons209
 
-role: President of AI@UCF (2019-2021)
+role: Director, Core
 
 organizations:
 
 bio: >-
-  President of AI@UCF for the 2019 and 2020 academic years. Aspiring entrepreneur
-  passionate about home automation and assistive robotics.
 
 interests:
-  - Robotics
-  - Home Automation
+  - "..."
 
 education:
   courses:
@@ -39,17 +33,15 @@ education:
 social:
   - icon: github
     icon_pack: fab
-    link: "https://github.com/sirroboto"
+    link: "https://github.com/brandons209"
 
 
 user_groups:
-  - Presidents
+  - Directors
   - Coordinators
   - sp19-core-coordinator
-  - fa19-core-coordinator
-  - sp20-core-coordinator
-  - sp20-supplementary-director
-  - fa19-supplementary-director
+  - fa19-core-director
+  - sp20-core-director
 ---
 
 If you're looking for random paragraphs, you've come to the right place. When a random

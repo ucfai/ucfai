@@ -1,55 +1,42 @@
 ---
-name: Justin TenEyck
-
-github: sirroboto
+name: Brett Bissey
+github: bb912
 
 ucfai:
   roles:
-    - President
-    - Director
     - Coordinator
   teams:
-    - 2018-2019
-    - 2019-2020
     - 2020-2021
 
 labs:
 
 authors:
-  - sirroboto
+  - bb912
 
-role: President of AI@UCF (2019-2021)
+role: Coordinator, Core
 
 organizations:
 
 bio: >-
-  President of AI@UCF for the 2019 and 2020 academic years. Aspiring entrepreneur
-  passionate about home automation and assistive robotics.
 
 interests:
-  - Robotics
-  - Home Automation
+  - "..."
 
 education:
   courses:
-    - course: BSc in Computer Engineering
+    - course: BSc in Computer Science
       institution: University of Central Florida
       year: 2021
 
 social:
   - icon: github
     icon_pack: fab
-    link: "https://github.com/sirroboto"
+    link: "https://github.com/bb912"
 
 
 user_groups:
-  - Presidents
   - Coordinators
-  - sp19-core-coordinator
-  - fa19-core-coordinator
   - sp20-core-coordinator
-  - sp20-supplementary-director
-  - fa19-supplementary-director
 ---
 
 If you're looking for random paragraphs, you've come to the right place. When a random

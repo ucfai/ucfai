@@ -19,7 +19,7 @@
                 {{ end }}
             {{ end }}
           </div>
-          <div id="date"> {{ .Date.Format "on 01 Jan, 2006" }} </div>
+          <div id="date"> {{ .Date.Format "on 02 Jan, 2006" }} </div>
         </div>
       </div>
     </main>
@@ -63,10 +63,13 @@
       correct_video_size(recording.content);
       correct_video_size(recording.speaker);
 
-      recording.metadata.style.minHeight =
-        recording.content.offsetHeight - recording.speaker.offsetHeight;
-      recording.metadata.style.maxHeight =
-        content.offsetHeight - recording.speaker.offsetHeight;
+      // dynamic resizing to avoid the padding bars
+      // recording.metadata.style.minHeight = (recording.content.offsetHeight -
+      //                                       recording.speaker.offsetHeight);
+      // recording.metadata.style.maxHeight = (content.offsetHeight -
+      //                                       recording.speaker.offsetHeight);
+      recording.metadata.style.height = (content.offsetHeight -
+                                         recording.speaker.offsetHeight);
     }
 
     var aspect_ratio = 9 / 16; // 16:9 aspect ratio
