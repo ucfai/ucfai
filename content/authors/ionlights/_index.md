@@ -22,8 +22,6 @@ labs:
 authors:
   - ionlights
 
-superuser: true
-
 role: Founder of AI@UCF, Former Director of Core &amp; Intelligence
 
 organizations:

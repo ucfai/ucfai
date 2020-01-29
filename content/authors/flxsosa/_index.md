@@ -1,7 +1,5 @@
 ---
-# Display name
 name: Felix Sosa
-
 github: flxsosa
 
 ucfai:
@@ -17,25 +15,17 @@ ucfai:
 labs:
   - Evolutionary Complexity Research Group
 
-# Username (this should match the folder name)
 authors:
-  - felix-sosa
   - flxsosa
 
-# Is this the primary user of the site?
-superuser: true
-
-# Role/position
 role: Founder of AI@UCF, Former Director of Core
 
-# Organizations/Affiliations
 organizations:
   - name: Harvard University
     url: https://www.mit.edu/~fsosa/
   - name: Massachusetts Institute of Technology
     url: https://www.mit.edu/~fsosa/
 
-# Short bio (displayed in user profile at end of posts)
 bio: >-
   Founder of AI@UCF. Researcher in cognitive science. Focusing on developmental theories
   and program induction.
@@ -57,9 +47,10 @@ education:
       institution: University of Central Florida
       year: 2018
 
-# Social/Academic Networking
-# For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
 social:
+  - icon: github
+    icon_pack: fab
+    link: "https://github.com/flxsosa"
   - icon: globe-americas
     icon_pack: fas
     link: "https://felixsosa.com/"
@@ -67,8 +58,6 @@ social:
     icon_pack: fab
     link: https://twitter.com/flxsosa
 
-# Organizational groups that you belong to (for People widget)
-#   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
   - Founders
   - Presidents
@@ -76,8 +65,6 @@ user_groups:
   - Coordinators
   - EPlex
   - CBMM
-  - 2016-2018 Team
-  - 2017-2018 Team
 ---
 
 If you're looking for random paragraphs, you've come to the right place. When a random

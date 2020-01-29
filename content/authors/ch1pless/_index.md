@@ -15,8 +15,6 @@ labs:
 authors:
   - ch1pless
 
-superuser: true
-
 role: Projects & Supplementary Coordinator
 
 organizations:
