@@ -44,11 +44,6 @@
 # ------------------------------------------------------------------------------
 
 [[ redirects ]]
-  from = "/discord"
-  to = "https://discord.gg/7vwjC8P"
-  status = 301
-
-[[ redirects ]]
   from = "/calendar"
   to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
   status = 301
@@ -81,4 +76,44 @@
 [[ redirects ]]
   from = "/instagram"
   to = "https://www.instagram.com/_ucfai"
+  status = 301
+  
+
+# ------------------------------------------------------------------------------
+# Discord Redirects
+#   Essentially, redirects into specific channels on Discord
+# ------------------------------------------------------------------------------
+[[ redirects ]]
+  from = "/discord"
+  to = "https://discord.gg/7vwjC8P"
+  status = 301
+  
+[[ redirects ]]  # redirects to intelligence/getting-into-research channel
+  from = "/discord/getting-into-research"
+  to = "https://discordapp.com/channels/363524680851914752/496942140836937739"
+  status = 301
+  
+[[ redirects ]]  # redirects to ai@ucf/_announcements-ucfai
+  from = "/discord/accouncements"
+  to = "https://discordapp.com/channels/363524680851914752/363524782974828544"
+  status = 301
+
+[[ redirects ]]  # redirects to core/_announcements-core
+  from = "/discord/core"
+  to = "https://discordapp.com/channels/363524680851914752/496942430193582080"
+  status = 301
+  
+[[ redirects ]]  # redirects to intelligence/_announcements-intelligence
+  from = "/discord/intelligence"
+  to = "https://discordapp.com/channels/363524680851914752/496942430193582080"
+  status = 301
+  
+[[ redirects ]]  # redirects to supplementary/_announcements-supplementary
+  from = "/discord/supplementary"
+  to = "https://discordapp.com/channels/363524680851914752/666310888466284544"
+  status = 301
+  
+[[ redirects ]]  # redirects to project-teams/_announcements-project-teams
+  from = "/discord/project-teams"
+  to = "https://discordapp.com/channels/363524680851914752/363524782974828544"
   status = 301
