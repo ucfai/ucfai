@@ -37,7 +37,7 @@
   {{ partial "particles" }}
 
   <script>
-    function calculate_sizes(aspect_ratio) {
+    function calculate_sizes() {
       var container = document.getElementById("recording-banner");
       var footer = document.getElementById("recording-footer");
       var content = document.getElementById("primary-content");
@@ -56,12 +56,18 @@
         metadata: document.getElementById("recording-metadata")
       };
 
-      function correct_video_size(el) {
+      function correct_video_size_16x9(el) {
+        var aspect_ratio = 9 / 16;  // 16:9 aspect ratio
         el.style.height = el.offsetWidth * aspect_ratio;
       }
 
-      correct_video_size(recording.content);
-      correct_video_size(recording.speaker);
+      function correct_video_size_4x3(el) {
+        var aspect_ratio = 3 / 4;  // 4:3 aspect ratio
+        el.style.height = el.offsetWidth * aspect_ratio;
+      }
+
+      correct_video_size_16x9(recording.content);
+      correct_video_size_4x3( recording.speaker);
 
       // dynamic resizing to avoid the padding bars
       // recording.metadata.style.minHeight = (recording.content.offsetHeight -
@@ -72,12 +78,11 @@
                                          recording.speaker.offsetHeight);
     }
 
-    var aspect_ratio = 9 / 16; // 16:9 aspect ratio
     document.addEventListener("DOMContentLoaded", function() {
-      calculate_sizes(aspect_ratio);
+      calculate_sizes();
     });
     document.addEventListener("resize", function() {
-      calculate_sizes(aspect_ratio);
+      calculate_sizes();
     });
   </script>
 </body>
