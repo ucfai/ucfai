@@ -3,7 +3,7 @@
 
 {{ partial "site_head" . }}
 
-<body id="top" {{ if .IsHome }}class="ucfai-home" {{ end }} data-spy="scroll"
+<body id="top" {{ if .IsHome }}class="ucfai-home ucfai-particles" {{ end }} data-spy="scroll"
   data-offset="70"
   data-target="{{ if or .IsHome (eq .Type "widget_page") }}#navbar-main{{else}}#TableOfContents{{end}}"
   {{ if not (.Scratch.Get "light") }}class="dark" {{end}}>
@@ -19,7 +19,7 @@
   {{/* Docs and Updates layouts include the site footer in a different location. */}}
   {{ if not (in (slice "docs" "updates") .Type) }}
   <div class="container">
-    <!-- {{ partial "site_footer" . }} -->
+    {{ partial "site_footer" . }}
   </div>
   {{ end }}
 
