@@ -16,14 +16,14 @@ menu:
     parent: Spring 2020
     weight: 1
 
-authors: ["calvinyong", "brandons209", ]
+authors: ["calvinyong", "brandons209", "jordanstarkey95", ]
 
 urls:
   youtube: ""
   slides:  "https://docs.google.com/presentation/d/1UifKinX6Cd3DK_EetHIpKdf9rsliLwoQVfWRnzGz3UI"
-  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/2020-01-23-math-primer-python-bootcamp/2020-01-23-math-primer-python-bootcamp.ipynb"
+  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/01-23-math-primer-python-bootcamp/01-23-math-primer-python-bootcamp.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/supplementary-sp20-math-primer-python-bootcamp"
-  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/2020-01-23-math-primer-python-bootcamp/2020-01-23-math-primer-python-bootcamp.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/01-23-math-primer-python-bootcamp/01-23-math-primer-python-bootcamp.ipynb"
 
 location: "ENG2 203"
 cover: "https://www.olcf.ornl.gov/wp-content/uploads/2017/11/iStock_Patton_small.jpg"

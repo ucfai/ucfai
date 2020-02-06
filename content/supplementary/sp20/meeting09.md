@@ -21,9 +21,9 @@ authors: []
 urls:
   youtube: ""
   slides:  ""
-  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/2020-04-02-meeting09/2020-04-02-meeting09.ipynb"
+  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/04-02-meeting09/04-02-meeting09.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/supplementary-sp20-meeting09"
-  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/2020-04-02-meeting09/2020-04-02-meeting09.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/04-02-meeting09/04-02-meeting09.ipynb"
 
 location: "ENG2 203"
 cover: ""

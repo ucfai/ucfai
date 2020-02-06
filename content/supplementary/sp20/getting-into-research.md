@@ -21,9 +21,9 @@ authors: ["ionlights", ]
 urls:
   youtube: ""
   slides:  "https://docs.google.com/presentation/d/13h2elogjw8er95IWqU2vU9MKtnt9XqhE4DggTo40LT0"
-  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/2020-01-30-getting-into-research/2020-01-30-getting-into-research.ipynb"
+  github:  "https://github.com/ucfai/supplementary/blob/master/sp20/01-30-getting-into-research/01-30-getting-into-research.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/supplementary-sp20-getting-into-research"
-  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/2020-01-30-getting-into-research/2020-01-30-getting-into-research.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/supplementary/blob/master/sp20/01-30-getting-into-research/01-30-getting-into-research.ipynb"
 
 location: "ENG2 203"
 cover: ""
