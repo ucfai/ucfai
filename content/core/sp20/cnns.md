@@ -37,6 +37,22 @@ abstract: >-
 
 ## Set up 
 
+We need to set our data directory path, and install torch summary.
+
+```python
+## Data Loading
+from pathlib import Path
+import os
+
+if os.path.exists("/kaggle/input/ucfai-core-sp20-cnns"):
+    DATA_DIR = Path("/kaggle/input/ucfai-core-sp20-cnns")
+else:
+    DATA_DIR = Path(".")
+
+# install torch summary
+!pip install torchsummary
+```
+
 Importing some of the libraries we'll be using, as well as PyTorch:
 
 ```python
@@ -63,21 +79,11 @@ from torchsummary import summary
 
 # Extras
 import time
-import os
 import glob
 ```
 
 ```python
-## Data Loading
-from pathlib import Path
 
-if os.path.exists("/kaggle/input/ucfai-core-sp20-cnns"):
-    DATA_DIR = Path("/kaggle/input/ucfai-core-sp20-cnns")
-else:
-    DATA_DIR = Path(".")
-
-# install torch summary
-!pip install torchsummary
 ```
 
 ```python
