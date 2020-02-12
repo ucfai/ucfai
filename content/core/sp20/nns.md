@@ -19,8 +19,8 @@ menu:
 authors: ["jarviseq", "dillonnotdylan", ]
 
 urls:
-  youtube: ""
-  slides:  ""
+  youtube: "https://youtu.be/-3-nasQMyEk"
+  slides:  "https://docs.google.com/presentation/d/17Kw1gwzo5YmXbHdHac-j8TnpIt4Re76u7uzjhfEEmQA"
   github:  "https://github.com/ucfai/core/blob/master/sp20/02-05-nns/02-05-nns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-nns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-05-nns/02-05-nns.ipynb"
