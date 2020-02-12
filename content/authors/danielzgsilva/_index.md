@@ -14,7 +14,7 @@ labs:
 authors:
   - danielzgsilva
 
-role: Core
+role: Core Coordinator
 
 organizations:
 
@@ -27,7 +27,7 @@ education:
   courses:
     - course: BSc in Computer Science
       institution: University of Central Florida
-      year: 2021
+      year: 2020
 
 social:
   - icon: github
