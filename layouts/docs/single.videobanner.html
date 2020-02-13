@@ -42,13 +42,14 @@
       var footer = document.getElementById("recording-footer");
       var content = document.getElementById("primary-content");
 
+      function getProp(el, prop) {
+        return parseFloat(window.getComputedStyle(el, null).getPropertyValue(prop));
+      }
+
       content.style.height =
         container.offsetHeight -
         footer.offsetHeight -
-        2 *
-          parseInt(
-            window.getComputedStyle(container, null).getPropertyValue("padding-top")
-          );
+        2 * parseInt(getProp(container, "padding-top"));
 
       var recording = {
         content: document.getElementById("recording-content"),
@@ -58,12 +59,12 @@
 
       function correct_video_size_16x9(el) {
         var aspect_ratio = 9 / 16;  // 16:9 aspect ratio
-        el.style.height = el.offsetWidth * aspect_ratio;
+        el.style.height = getProp(el, "width") * aspect_ratio;
       }
 
       function correct_video_size_4x3(el) {
         var aspect_ratio = 3 / 4;  // 4:3 aspect ratio
-        el.style.height = el.offsetWidth * aspect_ratio;
+        el.style.height = getProp(el, "width") * aspect_ratio;
       }
 
       correct_video_size_16x9(recording.content);
@@ -74,14 +75,17 @@
       //                                       recording.speaker.offsetHeight);
       // recording.metadata.style.maxHeight = (content.offsetHeight -
       //                                       recording.speaker.offsetHeight);
-      recording.metadata.style.height = (content.offsetHeight -
-                                         recording.speaker.offsetHeight);
+      recording.metadata.style.height = (
+        getProp(content, "height") -
+        getProp(content, "padding-bottom") -
+        getProp(recording.speaker, "height")
+      );
     }
 
     document.addEventListener("DOMContentLoaded", function() {
       calculate_sizes();
     });
-    document.addEventListener("resize", function() {
+    document.addEventListener("onresize", function() {
       calculate_sizes();
     });
   </script>
