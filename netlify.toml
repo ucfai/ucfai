@@ -77,7 +77,11 @@
   from = "/instagram"
   to = "https://www.instagram.com/_ucfai"
   status = 301
-  
+
+[[ redirects ]] # Temporary redirect for club tshirts, spring 2020
+  from = "/tshirts"
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSd8_-Awm3ukHGytAWeKe3Ij3rRsKSgYW4m8_vygpw0hQ7jkIw/viewform"
+  status = 301  
 
 # ------------------------------------------------------------------------------
 # Discord Redirects
