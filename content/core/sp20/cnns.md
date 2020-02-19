@@ -19,8 +19,8 @@ menu:
 authors: ["danielzgsilva", ]
 
 urls:
-  youtube: ""
-  slides:  ""
+  youtube: "https://youtu.be/2IEF1iSqTVY"
+  slides:  "https://docs.google.com/presentation/d/1BpYClnt2HdEceNSfzKN8ULbN6r8q8a0MFSrZu58alVk"
   github:  "https://github.com/ucfai/core/blob/master/sp20/02-12-cnns/02-12-cnns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-cnns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-12-cnns/02-12-cnns.ipynb"
