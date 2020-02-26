@@ -37,12 +37,12 @@ abstract: >-
 from pathlib import Path
 
 DATA_DIR = Path("/kaggle/input")
-if (DATA_DIR / "core-sp20-cnns").exists():
-    DATA_DIR /= "core-sp20-cnns"
+if (DATA_DIR / "ucfai-core-sp20-cnns").exists():
+    DATA_DIR /= "ucfai-core-sp20-cnns"
 else:
     # You'll need to download the data from Kaggle and place it in the `data/`
     #   directory beside this notebook.
-    # The data should be here: https://kaggle.com/c/core-sp20-cnns/data
+    # The data should be here: https://kaggle.com/c/ucfai-core-sp20-cnns/data
     DATA_DIR = Path("data")
 ```
 
