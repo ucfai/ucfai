@@ -25,19 +25,33 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-cnns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-12-cnns/02-12-cnns.ipynb"
 
-location: "HPA1 112"
+location: ""
 cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/10/computer_vision-400x208.png"
 
 categories: ["sp20"]
 tags: []
 abstract: >-
-  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight!
+  
 ---
+```python
+from pathlib import Path
+
+DATA_DIR = Path("/kaggle/input")
+if (DATA_DIR / "core-sp20-cnns").exists():
+    DATA_DIR /= "core-sp20-cnns"
+else:
+    # You'll need to download the data from Kaggle and place it in the `data/`
+    #   directory beside this notebook.
+    # The data should be here: https://kaggle.com/c/core-sp20-cnns/data
+    DATA_DIR = Path("data")
+```
+
 # Convolutional Neural Networks and Transfer Learning Workshop
 
 ## Set up 
 
 We need to set our data directory path, and install torch summary.
+
 
 ```python
 ## Data Loading
@@ -54,6 +68,7 @@ else:
 ```
 
 Importing some of the libraries we'll be using, as well as PyTorch:
+
 
 ```python
 # standard imports (Numpy, Pandas, Matplotlib)
@@ -82,9 +97,11 @@ import time
 import glob
 ```
 
+
 ```python
 
 ```
+
 
 ```python
 %reload_ext autoreload
@@ -115,6 +132,7 @@ The first step in doing so is to define the transformations that will be applied
 
 As you can see above, the pictures are all different dimensions, while most CNNs expect each input to be a consistent size... So we define a fixed size for every image as well as a few other constants which I'll explain in a bit.
 
+
 ```python
 input_size = (224,224)
 batch_size = 32
@@ -124,6 +142,7 @@ num_workers = 8
 This code defines the transformations for each of our datasets (Training, Validation, and Test sets). **Compose()** simply chains together PyTorch transformations. 
 
 The first transformation we apply is the resizing step we discussed above. The next step, **ToTensor()**, transforms the pixel array into a PyTorch **Tensor** and rescales each pixel value to be between 0 and 1. This will help our model train more efficiently by reducing the impact that very bright pixels have. Finally, we normalize each Tensor to have a mean of 0 and variance of 1. Research supports that Neural Networks tend to perform much better on normalized data... 
+
 
 
 ```python
@@ -177,6 +196,7 @@ This structure with subfolders for each class of image is so popular that PyTorc
 
 The test set doesn't have labels since we will be using the test set to submit to the competition.
 
+
 ```python
 image_datasets = {x: ImageFolder(os.path.join(DATA_DIR, x),data_transforms[x])
                   for x in ['Train', 'Validation']}
@@ -211,6 +231,7 @@ The pixel array of each image is actually quite large, so it'd be inefficient to
 
 For the most part, Neural Networks are trained on **batches** of data so these DataLoaders greatly simplify the process of loading and feeding data to our network. The rank 4 tensor returned by the dataloader is of size (32, 224, 224, 3).
 
+
 ```python
 dataloaders = {x: DataLoader(image_datasets[x], batch_size=batch_size, shuffle=True, num_workers = num_workers)
               for x in ['Train', 'Validation']}
@@ -220,10 +241,12 @@ test_loader = DataLoader(dataset = image_datasets['Test'], batch_size = 1, shuff
 
 Every PyTorch dataset has an attribute,  **classes**, which is an array containing all of the image classes in the dataset. In our case, breeds of dog in the dataset. 
 
+
 ```python
 dog_breeds = image_datasets['Train'].classes
 print("\n".join(dog_breeds))
 ```
+
 
 ```python
 # Just printing the number of images in each dataset we created
@@ -233,6 +256,7 @@ dataset_sizes = {x: len(image_datasets[x]) for x in ['Train', 'Validation', 'Tes
 print('Train Length: {} | Valid Length: {} | Test Length: {}'.format(dataset_sizes['Train'], 
                                                                      dataset_sizes['Validation'], dataset_sizes['Test']))
 ```
+
 
 ```python
 # Here we're defining what component we'll use to train this model
@@ -249,6 +273,7 @@ Once we've set up our PyTorch datasets and dataloaders, grabbing individual imag
 The first one here indexes into our training set, grabs a given number of random images, and plots them. A PyTorch dataset is *sort of* a 2d array, where the first dimension represents the images themselves, and the second dimension contains the pixel array and the label of the image.
 
 The second function allows us to plot a batch of images served up by our PyTorch dataloader.
+
 
 ```python
   # Plots a given number of images from a PyTorch Data
@@ -292,9 +317,11 @@ def show_batch(batch):
     plt.pause(0.001)
 ```
 
+
 ```python
 show_random_imgs(3)
 ```
+
 
 ```python
 # Get a batch of training data (32 random images)
@@ -323,6 +350,7 @@ Below are the signatures of the PyTorch functions that create each of the layers
 -  nn.Dropout(p) - p is probability of an element to be zeroed
 -  nn.Linear(in_features, out_features) – fully connected layer (matrix multiplications used in the classification portion of a network)
 
+
 ```python
 # It is good practice to maintain input dimensions as the image is passed through convolution layers
 # With a default stride of 1, and no padding, a convolution will reduce image dimenions to:
@@ -341,6 +369,7 @@ def get_padding(input_dim, output_dim, kernel_size, stride):
   else:
     return padding
 ```
+
 
 ```python
 # Make sure you calculate the padding amount needed to maintain the spatial size of the input
@@ -443,6 +472,7 @@ Now we create an instance of this CNN() class and define the loss function and o
 
 For the optimizer we'll use Adam, an easy to apply but powerful optimizer which is an extension of the popular Stochastic Gradient Descent method. We need to pass it all of the parameters it'll train, which PyTorch makes easy with model.parameters(), and also the learning rate we'll use.
 
+
 ```python
 model = CNN()
 criterion = nn.CrossEntropyLoss()
@@ -461,6 +491,7 @@ The bulk of the function is handled by a nested for loop, the outer looping thro
 If we're in training mode, here is where we perform back-propagation and adjust our weights. To do this, we first zero the gradients, then perform backpropagation by calling .backward() on the loss variable. Finally, we call optimizer.step() to adjust the weights of the model in accordance with the calculated gradients.
 
 The remaining portion of one epoch is the same for both training and validation, and simply involves calculating and tracking the accuracy achieved in both phases. A nifty addition to this training loop is that it tracks the highest validation accuracy and only saves weights which beat that accuracy, ensuring that the best performing weights are returned from the function.
+
 
 ```python
 def run_epoch(epoch, model, criterion, optimizer, dataloaders, device, phase):
@@ -511,6 +542,7 @@ def run_epoch(epoch, model, criterion, optimizer, dataloaders, device, phase):
 
 ```
 
+
 ```python
 def train(model, criterion, optimizer, num_epochs, dataloaders, device):
     start = time.time()
@@ -558,6 +590,7 @@ def train(model, criterion, optimizer, num_epochs, dataloaders, device):
 
 Creating a function that generates and prints predictions on a given number of images from our test set:
 
+
 ```python
 def test_model(model, num_images):
     was_training = model.training
@@ -596,6 +629,7 @@ def test_model(model, num_images):
 
 After defining these functions, training and testing our model is straightforward from here on out. Simply call the train() function with the required parameters and let your GPU go to work!
 
+
 ```python
 model = train(model, criterion, optimizer, epochs, dataloaders, device)
 ```
@@ -612,6 +646,7 @@ The most important part to understand from the code below is what the model and 
 
 Other than the state_dicts, we also save the class used to build the model architecture, as well as the optimizer and loss function. Putting all of this together allows us to save, move around, and later restore our model to it's exact state after training.. A **.tar** file extension is commonly used to bundle all of this together.
 
+
 ```python
 torch.save({
             'model' : CNN(),
@@ -625,6 +660,7 @@ torch.save({
 ```
 
 Creating a function which unpacks the .tar file we saved earlier and loads up the model's saved weights and optimizer state:
+
 
 ```python
 def load_checkpoint(filepath):
@@ -643,11 +679,13 @@ def load_checkpoint(filepath):
 
 Loading our model up...
 
+
 ```python
 model, optimizer, criterion, epoch = load_checkpoint('base_model.tar')
 ```
 
 Let's test our model on a couple of dogs!
+
 
 ```python
 test_model(model, 6)
@@ -667,6 +705,7 @@ PyTorch actually comes with a number of models which have already been trained o
 -  from torchvision.models import resnet18
 
 The next block of code might look a bit foreign. What we're doing is actually looping through all of the model's pretrained weights and **freezing** them. This means that during training, these weights will not be updating at all. We then take the entire ResNet model and put it into one block of our model, named feature_extraction. It's important to understand that when you load a pretrained model you are only receiving the feature extraction block, or the convolutional layers. It's up to us to define a classification block which can take all of the features the ResNet model extracted and use them to actually classify an image.
+
 
 ```python
 class PreTrained_Resnet(nn.Module):
@@ -704,6 +743,7 @@ class PreTrained_Resnet(nn.Module):
         ### END SOLUTION
 ```
 
+
 ```python
 # Instantiate a pretrained network using the class we've just defined (call it 'pretrained')
 
@@ -726,6 +766,7 @@ pretrained.to(device)
 summary(pretrained, (3,224,224))
 ```
 
+
 ```python
 pretrained = train(pretrained, criterion2, optimizer2, epochs2, dataloaders, device)
 ```
@@ -737,6 +778,7 @@ This quick example shows the power of transfer learning. With relatively few lin
  -  Creating a custom learning rate schedule
 
 We'll save the model, then load it back up using the function we defined earlier.
+
 
 ```python
 torch.save({
@@ -750,15 +792,18 @@ torch.save({
             }, 'pretrained.tar')
 ```
 
+
 ```python
 pretrained, optimizer2, criterion2, epoch2 = load_checkpoint('pretrained.tar')
 ```
 
 Finally we can test our new pretrained ResNet model! As you can see, with transfer learning we can create quite accurate models relatively easily.
 
+
 ```python
 test_model(pretrained, 6)
 ```
+
 
 ```python
 # Run this to generate the submission file for the competition!

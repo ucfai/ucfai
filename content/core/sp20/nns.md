@@ -25,14 +25,28 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-nns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-05-nns/02-05-nns.ipynb"
 
-location: "HPA1 112"
+location: ""
 cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
 
 categories: ["sp20"]
 tags: ["neural-networks", "gradient-decent", "back-propagation", "nns", ]
 abstract: >-
-  You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
+  
 ---
+```python
+from pathlib import Path
+
+DATA_DIR = Path("/kaggle/input")
+if (DATA_DIR / "core-sp20-nns").exists():
+    DATA_DIR /= "core-sp20-nns"
+else:
+    # You'll need to download the data from Kaggle and place it in the `data/`
+    #   directory beside this notebook.
+    # The data should be here: https://kaggle.com/c/core-sp20-nns/data
+    DATA_DIR = Path("data")
+```
+
+
 ```python
 # change this if running locally
 DATA_DIR = "/kaggle/input/ucfai-core-sp20-nns"
@@ -44,6 +58,7 @@ DATA_DIR = "/kaggle/input/ucfai-core-sp20-nns"
 We need to import our packages will be using. Here we are going to see something new, Pytorch. Pytorch is a deep learning library used videly, developed by Facebook. We will be using Pytorch for the rest of the semester for our deep learning models. It has a variety of useful tools such as built in dataloaders, easily create dataset classes to handle our data, and more.
 
 We will also be using numpy and pandas to handle our data loading.
+
 
 ```python
 import numpy as np
@@ -73,6 +88,7 @@ CUDA will speed up the training of your Neural Network greatly. It does so by pa
 
 Your notebook should already have CUDA enabled, but the following command can be used to check for it.
 
+
 ```python
 torch.cuda.is_available()
 ```
@@ -81,12 +97,14 @@ Here we're defining the device we want to use to put our tensors and models on i
 
 If cuda is not available, check the GPU option in the Kaggle Kernel to enable a GPU for your notebook.
 
+
 ```python
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 device
 ```
 
 Now that we have our device and know what tensors are, lets take a look at some basic tensors.
+
 
 ```python
 # create a tensor
@@ -110,12 +128,14 @@ To see what's inside of the tensor, put the name of the tensor into a code block
 These notebook environments are meant to be easy for you to debug your code, 
 so this will not work if you are writing a python script and running it in a command line.
 
+
 ```python
 new_tensor
 ```
 
 You can replace elements in tensors with indexing. 
 It works a lot like arrays you will see in many programming languages. 
+
 
 
 ```python
@@ -127,6 +147,7 @@ You can also put the tensor onto your device using the `.to(device)`. You can al
 
 Remember, the `.to(device)` method returns a **NEW** tensor that is on the gpu, it does not update in place.
 
+
 ```python
 new_tensor = new_tensor.to(device)
 new_tensor
@@ -134,6 +155,7 @@ new_tensor
 
 How the tensor is shaped will be important, as we need to keep them in mind when building our models, so there are some 
 built-in commands in torch that allow you to find out some information about the tensor you are working with.
+
 
 ```python
 # data type of a tensor, notice that running on a GPU will give a type of cuda.<datatype>Tensor, 
@@ -155,10 +177,12 @@ To feed that manipulated data into a tensor for use in torch, you will have to u
 
 **This tensor will share the same memory as the numpy array it came from, so edits to one will change the other.**
 
+
 ```python
 np_ndarray = np.random.randn(2,2)
 np_ndarray
 ```
+
 
 ```python
 # NumPy ndarray to PyTorch tensor
@@ -173,6 +197,7 @@ In the example below, we are going to make a model to show how you will go about
 building a Neural Network using a randomly generated dataset. This will be a simple network with one hidden layer.
 
 First, we need to set some placeholder variables to define how we want the network to be set up.
+
 
 ```python
 n_in, n_h, n_out, batch_size = 10, 5, 1, 10
@@ -195,6 +220,7 @@ Next, we are going to generate our lovely randomised dataset.
 
 We are not expecting any insights to come from this network as the data is generated randomly. 
 
+
 ```python
 x = torch.randn(batch_size, n_in)
 y = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0], [1.0], [0.0], [0.0], [1.0], [1.0]])
@@ -205,6 +231,7 @@ incoming data, with `Sigmoid()` being the activation function that we use for th
 
 So, for this network, we have two fully connected layers with a sigmoid as the activation function. 
 This looks a lot like the network we saw in the slide deck with one input layer, one hidden layer, and one output layer. 
+
 
 ```python
 # a linear function is defined as nn.Linear(num_input_nodes, num_output_nodes)
@@ -222,6 +249,7 @@ MSE is defined as: ![](https://cdn-media-1.freecodecamp.org/images/hmZydSW9YegiM
 
 Where `y` is our target (or called a label) and `y` with a `~` on top is our predicted value.
 
+
 ```python
 criterion = nn.MSELoss()
 ```
@@ -233,6 +261,7 @@ SGD will update our weights much like we showed in the slides, but instead of ca
 
 We will have a learning rate of 0.01, which is a standard starting point.
 You are going to want to keep this learning rate pretty low, as high learning rates cause problems in training, where the steps are too large such that the model can't converge to a minimum loss.
+
 
 ```python
 # pass the parameters of our model to our optimizer
@@ -246,6 +275,7 @@ Now, let's train for 50 **epochs** (pronounced either *epic* or *e-pok*)!
 To train, we combine all the different parts that we defined into one for loop.
 
 (An epoch is a full pass through *all* of our training data. Normally, we do many epochs to train our model.)
+
 
 ```python
 # put our model and data onto our device for increase speed
@@ -286,6 +316,7 @@ predict if someone is diabetic or not using *magical* neural networks.
 
 First though, let's get that dataset and see what's inside.
 
+
 ```python
 dataset = pd.read_csv(f"{DATA_DIR}/train.csv", header=None)
 
@@ -302,6 +333,7 @@ The last column, `Outcome`, is a single digit that tells us if an individual has
 
 We may need to clean up the data a bit, so lets take a look at it.
 
+
 ```python
 dataset.info()
 ```
@@ -309,6 +341,7 @@ dataset.info()
 It seems each column is an object instead of a integer/float. This is because our column labels is actually the first row entry in our dataset.
 
 Let's now get a numpy array of our data using `.values`, get rid of the first row with the labels on them, and convert it to floats.
+
 
 ```python
 dataset = dataset.values
@@ -318,11 +351,13 @@ dataset = pd.DataFrame(dataset) # convert back to a dataframe
 dataset.head()
 ```
 
+
 ```python
 dataset.info()
 ```
 
 Finally, lets make sure there is no NaN values in our dataset.
+
 
 ```python
 dataset.isna().sum()
@@ -333,6 +368,7 @@ Alright, no nulls! We are good to go. Let's break up our data into test and trai
 Once we have those sets, we'll need to convert them to tensors. 
 
 This bit of code below does just that!
+
 
 ```python
 # get numpy array from our dataframe
@@ -361,6 +397,7 @@ has several handy attributes we'll utilize from here on out. Check out the docs 
 To create one, we simply need to create a class which inherits from PyTorch's Dataset class and 
 override the constructor, as well as the __len__() and __getitem__() methods.
 
+
 ```python
 class PyTorch_Dataset(Dataset):
   
@@ -384,6 +421,7 @@ class PyTorch_Dataset(Dataset):
 With the class written, we can now create our training and validation 
 datasets by passing the corresponding data to our class
 
+
 ```python
 train_dataset = PyTorch_Dataset(xTrain, yTrain)
 val_dataset = PyTorch_Dataset(xTest, yTest)
@@ -402,6 +440,7 @@ the process of loading and feeding data to our network. The rank 2 tensor return
 
 Pytorch dataloaders are especially efficient since they load in data while the model is training in advance, so a GPU can be dedicated to training while the CPU handles all the data preprocessing and loading.
 
+
 ```python
 dataloaders = {x: DataLoader(datasets[x], batch_size=16, shuffle=True, num_workers = 4)
               for x in ['Train', 'Validation']}
@@ -412,6 +451,7 @@ dataloaders = {x: DataLoader(datasets[x], batch_size=16, shuffle=True, num_worke
 Much like how we can define a custom dataset, we can create a class to define a custom model. Models inherit from the `torch.nn.Module` class. Only two functions must be overwritten, the `__init__` constructor and the `forward` method, which defines the forward pass through each of the layers of the network. Models contain our layer types, and activation functions, plus any other needed operations (like concatenation or matrix multiply). Read up on nn.Module [here.](https://pytorch.org/docs/stable/nn.html)
 
 There are many ways to create models, you can define layers statically and call them one by one, you can build layers using loops based on some input parameters (like number of layers), or you can load from a config file. Some are more extendable then others, but we will keep it basic and define each step so you can see the process of creating a model.
+
 
 ```python
 class NeuralNet(nn.Module):
@@ -450,6 +490,7 @@ which PyTorch makes easy with model.parameters(), and also the learning rate we'
 
 There is also a helpful package to print summaries of torch models, called `torchsummary.`
 
+
 ```python
 inputSize =  8         # how many pieces of data for input
 hiddenSize = 15        # Number of units in the middle hidden layer
@@ -483,6 +524,7 @@ The remaining portion of one epoch is the same for both training and validation 
 and simply involves calculating and tracking the accuracy achieved in both phases. 
 A nifty addition to this training loop is that it tracks the highest validation accuracy 
 and only saves weights which beat that accuracy, ensuring that the best performing weights are returned from the function.
+
 
 ```python
 def run_epoch(model, dataloaders, device, phase):
@@ -535,6 +577,7 @@ def run_epoch(model, dataloaders, device, phase):
   return epoch_loss, epoch_acc
 ```
 
+
 ```python
 def train(model, criterion, optimizer, num_epochs, dataloaders, device):
     start = time.time()
@@ -575,9 +618,11 @@ def train(model, criterion, optimizer, num_epochs, dataloaders, device):
 
 Now, let's train the model!
 
+
 ```python
 model = train(model, criterion, optimizer, numEpochs, dataloaders, device)
 ```
+
 
 ```python
 # Function which generates predictions, given a set of inputs
@@ -592,11 +637,13 @@ def test(model, inputs, device):
   return preds
 ```
 
+
 ```python
 preds = test(model, xTest, device)
 ```
 
 Now that our model has made some predictions, let's find the mathew's 
+
 
 ```python
 # import functions for matthews and confusion matrix
@@ -607,6 +654,7 @@ matthews_corrcoef(preds, yTest)
 ```
 
 Let's check the confusion matrix
+
 
 ```python
 confusion = confusion_matrix(preds, yTest)
@@ -648,6 +696,7 @@ There are many aspects to this model that can be changed to increase accuracy, l
 
 [Just Do It](https://youtu.be/ZXsQAXx_ao0?t=2)
 
+
 ```python
 #TODO, make a better model!
 
@@ -677,6 +726,7 @@ predictions = test(model, xTest, device)
 
 ### END SOLUTION
 ```
+
 
 ```python
 # Run this to generate the submission file for the competition!

@@ -16,23 +16,36 @@ menu:
     parent: Spring 2020
     weight: 5
 
-authors: ["brandons209", "dillonnotdylan", ]
+authors: ["brandons209", "dillionnotdylan", ]
 
 urls:
-  youtube: ""
+  youtube: "https://youtu.be/lGizWY2w_Aw"
   slides:  "https://docs.google.com/presentation/d/1fFRGIzIBP_cSpv2NiP3map1vWn-FXjaTfircPauG3WE"
   github:  "https://github.com/ucfai/core/blob/master/sp20/02-19-rnns/02-19-rnns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rnns"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-19-rnns/02-19-rnns.ipynb"
 
-location: "HPA1 112"
+location: ""
 cover: "https://i.imgur.com/EIt4Ilr.png"
 
 categories: ["sp20"]
 tags: []
 abstract: >-
-  This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series “The Simpsons”. Come and find out if our networks can become better writers for the show!
+  
 ---
+```python
+from pathlib import Path
+
+DATA_DIR = Path("/kaggle/input")
+if (DATA_DIR / "core-sp20-rnns").exists():
+    DATA_DIR /= "core-sp20-rnns"
+else:
+    # You'll need to download the data from Kaggle and place it in the `data/`
+    #   directory beside this notebook.
+    # The data should be here: https://kaggle.com/c/core-sp20-rnns/data
+    DATA_DIR = Path("data")
+```
+
 <img src="https://ucfai.org/core/sp20/rnns/banner.png">
 
 <div class="col-12">
@@ -55,6 +68,7 @@ abstract: >-
      on 2020-02-19</p>
 </div>
 
+
 ```python
 # This is a bit of code to make things work on Kaggle
 import os
@@ -71,6 +85,7 @@ else:
 In this project, we will be using an LSTM with the help of an Embedding layer to train our network on an episode from the Simpsons, specifically the episode "Moe's Tavern". This is taken from [this](https://data.world/data-society/the-simpsons-by-the-data) dataset on kaggle. This model can be applied to any text. We could use more episodes from the Simpsons, a book, articles, wikipedia, etc. It will learn the semantic word associations and being able to generate text in relation to what it is trained on.
 
 First, lets import all of our libraries we need.
+
 
 ```python
 # general imports
@@ -92,6 +107,7 @@ from tensorboardX import SummaryWriter
 ```
 
 #### The cell below contains a bunch of helper functions for us to use today, dealing with string manipulation and printing out epoch results. Feel free to take a look after the workshop! 
+
 
 ```python
 """
@@ -159,6 +175,7 @@ def gen_sequences(int_text, seq_length):
     return np.array(seq_text, dtype=np.int_), np.array(targets, dtype=np.int_)
 ```
 
+
 ```python
 from tabulate import tabulate
 
@@ -217,6 +234,7 @@ def print_iter(curr_epoch=None, epochs=None, batch_i=None, num_batches=None, wri
 ## Dataset statistics
 Before starting our project, we should take a look at the data we are dealing with. We are loading in a single episode from the Simpsons, but you can load in any other text from a `.txt` file. There is also an included Trump's Tweets dataset and a loop if you want to add multiple text files in at once.
 
+
 ```python
 script_text = load_script(str(DATA_DIR / 'moes_tavern_lines.txt'))
 #script_text = load_script(str(DATA_DIR / 'harry-potter.txt'))
@@ -267,6 +285,7 @@ This is the list of punctuation and special characters that are converted, notic
 
 We also convert all of the text to lowercase as this reduces the vocabulary list and trains the network faster.
 
+
 ```python
 script_text = tokenize_punctuation(script_text) # helper function to convert non-word characters
 script_text = script_text.lower()
@@ -309,6 +328,7 @@ To do this, we need to specify the sequence length, which is the amount of words
 The dataset and dataloader is defined using the specified batch_size.
 
 The targets are simply just the next word in our text. So if we have a sentence: "Hi, how are you?" and we input "Hi, how are you" our target for this sentence will be "?".
+
 
 ```python
 sequence_length = 12
@@ -370,6 +390,7 @@ Our model will predict the next word based in the input sequence. We could also 
 **What is init_hidden?**    
 Our model's forward pass requires the previous hidden state as it trains so it can learn from the previous data. The issue is that for our very first iteration we need a hidden state, so init_hidden creates a hidden state of all zeros as our inital state.
 
+
 ```python
 class LSTM_Model(nn.Module):
     def __init__(self, vocab_size, embed_size, lstm_size=400, num_layers=1, dropout=0.3):
@@ -429,6 +450,7 @@ We use the CrossEntropyLoss, which requires raw logits as input, since softmax i
 
 Dropout should be a bit high as we are training on a small amount of data, so our model is prone to overfit quickly.
 
+
 ```python
 ### BEGIN SOLUTIONe
 model = LSTM_Model(vocab_size, 300, lstm_size=400, num_layers=2, dropout=0.5)
@@ -462,6 +484,7 @@ if device == 'cuda':
     )
 
 
+
 ```python
 # load weights if continuing training
 load = torch.load("best.weights.pt")
@@ -478,6 +501,7 @@ The Tensorboard is commented out right now, since we are running on kaggle. If y
 - Going to the link it gives you.
 
 Note that the model overfits easily since we don't have much data, so train for a small number of epochs.
+
 
 ```python
 epochs = 7
@@ -557,10 +581,12 @@ Lets use temperatures of 1e-6, 0.5, 1, 1.5, and 2. We divide each probability el
 
 As you can see, small temperatures get closer to argmax selection, and large temperatures decrease confidence of the top predictions. This is what we are doing, but with some more math (using log and e) to get our prediction.
 
+
 ```python
 load = torch.load(weight_save_path)
 model.load_state_dict(load["net"])
 ```
+
 
 ```python
 model.eval()
@@ -632,6 +658,7 @@ def generate_text(seed_text, num_words, temp=0):
     result = untokenize_punctuation(input_text)
     return result
 ```
+
 
 ```python
 #input amount of words to generate, and the seed text, good options are 'Homer_Simpson:', 'Bart_Simpson:', 'Moe_Szyslak:', or other character's names.:

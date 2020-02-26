@@ -25,11 +25,23 @@ urls:
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-time-series"
   colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/03-04-time-series/03-04-time-series.ipynb"
 
-location: "HPA1 112"
+location: ""
 cover: "https://s31888.pcdn.co/wp-content/uploads/2018/07/index.jpg"
 
 categories: ["sp20"]
 tags: []
 abstract: >-
-  How can we infer on the past to predict the future? In this meeting, we're going to be uncovering time series data and learning how to solve problems like predicting the stock market or the weather.
+  
 ---
+```
+from pathlib import Path
+
+DATA_DIR = Path("/kaggle/input")
+if (DATA_DIR / "core-sp20-time-series").exists():
+    DATA_DIR /= "core-sp20-time-series"
+else:
+    # You'll need to download the data from Kaggle and place it in the `data/`
+    #   directory beside this notebook.
+    # The data should be here: https://kaggle.com/c/core-sp20-time-series/data
+    DATA_DIR = Path("data")
+```
