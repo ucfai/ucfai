@@ -21,9 +21,9 @@ authors: ["jarviseq", "nspeer12", ]
 urls:
   youtube: "https://youtu.be/sIKNRSSYPX4"
   slides:  "https://docs.google.com/presentation/d/1hoICW_Y9b85H5P2OVMZyUs-vsMPnsF0sTIzb-11auqM"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/01-29-rf-svm/01-29-rf-svm.ipynb"
+  github:  "https://github.com/ucfai/core/blob/master/sp20/01-29-rf-svm/rf-svm.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rf-svm"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/01-29-rf-svm/01-29-rf-svm.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/01-29-rf-svm/rf-svm.ipynb"
 
 location: ""
 cover: "https://upload.wikimedia.org/wikipedia/commons/1/17/Tarvasj%C3%B5gi.jpg"
@@ -65,9 +65,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix, matthews_corrcoef
 from sklearn.neighbors import KNeighborsClassifier
 
-# change this if running locally
-DATA_DIR = "/kaggle/input/ucfai-core-sp20-rf-svm"
-# DATA_DIR = "."
+
 ```
 
 ____

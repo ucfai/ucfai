@@ -21,9 +21,9 @@ authors: ["danielzgsilva", ]
 urls:
   youtube: "https://youtu.be/2IEF1iSqTVY"
   slides:  "https://docs.google.com/presentation/d/1BpYClnt2HdEceNSfzKN8ULbN6r8q8a0MFSrZu58alVk"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-12-cnns/02-12-cnns.ipynb"
+  github:  "https://github.com/ucfai/core/blob/master/sp20/02-12-cnns/cnns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-cnns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-12-cnns/02-12-cnns.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-12-cnns/cnns.ipynb"
 
 location: ""
 cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/10/computer_vision-400x208.png"

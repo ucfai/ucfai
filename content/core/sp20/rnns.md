@@ -21,9 +21,9 @@ authors: ["brandons209", "dillionnotdylan", ]
 urls:
   youtube: "https://youtu.be/lGizWY2w_Aw"
   slides:  "https://docs.google.com/presentation/d/1fFRGIzIBP_cSpv2NiP3map1vWn-FXjaTfircPauG3WE"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-19-rnns/02-19-rnns.ipynb"
+  github:  "https://github.com/ucfai/core/blob/master/sp20/02-19-rnns/rnns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rnns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-19-rnns/02-19-rnns.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-19-rnns/rnns.ipynb"
 
 location: ""
 cover: "https://i.imgur.com/EIt4Ilr.png"
@@ -46,42 +46,8 @@ else:
     DATA_DIR = Path("data")
 ```
 
-<img src="https://ucfai.org/core/sp20/rnns/banner.png">
-
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
-
-<div class="col-12">
-    <h1> Writer's Block? RNNs can help! </h1>
-    <hr>
-</div>
-
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Brandon</strong>
-        (<a href="https://github.com/brandons209">@brandons209</a>)
-        <strong> John Muchovej</strong>
-        (<a href="https://github.com/ionlights">@ionlights</a>)
-     on 2020-02-19</p>
-</div>
-
-
-```python
-# This is a bit of code to make things work on Kaggle
-import os
-from pathlib import Path
-
-if os.path.exists("/kaggle/input/ucfai-core-sp20-rnns"):
-    DATA_DIR = Path("/kaggle/input/ucfai-core-sp20-rnns")
-else:
-    DATA_DIR = Path("data/")
-```
-
 # Generate new Simpson scripts with LSTM RNN
-## Link to slides [here](https://docs.google.com/presentation/d/1fFRGIzIBP_cSpv2NiP3map1vWn-FXjaTfircPauG3WE/)
+## Link to slides [here](https://ucfai.org/core/sp20/rnns/link/slides/)
 In this project, we will be using an LSTM with the help of an Embedding layer to train our network on an episode from the Simpsons, specifically the episode "Moe's Tavern". This is taken from [this](https://data.world/data-society/the-simpsons-by-the-data) dataset on kaggle. This model can be applied to any text. We could use more episodes from the Simpsons, a book, articles, wikipedia, etc. It will learn the semantic word associations and being able to generate text in relation to what it is trained on.
 
 First, lets import all of our libraries we need.

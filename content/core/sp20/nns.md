@@ -21,9 +21,9 @@ authors: ["jarviseq", "dillonnotdylan", ]
 urls:
   youtube: "https://youtu.be/-3-nasQMyEk"
   slides:  "https://docs.google.com/presentation/d/17Kw1gwzo5YmXbHdHac-j8TnpIt4Re76u7uzjhfEEmQA"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-05-nns/02-05-nns.ipynb"
+  github:  "https://github.com/ucfai/core/blob/master/sp20/02-05-nns/nns.ipynb"
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-nns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-05-nns/02-05-nns.ipynb"
+  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-05-nns/nns.ipynb"
 
 location: ""
 cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
@@ -44,13 +44,6 @@ else:
     #   directory beside this notebook.
     # The data should be here: https://kaggle.com/c/ucfai-core-sp20-nns/data
     DATA_DIR = Path("data")
-```
-
-
-```python
-# change this if running locally
-DATA_DIR = "/kaggle/input/ucfai-core-sp20-nns"
-# DATA_DIR = "."
 ```
 
 ## Before we get started
