@@ -31,7 +31,7 @@ cover: "https://upload.wikimedia.org/wikipedia/commons/1/17/Tarvasj%C3%B5gi.jpg"
 categories: ["sp20"]
 tags: ["random-forests", "svms", "weak-models", "non-nn", "nearest-neighbor", ]
 abstract: >-
-  
+  In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!
 ---
 ```python
 from pathlib import Path

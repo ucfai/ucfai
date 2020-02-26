@@ -31,7 +31,7 @@ cover: "https://pbs.twimg.com/media/Dqb-Nk_XcAAm1_j.jpg"
 categories: ["sp20"]
 tags: ["linear-regression", "basics", "logistic-regression", "regression", ]
 abstract: >-
-  
+  You always start with the basics, and with AI it's no different! We'll be getting our feet wet with some simple, but powerful, models and demonstrate their power by applying them to real world data.
 ---
 ```python
 from pathlib import Path

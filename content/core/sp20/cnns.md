@@ -31,7 +31,7 @@ cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/
 categories: ["sp20"]
 tags: []
 abstract: >-
-  
+  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight!
 ---
 ```python
 from pathlib import Path

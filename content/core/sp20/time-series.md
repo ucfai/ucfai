@@ -31,7 +31,7 @@ cover: "https://s31888.pcdn.co/wp-content/uploads/2018/07/index.jpg"
 categories: ["sp20"]
 tags: []
 abstract: >-
-  
+  How can we infer on the past to predict the future? In this meeting, we're going to be uncovering time series data and learning how to solve problems like predicting the stock market or the weather.
 ---
 ```
 from pathlib import Path

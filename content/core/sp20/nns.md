@@ -31,7 +31,7 @@ cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
 categories: ["sp20"]
 tags: ["neural-networks", "gradient-decent", "back-propagation", "nns", ]
 abstract: >-
-  
+  You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
 ---
 ```python
 from pathlib import Path
