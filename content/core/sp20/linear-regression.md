@@ -3,7 +3,7 @@ title: "Starting with the Basics, Regression"
 linktitle: "Starting with the Basics, Regression"
 
 date: "2020-01-22T17:30:00"
-lastmod: "2020-01-22T17:30:00"
+lastmod: "2020-03-18T23:42:18.959329605"
 
 draft: false
 toc: true
@@ -16,23 +16,24 @@ menu:
     parent: Spring 2020
     weight: 1
 
-authors: ["jarviseq", "bb912", ]
+authors: ["JarvisEQ", "bb912", ]
 
 urls:
   youtube: "https://youtu.be/0vCF6S3mfQg"
   slides:  "https://docs.google.com/presentation/d/1oDo8_RpLqBdq5BcE-mWFGkKAsxY5cns5FN19hZDl42s"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/01-22-linear-regression/linear-regression.ipynb"
+  github:  ""
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-linear-regression"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/01-22-linear-regression/linear-regression.ipynb"
+  colab:   ""
 
-location: ""
-cover: "https://pbs.twimg.com/media/Dqb-Nk_XcAAm1_j.jpg"
+location: "HPA1 112"
+cover: ""
 
 categories: ["sp20"]
-tags: ["linear-regression", "basics", "logistic-regression", "regression", ]
+tags: ["Linear Regression", "Basics", "Logistic Regression", "Regression", ]
 abstract: >-
   You always start with the basics, and with AI it's no different! We'll be getting our feet wet with some simple, but powerful, models and demonstrate their power by applying them to real world data.
 ---
+
 ```python
 from pathlib import Path
 
@@ -46,6 +47,26 @@ else:
     DATA_DIR = Path("data")
 ```
 
+<img src="https://ucfai.org/core/fa19/2019-09-18-regression/regression/banner.png">
+
+<div class="col-12">
+    <span class="btn btn-success btn-block">
+        Meeting in-person? Have you signed in?
+    </span>
+</div>
+
+<div class="col-12">
+    <h1> Getting Started, Regression </h1>
+    <hr>
+</div>
+
+<div style="line-height: 2em;">
+    <p>by: 
+        <strong> Liam Jarvis</strong>
+        (<a href="https://github.com/jarviseq">@jarviseq</a>)
+     on 2019-09-18</p>
+</div>
+
 First thing first, we to get some packages 
 
 *   matplotlib allows us to graph 
@@ -56,6 +77,7 @@ First thing first, we to get some packages
 
 
 ```python
+DATA_DIR = "/kaggle/input/ucfai-core-sp20-regression"
 # import some important stuff
 import matplotlib.pyplot as plt
 import numpy as np

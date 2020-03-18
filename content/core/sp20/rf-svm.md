@@ -3,7 +3,7 @@ title: "A Walk Through the Random Forest"
 linktitle: "A Walk Through the Random Forest"
 
 date: "2020-01-29T17:30:00"
-lastmod: "2020-01-29T17:30:00"
+lastmod: "2020-03-18T23:42:19.138145447"
 
 draft: false
 toc: true
@@ -16,23 +16,24 @@ menu:
     parent: Spring 2020
     weight: 2
 
-authors: ["jarviseq", "nspeer12", ]
+authors: ["JarvisEQ", "nspeer12", ]
 
 urls:
   youtube: "https://youtu.be/sIKNRSSYPX4"
   slides:  "https://docs.google.com/presentation/d/1hoICW_Y9b85H5P2OVMZyUs-vsMPnsF0sTIzb-11auqM"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/01-29-rf-svm/rf-svm.ipynb"
+  github:  ""
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rf-svm"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/01-29-rf-svm/rf-svm.ipynb"
+  colab:   ""
 
-location: ""
-cover: "https://upload.wikimedia.org/wikipedia/commons/1/17/Tarvasj%C3%B5gi.jpg"
+location: "HPA1 112"
+cover: ""
 
 categories: ["sp20"]
-tags: ["random-forests", "svms", "weak-models", "non-nn", "nearest-neighbor", ]
+tags: ["Random Forests", "SVMs", "Weak Models", "Non-NN", "Nearest Neighbors", ]
 abstract: >-
   In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!
 ---
+
 ```python
 from pathlib import Path
 
@@ -65,7 +66,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix, matthews_corrcoef
 from sklearn.neighbors import KNeighborsClassifier
 
-
+# change this if running locally
+DATA_DIR = "/kaggle/input/ucfai-core-sp20-rf-svm"
+# DATA_DIR = "."
 ```
 
 ____

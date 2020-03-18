@@ -3,7 +3,7 @@ title: "How We Can Give Our Computers Eyes and Ears"
 linktitle: "How We Can Give Our Computers Eyes and Ears"
 
 date: "2020-02-12T17:30:00"
-lastmod: "2020-02-12T17:30:00"
+lastmod: "2020-03-18T23:42:19.636011362"
 
 draft: false
 toc: true
@@ -21,18 +21,19 @@ authors: ["danielzgsilva", ]
 urls:
   youtube: "https://youtu.be/2IEF1iSqTVY"
   slides:  "https://docs.google.com/presentation/d/1BpYClnt2HdEceNSfzKN8ULbN6r8q8a0MFSrZu58alVk"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-12-cnns/cnns.ipynb"
+  github:  ""
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-cnns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-12-cnns/cnns.ipynb"
+  colab:   ""
 
-location: ""
-cover: "https://cdn-5b4e2f92f911c85e6c496f87.closte.com/wp-content/uploads/2018/10/computer_vision-400x208.png"
+location: "HPA1 112"
+cover: ""
 
 categories: ["sp20"]
-tags: []
+tags: ["Convolutional Neural Networks", "Image Processing", "Feature Extraction", ]
 abstract: >-
-  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight!
+  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight! optional:  # all keys are listed in the docs
 ---
+
 ```python
 from pathlib import Path
 

@@ -3,7 +3,7 @@ title: "Introduction to Neural Networks"
 linktitle: "Introduction to Neural Networks"
 
 date: "2020-02-05T17:30:00"
-lastmod: "2020-02-05T17:30:00"
+lastmod: "2020-03-18T23:42:19.389027834"
 
 draft: false
 toc: true
@@ -16,23 +16,24 @@ menu:
     parent: Spring 2020
     weight: 3
 
-authors: ["jarviseq", "dillonnotdylan", ]
+authors: ["JarvisEQ", "DillonNotDylan", ]
 
 urls:
   youtube: "https://youtu.be/-3-nasQMyEk"
   slides:  "https://docs.google.com/presentation/d/17Kw1gwzo5YmXbHdHac-j8TnpIt4Re76u7uzjhfEEmQA"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-05-nns/nns.ipynb"
+  github:  ""
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-nns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-05-nns/nns.ipynb"
+  colab:   ""
 
-location: ""
-cover: "https://cdn-images-1.medium.com/max/1200/1*4V4OU2GEzmOWHgCJ8varUQ.jpeg"
+location: "HPA1 112"
+cover: ""
 
 categories: ["sp20"]
-tags: ["neural-networks", "gradient-decent", "back-propagation", "nns", ]
+tags: ["Neural Networks", "Gradient Descent", "Back-Propagation", "NNs", ]
 abstract: >-
   You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
 ---
+
 ```python
 from pathlib import Path
 
@@ -44,6 +45,13 @@ else:
     #   directory beside this notebook.
     # The data should be here: https://kaggle.com/c/ucfai-core-sp20-nns/data
     DATA_DIR = Path("data")
+```
+
+
+```python
+# change this if running locally
+DATA_DIR = "/kaggle/input/ucfai-core-sp20-nns"
+# DATA_DIR = "."
 ```
 
 ## Before we get started

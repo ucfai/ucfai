@@ -3,7 +3,7 @@ title: "Writer's Block? RNNs can help!"
 linktitle: "Writer's Block? RNNs can help!"
 
 date: "2020-02-19T17:30:00"
-lastmod: "2020-02-19T17:30:00"
+lastmod: "2020-03-18T23:42:19.753423691"
 
 draft: false
 toc: true
@@ -16,23 +16,24 @@ menu:
     parent: Spring 2020
     weight: 5
 
-authors: ["brandons209", "dillionnotdylan", ]
+authors: ["brandons209", "DillonNotDylan", ]
 
 urls:
   youtube: "https://youtu.be/lGizWY2w_Aw"
   slides:  "https://docs.google.com/presentation/d/1fFRGIzIBP_cSpv2NiP3map1vWn-FXjaTfircPauG3WE"
-  github:  "https://github.com/ucfai/core/blob/master/sp20/02-19-rnns/rnns.ipynb"
+  github:  ""
   kaggle:  "https://kaggle.com/ucfaibot/core-sp20-rnns"
-  colab:   "https://colab.research.google.com/github/ucfai/core/blob/master/sp20/02-19-rnns/rnns.ipynb"
+  colab:   ""
 
-location: ""
-cover: "https://i.imgur.com/EIt4Ilr.png"
+location: "HPA1 112"
+cover: ""
 
 categories: ["sp20"]
-tags: []
+tags: ["Natural Language Processing", "Text Generation", ]
 abstract: >-
-  This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series “The Simpsons”. Come and find out if our networks can become better writers for the show!
+  This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series "The Simpsons". Come and find out if our networks can become better writers for the show!
 ---
+
 ```python
 from pathlib import Path
 
@@ -46,8 +47,42 @@ else:
     DATA_DIR = Path("data")
 ```
 
+<img src="https://ucfai.org/core/sp20/rnns/banner.png">
+
+<div class="col-12">
+    <span class="btn btn-success btn-block">
+        Meeting in-person? Have you signed in?
+    </span>
+</div>
+
+<div class="col-12">
+    <h1> Writer's Block? RNNs can help! </h1>
+    <hr>
+</div>
+
+<div style="line-height: 2em;">
+    <p>by: 
+        <strong> Brandon</strong>
+        (<a href="https://github.com/brandons209">@brandons209</a>)
+        <strong> John Muchovej</strong>
+        (<a href="https://github.com/ionlights">@ionlights</a>)
+     on 2020-02-19</p>
+</div>
+
+
+```python
+# This is a bit of code to make things work on Kaggle
+import os
+from pathlib import Path
+
+if os.path.exists("/kaggle/input/ucfai-core-sp20-rnns"):
+    DATA_DIR = Path("/kaggle/input/ucfai-core-sp20-rnns")
+else:
+    DATA_DIR = Path("data/")
+```
+
 # Generate new Simpson scripts with LSTM RNN
-## Link to slides [here](https://ucfai.org/core/sp20/rnns/link/slides/)
+## Link to slides [here](https://docs.google.com/presentation/d/1fFRGIzIBP_cSpv2NiP3map1vWn-FXjaTfircPauG3WE/)
 In this project, we will be using an LSTM with the help of an Embedding layer to train our network on an episode from the Simpsons, specifically the episode "Moe's Tavern". This is taken from [this](https://data.world/data-society/the-simpsons-by-the-data) dataset on kaggle. This model can be applied to any text. We could use more episodes from the Simpsons, a book, articles, wikipedia, etc. It will learn the semantic word associations and being able to generate text in relation to what it is trained on.
 
 First, lets import all of our libraries we need.
