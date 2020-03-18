@@ -3,7 +3,7 @@ title: "Starting with the Basics, Regression"
 linktitle: "Starting with the Basics, Regression"
 
 date: "2020-01-22T17:30:00"
-lastmod: "2020-03-18T23:42:18.959329605"
+lastmod: "2020-03-18T23:54:13.103023767"
 
 draft: false
 toc: true

@@ -3,7 +3,7 @@ title: "Time Series Analysis"
 linktitle: "Time Series Analysis"
 
 date: "2020-03-04T17:30:00"
-lastmod: "2020-03-18T23:42:20.100923061"
+lastmod: "2020-03-18T23:54:14.204649448"
 
 draft: false
 toc: true

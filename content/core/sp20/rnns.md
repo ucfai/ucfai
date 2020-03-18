@@ -3,7 +3,7 @@ title: "Writer's Block? RNNs can help!"
 linktitle: "Writer's Block? RNNs can help!"
 
 date: "2020-02-19T17:30:00"
-lastmod: "2020-03-18T23:42:19.753423691"
+lastmod: "2020-03-18T23:54:13.859930515"
 
 draft: false
 toc: true

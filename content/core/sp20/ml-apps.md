@@ -3,7 +3,7 @@ title: "Machine Learning Applications"
 linktitle: "Machine Learning Applications"
 
 date: "2020-02-26T17:30:00"
-lastmod: "2020-03-18T23:42:19.905972958"
+lastmod: "2020-03-18T23:54:14.006180763"
 
 draft: false
 toc: true

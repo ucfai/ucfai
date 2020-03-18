@@ -3,7 +3,7 @@ title: "How We Can Give Our Computers Eyes and Ears"
 linktitle: "How We Can Give Our Computers Eyes and Ears"
 
 date: "2020-02-12T17:30:00"
-lastmod: "2020-03-18T23:42:19.636011362"
+lastmod: "2020-03-18T23:54:13.737049341"
 
 draft: false
 toc: true

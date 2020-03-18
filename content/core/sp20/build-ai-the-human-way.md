@@ -3,7 +3,7 @@ title: "Building AI, the Human Way"
 linktitle: "Building AI, the Human Way"
 
 date: "2020-04-08T17:30:00"
-lastmod: "2020-03-18T23:42:23.254530429"
+lastmod: "2020-03-18T23:54:17.560961723"
 
 draft: false
 toc: true

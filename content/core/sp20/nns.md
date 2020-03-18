@@ -3,7 +3,7 @@ title: "Introduction to Neural Networks"
 linktitle: "Introduction to Neural Networks"
 
 date: "2020-02-05T17:30:00"
-lastmod: "2020-03-18T23:42:19.389027834"
+lastmod: "2020-03-18T23:54:13.493188858"
 
 draft: false
 toc: true
