@@ -3,7 +3,7 @@ title: "How We Can Give Our Computers Eyes and Ears"
 linktitle: "How We Can Give Our Computers Eyes and Ears"
 
 date: "2020-02-12T17:30:00"
-lastmod: "2020-03-18T23:54:13.737049341"
+lastmod: "2020-04-02T19:11:25.968566895"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 4
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 4
+    parent: "Spring 2020"
+    weight: "4"
 
 authors: ["danielzgsilva", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Convolutional Neural Networks", "Image Processing", "Feature Extraction", ]
-abstract: >-
-  Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight! optional:  # all keys are listed in the docs
+abstract: "Ever wonder how Facebook tells you which friends to tag in your photos, or how Siri can even understand your request? In this meeting we'll dive into convolutional neural networks and give you all the tools to build smart systems such as these. Join us in learning how we can grant our computers the gifts of hearing and sight! optional:  # all keys are listed in the docs"
 ---
 
 ```python

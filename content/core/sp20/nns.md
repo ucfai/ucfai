@@ -3,7 +3,7 @@ title: "Introduction to Neural Networks"
 linktitle: "Introduction to Neural Networks"
 
 date: "2020-02-05T17:30:00"
-lastmod: "2020-03-18T23:54:13.493188858"
+lastmod: "2020-04-02T19:11:25.733079195"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 3
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 3
+    parent: "Spring 2020"
+    weight: "3"
 
 authors: ["JarvisEQ", "DillonNotDylan", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Neural Networks", "Gradient Descent", "Back-Propagation", "NNs", ]
-abstract: >-
-  You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!
+abstract: "You've heard about them: Beating humans at all types of games, driving cars, and recommending your next Netflix series to watch, but what ARE neural networks? In this lecture, you'll actually learn step by step how neural networks function and learn. Then, you'll deploy one yourself!"
 ---
 
 ```python

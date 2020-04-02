@@ -3,7 +3,7 @@ title: "Starting with the Basics, Regression"
 linktitle: "Starting with the Basics, Regression"
 
 date: "2020-01-22T17:30:00"
-lastmod: "2020-03-18T23:54:13.103023767"
+lastmod: "2020-04-02T19:11:25.356370687"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 1
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 1
+    parent: "Spring 2020"
+    weight: "1"
 
 authors: ["JarvisEQ", "bb912", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Linear Regression", "Basics", "Logistic Regression", "Regression", ]
-abstract: >-
-  You always start with the basics, and with AI it's no different! We'll be getting our feet wet with some simple, but powerful, models and demonstrate their power by applying them to real world data.
+abstract: "You always start with the basics, and with AI it's no different! We'll be getting our feet wet with some simple, but powerful, models and demonstrate their power by applying them to real world data."
 ---
 
 ```python

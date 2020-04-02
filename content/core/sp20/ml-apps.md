@@ -3,7 +3,7 @@ title: "Machine Learning Applications"
 linktitle: "Machine Learning Applications"
 
 date: "2020-02-26T17:30:00"
-lastmod: "2020-03-18T23:54:14.006180763"
+lastmod: "2020-04-02T19:11:26.207350254"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 6
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 6
+    parent: "Spring 2020"
+    weight: "6"
 
 authors: ["brandons209", "nspeer12", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Applications", "Pokemon", "Pokedex", "Exoplanets", "Machine Learning", ]
-abstract: >-
-  It's time to put what you have learned into action. Here, we have prepared some datasets for you to build a a model to solve. This is different from past meetings, as it will be a full workshop. We provide the data sets and a notebook that gets you started, but it is up to you to build a model to solve the problem. So, what will you be doing? We have two datasets, one is using planetary data to predict if a planet is an exoplanet or not, so your model can help us find more Earth-like planets that could contain life! The second dataset will be used to build a model that mimics a pokedex! Well, not fully, but the goal is to predict the name of a pokemon and also predict its type (such as electric, fire, etc.) This will be extremely fun and give you a chance to apply what you have learned, with us here to help!
+abstract: "It's time to put what you have learned into action. Here, we have prepared some datasets for you to build a a model to solve. This is different from past meetings, as it will be a full workshop. We provide the data sets and a notebook that gets you started, but it is up to you to build a model to solve the problem. So, what will you be doing? We have two datasets, one is using planetary data to predict if a planet is an exoplanet or not, so your model can help us find more Earth-like planets that could contain life! The second dataset will be used to build a model that mimics a pokedex! Well, not fully, but the goal is to predict the name of a pokemon and also predict its type (such as electric, fire, etc.) This will be extremely fun and give you a chance to apply what you have learned, with us here to help!"
 ---
 
 ```python

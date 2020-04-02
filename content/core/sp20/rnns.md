@@ -3,7 +3,7 @@ title: "Writer's Block? RNNs can help!"
 linktitle: "Writer's Block? RNNs can help!"
 
 date: "2020-02-19T17:30:00"
-lastmod: "2020-03-18T23:54:13.859930515"
+lastmod: "2020-04-02T19:11:26.090398550"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 5
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 5
+    parent: "Spring 2020"
+    weight: "5"
 
 authors: ["brandons209", "DillonNotDylan", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Natural Language Processing", "Text Generation", ]
-abstract: >-
-  This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series "The Simpsons". Come and find out if our networks can become better writers for the show!
+abstract: "This lecture is all about Recurrent Neural Networks. These are networks with memory, which means they can learn from sequential data such as speech, text, videos, and more. Different types of RNNs and strategies for building them will also be covered. The project will be building a LSTM-RNN to generate new original scripts for the TV series "The Simpsons". Come and find out if our networks can become better writers for the show!"
 ---
 
 ```python

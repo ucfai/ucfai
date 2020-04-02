@@ -3,7 +3,7 @@ title: "Time Series Analysis"
 linktitle: "Time Series Analysis"
 
 date: "2020-03-04T17:30:00"
-lastmod: "2020-03-18T23:54:14.204649448"
+lastmod: "2020-04-02T19:11:26.411430836"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 7
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 7
+    parent: "Spring 2020"
+    weight: "7"
 
 authors: ["nspeer12", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Time Series", "Temporal Predictions", ]
-abstract: >-
-  How can we infer on the past to predict the future? In this meeting we are going to be learning about time series data and its unique qualities. After we sharpen up our data science skills, we will be putting them to good use by analyzing and predicting the spread of the Coronavirus!
+abstract: "How can we infer on the past to predict the future? In this meeting we are going to be learning about time series data and its unique qualities. After we sharpen up our data science skills, we will be putting them to good use by analyzing and predicting the spread of the Coronavirus!"
 ---
 
 ```python

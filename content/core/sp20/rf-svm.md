@@ -3,7 +3,7 @@ title: "A Walk Through the Random Forest"
 linktitle: "A Walk Through the Random Forest"
 
 date: "2020-01-29T17:30:00"
-lastmod: "2020-03-18T23:54:13.256829023"
+lastmod: "2020-04-02T19:11:25.502486706"
 
 draft: false
 toc: true
@@ -13,8 +13,8 @@ weight: 2
 
 menu:
   core_sp20:
-    parent: Spring 2020
-    weight: 2
+    parent: "Spring 2020"
+    weight: "2"
 
 authors: ["JarvisEQ", "nspeer12", ]
 
@@ -30,8 +30,7 @@ cover: ""
 
 categories: ["sp20"]
 tags: ["Random Forests", "SVMs", "Weak Models", "Non-NN", "Nearest Neighbors", ]
-abstract: >-
-  In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!
+abstract: "In this lecture, we explore powerful yet lightweight models that are often overlooked. We will see the power of combining multiple simple models together and how they can yield amazing results. You won't believe how easy it is to classify with just a line!"
 ---
 
 ```python
