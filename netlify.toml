@@ -127,3 +127,8 @@
   from = "/forms/acm-w"
   to = "https://docs.google.com/forms/d/e/1FAIpQLSd_fb5auM59_0icRKDNmc3iV6j3V8ZksDaob1pi3T2cr8s8Hw/viewform"
   status = 301
+
+[[ redirects ]] 
+  from = "/newsletter"
+  to = "https://mailchi.mp/aa81dc2efd87/su20-newsletter1"
+  status = 301
