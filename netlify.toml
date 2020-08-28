@@ -84,6 +84,20 @@
   status = 301  
 
 # ------------------------------------------------------------------------------
+# Youtube Redirects
+#   Essentially, redirects into specific playlists on the channel
+# ------------------------------------------------------------------------------
+[[ redirects ]]
+  from = "/youtube"
+  to = "https://www.youtube.com/channel/UCyokaec6yvsotHXFz9pbcaA"
+  status = 301
+
+[[ redirects ]]
+  from = "/youtube/core/sp20"
+  to = "https://www.youtube.com/playlist?list=PLq-gphnoZDqa_G7Z9AVoDhY2EUfF85-Nb"
+  status = 301
+
+# ------------------------------------------------------------------------------
 # Discord Redirects
 #   Essentially, redirects into specific channels on Discord
 # ------------------------------------------------------------------------------
