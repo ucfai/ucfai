@@ -1,0 +1,16 @@
+{{- $semester := site.Data.config.semester -}}
+
+{{ $page := . }}
+{{- $path := $page.Permalink -}}
+
+{{/* Assert that the URL contains spXX, faXX, or suXX; could be more specific. */}}
+{{ $semInLink := index (findRE "[[:lower:]]{2}[[:digit:]]{2}" $path 1) 0 }}
+{{- if $semInLink }}
+  {{- $semester = $semInLink }}
+{{- end }}
+
+{{- with $page.Params.semester }}
+  {{- $semester = . }}
+{{- end -}}
+
+{{ return $semester }}
