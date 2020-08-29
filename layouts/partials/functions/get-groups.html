@@ -1,0 +1,34 @@
+{{- $page := . }}
+
+{{ $statuses := slice "active" "archived" }}
+
+{{ $status := $.Scratch.Get "status" }}
+{{ $semester := $.Scratch.Get "semester" }}
+
+{{ $groups := slice }}
+{{ if in $status $status }}
+  {{/* Find active groups */}}
+  {{ $onDiskGroups := readDir "content/groups" }}
+
+  {{ range $onDisk := $onDiskGroups }}
+    {{ $expected := printf "/groups/%s/%s/_index.md" .Name $semester }}
+    {{ $p := $page.GetPage $expected }}
+    {{ if $p | and (eq $status "active") }}
+      {{ $groups = $groups | append $p }}
+    {{ else if not $p | and (eq $status "archived") }}
+      {{ $p = path.Dir (path.Dir $expected) }}
+      {{ $p = path.Join $p "_index.md" }}
+      {{ $p = $page.GetPage $p }}
+      {{ if $p }}
+        {{ $groups = $groups | append $p }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Sort active groups by Meeting day */}}
+  {{ if eq $status "active" }}
+    {{ $groups = sort $groups ".Date" "asc" }}
+  {{ end }}
+{{ end }}
+
+{{ return $groups }}
