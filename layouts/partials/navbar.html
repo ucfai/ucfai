@@ -35,8 +35,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     {{ $align_menu := site.Params.main_menu.align | default "l" }}
     {{ $align := "center" }}
-    {{ $align = cond (eq $align_menu "r") "start" $align }}
-    {{ $align = cond (eq $align_menu "l") "end"   $align }}
+    {{ $align = cond (eq $align_menu "r") "end"   $align }}
+    {{ $align = cond (eq $align_menu "l") "start" $align }}
     <div
       class="navbar-collapse main-menu-item collapse justify-content-{{ $align }}"
       id="navbar-content">
