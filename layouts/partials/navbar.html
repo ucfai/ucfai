@@ -44,6 +44,7 @@
       <!-- Left Nav Bar -->
       <ul class="navbar-nav d-md-inline-flex">
         {{ $page.Scratch.Set "status" "archived" }}
+        {{ $page.Scratch.Set "semester" site.Data.config.semester }}
         {{ $groups := partial "functions/get-groups" $page }}
         {{ $archivedGroups := slice }}
         {{ range $groups }}
@@ -54,6 +55,7 @@
         {{ range site.Menus.main }}
           {{ partial "nav-item" ((dict "page" . ) | merge $dict) }}
         {{ end }}
+        {{ $page.Scratch.Set "semester" (partial "functions/infer-semester" $page)}}
       </ul>
       {{ if site.Menus.main_right | and (eq $align_menu "l") }}
       <ul class="navbar-nav ml-md-auto">
