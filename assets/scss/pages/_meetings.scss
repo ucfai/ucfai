@@ -1,6 +1,21 @@
-pre {
-  padding: 1em;
-  border-radius: 0.25em;
+.article-facts {
+  display: flex;
+  [class^="article"] {
+    margin: 0;
+    justify-content: center;
+    vertical-align: middle;
+  }
+  .article-tags i {
+    vertical-align: middle;
+    .badge {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#syllabus {
+  list-style: none;
+  padding: 0;
 }
 
 pre p {
@@ -16,12 +31,12 @@ pre p {
  **************************************************/
 
 .article {
-  display: flex;
+  // display: flex;
 }
 
-.docs-article-container {
-  max-width: 760px;
-}
+// .docs-article-container {
+//   max-width: 760px;
+// }
 
 .docs-article-facts {
   margin-bottom: 1.2rem;

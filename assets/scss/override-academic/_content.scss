@@ -1,0 +1,18 @@
+// .article-container {
+//   max-width: 980px !important;
+//   padding: 0 20px 0 20px;
+//   margin: 0 auto 0 auto;
+// }
+
+
+pre {
+  overflow: initial;
+  code,
+  code.hljs,
+  code.highlight {
+    padding: 1.5em;
+    border-radius: 0.5em;
+    // box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.4);
+  }
+}
