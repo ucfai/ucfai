@@ -1,0 +1,25 @@
+- name: redirects
+  label: "Redirects"
+  label_singular: "Redirect"
+  path: "netlify.toml" 
+  editor:
+    preview: false
+  fields:  # The fields each document in this collection have
+    - label: "Redirects"
+      name: "redirects"
+      widget: "object"
+      fields:
+      - name: "From"
+        label: "from"
+        hint: "What's the URL following `https://ucfai.org?`"
+        widget: string
+      - name: "To"
+        label: "to"
+        hint: "Where should this URL point to?"
+        widget: "string"
+      - name: "Redirect Type"
+        label: "status"
+        widget: "select"
+        options:
+          - {label: "Permanent", value: 301}
+          - {label: "Temporary", value: 302}

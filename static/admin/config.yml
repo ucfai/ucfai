@@ -1,0 +1,196 @@
+local_backend: true 
+
+backend:
+  name: github
+  repo: ucfai/ucfai.org
+  # branch: release-hugo-academic-base
+  use_graphql: true
+
+publish_mode: editorial_workflow
+
+media_folder: assets/images
+public_folder: /images
+
+logo_url: /images/brand/light-bg-ready.svg
+
+x-reqd-str: &reqd-str { widget: string, required: true }
+x-optn-str: &optn-str { widget: string, required: false }
+
+x-title: &title { <<: *reqd-str , label: Title, name: title }
+x-body: &body { widget: markdown, name: body, label: Body, }
+
+collections:
+- name: authors
+  label: "Coordinators"
+  label_singular: "Coordinator"
+  folder: "content/authors"
+  path: "{{ slug }}/_index" 
+  create: false
+  editor: { preview: false }
+  fields:  # The fields each document in this collection have
+    - { <<: *reqd-str , label: "Name", name: "title" }
+    - { <<: *reqd-str , label: "GitHub", name: "github" }
+    - <<: *reqd-str
+      label: "Highest, current, role in AI@UCF"
+      name: "role"
+      hint: "What's your current, highest, role in AI@UCF? Omit the Group if you're a Coordinator."
+      default: "Coordinator"
+    - label: "Resarch / Industry Interests"
+      name: "interests"
+      required: false
+      widget: "list"
+    # - label: "Avatar (upload an image named `avatar.jpg/png`)"
+    #   name: "avatar_filename"
+    #   widget: "image"
+    #   default: "avatar"
+    #   required: false
+    #   hint: "By default, we pull your profile picture from GitHub."
+    #   media_library: { config: { multiple: false } }
+    - <<: *reqd-str
+      label: "Short Bio (shown at the end of posts)"
+      name: bio
+      hint: "You can use Markdown. Try to keep this around the size of a tweet."
+    - label: Social links
+      name: social
+      required: false
+      widget: list
+      fields:
+        - { <<: *reqd-str , label: Link, name: link }
+        - label: Icon pack
+          name: icon_pack
+          widget: select
+          multiple: false
+          options:
+            - {label: "None", value: ""}
+            - {label: "Solid", value: "fas"}
+            - {label: "Regular", value: "far"}
+            - {label: "Brand", value: "fab"}
+            - {label: "Academic", value: "ai"}
+        - <<: *reqd-str
+          label: Icon
+          name: icon
+          hint: See https://sourcethemes.com/academic/docs/page-builder/#icons
+    - label: "organizations"
+      label_singular: "organization"
+      name: "organizations"
+      hint: These are organizations you're affilied with or belong to
+      required: false
+      widget: list
+      fields:
+        - { <<: *reqd-str , label: Organization, name: name }
+        - { <<: *optn-str , label: Link, name: url }
+    - label: "Education"
+      name: "education"
+      required: false
+      widget: object
+      fields:
+        - label: "Courses"
+          name: "courses"
+          required: false
+          widget: list
+          fields:
+            - { <<: *reqd-str , label: Course, name: course, }
+            - { <<: *reqd-str , label: Institution, name: institution }
+            - { label: Year, name: year, widget: number, valueType: int, required: false }
+    - <<: *body
+      label: "Self-description"
+      hint: >-
+        Describe yourself. What are your interests? What sparked your desire
+        to join the club? What are you doing outside of classes? What about
+        after you graduate? etc.
+- name: configurations
+  label: "Configurations"
+  label_singular: "Configuration"
+  editor:
+    preview: false
+  files:
+  - name: "Redirects"
+    label: "Redirects"
+    label_singular: "Redirect"
+    file: "netlify.toml" 
+    fields:  # The fields each document in this collection have
+      - label: "Redirects"
+        name: "redirects"
+        widget: list
+        hint: "Read more about Netlify Redirects here – https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file"
+        fields:
+        - <<: *reqd-str
+          name: "from"
+          label: "From"
+          hint: "What's the URL following `https://ucfai.org?`"
+          pattern: ["(/(.+))+", "You must begin the URL with a \"/\"."]
+        - <<: *reqd-str
+          name: "to"
+          label: "Target URL"
+          hint: "Where should this URL point to?"
+          pattern: ["http(s?)://(.+)", "Begin the Target URL with a protocol."]
+        - name: "status"
+          label: "Redirect Type"
+          widget: number
+          min: 301
+          max: 302
+          hint: "301 is a Permanent Redirect; 302 is a Temporary Redirect"
+  - name: "General"
+    label: "General"
+    file: "data/config.yml"
+    fields:
+    - label: Semester
+      name: semester
+      widget: string
+      pattern: ["(fa|su|sp)\\d{2}", "Must be a 4-character string, (fa|su|sp)XX."]
+    - label: Officer Types
+      name: officers
+      allow_add: true
+      widget: list
+      summary: "{{fields.officer}}"
+      field: { <<: *reqd-str , label: officer, name: officer }
+    - label: Buttons
+      name: buttons
+      allow_add: true
+      widget: list
+      summary: "{{fields.platform}}"
+      fields:
+      - { <<: *reqd-str , name: platform, label: Platform}
+      - { <<: *reqd-str , name: fa-class, label: Font-Awesome Classes, hint: "For more info, take a look at https://fontawesome.com/icons"}
+      - { <<: *reqd-str , name: btn-text, label: Button Text}
+- name: sponsors
+  label: Sponsors
+  folder: data/sponsors
+  extension: "yml"
+  editor: { preview: false }
+  create: true
+  fields:
+  - { <<: *reqd-str , name: name, label: Name }
+  - { <<: *reqd-str , name: abbr, label: Abbreviation (all lowercase) }
+  - name: logo
+    label: Logos
+    widget: object
+    fields:
+    - name: dark
+      label: Dark-background ready Logo
+      widget: image
+    - name: light
+      label: Light-background ready Logo
+      widget: image
+- name: archives
+  label: Archives
+  folder: "content/archives"
+  path: "{{ slug }}" 
+  fields:  # The fields each document in this collection have
+  - <<: *title
+  - label: Sponsors
+    name: sponsors
+    widget: relation
+    collection: sponsors
+    searchFields: ["name", "abbr"]
+    valueField: "abbr"
+    displayFields: ["name"]
+    multiple: true
+  - label: Summary
+    widget: markdown
+    name: summary
+    hint: "You can use Markdown. Try to keep this around the size of a tweet."
+  - <<: *body
+    hint: >-
+      Describe this semester. Take a look at previous archives to get an idea of
+      what you should be sure to mention.
