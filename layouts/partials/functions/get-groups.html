@@ -2,16 +2,16 @@
 
 {{ $statuses := slice "active" "archived" }}
 
-{{ $status := $.Scratch.Get "status" }}
-{{ $semester := $.Scratch.Get "semester" }}
+{{ $status := $page.Scratch.Get "status" }}
+{{ $semester := $page.Scratch.Get "semester" }}
 
 {{ $groups := slice }}
-{{ if in $status $status }}
+{{ if in $statuses $status }}
   {{/* Find active groups */}}
   {{ $onDiskGroups := readDir "content/groups" }}
 
   {{ range $onDisk := $onDiskGroups }}
-    {{ $expected := printf "/groups/%s/%s/_index.md" .Name $semester }}
+    {{ $expected := printf "/groups/%s/%s/_index.md" $onDisk.Name $semester }}
     {{ $p := $page.GetPage $expected }}
     {{ if $p | and (eq $status "active") }}
       {{ $groups = $groups | append $p }}

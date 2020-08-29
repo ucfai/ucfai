@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ site.LanguageCode | default "en-us" }}">
 {{ $page := . }}
+{{- $page.Scratch.Set "semester" (partial "functions/infer-semester" $page) -}}
+{{- $page.Scratch.Set "group" (partial "functions/infer-group" $page) -}}
+{{- $page.Scratch.Set "semDict" (partial "functions/readable-semester" $page) -}}
 
 {{ partial "site_head" $page }}
 
@@ -15,10 +18,6 @@
 
   {{ partial "navbar" $page }}
 
-  {{ $page.Scratch.Set "semester" (partial "functions/infer-semester" $page) }}
-  {{ $page.Scratch.Set "group" (partial "functions/infer-group" $page) }}
-  {{ $page.Scratch.Set "semDict" (partial "functions/readable-semester" $page) -}}
-   
   {{ block "main" $page }}{{ end }}
 
   {{ partial "site_js" $page }}
