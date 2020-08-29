@@ -1,0 +1,40 @@
+{{ $page := . }}
+
+<style>
+  .page-container {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
+
+{{ $page.Scratch.Set "multi-column" true }}
+<div class="meta-conatiner container">
+  {{ partial "custom-header" $page }}
+
+  <article class="page-container article">
+    <div class="article-container">
+      {{ $page.Content }}
+    </div>
+    <div class="page-metadata">
+      <div class="article-links col-12">
+        <h2> Follow along </h2>
+        {{- $page.Scratch.Set "show-link-text" true }}
+        {{- partial "links-custom" $page }}
+      </div>
+      <div class="article-widget col-12 row-cols-1">
+        <h2> Other Meetings in this Series </h2>
+        {{- $page.Scratch.Set "card-fill" "" }}
+        {{- $page.Scratch.Set "show-link-text" false }}
+        {{- $page.Scratch.Set "vertical" true -}}
+        {{- partial "fancy-pager" $page -}}
+      </div> 
+      <div class="article-widget col-12 row-cols-1">
+        <h2> Contributing Authors </h2>
+        {{ $page.Scratch.Get "coordinator-role" }}
+        {{ range $author := $page.Params.authors }}
+          {{ partial "coordinator" $author }}
+        {{ end }}
+      </div>
+    </div>
+  </article>
+</div>

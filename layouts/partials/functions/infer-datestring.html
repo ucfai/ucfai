@@ -1,0 +1,34 @@
+{{ $page := . }}
+{{ $date := "" }}
+
+{{ if isset $page.Params "frequency" }}
+  {{ $date = slice }}
+
+  {{ $freq := $page.Params.frequency }}
+
+  {{ if eq $freq 1 }}
+    {{ $date = $date | append "every" }}
+  {{ else if eq $freq 2 }}
+    {{ $date = $date | append "every other" }}
+  {{ else }}
+    {{ $date = $date | append "occasionally on" }}
+  {{ end }}
+
+  {{ with $page.Date }}
+    {{ $date = $date | append (.Format "Mon" | pluralize) }}
+    {{ $date = $date | append (.Format "03:04 PM") }}
+  {{ end }}
+
+  {{ $date = delimit $date " " }}
+
+  {{ if lt (len (split $date " ")) 2 }}
+    {{ $date = "TBD" }}
+  {{ end }}
+
+{{ else }}
+
+  {{ $date = partial "functions/get_event_dates" $page }}
+
+{{ end }}
+
+{{ return $date }}

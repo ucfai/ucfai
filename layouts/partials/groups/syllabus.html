@@ -1,0 +1,7 @@
+{{- $page := . -}}
+
+<div id="syllabus" class="row row-cols-1 row-cols-md-2">
+  {{- range $meeting := $page.Pages -}}
+    {{- partial "card" $meeting -}}
+  {{- end -}}
+</div>

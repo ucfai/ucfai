@@ -1,0 +1,16 @@
+{{/* This Layout renders for the following:
+  - /groups
+  - /groups/<group>
+  - /groups/<group>/<semester>
+*/}}
+
+{{- define "main" -}}
+  {{- $page := . -}}
+
+  {{- if (isset $page.Params "frequency") }}
+    {{ partial "groups/semester" $page }}
+  {{- else }}
+    {{ partial "groups/landing" $page }}
+  {{- end }}
+
+{{- end -}}

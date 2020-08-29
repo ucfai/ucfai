@@ -1,0 +1,46 @@
+{{- $page := . -}}
+
+{{- $group := $page.Scratch.Get "group" -}}
+{{- $semester := $page.Scratch.Get "semester" -}}
+{{- $semDict := $page.Scratch.Get "semDict" -}}
+{{- $fullname := index $semDict "fullname" -}}
+
+{{- $groupAsTitle := replace (replace $group "-" " ") "_" " " | title -}}
+
+<article class="article">
+  {{ partial "custom-header" $page }}
+
+  <div class="article-container">
+
+    <div class="article-abstract py-3">
+      <h2> Overview of {{ $fullname }}</h2>
+      {{ $page.Summary }}
+    </div>
+
+    <div id="group-when-where" class="group-metadata group-when-where">
+      {{ partial "groups/when-where" $page }}
+    </div>
+
+    <div id="group-syllabus" class="group-metadata group-syllabus">
+      <h2> Planned Meetings for {{ $groupAsTitle }} </h2>
+      {{ partial "groups/syllabus" $page }}
+    </div>
+
+    <div id="group-officers" class="group-metadata group-officers">
+      <h2> Officers for {{ $groupAsTitle }} </h2>
+      <div class="row row-cols-1 row-cols-md-2">
+      {{ partial "groups/officers" $page }}
+      </div>
+    </div>
+  </div>
+
+  <div class="article-container">
+    <div class="article-widget">
+      {{ partial "fancy-pager" $page }}
+    </div>
+  </div>
+
+    {{ partial "page_footer" . }}
+  </div>
+
+</article>

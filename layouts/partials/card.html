@@ -1,0 +1,66 @@
+{{/* Derived from "partials/li_card" */}}
+
+{{- $page := . -}} 
+{{- $pager := $page.Scratch.Get "pager" | default false -}}
+{{- $showGroup := $page.Scratch.Get "show-group" | default false -}}
+{{- $extracls := $page.Scratch.Get "extra-card-cls" | default "" -}}
+
+{{- $direction := dict "prev" "left" "next" "right" -}}
+
+<div class="col my-3 mx-auto {{ $extracls -}}">
+  <div class="card-simple h-100">
+
+    {{- if $pager -}}
+    <div class="pager-symbol pager-{{ $pager }}" href="{{ $page.RelPermalink }}" rel="{{ $pager }}">
+      <i class="fas fa-arrow-alt-circle-{{ index $direction $pager }} fa-fw"></i>
+    </div>
+    {{- end -}}
+
+    <h4 class="card-title mt-0">
+      {{- $link := cond $showGroup $page.Parent $page }}
+      <a href="{{ $link.RelPermalink }}" rel="{{ $pager }}"> {{ $link.Title }} </a>
+    </h4>
+
+    {{ $hasProperLocation := $page.Params.location | and ($page.Params.location | ne "<?UNK?>") }}
+    {{ if $page.Params.authors | or $page.Date | or $hasProperLocation }}
+    <div class="article-metadata">
+
+      {{ with $page.Params.authors }}
+      <div class="article-authors"> 
+        <i class="fas fa-user-astronaut"></i>
+        {{ partial "page_metadata_authors" $page }}
+      </div>
+      {{ end }}
+
+      {{ with $page.Date }}
+      <i class="fas fa-calendar"></i>
+      <span> {{ partial "functions/infer-datestring" $page | title }} </span>
+      {{ end }}
+
+      {{ if $hasProperLocation }}
+      <span class="middot-divider"></span>
+      <i class="fas fa-building"></i>
+      <span> {{ $page.Params.location }} </span>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <details class="article-summary">
+      <summary> Read more </summary>
+      {{ with $page.Params.abstract }}
+      <p> {{ . }}</p>
+      {{ else }}
+      <p> {{ $page.Summary }} </p>
+      {{ end }}
+    </details>
+
+    <div class="card-content btn-links">
+      {{ partial "links-custom" $page }}
+    </div>
+  </div>
+</div>
+
+{{- $page.Scratch.Delete "card-fill" -}}
+{{- $page.Scratch.Delete "pager" -}}
+{{- $page.Scratch.Delete "extra-card-cls" -}}
+{{- $page.Scratch.Delete "show-group" -}}
