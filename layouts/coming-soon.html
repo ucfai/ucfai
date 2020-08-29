@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Under Construction | AI@UCF</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+{{ partial "site_head" . }}
+
+<body style="margin: 0;" class="ucfai-home">
+
+	<div id="construction" class="px-1 py-3">
+		<span></span>
+		<div class="flex-column py-5 text-center">
+			{{ "# Coming soon :rocket:" | markdownify | emojify }}
+
+			{{ "## We're in the midst of giving our site a facelift :building_construction:" | markdownify | emojify }}
+
+			<div class="flex-wrap d-flex flex-row justify-content-center cd100 py-5">
+				<div class="construction-counter how-countdown">
+					<h2 class="days"></h2>
+					<p>days</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="hours"></h2>
+					<p>hours</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="minutes"></h2>
+					<p>minutes</p>
+				</div>
+
+				<div class="construction-counter how-countdown">
+					<h2 class="seconds"></h2>
+					<p>seconds</p>
+				</div>
+			</div>
+		</div>
+
+		{{ ":copyright: 2020 AI@UCF. Inspired by Colorlib \"Coming Soon\" Template 4." | markdownify | emojify}}
+	</div>
+
+    {{ partial "particles" . }}
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="js/countdowns/moment.min.js"></script>
+	<script src="js/countdowns/moment-timezone.min.js"></script>
+	<script src="js/countdowns/moment-timezone-with-data.min.js"></script>
+	<script src="js/countdowns/countdowntime.js"></script>
+	<script>
+		$('.cd100').countdown100({
+			// Set Endtime here
+			endtimeYear: 2020,
+			endtimeMonth: 1,
+			endtimeDate: 21,
+			endtimeHours: 17,
+			endtimeMinutes: 30,
+			endtimeSeconds: 0,
+			timeZone: "America/New_York"
+			// go to " http://momentjs.com/timezone/ " to get timezone
+		});
+	</script>
+
+</html>
