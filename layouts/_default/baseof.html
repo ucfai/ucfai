@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="{{ site.LanguageCode | default "en-us" }}">
+{{ $page := . }}
 
-{{ partial "site_head" . }}
+{{ partial "site_head" $page }}
 
-<body id="top" {{ if .IsHome }}class="ucfai-home ucfai-particles" {{ end }} data-spy="scroll"
+<body id="top"
+  {{ if .IsHome }}class="ucfai-home ucfai-particles" {{ end }}
+  data-spy="scroll"
   data-offset="70"
-  data-target="{{ if or .IsHome (eq .Type "widget_page") }}#navbar-main{{else}}#TableOfContents{{end}}"
+  data-target="{{ if .IsHome }}#navbar-main{{else}}#TableOfContents{{end}}"
   {{ if not (.Scratch.Get "light") }}class="dark" {{end}}>
 
-  {{ partial "search" . }}
+  {{ partial "search" $page }}
 
-  {{ partial "navbar" . }}
+  {{ partial "navbar" $page }}
 
-  {{ block "main" . }}{{ end }}
+  {{ $page.Scratch.Set "semester" (partial "functions/infer-semester" $page) }}
+  {{ $page.Scratch.Set "group" (partial "functions/infer-group" $page) }}
+  {{ $page.Scratch.Set "semDict" (partial "functions/readable-semester" $page) -}}
+   
+  {{ block "main" $page }}{{ end }}
 
-  {{ partial "site_js" . }}
+  {{ partial "site_js" $page }}
 
   {{/* Docs and Updates layouts include the site footer in a different location. */}}
   {{ if not (in (slice "docs" "updates") .Type) }}
   <div class="container">
-    {{ partial "site_footer" . }}
+    {{ partial "site_footer" $page }}
   </div>
   {{ end }}
 
-  {{ partial "citation" . }}
+  {{ partial "citation" $page }}
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
 </body>
 
