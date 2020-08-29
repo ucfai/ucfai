@@ -1,4 +1,4 @@
-{{- $page := .Page -}}
+{{- $page := . -}}
 
 {{- $semester := $page.Scratch.Get "semester" }}
 {{- $group := $page.Scratch.Get "group" }}
@@ -6,7 +6,7 @@
 {{- $authors := slice -}}
   {{- $coordinators := where site.Pages "Section" "authors" }}
 
-  {{- range $role := site.Data.Types.officers }}
+  {{- range $role := site.Data.config.officers }}
     {{- $whenrole := printf "%s-%s-%s" $semester (anchorize $role) $group }}
     {{- $whenrole = replace $whenrole "-all" "" }}
 

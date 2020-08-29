@@ -1,5 +1,5 @@
-{{ $page := .Page }}
-{{ $accepted_types := slice "meetings" "groups" "hackpack" }}
+{{ $page := . }}
+{{ $accepted_types := slice "archives" "groups" "hackpack" }}
 {{- if not .IsHome | and (in $accepted_types $page.Type) -}}
 <nav aria-label="breadcrumb">
   <div class="container">
