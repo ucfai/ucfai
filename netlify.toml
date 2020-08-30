@@ -139,6 +139,11 @@
   status = 301
 
 [[ redirects ]] 
-  from = "/application"
+  from = "/apply"
   to = "https://forms.gle/WZJv9ttNH3W9pQtQ9"
+  status = 301
+
+[[ redirects ]] 
+  from = "/event-interest"
+  to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
   status = 301
