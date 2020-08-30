@@ -1,7 +1,0 @@
-{{ $taxonomy := "tags" }}
-{{ with .Param $taxonomy }}
-    {{ range $index, $value := . }}
-    <a class="badge badge-light"
-        href="{{ (site.GetPage (printf "/%s/%s" $taxonomy (. | urlize))).RelPermalink }}">{{ . }}</a>
-    {{ end }}
-{{ end }}

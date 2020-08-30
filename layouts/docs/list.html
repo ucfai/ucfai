@@ -1,7 +1,0 @@
-{{- define "main" -}}
-{{ if ne .Section "docs" }}
-    {{ partial "groups_overview" . }}
-{{ else }}
-    {{ partial "docs_layout" . }}
-{{ end }}
-{{- end -}}
