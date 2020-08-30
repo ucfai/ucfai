@@ -132,13 +132,13 @@
   from = "/newsletter"
   to = "https://mailchi.mp/aa81dc2efd87/su20-newsletter1"
   status = 301
-
-[[ redirects ]] 
-  from = "/opening-knight"
-  to = "https://ucf.zoom.us/j/97118032973"
-  status = 301
  
 [[ redirects ]] 
   from = "/interest-meeting"
   to = "https://ucf.zoom.us/j/97212980604"
+  status = 301
+
+[[ redirects ]] 
+  from = "/application"
+  to = "https://forms.gle/WZJv9ttNH3W9pQtQ9"
   status = 301
