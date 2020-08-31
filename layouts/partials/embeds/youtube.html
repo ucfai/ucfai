@@ -1,0 +1,70 @@
+{{ $page := . }}
+
+{{ with $page.Params.urls.youtube }}
+{{ $url := . }}
+{{ $url = replace $url "youtu.be" "youtube.com" }}
+{{ $url = replace $url ".com/" ".com/embed/" }}
+<div class="embedding embedding-toggle card-simple collapsed mb-3">
+  <h2 class="mt-0"> Meeting Recording </h2>
+  <figure class="embedded-16x9 embedded-video m-0" id="featured-media">
+    <iframe id="featured-video" src="{{ $url }}?enablejsapi=1" frameborder="0"></iframe>
+  </figure>
+</div>
+
+<script>
+  // TODO implement floating video, e.g. https://webdesign.tutsplus.com/tutorials/how-to-create-a-sticky-floating-video-on-page-scroll--cms-28342
+  var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var $featuredMedia = document.getElementById("featured-media");
+  var $featuredVideo = document.getElementById("featured-video");
+ 
+  var player;
+  let offset = getOriginalPos();
+
+  function getOriginalPos() {
+    let top = $featuredVideo.offsetTop;
+    return Math.floor(top + $featuredMedia.offsetHeight / 2);
+  }
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player("featured-video", {
+      events: {
+        "onReady": onPlayerReady,
+        "onStateChange": onPlayerStateChange,
+      }
+    });
+  };
+
+  function onPlayerReady(event) {
+    $featuredVideo.classList.add("is-paused");
+  }
+
+  function onPlayerStateChange(event) {
+    if ( event.data == YT.PlayerState.PLAYING ) {
+       $featuredVideo.classList.remove("is-paused");
+       $featuredVideo.classList.add("is-playing");
+    } else if ( event.data == YT.PlayerState.PAUSED ) {
+       $featuredVideo.classList.remove("is-playing");
+       $featuredVideo.classList.add("is-paused");
+    } else if ( event.data == YT.PlayerState.ENDED ) {
+       $featuredVideo.classList.remove("is-playing");
+       $featuredVideo.classList.remove("is-paused");
+    }
+  }
+
+  document.addEventListener("resize", function() {
+    offset = getOriginalPos();
+  });
+  document.addEventListener("scroll", function() {
+    let scrollTop = document.documentElement.scrollTop;
+    $featuredVideo.classList.toggle(
+      "is-sticky",
+      scrollTop > offset && $featuredVideo.classList.contains("is-playing")
+    );
+  });
+</script>
+{{ end }}

@@ -13,6 +13,9 @@
 
   <article class="page-container article">
     <div class="article-container">
+      {{- partial "embeds/youtube" $page }}
+      {{- partial "embeds/slides" $page }}
+
       {{ $page.Content }}
     </div>
     <div class="page-metadata">
