@@ -8,10 +8,7 @@ header:
   image: ""
 
 # DO NOT MODIFY BELOW THIS LINE -------
-layout: docs
-type: groups
-
-menu_name: groups
+menu_name: Discussions
 
 menu:
   main:

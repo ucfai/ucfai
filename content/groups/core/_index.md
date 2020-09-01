@@ -2,17 +2,20 @@
 title: Core 
 linktitle: Core
 
-# DO NOT MODIFY BELOW THIS LINE -------
-layout: docs
-type: meetings
+# Optional header image (relative to `static/img/` folder).
+header:
+  caption: ""
+  image: ""
 
-menu_name: core
+# DO NOT MODIFY BELOW THIS LINE -------
+menu_name: Core
 
 menu:
   main:
-  #   parent: Groups
+    # parent: Groups
   groups:
     # parent: Groups
+  core:
 ---
 
 Our custom lecture series designed to educate newcomers and those looking to 

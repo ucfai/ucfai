@@ -8,10 +8,7 @@ header:
   image: ""
 
 # DO NOT MODIFY BELOW THIS LINE -------
-layout: docs
-type: meetings
-
-menu_name: groups
+menu_name: GBMs
 
 menu:
   main:
