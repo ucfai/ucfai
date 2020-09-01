@@ -21,7 +21,7 @@
       {{ partial "groups/when-where" $page }}
     </div>
 
-    {{ if $page.Params.projects }}
+    {{ if isset $page.Params "projects" }}
     <div id="group-projects" class="group-metadata group-projects">
       <h2> Ongoing Projects </h2>
       {{ partial "groups/projects" $page }}

@@ -1,13 +1,13 @@
 {{- $page := . -}}
 
 <div id="projects" class="row row-cols-1 row-cols-md-2">
-  {{ if isset $page.Params "projects" }}
   {{- range $project := $page.Params.projects -}}
     {{ $project = site.GetPage (printf "/project/%s" $project) }}
+    {{ if $project }}
     {{ $project.Scratch.Set "pager" false }}
     {{ $project.Scratch.Set "show-group" false }}
     {{ $project.Scratch.Set "extra-card-cls" false }}
     {{- partial "card" $project -}}
+    {{ end }}
   {{- end -}}
-  {{ end }}
 </div>
