@@ -1,7 +1,7 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Bb912
+title: Sagejacob
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
@@ -29,7 +29,7 @@ education:
 social:
 - icon: github  # A link to your GitHub profile
   icon_pack: fab
-  link: https://github.com/bb912
+  link: https://github.com/sagejacob
 # Have a personal website? Paste the entire URL.
 # - icon: globe-americas
 #   icon_pack: fas
@@ -45,8 +45,8 @@ social:
 
 # `autobot` updates these ----------------------------------------------------
 # These must match and MUST be set to your GitHub username
-github: bb912
-authors: [bb912]
+github: sagejacob
+authors: [sagejacob]
 
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
@@ -54,11 +54,8 @@ ucfai:
   - Coordinator
   teams:
   - fa20
-  - sp20
 user_groups:
-- sp20-core-coordinator
 - Coordinator
 - Coordinators
-- fa20-projects-coordinator
 - fa20-core-coordinator
 ---

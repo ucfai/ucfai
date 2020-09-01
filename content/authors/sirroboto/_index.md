@@ -1,59 +1,75 @@
 ---
-name: Justin TenEyck
+# Replace this with your real name, if you'd like to.
+# Otherwise leave it as your GitHub username.
+title: Justin TenEyck
 
-github: sirroboto
+# What's your current, highest, role in AI@UCF?
+# Omit the Group if you're a Coordinator.
+role: President
 
-ucfai:
-  roles:
-    - President
-    - Director
-    - Coordinator
-  teams:
-    - 2018-2019
-    - 2019-2020
-    - 2020-2021
-
-labs:
-
-authors:
-  - sirroboto
-
-role: President of AI@UCF (2019-2021)
-
+# Do you work anywhere? Are you in any labs?
 organizations:
+- name:
+  url: ''
 
-bio: >-
-  President of AI@UCF for the 2019 and 2020 academic years. Aspiring entrepreneur
-  passionate about home automation and assistive robotics.
+# Short bio (displayed in user profile at end of posts)
+bio:
 
+# List each AI-related interest with a dash
 interests:
-  - Robotics
-  - Home Automation
+- '...'
 
 education:
-  courses:
-    - course: BSc in Computer Engineering
-      institution: University of Central Florida
-      year: 2021
+  courses:  # What are your degrees (>= Bachelors) in?
+  - course: BS in Computer Engineering
+    institution: Univeristy of Central Florida
+    year: 2021
 
+# Place the full URL for every icon
 social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/sirroboto"
+- icon: github  # A link to your GitHub profile
+  icon_pack: fab
+  link: https://github.com/sirroboto
+# Have a personal website? Paste the entire URL.
+# - icon: globe-americas
+#   icon_pack: fas
+#   link:
+# Have a Google Scholar profile? Paste the entire URL.
+# - icon: google-scholar
+#   icon_pack: ai
+#   link:
+# Have a Semantic Scholar profile? Paste the entire URL.
+# - icon: semantic-scholar
+#   icon_pack: ai
+#   link:
 
+# `autobot` updates these ----------------------------------------------------
+# These must match and MUST be set to your GitHub username
+github: sirroboto
+authors: [sirroboto]
 
+# NOTE: If you spot an error, please reach out to one the Maintainers
+ucfai:
+  roles:
+  - President
+  - Coordinator
+  teams:
+  - fa19
+  - fa20
+  - sp19
+  - sp20
+  - sp21
 user_groups:
-  - Presidents
-  - Coordinators
-  - sp19-core-coordinator
-  - fa19-core-coordinator
-  - sp20-core-coordinator
-  - sp20-supplementary-director
-  - fa19-supplementary-director
+- sp20-president
+- fa20-coordinator-gbm
+- sp19-vice-president
+- Coordinator
+- sp21-president
+- Coordinators
+- fa19-president
+- fa20-president
+- Presidents
+- fa20-coordinator-discussions
+- sp20-director-supplementary
+- fa20-core-coordinator
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.

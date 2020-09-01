@@ -1,91 +1,106 @@
 ---
-name: John Muchovej
+# Replace this with your real name, if you'd like to.
+# Otherwise leave it as your GitHub username.
+title: John Muchovej
 
-github: ionlights
+# What's your current, highest, role in AI@UCF?
+# Omit the Group if you're a Coordinator.
+role: Founder of AI@UCF, Former Director of Core & Intelligence
 
-ucfai:
-  roles:
-    - Founder
-    - President
-    - Director
-    - Coordinator
-    - Maintainer
-  teams:
-    - 2017
-    - 2018
-    - 2019
-
-labs:
-  - NLP Group
-  - Center for Research in Computer Vision
-
-authors:
-  - ionlights
-
-role: Founder of AI@UCF, Former Director of Core &amp; Intelligence
-
+# Do you work anywhere? Are you in any labs?
 organizations:
-  - name: Massachusetts Institute of Technology
-    url: https://www.mit.edu/~muchovej/
-  - name: Toptal, AI Engineer & Data Scientist
-    url: https://toptal.com/resume/john-muchovej/
+- name: Massachusetts Institute of Technology
+  url: https://www.mit.edu/~muchovej/
+- name: Toptal, AI Engineer & Data Scientist
+  url: https://toptal.com/resume/john-muchovej/
 
+# Short bio (displayed in user profile at end of posts)
 bio: >-
-  Founder of AI@UCF. Researcher in cognitive science and machine learning. Focusing on
+  Founder of AI@UCF. Researcher in cognitive science and machine learning. Focusing
+  on
   intuitive psychology and social cognition.
 
+# List each AI-related interest with a dash
 interests:
-  - Cognitive Science
-  - Computational Linguistics
-  - Intuitive Psychology
-  - Social Cognition
+- Cognitive Science
+- Computational Linguistics
+- Intuitive Psychology
+- Social Cognition
 
 education:
-  courses:
-    - course: BSc in Computer Science
-      institution: University of Central Florida
-      year: 2019
+  courses:  # What are your degrees (>= Bachelors) in?
+  - course: BSc in Computer Science
+    institution: University of Central Florida
+    year: 2019
 
-# Social/Academic Networking
-# For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
+labs:
+- NLP Group
+- Center for Research in Computer Vision
+
 social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/ionlights"
-  - icon: globe-americas
-    icon_pack: fas
-    link: "https://ionlights.com/"
-  - icon: twitter
-    icon_pack: fab
-    link: https://twitter.com/ionlights
-  - icon: google-scholar
-    icon_pack: ai
-    link: https://scholar.google.com/citations?user=sIwtMXoAAAAJ
-  - icon: semantic-scholar
-    icon_pack: ai
-    link: https://www.semanticscholar.org/author/John-Muchovej/1388023893
+- icon: github    # A link to your GitHub profile
+  icon_pack: fab
+  link: https://github.com/ionlights
+  # Have a personal website? Replace the `#` with its URL.
+- icon: globe-americas
+  icon_pack: fas
+  link: https://john.muchovej.com/
+  # Have a Google Scholar profile? Replace `USERID`.
+- icon: google-scholar
+  icon_pack: ai
+  link: https://scholar.google.com/citations?user=sIwtMXoAAAAJ
+  # Have a Semantic Scholar profile? Replace `USERID` with the tail-end of the URL.
+- icon: semantic-scholar
+  icon_pack: ai
+  link: https://semanticscholar.org/author/John-Muchovej/1388023893
 
-
-# Organizational groups that you belong to (for People widget)
-#   Set this to `[]` or comment out if you are not using People widget.
+# `autobot` updates these -----------------------------------------------------
+github: ionlights
+authors: [ionlights]
+# NOTE: If you spot an error, please reach out to one the Maintainers
+ucfai:
+  roles:
+  - Coordinator
+  - Director
+  - Founder
+  - Maintainer
+  - Guest
+  - President
+  teams:
+  - fa17
+  - fa18
+  - fa19
+  - fa20
+  - sp18
+  - sp19
+  - sp20
 user_groups:
-  - Founders
-  - Presidents
-  - Directors
-  - Coordinators
-  - fa17-core-director
-  - sp18-core-director
-  - fa18-core-director
-  - sp19-core-director
-  - sp19-intelligence-director
-  - sp19-supplementary-director
-  - fa19-core-coordinator
-  - fa19-intelligence-director
-  - fa19-data-science-coordinator
-  - fa19-supplementary-director
-  - sp20-core-coordinator
-  - sp20-intelligence-coordinator
-  - sp20-supplementary-coordinator
+- fa17-coordinator-core
+- sp18-director-core
+- fa19-director-discussions
+- fa20-advisor
+- Guest
+- fa18-director-core
+- Advisors
+- fa18-president
+- Director
+- Presidents
+- sp20-core-guest
+- fa20-advisor-core
+- fa17-coordinator
+- Founders
+- fa17-vice-president
+- sp19-president
+- Directors
+- sp19-director-discussions
+- sp19-director
+- fa19-director
+- fa18-director
+- Coordinators
+- sp18-director
+- sp18-president
+- sp19-director-core
+- fa20-core-director
 ---
 
 ## Briefly
@@ -94,7 +109,7 @@ I'm one of the founders of AI@UCF and I've done research across quite a bit of M
 Learning. I've since transitioned to working at the intersection of Computer Science
 and Cognitive Science, building computational models that are able to do tasks that we
 see children and young humans able to do, trying to work out some of the computational
-basis of intelligence.
+basis of discussions.
 
 ## Founding AI@UCF
 
@@ -118,4 +133,4 @@ Cognition.
 
 Following that fateful summer, I've returned to MIT as a Research Assistant. I'm still
 freelancing at Toptal. And now I'm advising AI@UCF on further fleshing out `core` and
-`intelligence` &ndash; I also pop back from time-to-time to give guest lectures.
+`discussions` &ndash; I also pop back from time-to-time to give guest lectures.

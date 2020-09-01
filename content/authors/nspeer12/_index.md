@@ -1,47 +1,66 @@
 ---
-name: Nick Speer
-github: nspeer12
+# Replace this with your real name, if you'd like to.
+# Otherwise leave it as your GitHub username.
+title: Nspeer12
 
-ucfai:
-  roles:
-    - Coordinator
-  teams:
-    - 2020-2021
+# What's your current, highest, role in AI@UCF?
+# Omit the Group if you're a Coordinator.
+role: Coordinator
 
-labs:
-
-authors:
-  - nspeer12
-
-role: Coordinator, Core
-
+# Do you work anywhere? Are you in any labs?
 organizations:
+- name:
+  url: ''
 
-bio: >-
+# Short bio (displayed in user profile at end of posts)
+bio:
 
+# List each AI-related interest with a dash
 interests:
-  - "..."
+- '...'
 
 education:
-  courses:
-    - course: BSc in Computer Science
-      institution: University of Central Florida
-      year: 2021
+  courses:  # What are your degrees (>= Bachelors) in?
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
 
+# Place the full URL for every icon
 social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/nspeer12"
+- icon: github  # A link to your GitHub profile
+  icon_pack: fab
+  link: https://github.com/nspeer12
+# Have a personal website? Paste the entire URL.
+# - icon: globe-americas
+#   icon_pack: fas
+#   link: 
+# Have a Google Scholar profile? Paste the entire URL.
+# - icon: google-scholar
+#   icon_pack: ai
+#   link: 
+# Have a Semantic Scholar profile? Paste the entire URL.
+# - icon: semantic-scholar
+#   icon_pack: ai
+#   link: 
 
+# `autobot` updates these ----------------------------------------------------
+# These must match and MUST be set to your GitHub username
+github: nspeer12
+authors: [nspeer12]
 
+# NOTE: If you spot an error, please reach out to one the Maintainers
+ucfai:
+  roles:
+  - Director
+  - Coordinator
+  teams:
+  - fa20
+  - sp20
 user_groups:
-  - Coordinators
-  - sp20-core-coordinator
-  - sp20-supplementary-director
+- Director
+- sp20-core-coordinator
+- fa20-core-coordinator
+- Coordinators
+- Coordinator
+- fa20-projects-director
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.
