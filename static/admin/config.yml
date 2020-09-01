@@ -176,6 +176,7 @@ collections:
   label: Archives
   folder: "content/archives"
   path: "{{ slug }}" 
+  create: true
   fields:  # The fields each document in this collection have
   - <<: *title
   - label: Sponsors
