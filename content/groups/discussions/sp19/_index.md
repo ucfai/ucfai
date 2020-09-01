@@ -14,7 +14,6 @@ draft: false
 
 # DO NOT EDIT BELOW THIS LINE ----------
 toc: true
-type: meetings
 weight: 999942
 
 menu_name: discussions_sp19
