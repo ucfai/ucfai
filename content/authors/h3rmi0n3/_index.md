@@ -51,22 +51,22 @@ authors: [h3rmi0n3]
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
   roles:
-  - Vice President
   - Coordinator
+  - Vice President
   teams:
   - fa20
   - fa21
   - sp20
 user_groups:
-- fa20-coordinator-gbm
-- sp20-coordinator-core
-- fa20-coordinator-core
-- fa20-discussions-coordinator
-- Coordinators
-- sp20-coordinator-gbm
-- sp20-coordinator
 - Coordinator
+- Coordinators
 - Vice Presidents
-- fa20-vice-president
+- fa20-coordinator-core
+- fa20-coordinator-gbm
+- fa20-discussions-coordinator
 - fa20-gbms-coordinator
+- fa20-vice-president
+- sp20-coordinator
+- sp20-coordinator-core
+- sp20-coordinator-gbm
 ---

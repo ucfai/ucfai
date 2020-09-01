@@ -52,10 +52,13 @@ authors: [paullunis]
 ucfai:
   roles:
   - Coordinator
+  - Director
   teams:
   - fa20
 user_groups:
 - Coordinator
-- Coordinators
+- Director
 - fa20-core-coordinator
+- fa20-discussions-director
+- fa20-gbms-coordinator
 ---

@@ -51,25 +51,24 @@ authors: [sirroboto]
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
   roles:
-  - President
   - Coordinator
+  - President
   teams:
   - fa19
   - fa20
   - sp19
   - sp20
-  - sp21
 user_groups:
-- sp20-president
-- fa20-coordinator-gbm
-- sp19-vice-president
 - Coordinator
-- sp21-president
 - Coordinators
-- fa19-president
-- fa20-president
 - Presidents
+- fa19-president
 - fa20-coordinator-discussions
-- sp20-director-supplementary
+- fa20-coordinator-gbm
 - fa20-core-coordinator
+- fa20-gbms-coordinator
+- fa20-president
+- sp19-vice-president
+- sp20-director-supplementary
+- sp20-president
 ---

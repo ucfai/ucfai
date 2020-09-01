@@ -54,7 +54,6 @@ ucfai:
   - Coordinator
   teams:
   - fa20
-
 user_groups:
 - Coordinator
 - Coordinators

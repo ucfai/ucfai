@@ -63,8 +63,8 @@ ucfai:
   - Coordinator
   - Director
   - Founder
-  - Maintainer
   - Guest
+  - Maintainer
   - President
   teams:
   - fa17
@@ -75,32 +75,32 @@ ucfai:
   - sp19
   - sp20
 user_groups:
+- Advisors
+- Coordinators
+- Director
+- Directors
+- Founders
+- Guest
+- Presidents
+- fa17-coordinator
 - fa17-coordinator-core
-- sp18-director-core
+- fa17-vice-president
+- fa18-director
+- fa18-director-core
+- fa18-president
+- fa19-director
 - fa19-director-discussions
 - fa20-advisor
-- Guest
-- fa18-director-core
-- Advisors
-- fa18-president
-- Director
-- Presidents
-- sp20-core-guest
 - fa20-advisor-core
-- fa17-coordinator
-- Founders
-- fa17-vice-president
-- sp19-president
-- Directors
-- sp19-director-discussions
-- sp19-director
-- fa19-director
-- fa18-director
-- Coordinators
-- sp18-director
-- sp18-president
-- sp19-director-core
 - fa20-core-director
+- sp18-director
+- sp18-director-core
+- sp18-president
+- sp19-director
+- sp19-director-core
+- sp19-director-discussions
+- sp19-president
+- sp20-core-guest
 ---
 
 ## Briefly

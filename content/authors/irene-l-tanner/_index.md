@@ -55,8 +55,8 @@ ucfai:
   teams:
   - fa20
 user_groups:
-- Coordinators
 - Coordinator
-- fa20-gbms-coordinator
+- Coordinators
 - fa20-discussions-coordinator
+- fa20-gbms-coordinator
 ---

@@ -51,16 +51,16 @@ authors: [nspeer12]
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
   roles:
-  - Director
   - Coordinator
+  - Director
   teams:
   - fa20
   - sp20
 user_groups:
-- Director
-- sp20-core-coordinator
-- fa20-core-coordinator
-- Coordinators
 - Coordinator
+- Coordinators
+- Director
+- fa20-core-coordinator
 - fa20-projects-director
+- sp20-core-coordinator
 ---
