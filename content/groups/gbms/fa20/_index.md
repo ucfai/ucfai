@@ -1,6 +1,6 @@
 ---
-title: 'Gbms: Fall 2020'
-linktitle: 'Gbms: Fall 2020'
+title: 'GBMs: Fall 2020'
+linktitle: 'GBMs: Fall 2020'
 
 date: '2020-09-08 18:00:00'
 location: Online
