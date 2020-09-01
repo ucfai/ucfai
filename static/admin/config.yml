@@ -11,7 +11,7 @@ publish_mode: editorial_workflow
 media_folder: assets/images
 public_folder: /images
 
-logo_url: /images/brand/light-bg-ready.svg
+logo_url: /brand/fullmark/light-bg-ready.svg
 
 x-reqd-str: &reqd-str { widget: string, required: true }
 x-optn-str: &optn-str { widget: string, required: false }
