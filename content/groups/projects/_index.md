@@ -1,6 +1,6 @@
 ---
-title: "Data Science"
-linktitle: "Data Science"
+title: "Projects"
+linktitle: "Projects"
 
 # Optional header image (relative to `static/img/` folder).
 header:
@@ -8,10 +8,7 @@ header:
   image: ""
 
 # DO NOT MODIFY BELOW THIS LINE -------
-layout: docs
-type: meetings
-
-menu_name: groups
+menu_name: Projects
 
 menu:
   main:
