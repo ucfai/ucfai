@@ -1,9 +1,9 @@
 {{/* Derived from "partials/li_card" */}}
 
 {{- $page := . -}} 
-{{- $pager := $.Scratch.Get "pager" | default false -}}
-{{- $showGroup := $.Scratch.Get "show-group" | default false -}}
-{{- $extracls := $.Scratch.Get "extra-card-cls" | default "" -}}
+{{- $pager := $page.Scratch.Get "pager" | default false -}}
+{{- $showGroup := $page.Scratch.Get "show-group" | default false -}}
+{{- $extracls := $page.Scratch.Get "extra-card-cls" | default "" -}}
 
 {{- $direction := dict "prev" "left" "next" "right" -}}
 
