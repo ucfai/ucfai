@@ -1,10 +1,10 @@
 ---
-title: 'Core: Fall 2020'
-linktitle: 'Core: Fall 2020'
+title: 'Gbms: Fall 2020'
+linktitle: 'Gbms: Fall 2020'
 
-date: '2020-08-31 00:00:00'
+date: '2020-09-08 18:00:00'
 location: Online
-frequency: 1
+frequency: 2
 
 # Summarize the Group's content for this semester
 summary: >-
@@ -16,17 +16,17 @@ draft: false
 toc: true
 weight: 999938
 
-menu_name: core_fa20
+menu_name: gbms_fa20
 
 menu:
-  core_fa20:
+  gbms_fa20:
     weight: 1
   groups:
-    parent: Core
-    identifier: core_fa20
+    parent: Gbms
+    identifier: gbms_fa20
 
 user_groups:
-- fa20-core-director
-- fa20-core-coordinator
-- fa20-core-guest
+- fa20-gbms-director
+- fa20-gbms-coordinator
+- fa20-gbms-guest
 ---
