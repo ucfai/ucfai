@@ -7,7 +7,7 @@
   {{- $coordinators := where site.Pages "Section" "authors" }}
 
   {{- range $role := site.Data.config.officers }}
-    {{- $whenrole := printf "%s-%s-%s" $semester (anchorize $role) $group }}
+    {{- $whenrole := printf "%s-%s-%s" $semester $group (anchorize $role) }}
     {{- $whenrole = replace $whenrole "-all" "" }}
 
     {{- $query := where $coordinators "Params.user_groups" "intersect" (slice $whenrole) -}}
