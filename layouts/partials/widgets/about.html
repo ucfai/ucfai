@@ -84,12 +84,12 @@
     <div class="row">
 
       {{ with $person.ucfai.roles }}
-      <div class="col-12">
-        <h3>Roles</h3>
-        <ul class="ul-roles">
+      <div class="col-md-6">
+        <h3> Positions </h3>
+        <ul class="ul-edu fa-ul">
           {{ range . }}
           <li class="tag-roles">
-            <i class="fa-fw fas fa-id-badge"></i>
+            <i class="fa-li fa-fw fas fa-id-badge"></i> 
             <p>{{ . | markdownify | emojify }}</p>
           </li>
           {{ end }}
@@ -98,27 +98,35 @@
       {{ end }}
 
       {{ with $person.ucfai.teams }}
-      <div class="col-12">
-        <h3>Years</h3>
-        <ul class="ul-years">
+      <div class="col-md-6">
+        <h3> Semesters</h3>
+        <ul class="ul-edu fa-ul">
           {{ range . }}
-          <px class="tag-years">
-            <i class="fa-fw fas fa-calendar"></i>
+          <li class="tag-years">
+            <i class="fa-li fa-fw fas fa-calendar"></i>
             <p>{{ . | markdownify | emojify }}</p>
-          </px>
+          </li>
           {{ end }}
         </ul>
       </div>
       {{ end }}
 
       {{ with $person.interests }}
-      <div class="col-12">
+      <div class="col-md-6">
         <h3>{{ i18n "interests" | markdownify }}</h3>
-        <ul class="ul-interests">
+        <ul class="ul-edu fa-ul">
           {{ range . }}
           <li class="tag-interests">
-            <i class="fa-fw fas fa-flask"></i>
-            <p>{{ . | markdownify | emojify }}</p>
+            <i class="fa-li fa-fw fas fa-flask"></i>
+            <div class="description">
+              <p class="course">{{ . | markdownify | emojify }}</p>
+              <p class="institution">
+                {{ $interest := . | urlize }}
+                {{ if index $.Site.Taxonomies.tags $interest }}
+                  <a href="/tags/{{ $interest }}">Related Meetings</a>
+                {{ end }}
+              </p>
+            </div>
           </li>
           {{ end }}
         </ul>
