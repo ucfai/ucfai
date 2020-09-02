@@ -1,11 +1,13 @@
 ---
-title: "AI@UCF's Archives"
+title: "The Archives"
 
 date: "2020-01-22T17:30:00E"
 lastmod: "2020-05-31T17:40:00E"
 
 summary: >-
-  We're working on filling this out!
+  A running log of the progress we're making every semester to build a vibrant 
+  community of researchers and engineers passionate about building Computational
+  Intelligence.
 
 sponsors:
 - cbmm
@@ -21,3 +23,5 @@ menu:
     name: "About Us"
   archives:
 ---
+
+A running log of the progress we're making every semester to build a vibrant community of researchers and engineers passionate about building Computational Intelligence.

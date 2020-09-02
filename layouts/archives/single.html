@@ -11,7 +11,7 @@
   <div class="article">
     {{ partial "custom-header" $page }}
     <div class="article-container">
-      {{ .Content }}
+      {{ $page.Content }}
 
       {{ $page.Scratch.Set "show-group" false }}
       {{ $page.Scratch.Set "status" "active" }}
@@ -22,6 +22,8 @@
         {{ $page.Scratch.Set "group" "all" }}
         {{ partial "groups/officers" $page }}
       </div>
+
+      {{ partial "fancy-pager" $page }}
     </div>
   </div>
 
