@@ -64,7 +64,6 @@ user_groups:
 - Directors
 - fa20-coordinator
 - fa20-core-coordinator
-- fa20-core-director
 - fa20-director
 - fa20-gbms-director
 - sp19-coordinator
