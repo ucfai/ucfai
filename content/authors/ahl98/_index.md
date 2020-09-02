@@ -1,11 +1,11 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Aidan Lakshman
+title: Ahl98
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Former Director of Discussions
+role: Coordinator
 
 # Do you work anywhere? Are you in any labs?
 organizations:
@@ -21,9 +21,9 @@ interests:
 
 education:
   courses:  # What are your degrees (>= Bachelors) in?
-  - course: BS in Mathematics
+  - course: BS in <UNK>
     institution: Univeristy of Central Florida
-    year: 2020
+    year: YYYY
 
 # Place the full URL for every icon
 social:
