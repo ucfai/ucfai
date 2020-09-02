@@ -141,7 +141,7 @@
  
 [[ redirects ]] 
   from = "/interest-meeting"
-  to = "https://ucf.zoom.us/j/97212980604"
+  to = "https://ucf.zoom.us/rec/share/1cVeNezp73xOGKfR6n3ZX_EuJN_9X6a82nQZrqBfxRrXXdLNDzVcnnyJ9XHmWX_e"
   status = 301
 
 [[ redirects ]] 
@@ -153,3 +153,9 @@
   from = "/event-interest"
   to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
   status = 301
+
+[[ redirects ]] 
+  from = "/gbm-meeting"
+  to = "https://ucf.zoom.us/j/98719091390"
+  status = 301
+
