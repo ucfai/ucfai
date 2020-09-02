@@ -1,11 +1,10 @@
 ---
 title: Groups
 
-type: groups
-menu_name: groups
+menu_name: Groups
 
 menu:
-  # main:
+  main:
   #   weight: 3
   # groups:
   #   weight: 1
