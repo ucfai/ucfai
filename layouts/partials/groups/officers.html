@@ -1,7 +1,7 @@
 {{- $page := . -}}
 
-{{- $semester := $page.Scratch.Get "semester" }}
-{{- $group := $page.Scratch.Get "group" }}
+{{- $semester := $.Scratch.Get "semester" }}
+{{- $group := $.Scratch.Get "group" }}
 
 {{- $authors := slice -}}
   {{- $coordinators := where site.Pages "Section" "authors" }}
@@ -17,7 +17,6 @@
       {{- $authors_set := uniq ($authors | append $author) }}
       {{- if ne $authors_set $authors }}
         {{- $authors = $authors | append $author }}
-
         {{- partial "coordinator" $author -}}
       {{- end }}
       {{- $author.Scratch.Delete "coordinator-role" -}}

@@ -3,15 +3,15 @@
 {{ $archivedGroups := .archivedGroups }}
 
 {{ if not ($page.Name | in $archivedGroups) }}
-{{ with $page.HasChildren }}
+{{ if $page.HasChildren }}
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
     aria-haspopup="true">
-    {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+    {{- $page.Pre -}}<span>{{ $page.Name | safeHTML }}</span>{{- $page.Post -}}
     <span class="caret"></span>
   </a>
   <div class="dropdown-menu">
-    {{ range .Children }}
+    {{ range $page.Children }}
       <a href="{{ .URL | relLangURL }}"
          class="dropdown-item" 
          {{ if $.IsHome }} data-target="{{ .URL }}" {{ end }}>

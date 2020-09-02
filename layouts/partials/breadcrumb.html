@@ -21,8 +21,10 @@
                 {{- $href = $.Scratch.Get "path" -}}
             {{- end -}}
             <span class="btn btn-primary breadcrumb-item {{ $toggle -}}" href="{{ $href }}">
-              {{- with not $toggle -}}
+              {{- if not $toggle -}}
               <i class="mr-1 fas fa-map-pin fa-sm"></i>
+              {{- else -}}
+              <i class="mr-1 fas fa-link fa-sm"></i>
               {{- end -}}
               {{ $asPage.LinkTitle }}
               {{- with $toggle -}}

@@ -9,23 +9,23 @@
   
   {{- if (eq $page.Title "Groups") }}
 
-    {{ $page.Scratch.Set "show-group" true }}
+    {{ $.Scratch.Set "show-group" true }}
   
-    {{ $page.Scratch.Set "show-if-none" true }}
-    {{ $page.Scratch.Set "status" "active" }}
+    {{ $.Scratch.Set "show-if-none" true }}
+    {{ $.Scratch.Set "status" "active" }}
     {{ partial "groups/status" $page }}
   
-    {{ $page.Scratch.Set "status" "archived" }}
-    {{ $page.Scratch.Set "show-if-none" false }}
+    {{ $.Scratch.Set "status" "archived" }}
+    {{ $.Scratch.Set "show-if-none" false }}
     {{ partial "groups/status" $page }}
 
   {{- else }}
 
     <h2> Past and Present Semesters </h2>
     <div class="row row-cols-1 row-cols-md-2">
+      {{ $.Scratch.Set "pager" false }}
       {{ range $page.Pages.ByWeight }}
         {{/* Ran into some quirks with inhereting from $page.Scratch... */}}
-        {{ .Scratch.Set "pager" false }}
         {{ partial "card" . }}
       {{ end }}
     </div>

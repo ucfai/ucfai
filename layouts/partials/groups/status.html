@@ -3,7 +3,7 @@
 {{- $groups := partial "functions/get-groups" $page }}
 {{- $status := $.Scratch.Get "status" }}
 {{- $showIfNone := $.Scratch.Get "show-if-none" | default false }}
-{{- $showGroup := $.Scratch.Get "show-group" | default false }}
+{{- $showGroup := $page.Scratch.Get "show-group" }}
 {{- $nCols := $.Scratch.Get "n-cols" | default 2 }}
 
 {{ if $showIfNone | or (gt (len $groups) 0) }}
@@ -13,10 +13,11 @@
 
     <div class="row row-cols-1 row-cols-md-{{ $nCols }}">
     {{- range $group := $groups }}
-      {{ if and (eq $status "active") ($page.IsHome) }}
-        {{ $group.Scratch.Set "show-group" true }}
-      {{ end }}
+      {{ $group.Scratch.Set "show-group" $showGroup }}
+      {{ $group.Scratch.Set "pager" false}}
       {{ partial "card" $group }}
+      {{ $group.Scratch.Delete "pager" }}
+      {{ $group.Scratch.Delete "show-group" }}
     {{- end }}
     </div>
 

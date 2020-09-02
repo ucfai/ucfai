@@ -43,13 +43,7 @@
 
       <!-- Left Nav Bar -->
       <ul class="navbar-nav d-md-inline-flex">
-        {{ $page.Scratch.Set "status" "archived" }}
-        {{ $page.Scratch.Set "semester" site.Data.config.semester }}
-        {{ $groups := partial "functions/get-groups" $page }}
         {{ $archivedGroups := slice }}
-        {{ range $groups }}
-          {{ $archivedGroups = $archivedGroups | append .Title }}
-        {{ end }}
 
         {{ $dict := dict "current" $page "archivedGroups" $archivedGroups }}
         {{ range site.Menus.main }}

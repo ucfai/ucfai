@@ -1,8 +1,8 @@
 {{- $page := . -}}
 
-{{- $group := $page.Scratch.Get "group" -}}
-{{- $semester := $page.Scratch.Get "semester" -}}
-{{- $semDict := $page.Scratch.Get "semDict" -}}
+{{- $group := $.Scratch.Get "group" -}}
+{{- $semester := $.Scratch.Get "semester" -}}
+{{- $semDict := $.Scratch.Get "semDict" -}}
 {{- $fullname := index $semDict "fullname" -}}
 
 {{- $groupAsTitle := replace (replace $group "-" " ") "_" " " | title -}}

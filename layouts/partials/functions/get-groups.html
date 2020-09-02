@@ -2,8 +2,8 @@
 
 {{ $statuses := slice "active" "archived" }}
 
-{{ $status := $page.Scratch.Get "status" }}
-{{ $semester := $page.Scratch.Get "semester" }}
+{{ $status := $.Scratch.Get "status" }}
+{{ $semester := $.Scratch.Get "semester" }}
 
 {{ $groups := slice }}
 {{ if in $statuses $status }}
@@ -12,7 +12,7 @@
 
   {{ range $onDisk := $onDiskGroups }}
     {{ $expected := printf "/groups/%s/%s/_index.md" $onDisk.Name $semester }}
-    {{ $p := $page.GetPage $expected }}
+    {{ $p := $.Site.GetPage $expected }}
     {{ if $p | and (eq $status "active") }}
       {{ $groups = $groups | append $p }}
     {{ else if not $p | and (eq $status "archived") }}

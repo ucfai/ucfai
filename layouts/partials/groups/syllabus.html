@@ -2,6 +2,8 @@
 
 <div id="syllabus" class="row row-cols-1 row-cols-md-2">
   {{- range $meeting := $page.Pages -}}
+    {{ $meeting.Scratch.Set "pager" false }}
     {{- partial "card" $meeting -}}
+    {{ $meeting.Scratch.Delete "pager" }}
   {{- end -}}
 </div>

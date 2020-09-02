@@ -20,7 +20,12 @@
   {{ $page.Scratch.Set "status" "active" }}
   {{ $page.Scratch.Set "n-cols" 3 }}
   {{ $page.Scratch.Set "show-group" true }}
+
   {{ partial "groups/status" $page }}
+
+  {{ $page.Scratch.Delete "show-group" }}
+  {{ $page.Scratch.Delete "n-cols" }}
+  {{ $page.Scratch.Delete "status" }}
 </main>
 
 {{ partial "particles" . }}

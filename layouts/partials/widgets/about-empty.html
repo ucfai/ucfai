@@ -1,0 +1,29 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+{{ $author := .author }} 
+
+{{ $avatar_shape := site.Params.avatar.shape | default "circle" }}
+{{ $avatar_shape = printf "avatar-%s" $avatar_shape }}
+
+<!-- About widget -->
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <div id="profile">
+      {{ if site.Params.avatar.github }}
+      <img class="avatar {{ $avatar_shape }}" src="https://avatars.githubusercontent.com/{{ $author }}?s=270" alt="{{ $author }}">
+      {{ end }}
+
+      <div class="portrait-title">
+        <h2>{{ $author }}</h2>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-12 col-lg-8">
+
+    {{/* Only display widget title in explicit instances of about widget, not in author pages. */}}
+    <p>I'm elaborating my description. Check back in the future!</p>
+
+  </div>
+</div>

@@ -4,10 +4,10 @@
   {{- range $project := $page.Params.projects -}}
     {{ $project = site.GetPage (printf "/project/%s" $project) }}
     {{ if $project }}
-    {{ $project.Scratch.Set "pager" false }}
-    {{ $project.Scratch.Set "show-group" false }}
-    {{ $project.Scratch.Set "extra-card-cls" false }}
-    {{- partial "card" $project -}}
+      {{ $.Scratch.Set "pager" false }}
+      {{ $.Scratch.Set "show-group" false }}
+      {{ $.Scratch.Set "extra-card-cls" false }}
+      {{- partial "card" $project -}}
     {{ end }}
   {{- end -}}
 </div>

@@ -9,7 +9,9 @@
 
   <div class="row row-cols-1 row-cols-md-2">
   {{ range .Data.Pages }}
+    {{ .Scratch.Set "pager" false }}
     {{ partial "card" . }}
+    {{ .Scratch.Delete "pager" }}
   {{ end }}
   </div>
 </div>
