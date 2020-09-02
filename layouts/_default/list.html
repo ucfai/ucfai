@@ -1,0 +1,17 @@
+{{- define "main" -}}
+
+{{ partial "page_header.html" . }}
+
+<div class="universal-wrapper">
+  {{ with .Content }}
+  <div class="article-style">{{ . }}</div>
+  {{ end }}
+
+  <div class="row row-cols-1 row-cols-md-2">
+  {{ range .Data.Pages }}
+    {{ partial "card" . }}
+  {{ end }}
+  </div>
+</div>
+
+{{- end -}}
