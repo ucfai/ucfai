@@ -159,3 +159,12 @@
   to = "https://ucf.zoom.us/j/98719091390"
   status = 301
 
+[[ redirects ]] 
+  from = "/discussions-meeting"
+  to = "https://ucf.zoom.us/j/99073401370"
+  status = 301
+
+[[ redirects ]] 
+  from = "/projects-meeting"
+  to = "https://ucf.zoom.us/j/95302027830"
+  status = 301
