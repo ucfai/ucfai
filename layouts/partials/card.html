@@ -10,7 +10,7 @@
 <div class="col my-3 mx-auto {{ $extracls -}}">
   <div class="card-simple h-100">
 
-    {{- if $pager -}}
+    {{- if eq $pager true -}}
     <div class="pager-symbol pager-{{ $pager }}" href="{{ $page.RelPermalink }}" rel="{{ $pager }}">
       <i class="fas fa-arrow-alt-circle-{{ index $direction $pager }} fa-fw"></i>
     </div>

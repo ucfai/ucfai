@@ -6,6 +6,8 @@
 {{- $showGroup := $page.Scratch.Get "show-group" }}
 {{- $nCols := $.Scratch.Get "n-cols" | default 2 }}
 
+{{ $page.Scratch.Set "pager" false }}
+
 {{ if $showIfNone | or (gt (len $groups) 0) }}
   <h2> {{ $status | title }} Groups </h2>
 
@@ -35,3 +37,5 @@
   {{- end -}}
 
 {{- end -}}
+
+{{ $page.Scratch.Delete "pager" }}
