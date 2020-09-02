@@ -6,7 +6,10 @@ light = true
 
 # Primary
 # primary = "#222222"
-primary = "#eae3c9"
+# primary = "#eae3c9"
+# primary = "#143248"
+primary = "#17a2b8"
+# primary = "#0093ff"
 
 # Menu
 menu_primary = "#222222"
@@ -17,3 +20,7 @@ menu_title = "#fff"
 # Home sections
 home_section_odd = "#fff"
 home_section_even = "#fff"
+
+# color: #143248;
+# background-color: #e2eaff;
+# border-color: #c3cfe8;
