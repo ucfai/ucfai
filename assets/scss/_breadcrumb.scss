@@ -2,7 +2,7 @@
     background-color: transparent;
 
     a {
-        color: $sta-menu-primary !important;
+        color: inherit !important;
     }
     .breadcrumb-item.dropdown {
         li {
@@ -18,11 +18,11 @@
             // border-top-right-radius: 0;
             // border-top-left-radius: 0;
             // margin-top: 0.75em;
-            background-color: $sta-primary!important;
+            background-color: $sta-primary !important;
             box-shadow: 0 0 rgba(0, 0, 0, 0.24);
         }
         .dropdown-item {
-            background-color: $sta-primary!important;
+            background-color: $sta-primary !important;
         }
     }
 }
