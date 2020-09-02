@@ -153,3 +153,8 @@
   from = "/event-interest"
   to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
   status = 301
+
+[[ redirects ]] 
+  from = "/discussions-interest"
+  to = "https://us04web.zoom.us/j/74087866374?pwd=OWpoL2VId1F1eUkzdHJ1ZXJwU2piUT09"
+  status = 301
