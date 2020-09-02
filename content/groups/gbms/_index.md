@@ -12,7 +12,7 @@ menu_name: GBMs
 
 menu:
   main:
-    # parent: Groups
+    parent: Groups
   groups:
     # parent: Groups
   gbms:

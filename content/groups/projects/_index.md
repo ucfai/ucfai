@@ -12,7 +12,7 @@ menu_name: Projects
 
 menu:
   main:
-    # parent: Groups
+    parent: Groups
   groups:
     # parent: Groups
   projects:

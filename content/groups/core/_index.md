@@ -12,7 +12,7 @@ menu_name: Core
 
 menu:
   main:
-    # parent: Groups
+    parent: Groups
   groups:
     # parent: Groups
   core:
