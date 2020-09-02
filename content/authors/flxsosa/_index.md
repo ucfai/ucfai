@@ -59,7 +59,6 @@ user_groups:
 - Founders
 - Advisors
 - Directors
-- Coordinators
 - fa17-president
 - fa17-director
 - fa17-director-core

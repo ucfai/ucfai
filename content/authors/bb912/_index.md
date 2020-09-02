@@ -57,7 +57,6 @@ ucfai:
   - sp20
 user_groups:
 - Coordinator
-- Coordinators
 - fa20-core-coordinator
 - fa20-projects-coordinator
 - sp20-core-coordinator

@@ -59,7 +59,6 @@ ucfai:
   - fa18
 user_groups:
 - Founders
-- Coordinators
 - fa17-coordinator
 - sp18-vice-president
 - fa18-coordinator

@@ -17,8 +17,7 @@ organizations:
 # Short bio (displayed in user profile at end of posts)
 bio: >-
   Founder of AI@UCF. Researcher in cognitive science and machine learning. Focusing
-  on
-  intuitive psychology and social cognition.
+  on intuitive psychology and social cognition.
 
 # List each AI-related interest with a dash
 interests:
@@ -75,13 +74,12 @@ ucfai:
   - sp19
   - sp20
 user_groups:
-- Advisors
-- Coordinators
+- Advisor
 - Director
-- Directors
-- Founders
+- Director
+- Founder
 - Guest
-- Presidents
+- President
 - fa17-coordinator
 - fa17-coordinator-core
 - fa17-vice-president
@@ -96,10 +94,10 @@ user_groups:
 - sp18-director
 - sp18-director-core
 - sp18-president
-- sp19-director
 - sp19-director-core
 - sp19-director-discussions
 - sp19-president
+- sp20-advisor
 - sp20-core-guest
 ---
 

@@ -59,7 +59,6 @@ ucfai:
   - sp20
 user_groups:
 - Coordinator
-- Coordinators
 - Vice Presidents
 - fa20-coordinator-core
 - fa20-coordinator-gbm

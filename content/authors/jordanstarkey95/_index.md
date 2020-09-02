@@ -53,11 +53,6 @@ ucfai:
   roles:
   - Coordinator
   teams:
-  - fa20
-  - sp20
 user_groups:
-- fa20-core-coordinator
 - Coordinator
-- Coordinators
-- sp20-core-coordinator
 ---

@@ -59,7 +59,6 @@ ucfai:
   - sp20
   - sp21
 user_groups:
-- Coordinators
 - Director
 - Directors
 - fa20-core-director

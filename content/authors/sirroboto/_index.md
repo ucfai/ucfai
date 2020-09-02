@@ -60,7 +60,6 @@ ucfai:
   - sp20
 user_groups:
 - Coordinator
-- Coordinators
 - Presidents
 - fa19-president
 - fa20-coordinator-discussions
