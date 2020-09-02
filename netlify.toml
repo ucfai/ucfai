@@ -153,3 +153,9 @@
   from = "/event-interest"
   to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
   status = 301
+
+[[ redirects ]] 
+  from = "/gbm-meeting"
+  to = "https://ucf.zoom.us/j/98719091390"
+  status = 301
+
