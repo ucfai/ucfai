@@ -168,3 +168,8 @@
   from = "/projects-meeting"
   to = "https://ucf.zoom.us/j/95302027830"
   status = 301
+
+[[ redirects ]] 
+  from = "/subscribe-newsletter"
+  to = "http://eepurl.com/g9dlv1"
+  status = 301
