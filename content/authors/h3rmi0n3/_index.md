@@ -1,11 +1,11 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Chloë Geller
+title: H3rmi0n3
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Vice President
+role: Coordinator
 
 # Do you work anywhere? Are you in any labs?
 organizations:
@@ -59,13 +59,10 @@ ucfai:
   - sp20
 user_groups:
 - Coordinator
-- Vice Presidents
-- fa20-coordinator-core
-- fa20-coordinator-gbm
+- Vice President
+- fa20-coordinator
 - fa20-discussions-coordinator
 - fa20-gbms-coordinator
 - fa20-vice-president
 - sp20-coordinator
-- sp20-coordinator-core
-- sp20-coordinator-gbm
 ---

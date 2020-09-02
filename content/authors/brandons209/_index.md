@@ -59,17 +59,15 @@ ucfai:
   - sp20
   - sp21
 user_groups:
+- Coordinator
 - Director
 - Directors
+- fa20-coordinator
+- fa20-core-coordinator
 - fa20-core-director
 - fa20-director
-- fa20-director-gbm
 - fa20-gbms-director
 - sp19-coordinator
-- sp19-coordinator-core
 - sp20-core-director
 - sp20-director
-- sp20-director-core
-- sp21-director
-- sp21-director-gbm
 ---

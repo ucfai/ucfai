@@ -60,7 +60,6 @@ ucfai:
 user_groups:
 - Directors
 - fa18-coordinator
-- fa18-coordinator-core
 - fa19-director
 - fa19-director-discussions
 - sp20-director

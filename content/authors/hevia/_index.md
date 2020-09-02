@@ -56,6 +56,7 @@ ucfai:
   - fa20
 user_groups:
 - Coordinator
+- fa20-coordinator
 - fa20-discussions-coordinator
 - fa20-projects-coordinator
 ---

@@ -58,7 +58,9 @@ ucfai:
 user_groups:
 - Coordinator
 - Director
+- fa20-coordinator
 - fa20-core-coordinator
+- fa20-director
 - fa20-discussions-director
 - fa20-gbms-coordinator
 ---

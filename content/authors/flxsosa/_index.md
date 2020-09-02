@@ -1,11 +1,11 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Felix Sosa
+title: Flxsosa
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Founder; Former President & Director of Core
+role: Coordinator
 
 # Do you work anywhere? Are you in any labs?
 organizations:
@@ -51,17 +51,17 @@ authors: [flxsosa]
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
   roles:
+  - Advisor
   - Coordinator
   - Director
   teams:
   - fa17
+  - fa20
 user_groups:
-- Founders
-- Advisors
-- Directors
-- fa17-president
+- Advisor
+- Founder
 - fa17-director
-- fa17-director-core
+- fa17-president
 - fa20-advisor
-- fa20-advisor-core
+- fa20-core-advisor
 ---

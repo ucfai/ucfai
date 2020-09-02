@@ -1,11 +1,11 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Richard DiBacco
+title: Dibaccory
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Founder & Former Coordinator
+role: Coordinator
 
 # Do you work anywhere? Are you in any labs?
 organizations:
@@ -52,7 +52,6 @@ authors: [dibaccory]
 ucfai:
   roles:
   - Coordinator
-  - Founder
   teams: 
   - fa17
   - sp18
@@ -61,8 +60,9 @@ user_groups:
 - Founders
 - fa17-coordinator
 - sp18-vice-president
+- sp18-coordinator
 - fa18-coordinator
-- fa17-coordinator-core
-- sp18-coordinator-core
-- fa18-coordinator-core
+- fa17-core-coordinator
+- sp18-core-coordinator
+- fa18-core-coordinator
 ---

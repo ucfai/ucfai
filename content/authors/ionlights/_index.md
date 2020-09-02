@@ -59,6 +59,7 @@ authors: [ionlights]
 # NOTE: If you spot an error, please reach out to one the Maintainers
 ucfai:
   roles:
+  - Advisor
   - Coordinator
   - Director
   - Founder
@@ -76,26 +77,18 @@ ucfai:
 user_groups:
 - Advisor
 - Director
-- Director
 - Founder
 - Guest
 - President
 - fa17-coordinator
-- fa17-coordinator-core
 - fa17-vice-president
 - fa18-director
-- fa18-director-core
 - fa18-president
 - fa19-director
-- fa19-director-discussions
 - fa20-advisor
-- fa20-advisor-core
-- fa20-core-director
+- fa20-core-advisor
 - sp18-director
-- sp18-director-core
 - sp18-president
-- sp19-director-core
-- sp19-director-discussions
 - sp19-president
 - sp20-advisor
 - sp20-core-guest

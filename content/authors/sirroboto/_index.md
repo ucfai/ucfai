@@ -1,11 +1,11 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Justin TenEyck
+title: Sirroboto
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: President
+role: Coordinator
 
 # Do you work anywhere? Are you in any labs?
 organizations:
@@ -62,12 +62,11 @@ user_groups:
 - Coordinator
 - Presidents
 - fa19-president
-- fa20-coordinator-discussions
-- fa20-coordinator-gbm
+- fa20-coordinator
 - fa20-core-coordinator
 - fa20-gbms-coordinator
 - fa20-president
 - sp19-vice-president
-- sp20-director-supplementary
+- sp20-supplementary-director
 - sp20-president
 ---
