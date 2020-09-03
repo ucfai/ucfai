@@ -14,20 +14,20 @@
     alt="{{ .Title }}'s GitHub Avatar" />
 
   <div class="media-body">
-    <h5 class="card-title">
-      <a href="{{ .RelPermalink }}"> {{ .Title }} </a>
-    </h5>
-    {{ $manual_role_set := .Scratch.Get "coordinator-role" | default "" }}
-    {{ $role := cond (ne $manual_role_set "") (.Scratch.Get "coordinator-role") .Params.role }}
+    <h5 class="card-title"> <a href="{{ .RelPermalink }}"> {{ .Title }} </a> </h5>
+
+    {{- $manual_role_set := .Scratch.Get "coordinator-role" | default "" }}
+    {{- $role := cond (ne $manual_role_set "") (.Scratch.Get "coordinator-role") .Params.role }}
+    {{- $role = i18n $role }}
 
     <h6 class="card-subtitle"> {{ $role | markdownify | emojify }} </h6>
 
-    {{ if not $manual_role_set }}
-      {{ with .Params.bio }}
+    {{- if not $manual_role_set }}
+      {{- with .Params.bio }}
         <p class="card-text"> {{ . | markdownify | emojify }} </p>
-      {{ end }}
-      {{ partial "links-social" . }}
-    {{ end }}
+      {{- end }}
+    {{- end }}
+    {{- partial "links-social" . }}
   </div>
 </div>
 {{ end }}
