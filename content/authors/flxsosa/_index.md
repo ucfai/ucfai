@@ -60,8 +60,8 @@ ucfai:
 user_groups:
 - Advisor
 - Founder
-- fa17-director
 - fa17-president
+- fa17-director
 - fa20-advisor
 - fa20-core-advisor
 ---

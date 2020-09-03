@@ -54,19 +54,19 @@ ucfai:
   - Coordinator
   - President
   teams:
-  - fa19
-  - fa20
   - sp19
+  - fa19
   - sp20
+  - fa20
 user_groups:
 - Coordinator
 - Presidents
-- fa19-president
-- fa20-coordinator
-- fa20-core-coordinator
-- fa20-gbms-coordinator
-- fa20-president
 - sp19-vice-president
-- sp20-supplementary-director
+- fa19-president
 - sp20-president
+- sp20-supplementary-director
+- fa20-president
+- fa20-gbms-coordinator
+- fa20-core-coordinator
+- fa20-coordinator
 ---

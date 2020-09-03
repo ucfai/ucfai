@@ -68,30 +68,35 @@ ucfai:
   - President
   teams:
   - fa17
-  - fa18
-  - fa19
-  - fa20
   - sp18
+  - fa18
   - sp19
+  - fa19
   - sp20
+  - fa20
 user_groups:
 - Advisor
 - Director
 - Founder
 - Guest
 - President
-- fa17-coordinator
 - fa17-vice-president
-- fa18-director
-- fa18-president
-- fa19-director
-- fa20-advisor
-- fa20-core-advisor
-- sp18-director
+- fa17-core-coordinator
 - sp18-president
+- sp18-director
+- sp18-core-director
+- fa18-president
+- fa18-director
+- fa18-core-director
 - sp19-president
-- sp20-advisor
+- sp19-core-director
+- sp19-discussions-director
+- fa19-discussions-director
+- fa19-core-coordinator
 - sp20-core-guest
+- sp20-advisor
+- fa20-core-advisor
+- fa20-advisor
 ---
 
 ## Briefly
