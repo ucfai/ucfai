@@ -5,24 +5,24 @@ title: John Muchovej
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Founder of AI@UCF, Former Director of Core & Intelligence
+role: Founder; Former Director of Core & Discussions
 
 # Do you work anywhere? Are you in any labs?
 organizations:
-- name: Massachusetts Institute of Technology
-  url: https://www.mit.edu/~muchovej/
+- name: Computation, Cognition, & Development; Harvard University
+  url: https://cocodev.org/
 - name: Toptal, AI Engineer & Data Scientist
   url: https://toptal.com/resume/john-muchovej/
 
 # Short bio (displayed in user profile at end of posts)
 bio: >-
   Founder of AI@UCF. Researcher in cognitive science and machine learning. Focusing
-  on intuitive psychology and social cognition.
+  on intuitive physics and intuitive psychology.
 
 # List each AI-related interest with a dash
 interests:
 - Cognitive Science
-- Computational Linguistics
+- Intuitive Physics
 - Intuitive Psychology
 - Social Cognition
 
