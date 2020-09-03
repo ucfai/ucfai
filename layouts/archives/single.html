@@ -11,19 +11,22 @@
   <div class="article">
     {{ partial "custom-header" $page }}
     <div class="article-container">
-      {{ $page.Content }}
+      {{- $page.Content }}
 
-      {{ $page.Scratch.Set "show-group" false }}
-      {{ $page.Scratch.Set "status" "active" }}
-      {{ partial "groups/status" $page }}
+      {{- $page.Scratch.Set "show-group" false }}
+      {{- $page.Scratch.Set "status" "active" }}
+      {{- partial "groups/status" $page }}
+      {{- $page.Scratch.Delete "status" }}
+      {{- $page.Scratch.Delete "show-group" }}
 
       <h2> Officers </h2>
-      <div class="row row-cols-1 row-cols-md-2">
-        {{ $page.Scratch.Set "group" "all" }}
-        {{ partial "groups/officers" $page }}
+      <div id="officers" class="row row-cols-1 row-cols-md-2">
+        {{- $page.Scratch.Set "group" "all" }}
+        {{- partial "groups/officers" $page }}
+        {{- $page.Scratch.Delete "group" }}
       </div>
 
-      {{ partial "fancy-pager" $page }}
+      {{- partial "fancy-pager" $page }}
     </div>
   </div>
 
