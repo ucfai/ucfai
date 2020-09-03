@@ -8,7 +8,7 @@ ucfai:
     - Director
   teams:
     - fa20
-title: PaulLunis
+title: Stefan Lunis
 github: paullunis
 authors:
   - paullunis
@@ -23,15 +23,15 @@ user_groups:
 role: Coordinator
 interests:
   - ...
-bio: Test for John
+bio: Director of Discussions, CS Major
 social:
   - icon: github
     icon_pack: fab
     link: https://github.com/paullunis
 education:
   courses:
-    - course: BS in <UNK>
+    - course: BS in CS
       institution: Univeristy of Central Florida
       year: YYYY
 ---
-Test change for John.
+Director of Discussions
