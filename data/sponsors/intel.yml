@@ -1,0 +1,5 @@
+name: Intel Corporation
+abbr: intel
+logo:
+  dark: /images/intel.svg
+  light: /images/intel.svg

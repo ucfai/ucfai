@@ -73,46 +73,18 @@
 
     </div>
   </div>
-  <div class="col-12 col-lg-8">
 
+  <div class="col-12 col-lg-8">
     {{/* Only display widget title in explicit instances of about widget, not in author pages. */}}
     {{ if and $page.Params.widget $page.Title }}<h1>
       {{ $page.Title | markdownify | emojify }}</h1>{{ end }}
 
     {{ $person_page.Content }}
 
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2">
 
-      {{ with $person.ucfai.roles }}
-      <div class="col-md-6">
-        <h3> Positions </h3>
-        <ul class="ul-edu fa-ul">
-          {{ range . }}
-          <li class="tag-roles">
-            <i class="fa-li fa-fw fas fa-id-badge"></i> 
-            <p>{{ . | markdownify | emojify }}</p>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
-
-      {{ with $person.ucfai.teams }}
-      <div class="col-md-6">
-        <h3> Semesters</h3>
-        <ul class="ul-edu fa-ul">
-          {{ range . }}
-          <li class="tag-years">
-            <i class="fa-li fa-fw fas fa-calendar"></i>
-            <p>{{ . | markdownify | emojify }}</p>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
-
-      {{ with $person.interests }}
-      <div class="col-md-6">
+      <div class="col">
+        {{ with $person.interests }}
         <h3>{{ i18n "interests" | markdownify }}</h3>
         <ul class="ul-edu fa-ul">
           {{ range . }}
@@ -130,11 +102,9 @@
           </li>
           {{ end }}
         </ul>
-      </div>
-      {{ end }}
+        {{ end }}
 
-      {{ with $person.education }}
-      <div class="col-md-6">
+        {{ with $person.education }}
         <h3>{{ i18n "education" | markdownify }}</h3>
         <ul class="ul-edu fa-ul">
           {{ range .courses }}
@@ -148,9 +118,39 @@
           </li>
           {{ end }}
         </ul>
+        {{ end }}
       </div>
-      {{ end }}
 
+      <div class="col">
+        <h3> Officership </h3>
+        <ul class="ul-edu fa-ul">
+          {{ range $semester := $person.ucfai.teams }}
+            {{ $roles := slice }}
+            {{ range $group := $person.user_groups }}
+              {{ $inSemester := in $group $semester }}
+              {{ $groupRole := eq (split $group "-" | len) 3 }}
+              {{ $adminRole := in $group "president" }}
+              {{ if $inSemester | and ($groupRole | or $adminRole) }}
+                {{ $group = replace $group $semester "" }}
+                {{ $group = i18n (printf "%s" (trim $group "-")) }}
+                {{ $roles = $roles | append $group }}
+              {{ end }}
+            {{ end }}
+            <li>
+              <i class="fa-li fa-fw fas fa-id-badge"></i>
+              <div class="description">
+                {{ $page.Scratch.Set "semester" $semester }}
+                {{ $semester = partial "functions/readable-semester" $page }}
+                <p class="course"> {{ index $semester "fullname" }} </p>
+                <p class="institution"> {{ delimit $roles ", " }} </p>
+                {{ $page.Scratch.Delete "semester" }}
+              </div>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
     </div>
+
   </div>
+
 </div>

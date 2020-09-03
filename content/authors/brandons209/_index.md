@@ -54,19 +54,19 @@ ucfai:
   - Coordinator
   - Director
   teams:
-  - fa20
   - sp19
   - sp20
+  - fa20
   - sp21
 user_groups:
 - Coordinator
 - Director
 - Directors
-- fa20-coordinator
-- fa20-core-coordinator
-- fa20-director
-- fa20-gbms-director
 - sp19-coordinator
-- sp20-core-director
 - sp20-director
+- sp20-core-director
+- fa20-gbms-director
+- fa20-director
+- fa20-core-coordinator
+- fa20-coordinator
 ---

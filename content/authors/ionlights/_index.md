@@ -5,24 +5,24 @@ title: John Muchovej
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
-role: Founder of AI@UCF, Former Director of Core & Intelligence
+role: Founder; Former Director of Core & Discussions
 
 # Do you work anywhere? Are you in any labs?
 organizations:
-- name: Massachusetts Institute of Technology
-  url: https://www.mit.edu/~muchovej/
+- name: Computation, Cognition, & Development; Harvard University
+  url: https://cocodev.org/
 - name: Toptal, AI Engineer & Data Scientist
   url: https://toptal.com/resume/john-muchovej/
 
 # Short bio (displayed in user profile at end of posts)
 bio: >-
   Founder of AI@UCF. Researcher in cognitive science and machine learning. Focusing
-  on intuitive psychology and social cognition.
+  on intuitive physics and intuitive psychology.
 
 # List each AI-related interest with a dash
 interests:
 - Cognitive Science
-- Computational Linguistics
+- Intuitive Physics
 - Intuitive Psychology
 - Social Cognition
 
@@ -68,30 +68,35 @@ ucfai:
   - President
   teams:
   - fa17
-  - fa18
-  - fa19
-  - fa20
   - sp18
+  - fa18
   - sp19
+  - fa19
   - sp20
+  - fa20
 user_groups:
 - Advisor
 - Director
 - Founder
 - Guest
 - President
-- fa17-coordinator
 - fa17-vice-president
-- fa18-director
-- fa18-president
-- fa19-director
-- fa20-advisor
-- fa20-core-advisor
-- sp18-director
+- fa17-core-coordinator
 - sp18-president
+- sp18-director
+- sp18-core-director
+- fa18-president
+- fa18-director
+- fa18-core-director
 - sp19-president
-- sp20-advisor
+- sp19-core-director
+- sp19-discussions-director
+- fa19-discussions-director
+- fa19-core-coordinator
 - sp20-core-guest
+- sp20-advisor
+- fa20-core-advisor
+- fa20-advisor
 ---
 
 ## Briefly
