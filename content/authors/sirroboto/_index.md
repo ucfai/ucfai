@@ -28,7 +28,7 @@ user_groups:
 title: Sirroboto
 role: President
 interests:
-  - ...
+  - Robotics
 bio: test
 social:
   - icon: github
