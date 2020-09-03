@@ -8,7 +8,7 @@ ucfai:
     - Director
   teams:
     - fa20
-title: PaulLunis
+title: Paul Lunis
 github: paullunis
 authors:
   - paullunis
