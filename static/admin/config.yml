@@ -8,16 +8,24 @@ backend:
 
 publish_mode: editorial_workflow
 
-media_folder: assets/images
+media_folder: static/images
 public_folder: /images
 
-logo_url: /brand/fullmark/light-bg-ready.svg
+logo_url: /images/brand/fullmark/light-bg-ready.svg
 
 x-reqd-str: &reqd-str { widget: string, required: true }
 x-optn-str: &optn-str { widget: string, required: false }
 
 x-title: &title { <<: *reqd-str , label: Title, name: title }
 x-body: &body { widget: markdown, name: body, label: Body, }
+x-semester: &semester
+  widget: string
+  label: Semester
+  name: semester
+  required: true
+  pattern: ["(fa|su|sp)\\d{2}", "Must be a 4-character string, (fa|su|sp)XX."]
+
+editor: { preview: false }
 
 collections:
 - name: authors
@@ -29,12 +37,18 @@ collections:
   editor: { preview: false }
   fields:  # The fields each document in this collection have
     - { <<: *reqd-str , label: "Name", name: "title" }
-    - { <<: *reqd-str , label: "GitHub", name: "github" }
-    - <<: *reqd-str
+    - required: true
+      widget: relation
       label: "Highest, current, role in AI@UCF"
       name: "role"
       hint: "What's your current, highest, role in AI@UCF? Omit the Group if you're a Coordinator."
+      collection: configs
+      file: "general"
       default: "Coordinator"
+      searchFields: ["officers.*"]
+      valueField: "officers.*"
+      displayFields: ["officers.*"]
+      multiple: false
     - label: "Resarch / Industry Interests"
       name: "interests"
       required: false
@@ -50,6 +64,7 @@ collections:
       label: "Short Bio (shown at the end of posts)"
       name: bio
       hint: "You can use Markdown. Try to keep this around the size of a tweet."
+      required: false
     - label: Social links
       name: social
       required: false
@@ -77,14 +92,14 @@ collections:
       required: false
       widget: list
       fields:
-        - { <<: *reqd-str , label: Organization, name: name }
-        - { <<: *optn-str , label: Link, name: url }
+        - { <<: *reqd-str , label: Organization, name: name, required: false }
+        - { <<: *optn-str , label: Link, name: url, required: false }
     - label: "Education"
       name: "education"
       required: false
       widget: object
       fields:
-        - label: "Courses"
+        - label: "Degree(s)"
           name: "courses"
           required: false
           widget: list
@@ -93,18 +108,18 @@ collections:
             - { <<: *reqd-str , label: Institution, name: institution }
             - { label: Year, name: year, widget: number, valueType: int, required: false }
     - <<: *body
+      required: false
       label: "Self-description"
       hint: >-
         Describe yourself. What are your interests? What sparked your desire
         to join the club? What are you doing outside of classes? What about
         after you graduate? etc.
-- name: configurations
+- name: configs
   label: "Configurations"
   label_singular: "Configuration"
-  editor:
-    preview: false
+  editor: { preview: false }
   files:
-  - name: "Redirects"
+  - name: "redirects"
     label: "Redirects"
     label_singular: "Redirect"
     file: "netlify.toml" 
@@ -130,29 +145,26 @@ collections:
           min: 301
           max: 302
           hint: "301 is a Permanent Redirect; 302 is a Temporary Redirect"
-  - name: "General"
+  - name: "general"
     label: "General"
     file: "data/config.yml"
     fields:
-    - label: Semester
-      name: semester
-      widget: string
-      pattern: ["(fa|su|sp)\\d{2}", "Must be a 4-character string, (fa|su|sp)XX."]
+    - <<: *semester
     - label: Officer Types
       name: officers
       allow_add: true
       widget: list
       summary: "{{fields.officer}}"
-      field: { <<: *reqd-str , label: officer, name: officer }
+      field: { <<: *reqd-str , label: Officer, name: officer }
     - label: Buttons
       name: buttons
       allow_add: true
       widget: list
       summary: "{{fields.platform}}"
       fields:
-      - { <<: *reqd-str , name: platform, label: Platform}
-      - { <<: *reqd-str , name: fa-class, label: Font-Awesome Classes, hint: "For more info, take a look at https://fontawesome.com/icons"}
-      - { <<: *reqd-str , name: btn-text, label: Button Text}
+        - { <<: *reqd-str , name: platform, label: Platform}
+        - { <<: *reqd-str , name: fa-class, label: Font-Awesome Classes, hint: "For more info, take a look at https://fontawesome.com/icons"}
+        - { <<: *reqd-str , name: btn-text, label: Button Text}
 - name: sponsors
   label: Sponsors
   folder: data/sponsors
@@ -177,6 +189,8 @@ collections:
   folder: "content/archives"
   path: "{{ slug }}" 
   create: true
+  identifier_field: "title"
+  editor: { preview: false }
   fields:  # The fields each document in this collection have
   - <<: *title
   - label: Sponsors

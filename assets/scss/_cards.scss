@@ -1,3 +1,11 @@
+#semesters {
+  .col:nth-child(1) {
+    .card-simple {
+      background-color: $sta-background;
+    }
+  }
+}
+
 .fancy-pager {
   display: flex;
   justify-content: space-evenly;
@@ -5,13 +13,20 @@
 
 .page-metadata {
   .fancy-pager {
-    display: block;
+    // display: block;
   }
 }
+
+// .btn-primary {
+//   color: #3e3e3e;
+//   background-color: #1ee0ff;
+//   border-color: #1ee0ff;
+// }
 
 div.card-simple {
   display: block;
   position: relative;
+  background-color: #dde5ec;
 
   * {
       position: relative;
