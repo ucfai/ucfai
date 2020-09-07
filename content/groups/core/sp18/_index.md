@@ -1,16 +1,18 @@
 ---
-title: "Core: Spring 2018"
-linktitle: "Core: Spring 2018"
+title: 'AI@UCF: Spring 2018'
+linktitle: 'AI@UCF: Spring 2018'
 
 # Summarize the Group's content for this semester
 summary: >-
-  We've made some modifications to the content and polished the lecture-workshops, while
+  We've made some modifications to the content and polished the lecture-workshops,
+  while
   still sticking true to our deep-learning and reinforcement-learning focus. We added
-  both Convolutional and Recurrent Neural Networks to our content, with a focus on a
+  both Convolutional and Recurrent Neural Networks to our content, with a focus on
+  a
   deeper technical understanding.
 
-location: "HEC 103"
-date: "2018-02-01T19:30:00Z"
+location: HEC 103
+date: '2018-02-01 19:30:00'
 frequency: 1
 
 draft: false
@@ -29,6 +31,6 @@ menu:
     identifier: core_sp18
 
 user_groups:
-  - sp18-core-director
-  - sp18-core-coordinator
+- sp18-core-director
+- sp18-core-coordinator
 ---
