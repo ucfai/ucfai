@@ -1,14 +1,14 @@
 ---
-title: "Core: Spring 2019"
-linktitle: "Core: Spring 2019"
+title: 'Course: Spring 2019'
+linktitle: 'Course: Spring 2019'
 
 # Summarize the Group's content for this semester
 summary: >-
   This semester we focused on polishing the material from Fall 2018 and re-introduced
   Reinforcement Learning to our teaching stack.
 
-location: "HEC 119"
-date: "2019-01-30T19:30:00Z"
+location: HEC 119
+date: '2019-02-06 19:30:00'
 frequency: 1
 
 draft: false
@@ -27,6 +27,6 @@ menu:
     indentifier: core_sp19
 
 user_groups:
-  - sp19-core-director
-  - sp19-core-coordinator
+- sp19-core-director
+- sp19-core-coordinator
 ---
