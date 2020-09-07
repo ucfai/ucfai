@@ -29,4 +29,5 @@ user_groups:
 - fa20-discussions-director
 - fa20-discussions-coordinator
 - fa20-discussions-guest
+- fa20-discussions-advisor
 ---

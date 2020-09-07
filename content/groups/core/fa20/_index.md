@@ -2,7 +2,7 @@
 title: 'Core: Fall 2020'
 linktitle: 'Core: Fall 2020'
 
-date: '2020-08-31 00:00:00'
+date: '<?UNK?>'
 location: Online
 frequency: 1
 
