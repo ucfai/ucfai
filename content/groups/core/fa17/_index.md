@@ -1,15 +1,16 @@
 ---
-title: "Core: Fall 2017"
-linktitle: "Core: Fall 2017"
+title: 'AI@UCF: Fall 2017'
+linktitle: 'AI@UCF: Fall 2017'
 
 # Summarize the Group's content for this semester
 summary: >-
   Our first offering of Core. We started out with a history of neural networks and
-  learned to implement them, from sratch. We then delved into Reinforcement Learning and
+  learned to implement them, from sratch. We then delved into Reinforcement Learning
+  and
   further explored Evolutionary Computation.
 
-location: "VAB 113"
-date: "2017-09-27T19:00:00Z"
+location: VAB 113
+date: '2017-09-27 19:30:00'
 frequency: 1
 
 draft: false
@@ -28,6 +29,6 @@ menu:
     identifier: core_fa17
 
 user_groups:
-  - fa17-core-director
-  - fa17-core-coordinator
+- fa17-core-director
+- fa17-core-coordinator
 ---
