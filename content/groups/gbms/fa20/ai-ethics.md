@@ -18,7 +18,7 @@ authors: [brandons209]
 
 urls:
   youtube: ''
-  slides: 'https://docs.google.com/presentation/d/1KFgNHyWKahIDJ9SeIqqJbeFNphCnOzfHmQM5psQHJPI'
+  slides: 'https://docs.google.com/presentation/d/1hoIjjVXT190kAqDhVstlN8vFnPrUChP1UgiJQtJQiVo'
   github: ''
   kaggle: ''
   colab: ''
