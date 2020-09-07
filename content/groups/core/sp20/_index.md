@@ -1,6 +1,6 @@
 ---
-title: "Core: Spring 2020"
-linktitle: "Core: Spring 2020"
+title: 'Core: Spring 2020'
+linktitle: 'Core: Spring 2020'
 
 # Summarize the Group's content for this semester
 summary: >-
@@ -8,12 +8,11 @@ summary: >-
   new topics a try, namely Time Series and Attention. While that means we don't
   cover topics like Computational Cognitive Science this semester, we're
   building out our collection of lecture-workshops. This semester's focus also
-  centers around thoroughly developing the interactive components of our 
-  lecture-workshops.
+  centers around thoroughly developing the interactive components of our  lecture-workshops.
 
-location: "HPA1 112"
-date: "2020-01-22T17:30:00Z"
-lastmod: "2020-01-22T17:30:00Z"
+location: HPA1 112
+date: '2020-01-22 17:30:00'
+lastmod: '2020-01-22T17:30:00Z'
 frequency: 1
 
 draft: false
@@ -32,6 +31,6 @@ menu:
     identifier: core_sp20
 
 user_groups:
-  - sp20-core-director
-  - sp20-core-coordinator
+- sp20-core-director
+- sp20-core-coordinator
 ---

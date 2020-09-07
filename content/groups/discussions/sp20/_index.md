@@ -1,10 +1,10 @@
 ---
-title: "Discussions: Spring 2020"
-linktitle: "Spring 2020"
+title: "Intelligence: Spring 2020"
+linktitle: "Intelligence: Spring 2020"
 
-location: <?UNK?>
-date: <?UNK?>
-frequency: <?UNK?>
+location: BIO 209
+date: '2020-01-21 18:00:00'
+frequency: 1
 
 # Summarize the Group's content for this semester
 summary: >-
@@ -26,6 +26,8 @@ menu:
     identifier: discussions_sp20
 
 user_groups:
-  - sp20-discussions-director
-  - sp20-discussions-coordinator
+- sp20-discussions-director
+- sp20-discussions-coordinator
+- sp20-discussions-guest
+- sp20-discussions-advisor
 ---
