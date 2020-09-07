@@ -10,7 +10,7 @@
 <article class="article">
   {{ partial "custom-header" $page }}
 
-  <div class="article-container">
+  <div class="universal-wrapper">
 
     <div class="article-abstract py-3">
       <h2> This Semester's Plan </h2>
@@ -34,14 +34,14 @@
     </div>
 
     <div id="group-officers" class="group-metadata group-officers">
-      <h2> Current Officers </h2>
+      <h2> Officers, Guests, and Advisors </h2>
       <div class="row row-cols-1 row-cols-md-2">
       {{ partial "groups/officers" $page }}
       </div>
     </div>
   </div>
 
-  <div class="article-container">
+  <div class="universal-wrapper">
     <div class="article-widget">
       {{ partial "fancy-pager" $page }}
     </div>

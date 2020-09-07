@@ -2,8 +2,8 @@
 {{ $accepted_types := slice "archives" "groups" "hackpack" }}
 {{- if not .IsHome | and (in $accepted_types $page.Type) -}}
 <nav aria-label="breadcrumb">
-  <div class="container">
-    <ol class="breadcrumb rounded-bottom" style="border-radius: 0;">
+  <div class="universal-wrapper">
+    <ol class="breadcrumb px-0">
       {{- $.Scratch.Add "path" "/" -}}
       {{- range $i, $el := split .RelPermalink "/" -}}
         {{- $.Scratch.Add "path" $el -}}

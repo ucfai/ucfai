@@ -3,7 +3,7 @@
 
 {{ partial "custom-header" $page }}
 
-<div class="article-container">
+<div class="universal-wrapper">
 
   {{ $page.Content }}
   
@@ -22,7 +22,7 @@
   {{- else }}
 
     <h2> Past and Present Semesters </h2>
-    <div class="row row-cols-1 row-cols-md-2">
+    <div id="semesters" class="row row-cols-1 row-cols-md-2">
       {{ $.Scratch.Set "pager" false }}
       {{ range $page.Pages.ByWeight }}
         {{/* Ran into some quirks with inhereting from $page.Scratch... */}}

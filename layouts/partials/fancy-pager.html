@@ -32,6 +32,8 @@
     {{- $prev.Scratch.Set "card-fill" $fill -}}
     {{- $prev.Scratch.Set "extra-card-cls" ($page.Scratch.Get "extra-card-cls") -}}
     {{- partial "card" $prev }}
+    {{- $prev.Scratch.Delete "card-fill" }}
+    {{- $prev.Scratch.Delete "extra-card-cls" }}
   {{- end }}
 
   {{- if lt $next (len $siblings) }}
@@ -40,6 +42,8 @@
     {{- $next.Scratch.Set "card-fill" $fill -}}
     {{- $next.Scratch.Set "extra-card-cls" ($page.Scratch.Get "extra-card-cls") -}}
     {{- partial "card" $next }}
+    {{- $next.Scratch.Delete "card-fill" }}
+    {{- $next.Scratch.Delete "extra-card-cls" }}
   {{- end }}
 </div>
 

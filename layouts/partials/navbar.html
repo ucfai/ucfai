@@ -1,6 +1,12 @@
 {{ $ := . }}
 {{ $page := . }}
+{{/* Get site logo. */}}
 {{ $show_logo := site.Params.main_menu.show_logo | default true }}
+{{ $has_logo := fileExists "assets/images/logo.png" | or (fileExists "assets/images/logo.svg") }}
+{{ $logo := "" }}
+{{ if $has_logo }}
+  {{ $logo = (partial "functions/get_logo" (dict "constraint" "max_height" "size" 70)) }}
+{{ end }}
 {{ $aos_toggles := "data-aos='nav-fade-in' data-aos-duration='200' data-aos-anchor-placement='bottom-top'"}}
 
 <nav id="navbar-main"
@@ -8,15 +14,17 @@
   {{- if .IsHome -}}{{ $aos_toggles }}{{- end -}}>
   <div class="container">
 
-    {{ $logoURL := "/brand/fullmark/dark-bg-ready.svg" | relURL }}
-
-    {{if not .IsHome }}
+    {{ if not .IsHome | and $show_logo }}
     <div class="d-none d-lg-inline-flex">
       <a class="navbar-brand" href="{{ "/" | relLangURL }}">
-        <img src="{{ $logoURL }}" alt="{{ site.Title }}">
+        {{- if $has_logo -}}
+          <img src="{{ $logo.RelPermalink }}" alt="{{ site.Title }}">
+        {{- else -}}
+          {{- site.Title -}}
+        {{- end -}}
       </a>
     </div>
-    {{end}}
+    {{ end }}
 
     {{ if site.Menus.main }}
     <button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -26,11 +34,17 @@
     </button>
     {{ end }}
 
+    {{ if $show_logo }}
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
       <a class="navbar-brand" href="{{ "/" | relLangURL }}">
-        <img src="{{ $logoURL }}" alt="{{ site.Title }}">
+      {{- if $has_logo -}}
+        <img src="{{ $logo.RelPermalink }}" alt="{{ site.Title }}">
+      {{- else -}}
+        {{- site.Title -}}
+      {{- end -}}
       </a>
     </div>
+    {{ end }}
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     {{ $align_menu := site.Params.main_menu.align | default "l" }}

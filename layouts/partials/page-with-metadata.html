@@ -1,43 +1,37 @@
 {{ $page := . }}
 
-<style>
-  .page-container {
-    display: flex;
-    flex-direction: row;
-  }
-</style>
-
-{{ $page.Scratch.Set "multi-column" true }}
-<div class="meta-conatiner container">
-  {{ partial "custom-header" $page }}
-
-  <article class="page-container article">
-    <div class="article-container">
-      {{- partial "embeds/youtube" $page }}
-      {{- partial "embeds/slides" $page }}
-
-      {{ $page.Content }}
-    </div>
-    <div class="page-metadata">
-      <div class="article-links col-12">
-        <h2> Follow along </h2>
-        {{- $page.Scratch.Set "show-link-text" true }}
-        {{- partial "links-custom" $page }}
-      </div>
-      <div class="article-widget col-12 row-cols-1">
-        <h2> Other Meetings in this Series </h2>
-        {{- $page.Scratch.Set "card-fill" "" }}
-        {{- $page.Scratch.Set "show-link-text" false }}
-        {{- $page.Scratch.Set "vertical" true -}}
-        {{- partial "fancy-pager" $page -}}
-      </div> 
-      <div class="article-widget col-12 row-cols-1">
-        <h2> Contributing Authors </h2>
-        {{ $page.Scratch.Get "coordinator-role" }}
-        {{ range $author := $page.Params.authors }}
-          {{ partial "coordinator" $author }}
-        {{ end }}
-      </div>
-    </div>
-  </article>
+{{ $page.Scratch.Set "multi-column" false }}
+<!-- <div class="meta-conatiner container"> -->
+<div class="universal-wrapper article-links col-12">
+  {{- $page.Scratch.Set "show-link-text" true }}
+  <h1> {{ $page.Title }} </h1>
+  {{ partial "custom-metadata" $page }}
 </div>
+
+<article id="article" class="universal-wrapper my-5">
+  {{- partial "embeds/youtube" $page }}
+  {{- partial "embeds/slides" $page }}
+  {{- $page.Content }}
+</article>
+
+<div class="universal-wrapper page-metadata">
+    <h2> Other Meetings in this Series </h2>
+    {{- $page.Scratch.Set "card-fill" "" }}
+    {{- $page.Scratch.Set "show-link-text" false }}
+    {{- $page.Scratch.Set "vertical" false -}}
+    {{- partial "fancy-pager" $page -}}
+    {{- $page.Scratch.Delete "card-fill" }}
+    {{- $page.Scratch.Delete "show-link-text" }}
+    {{- $page.Scratch.Delete "vertical" -}}
+  </div> 
+<div class="universal-wrapper">
+    <h2> Contributing Authors </h2>
+    <div class="row row-cols-1 row-cols-md-2">
+    {{ $page.Scratch.Get "coordinator-role" }}
+    {{ range $author := $page.Params.authors }}
+      {{ partial "coordinator" $author }}
+    {{ end }}
+    </div>
+  </div>
+</div>
+<!-- </div> -->
