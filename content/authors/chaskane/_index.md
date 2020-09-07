@@ -6,15 +6,18 @@ ucfai:
   roles:
     - Coordinator
   teams:
-    - fa20
-github: dan100ws
+    - fa18
+    - fa19
+github: chaskane
 authors:
-  - dan100ws
+  - chaskane
 user_groups:
   - Coordinator
-  - fa20-coordinator
-  - fa20-projects-coordinator
-title: Danish Patel
+  - fa18-coordinator
+  - fa18-core-coordinator
+  - fa19-core-coordinator
+  - fa19-coordinator
+title: Chas Kane
 role: Coordinator
 interests:
   - ...
@@ -22,7 +25,7 @@ bio: null
 social:
   - icon: github
     icon_pack: fab
-    link: https://github.com/dan100ws
+    link: https://github.com/chaskane
 education:
   courses:
     - course: BS in <UNK>

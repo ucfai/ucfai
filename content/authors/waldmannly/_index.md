@@ -5,24 +5,32 @@ organizations:
 ucfai:
   roles:
     - Coordinator
+    - Director
   teams:
-    - fa20
-github: dan100ws
+    - fa18
+    - sp19
+    - fa19
+github: waldmannly
 authors:
-  - dan100ws
+  - waldmannly
 user_groups:
   - Coordinator
-  - fa20-coordinator
-  - fa20-projects-coordinator
-title: Danish Patel
-role: Coordinator
+  - Director
+  - fa18-core-coordinator
+  - fa18-coordinator
+  - sp19-director
+  - sp19-discussions-director
+  - fa19-coordinator
+  - fa19-core-coordinator
+title: Evan Waldmann
+role: Director
 interests:
   - ...
 bio: null
 social:
   - icon: github
     icon_pack: fab
-    link: https://github.com/dan100ws
+    link: https://github.com/waldmannly
 education:
   courses:
     - course: BS in <UNK>

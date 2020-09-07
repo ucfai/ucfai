@@ -6,15 +6,15 @@ ucfai:
   roles:
     - Coordinator
   teams:
-    - fa20
-github: dan100ws
+    - sp20
+github: taramenon
 authors:
-  - dan100ws
+  - taramenon
 user_groups:
   - Coordinator
-  - fa20-coordinator
-  - fa20-projects-coordinator
-title: Danish Patel
+  - sp20-coordinator
+  - sp20-discussions-coordinator
+title: Tara Pattalichan
 role: Coordinator
 interests:
   - ...
@@ -22,7 +22,7 @@ bio: null
 social:
   - icon: github
     icon_pack: fab
-    link: https://github.com/dan100ws
+    link: https://github.com/taramenon
 education:
   courses:
     - course: BS in <UNK>

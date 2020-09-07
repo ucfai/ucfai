@@ -6,15 +6,15 @@ ucfai:
   roles:
     - Coordinator
   teams:
-    - fa20
-github: dan100ws
+    - sp19
+github: cg021
 authors:
-  - dan100ws
+  - cg021
 user_groups:
   - Coordinator
-  - fa20-coordinator
-  - fa20-projects-coordinator
-title: Danish Patel
+  - sp19-core-coordinator
+  - sp19-coordinator
+title: Christian Gonzalez
 role: Coordinator
 interests:
   - ...
@@ -22,7 +22,7 @@ bio: null
 social:
   - icon: github
     icon_pack: fab
-    link: https://github.com/dan100ws
+    link: https://github.com/cg021
 education:
   courses:
     - course: BS in <UNK>
