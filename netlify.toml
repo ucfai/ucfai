@@ -88,7 +88,7 @@ status = 301
 
 [[redirects]]
 from = "/discord/core"
-to = "https://discordapp.com/channels/363524680851914752/496942430193582080"
+to = "https://discord.com/channels/363524680851914752/496942430193582080"
 status = 301
 
 [[redirects]]
