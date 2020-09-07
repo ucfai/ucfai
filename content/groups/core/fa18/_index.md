@@ -1,16 +1,17 @@
 ---
-title: "Core: Fall 2018"
-linktitle: "Core: Fall 2018"
+title: 'AI@UCF: Fall 2018'
+linktitle: 'AI@UCF: Fall 2018'
 
 # Summarize the Group's content for this semester
 summary: >-
   This semester we took a step back to broaden our view of machine learning. We looked
   at older (but still capable) statistical tools and incorporated more of the deep
-  learning stack to give you the tools to participate in many of the research groups at
+  learning stack to give you the tools to participate in many of the research groups
+  at
   UCF and abroad focused on machine learning.
 
-location: "PSY 105"
-date: "2018-08-29T16:30:00Z"
+location: PSY 105
+date: '2020-08-29 16:30:00'
 frequency: 1
 
 draft: false
@@ -29,6 +30,6 @@ menu:
     identifier: core_fa18
 
 user_groups:
-  - fa18-core-director
-  - fa18-core-coordinator
+- fa18-core-director
+- fa18-core-coordinator
 ---
