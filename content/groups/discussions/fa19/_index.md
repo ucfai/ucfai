@@ -1,10 +1,10 @@
 ---
-title: "Discussions: Fall 2019"
-linktitle: "Fall 2019"
+title: "Intelligence: Fall 2019"
+linktitle: "Intelligence: Fall 2019"
 
-date: <?UNK?>
-location: <?UNK?>
-frequency: <?UNK?>
+date: '2019-09-17 17:30:00'
+location: ENG1 186
+frequency: 1
 
 # Summarize the Group's content for this semester
 summary: >-
@@ -26,6 +26,8 @@ menu:
     identifier: discussions_fa19
 
 user_groups:
-  - fa19-discussions-director
-  - fa19-discussions-coordinator
+- fa19-discussions-director
+- fa19-discussions-coordinator
+- fa19-discussions-guest
+- fa19-discussions-advisor
 ---
