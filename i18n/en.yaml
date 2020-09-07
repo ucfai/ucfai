@@ -55,7 +55,7 @@
   translation: DevOps
 
 - id: advisor
-  translation: "Advisor"
+  translation: "Advisor: AI@UCF"
 - id: core-advisor
   translation: "Advisor: Core"
 - id: discussions-advisor
@@ -64,6 +64,17 @@
   translation: "Advisor: Projects"
 - id: gbms-advisor
   translation: "Advisor: GBMs"
+
+- id: guest
+  translation: "Guest Speaker"
+- id: core-guest
+  translation: "Guest Speaker: Core"
+- id: discussions-guest
+  translation: "Guest Speaker: Discussions"
+- id: projects-guest
+  translation: "Guest Speaker: Projects"
+- id: gbms-guest
+  translation: "Guest Speaker: GBMs"
 
 # Topics
 - id: cocosci

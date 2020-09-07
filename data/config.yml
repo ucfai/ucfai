@@ -1,24 +1,25 @@
 semester: fa20
 officers:
-  - President
-  - Vice President
-  - Director
-  - Coordinator
-  - Advisor
-  - Maintainer
+- President
+- Vice President
+- Director
+- Coordinator
+- Advisor
+- Maintainer
+- Guest
 buttons:
-  - platform: youtube
-    fa-class: fab fa-youtube
-    btn-text: Watch along on YouTube
-  - platform: slides
-    fa-class: fas fa-chalkboard
-    btn-text: Take a look at the deck
-  - platform: github
-    fa-class: fab fa-github
-    btn-text: View the Notebook on GitHub
-  - platform: kaggle
-    fa-class: fab fa-kaggle
-    btn-text: Follow along on Kaggle (recommended)
-  - platform: colab
-    fa-class: fas fa-infinity
-    btn-text: Follow along on Google Colab
+- platform: youtube
+  fa-class: fab fa-youtube
+  btn-text: Watch along on YouTube
+- platform: slides
+  fa-class: fas fa-chalkboard
+  btn-text: Take a look at the deck
+- platform: github
+  fa-class: fab fa-github
+  btn-text: View the Notebook on GitHub
+- platform: kaggle
+  fa-class: fab fa-kaggle
+  btn-text: Follow along on Kaggle (recommended)
+- platform: colab
+  fa-class: fas fa-infinity
+  btn-text: Follow along on Google Colab
