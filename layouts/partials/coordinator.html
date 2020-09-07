@@ -9,9 +9,8 @@
 
 {{ with $coordinator }}
 <div class="p-3 media author-card content-widget">
-  <img class="avatar avatar-circle mr-3"
-    src="https://avatars.githubusercontent.com/{{ .Params.github }}"
-    alt="{{ .Title }}'s GitHub Avatar" />
+  {{ .Scratch.Set "extra-avatar-cls" "mr-3" }}
+  {{ partial "functions/get-avatar" . }}
 
   <div class="media-body">
     <h5 class="card-title"> <a href="{{ .RelPermalink }}"> {{ .Title }} </a> </h5>

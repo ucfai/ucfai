@@ -22,14 +22,7 @@
 <div class="row">
   <div class="col-12 col-lg-4">
     <div id="profile">
-      {{ if site.Params.avatar.gravatar }}
-      <img class="avatar {{if eq $avatar_shape "square"}}avatar-square{{else}}avatar-circle{{end}}" src="https://s.gravatar.com/avatar/{{ md5 $person.email }}?s=270" alt="{{$person_page.Title}}">
-      {{ else if site.Params.avatar.github }}
-      <img class="avatar {{if eq $avatar_shape "square"}}avatar-square{{else}}avatar-circle{{end}}" src="https://avatars.githubusercontent.com/{{ $person.github }}?s=270" alt="{{$person_page.Title}}">
-      {{ else if $avatar }}
-      {{ $avatar_image := $avatar.Fill "270x270 Center" }}
-      <img class="avatar {{if eq $avatar_shape "square"}}avatar-square{{else}}avatar-circle{{end}}" src="{{ $avatar_image.RelPermalink }}" alt="{{$person_page.Title}}">
-      {{ end }}
+      {{ partial "functions/get-avatar" $person_page}}
 
       <div class="portrait-title">
         <h2>{{ $person.title }}</h2>
@@ -122,7 +115,7 @@
       </div>
 
       <div class="col">
-        <h3> Officership </h3>
+        <h3> Service </h3>
         <ul class="ul-edu fa-ul">
           {{ range $semester := $person.ucfai.teams }}
             {{ $roles := slice }}

@@ -1,0 +1,23 @@
+{{ $page := . }}
+{{ $person := $page.Params }}
+
+{{ $avatar_shape := site.Params.avatar.shape | default "circle" }}
+{{ $avatar := ($page.Resources.ByType "image").GetMatch "*avatar*" }}
+{{ $extra_cls := $page.Scratch.Get "extra-avatar-cls" | default "" }}
+
+{{ $src := "" }}
+{{ if (and site.Params.avatar.gravatar $person.email) }}
+    {{ $src = printf "https://s.gravatar.com/avatar/%s?s=270" (md5 $person.email) }}
+{{ else if (and site.Params.avatar.github $person.github) }}
+    {{ $src = printf "https://avatars.githubusercontent.com/%s?s=270" $person.github }}
+{{ else }}
+    {{/* $avatar.Fill breaks for some reason... */}}
+    {{ $src = printf "%s/images/blank-avatar.jpg" site.BaseURL }}
+    {{/* $image := $avatar.Fill "270x270 Center" */}}
+    {{/* $src = $image.RelPermalink */}}
+{{ end }}
+
+<img class="avatar avatar-{{ $avatar_shape }} {{ $extra_cls }}"
+    src="{{ $src }}"
+    alt="{{ $page.Title }}"
+    />
