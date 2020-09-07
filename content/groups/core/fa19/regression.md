@@ -2,13 +2,8 @@
 title: Getting Started, Regression
 linktitle: Getting Started, Regression
 
-<<<<<<< HEAD:content/groups/core/fa19/regression.md
 date: '2019-09-18T17:30:00'
 lastmod: <?UNK?>
-=======
-date: "2020-01-22T17:30:00"
-lastmod: "2020-04-02T19:11:25.356370687"
->>>>>>> 687fa194e7663c6f4c4847a2c355c83b466c03eb:content/core/sp20/linear-regression.md
 
 draft: false
 toc: true
@@ -16,7 +11,6 @@ toc: true
 weight: 1
 
 menu:
-<<<<<<< HEAD:content/groups/core/fa19/regression.md
   core_fa19:
     parent: Fall 2019
 
@@ -41,27 +35,6 @@ abstract: >-
   that! We will be going over what Machine Learning consists of and how we
   can use models to do awesome stuff!
 
-=======
-  core_sp20:
-    parent: "Spring 2020"
-    weight: "1"
-
-authors: ["JarvisEQ", "bb912", ]
-
-urls:
-  youtube: "https://youtu.be/0vCF6S3mfQg"
-  slides:  "https://docs.google.com/presentation/d/1oDo8_RpLqBdq5BcE-mWFGkKAsxY5cns5FN19hZDl42s"
-  github:  ""
-  kaggle:  "https://kaggle.com/ucfaibot/core-sp20-linear-regression"
-  colab:   ""
-
-location: "HPA1 112"
-cover: ""
-
-categories: ["sp20"]
-tags: ["Linear Regression", "Basics", "Logistic Regression", "Regression", ]
-abstract: "You always start with the basics, and with AI it's no different! We'll be getting our feet wet with some simple, but powerful, models and demonstrate their power by applying them to real world data."
->>>>>>> 687fa194e7663c6f4c4847a2c355c83b466c03eb:content/core/sp20/linear-regression.md
 ---
 
 ```python
@@ -80,45 +53,14 @@ else:
     DATA_DIR = Path("data")
 ```
 
-<<<<<<< HEAD:content/groups/core/fa19/regression.md
 First thing first, we need to import some packages:
 * `matplotlib` allows us to graph 
 * `numpy` is a powerful Linear Algebra library
 * `pandas` allows us to Extract, Load, and Transform (ETL) datasets
 * `sklearn` is a great Machine Learning library
-=======
-<img src="https://ucfai.org/core/fa19/2019-09-18-regression/regression/banner.png">
-
-<div class="col-12">
-    <span class="btn btn-success btn-block">
-        Meeting in-person? Have you signed in?
-    </span>
-</div>
-
-<div class="col-12">
-    <h1> Getting Started, Regression </h1>
-    <hr>
-</div>
-
-<div style="line-height: 2em;">
-    <p>by: 
-        <strong> Liam Jarvis</strong>
-        (<a href="https://github.com/jarviseq">@jarviseq</a>)
-     on 2019-09-18</p>
-</div>
-
-First thing first, we to get some packages 
-
-*   matplotlib allows us to graph 
-*   numpy is powerful package for data manipulation
-*   pandas is a tool for allowing us to interact with large datasets
-*   sklearn is what we'll use for making the models
-*   !wget grabs the data set we'll be using later
->>>>>>> 687fa194e7663c6f4c4847a2c355c83b466c03eb:content/core/sp20/linear-regression.md
 
 
 ```python
-DATA_DIR = "/kaggle/input/ucfai-core-sp20-regression"
 # import some important stuff
 import matplotlib.pyplot as plt
 import numpy as np

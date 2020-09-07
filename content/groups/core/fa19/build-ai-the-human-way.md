@@ -27,6 +27,7 @@ papers:
   how-to-grow-a-mind: https://github.com/ucfai/core/raw/master/fa19/how-to-grow-a-mind.pdf
   machines-learn-think-people: https://github.com/ucfai/core/raw/master/fa19/machines-learn-think-people.pdf
   machines-learn-think-themselves: https://github.com/ucfai/core/raw/master/fa19/machines-learn-think-themselves.pdf
+
 location: MSB 359
 cover: ''
 
@@ -46,3 +47,4 @@ abstract: >-
 
 <!-- TODO Add Meeting Notes/Contents here -->
 <!-- NOTE Refer the Documentation if you're unsure how to format/add to this. -->
+
