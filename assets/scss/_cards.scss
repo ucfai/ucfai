@@ -1,0 +1,171 @@
+#semesters {
+  .col:nth-child(1) {
+    .card-simple {
+      background-color: $sta-background;
+    }
+  }
+}
+
+.fancy-pager {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.page-metadata {
+  .fancy-pager {
+    // display: block;
+  }
+}
+
+// .btn-primary {
+//   color: #3e3e3e;
+//   background-color: #1ee0ff;
+//   border-color: #1ee0ff;
+// }
+
+div.card-simple {
+  display: block;
+  position: relative;
+  background-color: #dde5ec;
+
+  * {
+      position: relative;
+      z-index: 10
+  }
+
+  .pager-symbol {
+    position: absolute;
+    opacity: 0.1;
+    z-index: 1;
+    // transform: scale(5.5) translate(25%, 25%); // use with angle
+    transform: scale(4.6) translate(25%, 25%);  // use with arrow-alt-circle
+    transform-origin: bottom right;
+      
+    // $pager-offset: 15%;  // use with angle
+    $pager-offset: 10%; // use with arrow-alt-circle
+    &.pager-prev {
+      bottom: $pager-offset;
+      right: $pager-offset;
+    }
+    &.pager-next {
+      bottom: $pager-offset;
+      right: $pager-offset;
+    }
+  }
+  .card-title {
+    display: flex;
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      content: '\f0c1';
+      font-weight: 900;
+      margin: auto 0.4em auto 0;
+    } 
+  }
+
+  .article-metdata { }
+
+  details.article-summary {
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    border-top-width: 1px;
+    border-top-style: solid;
+    color: #fefefe;
+    font-size: 0.8em;
+  
+    summary {
+      font-style: italic;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .btn-links {
+      z-index: 10;
+      a { 
+        &:after {
+          background-color: transparent;
+        }
+      }
+  }
+}
+
+.ucfai-home .card-simple,
+.dark .card-simple {
+  background-color: rgba(30, 37, 47, 0.11);
+  h1, h2, h3, h4, h5, h6, a, p, i, span, details, summary {
+    color: #f5f5f5;
+  }
+  details.article-summary {
+    border-top-color: #5f5f5f;
+  }
+}
+
+.card-simple {
+  background-color: rgba(30, 37, 47, 0.11);
+  h1, h2, h3, h4, h5, h6, a, p, i, span, details, summary {
+    color: $sta-menu-primary;
+  }
+  details.article-summary {
+    border-top-color: #cccccc;
+  }
+  a {
+    &:after {
+      // background-color: #ff0000;
+   }
+    &:hover {
+      color: $sta-menu-primary;
+    }
+  }
+}
+
+a.btn,
+a.badge {
+  &:after {
+    background-color: transparent !important;
+  }
+}
+
+nav {
+  a {
+    &:after {
+      background-color: transparent !important;
+    }
+  }
+}
+
+// a {
+//   $extra-width: 5%;
+//   $extra-height: 10%;
+//   color: $sta-menu-primary;
+//   position: relative;
+//   &:after {
+//     z-index: 0;
+//     content: "";
+//     left: 0;
+//     bottom: 0;
+//     transition: all 0.25s ease-in-out;
+//     position: absolute;
+//     border-radius: 0.25em;
+//     height: 25%;
+//     width: calc(100% + #{$extra-width});
+//     transform: translate(-$extra-width / 2, 0%);
+//     background-color: rgba(255, 193, 7, 0.39);
+//   }
+//   &:hover {
+//     color: $sta-menu-primary;
+//     text-decoration: none;
+//     &:after {
+//       transform: translate(-$extra-width / 2, $extra-height / 2);
+//       height: calc(100% + #{$extra-height});
+//       width: calc(100% + #{$extra-width});
+//     }
+//   }
+// }
+
+.people-person {
+  a {
+    &:after {
+      background-color: transparent;
+    }
+  }
+}

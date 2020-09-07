@@ -1,0 +1,81 @@
+# Role Translation
+- id: core
+  translation: Core
+- id: intelligence
+  translation: Discussions
+- id: data-science
+  translation: Projects
+- id: project-teams
+  translation: Projects
+- id: discussions
+  translation: Discussions
+- id: projects
+  translation: Projects
+
+# Coordinator-types
+- id: coordinator
+  translation: "Coordinator"
+- id: core-coordinator
+  translation: "Coordinator: Core"
+- id: intelligence-coordinator
+  translation: "Coordinator: Discussions"
+- id: discussions-coordinator
+  translation: "Coordinator: Discussions"
+- id: data-science-coordinator
+  translation: "Coordinator: Projects"
+- id: project-teams-coordinator
+  translation: "Coordinator: Projects"
+- id: projects-coordinator
+  translation: "Coordinator: Projects"
+- id: gbms-coordinator
+  translation: "Coordinator: GBMs"
+
+- id: director
+  translation: "Director"
+- id: core-director
+  translation: "Director: Core"
+- id: intelligence-director
+  translation: "Director: Discussions"
+- id: discussions-director
+  translation: "Director: Discussions"
+- id: data-science-director
+  translation: "Director: Projects"
+- id: project-teams-director
+  translation: "Director: Projects"
+- id: projects-director
+  translation: "Director: Projects"
+- id: gbms-director
+  translation: "Director: GBMs"
+
+- id: president
+  translation: President
+- id: vice-president
+  translation: Vice President
+- id: maintainer
+  translation: DevOps
+
+- id: advisor
+  translation: "Advisor: AI@UCF"
+- id: core-advisor
+  translation: "Advisor: Core"
+- id: discussions-advisor
+  translation: "Advisor: Discussions"
+- id: projects-advisor
+  translation: "Advisor: Projects"
+- id: gbms-advisor
+  translation: "Advisor: GBMs"
+
+- id: guest
+  translation: "Guest Speaker"
+- id: core-guest
+  translation: "Guest Speaker: Core"
+- id: discussions-guest
+  translation: "Guest Speaker: Discussions"
+- id: projects-guest
+  translation: "Guest Speaker: Projects"
+- id: gbms-guest
+  translation: "Guest Speaker: GBMs"
+
+# Topics
+- id: cocosci
+  translation: Computational Cognitive Science

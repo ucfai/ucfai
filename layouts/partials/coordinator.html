@@ -1,0 +1,32 @@
+{{ $coordinator := . }}
+
+{{/* Get link to Coordinator profile page. */}}
+{{ if eq (printf "%T" $coordinator) "string" }}
+  {{ $taxonomy := "authors" }}
+  {{ $coordinator = anchorize $coordinator }}
+  {{ $coordinator = site.GetPage (printf "/%s/%s" $taxonomy $coordinator)}}
+{{ end }}
+
+{{ with $coordinator }}
+<div class="p-3 media author-card content-widget">
+  {{ .Scratch.Set "extra-avatar-cls" "mr-3" }}
+  {{ partial "functions/get-avatar" . }}
+
+  <div class="media-body">
+    <h5 class="card-title"> <a href="{{ .RelPermalink }}"> {{ .Title }} </a> </h5>
+
+    {{- $manual_role_set := .Scratch.Get "coordinator-role" | default "" }}
+    {{- $role := cond (ne $manual_role_set "") (.Scratch.Get "coordinator-role") .Params.role }}
+    {{- $role = i18n $role }}
+
+    <h6 class="card-subtitle"> {{ $role | markdownify | emojify }} </h6>
+
+    {{- if not $manual_role_set }}
+      {{- with .Params.bio }}
+        <p class="card-text"> {{ . | markdownify | emojify }} </p>
+      {{- end }}
+    {{- end }}
+    {{- partial "links-social" . }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,26 @@
+{{- $page := . -}}
+
+{{- $semester := $.Scratch.Get "semester" }}
+{{- $group := $.Scratch.Get "group" }}
+
+{{- $authors := slice -}}
+{{- $coordinators := where site.Pages "Section" "authors" }}
+
+{{- range $role := site.Data.config.officers }}
+  {{- $whenrole := printf "%s-%s-%s" $semester $group (anchorize $role) }}
+  {{- $whenrole = replace $whenrole "-all" "" }}
+
+  {{- $query := where $coordinators "Params.user_groups" "intersect" (slice $whenrole) -}}
+  {{ $whenrole = replace $whenrole $semester "" }}
+  {{ $whenrole = trim $whenrole "-" }}
+
+  {{- range $author := $query }}
+    {{- $author.Scratch.Set "coordinator-role" $whenrole -}}
+    {{- $authors_set := uniq ($authors | append $author) }}
+    {{- if ne $authors_set $authors }}
+      {{- $authors = $authors | append $author }}
+      {{- partial "coordinator" $author -}}
+    {{- end }}
+    {{- $author.Scratch.Delete "coordinator-role" -}}
+  {{- end }}
+{{- end }}

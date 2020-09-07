@@ -1,59 +1,43 @@
 ---
-name: Justin TenEyck
-
-github: sirroboto
-
+organizations:
+- name: UCF
+  url: ''
 ucfai:
   roles:
-    - President
-    - Director
-    - Coordinator
+  - Coordinator
+  - President
   teams:
-    - 2018-2019
-    - 2019-2020
-    - 2020-2021
-
-labs:
-
+  - sp19
+  - fa19
+  - sp20
+  - fa20
+github: sirroboto
 authors:
-  - sirroboto
-
-role: President of AI@UCF (2019-2021)
-
-organizations:
-
-bio: >-
-  President of AI@UCF for the 2019 and 2020 academic years. Aspiring entrepreneur
-  passionate about home automation and assistive robotics.
-
+- sirroboto
+user_groups:
+- Coordinator
+- Presidents
+- sp19-vice-president
+- fa19-president
+- sp20-president
+- sp20-supplementary-director
+- fa20-president
+- fa20-coordinator
+- fa20-gbms-coordinator
+- fa20-core-coordinator
+title: Justin TenEyck
+role: President
 interests:
-  - Robotics
-  - Home Automation
-
+- '...'
+bio: test
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/sirroboto
 education:
   courses:
-    - course: BSc in Computer Engineering
-      institution: University of Central Florida
-      year: 2021
-
-social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/sirroboto"
-
-
-user_groups:
-  - Presidents
-  - Coordinators
-  - sp19-core-coordinator
-  - fa19-core-coordinator
-  - sp20-core-coordinator
-  - sp20-supplementary-director
-  - fa19-supplementary-director
+  - course: BS in Computer Engineering
+    institution: Univeristy of Central Florida
+    year: 2021
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.
+my name jootin

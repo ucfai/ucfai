@@ -1,0 +1,37 @@
+{{ $page := . }}
+
+{{ $page.Scratch.Set "multi-column" false }}
+<!-- <div class="meta-conatiner container"> -->
+<div class="universal-wrapper article-links col-12">
+  {{- $page.Scratch.Set "show-link-text" true }}
+  <h1> {{ $page.Title }} </h1>
+  {{ partial "custom-metadata" $page }}
+</div>
+
+<article id="article" class="universal-wrapper my-5">
+  {{- partial "embeds/youtube" $page }}
+  {{- partial "embeds/slides" $page }}
+  {{- $page.Content }}
+</article>
+
+<div class="universal-wrapper page-metadata">
+    <h2> Other Meetings in this Series </h2>
+    {{- $page.Scratch.Set "card-fill" "" }}
+    {{- $page.Scratch.Set "show-link-text" false }}
+    {{- $page.Scratch.Set "vertical" false -}}
+    {{- partial "fancy-pager" $page -}}
+    {{- $page.Scratch.Delete "card-fill" }}
+    {{- $page.Scratch.Delete "show-link-text" }}
+    {{- $page.Scratch.Delete "vertical" -}}
+  </div> 
+<div class="universal-wrapper">
+    <h2> Contributing Authors </h2>
+    <div class="row row-cols-1 row-cols-md-2">
+    {{ $page.Scratch.Get "coordinator-role" }}
+    {{ range $author := $page.Params.authors }}
+      {{ partial "coordinator" $author }}
+    {{ end }}
+    </div>
+  </div>
+</div>
+<!-- </div> -->

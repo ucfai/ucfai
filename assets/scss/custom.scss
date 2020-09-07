@@ -1,14 +1,26 @@
 @import "brand";
-@import "home";
-@import "authors";
 
-@import "highlights/fruity";
+@import "breadcrumb";
+@import "cards";
 
-@import "meetings";
+@import "pages/home";
+@import "pages/meetings";
+@import "pages/groups";
+@import "pages/coordinators";
+@import "pages/banner-email";
+@import "pages/banner-video";
 
-@import "banners/email";
-@import "banners/video";
+// Override Bootstrap's CSS
+// @import "override-bootstrap";
+@import "override-bootstrap/alert";
 
 // Override Academic's CSS
-@import "academic/docs_people_widget";
-@import "academic/site_footer";
+// @import "override-academic";
+@import "override-academic/content";
+@import "override-academic/navigation";
+@import "override-academic/site-footer";
+@import "override-academic/docs-people-widget";
+
+// 3rd-party Plugins
+@import "plugins/aos";
+@import "plugins/particles-js";

@@ -1,123 +1,102 @@
 [build]
-  command = "hugo --gc --minify -b $URL"
-  publish = "public"
+command = "hugo --gc --minify -b $URL"
+publish = "public"
 
 [build.environment]
-  HUGO_VERSION = "0.60.1"
-  HUGO_ENABLEGITINFO = "true"
+HUGO_VERSION = "0.73.0"
+HUGO_ENABLEGITINFO = "true"
+
+[context]
+
+[context.production]
 
 [context.production.environment]
-  HUGO_ENV = "production"
+HUGO_ENV = "production"
 
 [context.deploy-preview]
-  command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [[headers]]
-  for = "*.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json; charset=UTF-8"
+for = "*.webmanifest"
+
+[headers.values]
+Content-Type = "application/manifest+json; charset=UTF-8"
 
 [[headers]]
-  for = "index.xml"
-  [headers.values]
-    Content-Type = "application/rss+xml"
+for = "index.xml"
 
-# Netlify Redirect docs:
-#   - https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
+[headers.values]
+Content-Type = "application/rss+xml"
 
-# ------------------------------------------------------------------------------
-# Website redirects:
-#   These take the form of... https://ucfai.org/<from>
-#   - <from> is specified below as "from = ..." (ignore the leading slash)
-# We currently have the following redirects (sorted alphabetically:
-#   - https://ucfai.org/calendar
-#   - https://ucfai.org/discord
-#   - https://ucfai.org/facebook-page
-#   - https://ucfai.org/feedback
-#   - https://ucfai.org/github
-#   - https://ucfai.org/instagram
-#   - https://ucfai.org/kaggle
-#   - https://ucfai.org/signin
-# ------------------------------------------------------------------------------
+[[redirects]]
+from = "/calendar"
+to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
+status = 301
 
-[[ redirects ]]
-  from = "/calendar"
-  to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
-  status = 301
+[[redirects]]
+from = "/github"
+to = "https://github.com/ucfai"
+status = 301
 
-[[ redirects ]]
-  from = "/github"
-  to = "https://github.com/ucfai"
-  status = 301
+[[redirects]]
+from = "/kaggle"
+to = "https://kaggle.com/ucfaibot"
+status = 301
 
-[[ redirects ]]
-  from = "/kaggle"
-  to = "https://kaggle.com/ucfaibot"
-  status = 301
+[[redirects]]
+from = "/feedback"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSdOZLuDIJebQ5bLHsghTxEBjm57Eb6Oe-qQ48WmTeFv7uBdEw/viewform"
+status = 301
 
-[[ redirects ]]
-  from = "/feedback"
-  to = "https://docs.google.com/forms/d/e/1FAIpQLSdOZLuDIJebQ5bLHsghTxEBjm57Eb6Oe-qQ48WmTeFv7uBdEw/viewform"
-  status = 301
+[[redirects]]
+from = "/signin"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
+status = 301
 
-[[ redirects ]]
-  from = "/signin"
-  to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
-  status = 301
+[[redirects]]
+from = "/facebook-page"
+to = "https://facebook.com/ucfsigai"
+status = 301
 
-[[ redirects ]]
-  from = "/facebook-page"
-  to = "https://facebook.com/ucfsigai"
-  status = 301
+[[redirects]]
+from = "/instagram"
+to = "https://www.instagram.com/_ucfai"
+status = 301
 
-[[ redirects ]]
-  from = "/instagram"
-  to = "https://www.instagram.com/_ucfai"
-  status = 301
+[[redirects]]
+from = "/tshirts"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSd8_-Awm3ukHGytAWeKe3Ij3rRsKSgYW4m8_vygpw0hQ7jkIw/viewform"
+status = 301
 
-[[ redirects ]] # Temporary redirect for club tshirts, spring 2020
-  from = "/tshirts"
-  to = "https://docs.google.com/forms/d/e/1FAIpQLSd8_-Awm3ukHGytAWeKe3Ij3rRsKSgYW4m8_vygpw0hQ7jkIw/viewform"
-  status = 301  
+[[redirects]]
+from = "/discord"
+to = "https://discord.gg/7vwjC8P"
+status = 301
 
-# ------------------------------------------------------------------------------
-# Discord Redirects
-#   Essentially, redirects into specific channels on Discord
-# ------------------------------------------------------------------------------
-[[ redirects ]]
-  from = "/discord"
-  to = "https://discord.gg/7vwjC8P"
-  status = 301
-  
-[[ redirects ]]  # redirects to intelligence/getting-into-research channel
-  from = "/discord/getting-into-research"
-  to = "https://discordapp.com/channels/363524680851914752/496942140836937739"
-  status = 301
-  
-[[ redirects ]]  # redirects to ai@ucf/_announcements-ucfai
-  from = "/discord/accouncements"
-  to = "https://discordapp.com/channels/363524680851914752/363524782974828544"
-  status = 301
+[[redirects]]
+from = "/discord/accouncements"
+to = "https://discord.com/channels/363524680851914752/363524782974828544"
+status = 301
 
-[[ redirects ]]  # redirects to core/_announcements-core
-  from = "/discord/core"
-  to = "https://discordapp.com/channels/363524680851914752/496942430193582080"
-  status = 301
-  
-[[ redirects ]]  # redirects to intelligence/_announcements-intelligence
-  from = "/discord/intelligence"
-  to = "https://discordapp.com/channels/363524680851914752/496942430193582080"
-  status = 301
-  
-[[ redirects ]]  # redirects to supplementary/_announcements-supplementary
-  from = "/discord/supplementary"
-  to = "https://discordapp.com/channels/363524680851914752/666310888466284544"
-  status = 301
-  
-[[ redirects ]]  # redirects to project-teams/_announcements-project-teams
-  from = "/discord/project-teams"
-  to = "https://discordapp.com/channels/363524680851914752/363524782974828544"
-  status = 301
+[[redirects]]
+from = "/discord/gbms"
+to = "https://discord.com/channels/363524680851914752/713337547044028436"
+status = 301
+
+[[redirects]]
+from = "/discord/core"
+to = "https://discord.com/channels/363524680851914752/496942430193582080"
+status = 301
+
+[[redirects]]
+from = "/discord/discussions"
+to = "https://discord.com/channels/363524680851914752/518898052182966297"
+status = 301
+
+[[redirects]]
+from = "/discord/projects"
+to = "https://discord.com/channels/363524680851914752/580142880564445244"
+status = 301

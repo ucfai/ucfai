@@ -1,0 +1,13 @@
+{{ $semester := "" }}
+{{ if isset . "semester" }}
+    {{ $semseter = .semester }}
+{{ else }}
+    {{ $semester = .Scratch.Get "semester" }}
+{{ end }}
+
+{{ $semesterAbbrs := dict "fa" "Fall" "sp" "Spring" "su" "Summer" -}}
+{{ $shortname := substr $semester 0 2 -}}
+{{ $year := int (substr $semester 2 2) -}}
+{{ $fullname := printf "%s %s" (index $semesterAbbrs $shortname) (string (add 2000 $year))}}
+
+{{ return (dict "semester" $semester "fullname" $fullname "shortname" $shortname "year" $year) }}

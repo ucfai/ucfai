@@ -1,0 +1,21 @@
+{{- $datestring := partial "functions/infer-datestring" . | markdownify -}}
+
+{{- if in $datestring "TBD" }}
+    {{- $datestring = "We're in the process of getting meeting rooms and dates, **check back soon!*"}}
+{{- else }}
+    {{- $datestring = printf "We usually meet, **%s** in **%s**." $datestring .Params.location }}
+{{- end }}
+
+<div class="groups groups-where-where">
+  <div class="alert alert-secondary m-0">
+    <div>
+      {{ $datestring | markdownify | emojify }}
+    </div>
+  </div>
+  <p class="m-0" style="text-align: center;">
+    <small style="text-align: center;">
+      Be sure to check individual meeting times &ndash; as we occasionally have
+      to stray from the schedule!
+    </small>
+  </p>
+</div>

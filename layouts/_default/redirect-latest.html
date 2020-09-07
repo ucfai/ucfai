@@ -1,0 +1,8 @@
+{{- define "main" -}}
+{{- $page := . -}}
+
+<script>
+    window.location.href = "{{ site.Params.BaseURL }}/{{ $page.Params.redirect }}/{{ site.Data.config.semester }}"
+</script>
+
+{{- end -}}

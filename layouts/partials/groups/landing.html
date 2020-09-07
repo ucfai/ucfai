@@ -1,0 +1,35 @@
+{{/* This Layout renders the "meta-page" for "/groups". */}}
+{{ $page := . }}
+
+{{ partial "custom-header" $page }}
+
+<div class="universal-wrapper">
+
+  {{ $page.Content }}
+  
+  {{- if (eq $page.Title "Groups") }}
+
+    {{ $.Scratch.Set "show-group" true }}
+  
+    {{ $.Scratch.Set "show-if-none" true }}
+    {{ $.Scratch.Set "status" "active" }}
+    {{ partial "groups/status" $page }}
+  
+    {{ $.Scratch.Set "status" "archived" }}
+    {{ $.Scratch.Set "show-if-none" false }}
+    {{ partial "groups/status" $page }}
+
+  {{- else }}
+
+    <h2> Past and Present Semesters </h2>
+    <div id="semesters" class="row row-cols-1 row-cols-md-2">
+      {{ $.Scratch.Set "pager" false }}
+      {{ range $page.Pages.ByWeight }}
+        {{/* Ran into some quirks with inhereting from $page.Scratch... */}}
+        {{ partial "card" . }}
+      {{ end }}
+    </div>
+
+  {{- end }}
+
+</div>

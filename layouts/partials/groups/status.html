@@ -1,0 +1,41 @@
+{{- $page := . -}}
+
+{{- $groups := partial "functions/get-groups" $page }}
+{{- $status := $.Scratch.Get "status" }}
+{{- $showIfNone := $.Scratch.Get "show-if-none" | default false }}
+{{- $showGroup := $page.Scratch.Get "show-group" }}
+{{- $nCols := $.Scratch.Get "n-cols" | default 2 }}
+
+{{ $page.Scratch.Set "pager" false }}
+
+{{ if $showIfNone | or (gt (len $groups) 0) }}
+  <h2> {{ $status | title }} Groups </h2>
+
+  {{- if gt (len $groups) 0 -}}
+
+    <div class="row row-cols-1 row-cols-md-{{ $nCols }}">
+    {{- range $group := $groups }}
+      {{ $group.Scratch.Set "show-group" $showGroup }}
+      {{ $group.Scratch.Set "pager" false}}
+      {{ partial "card" $group }}
+      {{ $group.Scratch.Delete "pager" }}
+      {{ $group.Scratch.Delete "show-group" }}
+    {{- end }}
+    </div>
+
+  {{- else -}}
+
+    {{ $cls := cond (eq $status "active") "alert-warning" "alert-info" }}
+
+    <div class="alert {{ $cls }}">
+      <div>
+        {{ $msg := printf "We don't have any %s groups!" $status }}
+        {{ $msg | markdownify | emojify }}
+      </div>
+    </div>
+
+  {{- end -}}
+
+{{- end -}}
+
+{{ $page.Scratch.Delete "pager" }}

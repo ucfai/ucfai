@@ -1,0 +1,43 @@
+{{ $page := . }}
+
+<div class="article-metadata">
+
+  {{ if $page.Params.authors }}
+  <div class="article-authors">
+    <i class="fas fa-fw fa-user-astronaut"></i>
+    {{ partial "page_metadata_authors" $page }}
+  </div>
+  {{ end }}
+
+  <div class="article-facts">
+    <div class="article-date">
+      <i class="fas fa-fw fa-calendar-day"></i>
+      {{- $date := $page.Lastmod.Format site.Params.date_format }}
+      {{- if ne $page.Params.Lastmod $page.Params.Date }}
+          {{ i18n "last_updated" }}
+      {{- end }}
+      {{ $date }}
+    </div>
+
+    {{ if gt $page.ReadingTime 0 }}
+    <div class="middot-divider"></div>
+    <div class="article-reading-time">
+      <i class="fas fa-fw fa-clock"></i>
+      {{ $page.ReadingTime }} {{ i18n "minute_read" }}
+    </div>
+    {{ end }}
+  </div>
+
+  {{ with $page.GetTerms "tags" }}
+  <div class="article-facts">
+    <div class="article-tags">
+      <i class="fas fa-fw fa-tags fa-flip-horizontal mr-1"></i>
+      {{- range $index, $value := . -}}
+        <a class="badge badge-light" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      {{- end -}}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ partial "links-custom" $page }}
+</div>

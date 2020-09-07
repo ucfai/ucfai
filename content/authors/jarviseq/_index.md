@@ -1,49 +1,38 @@
 ---
-name: Liam Jarvis
-github: jarviseq
-
+organizations:
+- name:
+  url: ''
 ucfai:
   roles:
-    - Coordinator
+  - Coordinator
   teams:
-    - 2018-2019
-    - 2020-2021
-
-labs:
-
+  - sp19
+  - fa19
+  - sp20
+  - fa20
+github: jarviseq
 authors:
-  - jarviseq
-
-role: Coordinator, Core
-
-organizations:
-
-bio: >-
-
+- jarviseq
+user_groups:
+- Coordinator
+- sp19-core-coordinator
+- sp19-coordinator
+- fa19-core-coordinator
+- fa19-coordinator
+- sp20-coordinator
+- sp20-core-coordinator
+title: Liam Jarvis
+role: Coordinator
 interests:
-  - "..."
-
+- '...'
+bio:
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/jarviseq
 education:
   courses:
-    - course: BSc in Computer Science
-      institution: University of Central Florida
-      year: 2020
-
-social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/jarviseq"
-
-
-user_groups:
-  - Coordinators
-  - sp19-core-coordinator
-  - fa19-core-coordinator
-  - sp20-core-coordinator
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.

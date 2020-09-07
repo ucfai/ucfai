@@ -1,0 +1,13 @@
+# Font style metadata
+name = "Avenir Next"
+
+# Optional Google font URL
+# google_fonts = "Cutive+Mono|Lora:400,700|Roboto:400,700"
+# google_fonts = "PT+Sans"
+google_fonts = "PT+Sans|Fira+Code"
+
+# Font families
+heading_font = "PT Sans"
+body_font = "Avenir Next"
+nav_font = "Avenir Next"
+mono_font = "Fira Code"

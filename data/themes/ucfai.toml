@@ -5,14 +5,29 @@ name = "AI@UCF"
 light = true
 
 # Primary
-primary = "#222222"
+# primary = "#222222"
+# primary = "#eae3c9"
+# primary = "#143248"
+# primary = "#17a2b8"
+# primary = "#0093ff"
+# primary = "#1ee0ff"
+primary = "#0563c5"
 
 # Menu
 menu_primary = "#222222"
 menu_text = "#fff"
-menu_text_active = "rgb(208, 255, 56)"
+menu_text_active = "#fac700"
 menu_title = "#fff"
 
 # Home sections
 home_section_odd = "#fff"
 home_section_even = "#fff"
+
+# color: #143248;
+# background-color: #e2eaff;
+# border-color: #c3cfe8;
+
+# background = "#cacaca"
+# background = "#a5a5a5"
+# background = "#ccf8ff"
+background = "#f8feff"

@@ -1,0 +1,33 @@
+{{/* This Layout renders for the following:
+    - /archives
+    - /archives/<semester>
+  */}}
+  
+{{- define "main" -}}
+  {{- $page := . -}}
+  
+  {{- $semester := $page.Scratch.Get "semester" -}}
+
+  <div class="article">
+    {{ partial "custom-header" $page }}
+    <div class="universal-wrapper">
+      {{- $page.Content }}
+
+      {{- $page.Scratch.Set "show-group" false }}
+      {{- $page.Scratch.Set "status" "active" }}
+      {{- partial "groups/status" $page }}
+      {{- $page.Scratch.Delete "status" }}
+      {{- $page.Scratch.Delete "show-group" }}
+
+      <h2> Officers, Guests, and Advisors </h2>
+      <div id="officers" class="row row-cols-1 row-cols-md-2">
+        {{- $page.Scratch.Set "group" "all" }}
+        {{- partial "groups/officers" $page }}
+        {{- $page.Scratch.Delete "group" }}
+      </div>
+
+      {{- partial "fancy-pager" $page }}
+    </div>
+  </div>
+
+{{- end -}}

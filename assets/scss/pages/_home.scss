@@ -1,0 +1,62 @@
+/**
+ * Homepage
+ */
+body.ucfai-home {
+	width: 100%;
+	min-height: 720px;
+	position: absolute;
+    background-color: #252525;
+
+    nav {
+        // background: transparent !important;
+        box-shadow: none;
+	}
+
+	h1, h2, h3, h4, h5, h6, span, p {
+		color: #fefefe;
+	}
+}
+
+main#home.container {
+    position: relative;
+    z-index: 1000;
+	width: 100%;
+	min-height: calc(100vh - 70px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	div#landing-page {
+		display: flex;
+		margin: auto;
+		padding-top: 2em;
+		padding-bottom: 2em;
+		flex-direction: row;
+		align-items: center;
+		flex-shrink: 0;
+		min-height: 350px;
+
+		img#landing-logomark {
+			width: 66%;
+		}
+	}
+
+	div.card-simple {
+		// display: flex;
+		// color: #fefefe;
+		background-color: rgba(30, 37, 47, 0.11);
+
+		a {
+			color: inherit;
+			display: flex;
+			svg {
+				margin: auto 0;
+			}
+		}
+	}
+
+
+	a {
+		font-weight: bold;
+	}
+}

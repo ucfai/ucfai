@@ -1,6 +1,6 @@
-{{/* List of all authors. */}}
-
 {{- define "main" -}}
+
+{{/* List of all authors. */}}
 
 {{ partial "page_header.html" . }}
 
@@ -9,17 +9,12 @@
   <div class="article-style">{{ . }}</div>
   {{ end }}
 
-  <ul>
-    {{ $paginator := .Paginate .Data.Pages }}
-    {{ range $k, $v := $paginator.Pages }}
-    {{ $name := $v.Params.name | default ($v.Title | plainify) }}
-    <li>
-      {{ partial "cards/author" $name }}
-    </li>
+  <div class="row row-cols-1 row-cols-md-2">
+    {{ $paginator := .Data.Pages }}
+    {{ range $v := $paginator }}
+      {{ partial "coordinator" $v }}
     {{ end }}
-  </ul>
-
-  {{ partial "pagination" . }}
+  </div>
 </div>
 
 {{- end -}}

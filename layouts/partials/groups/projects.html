@@ -1,0 +1,13 @@
+{{- $page := . -}}
+
+<div id="projects" class="row row-cols-1 row-cols-md-2">
+  {{- range $project := $page.Params.projects -}}
+    {{ $project = site.GetPage (printf "/project/%s" $project) }}
+    {{ if $project }}
+      {{ $.Scratch.Set "pager" false }}
+      {{ $.Scratch.Set "show-group" false }}
+      {{ $.Scratch.Set "extra-card-cls" false }}
+      {{- partial "card" $project -}}
+    {{ end }}
+  {{- end -}}
+</div>

@@ -1,0 +1,13 @@
+{{- $page := . -}}
+
+{{- $expanded := split (path.Dir $page.Path) "/" -}}
+{{- $group := "" -}}
+
+{{ $isGroupPath := hasPrefix (index $expanded 0) "group" }}
+{{ if $isGroupPath }}
+  {{ $group = (index $expanded 1) | default "all" }}
+{{ else }}
+  {{ $group = "all" }}
+{{ end }}
+
+{{ return $group }}

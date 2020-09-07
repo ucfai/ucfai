@@ -1,3 +1,38 @@
 .navbar-brand img {
     max-height: 48px;
 }
+
+.btn-links {
+  a {
+    i {
+      color: inherit !important;
+    }
+  }
+}
+a[id*="youtube"], a[class*="youtube"] {
+  background-color: #fff;
+  border-width: 0 !important;
+}
+
+a[id*="kaggle"], a[class*="kaggle"] {
+  color: #20beff !important;
+  background-color: #47494d !important;
+  border-width: 0 !important;
+}
+
+a[id*="github"], a[class*="github"] {
+  color: #f5f5f5 !important;
+  background-color: #333333 !important;
+  border-width: 0 !important;
+}
+
+a[id*="slides"], a[class*="slides"] {
+  background-color: #fff;
+  border-width: 0 !important;
+}
+
+a[id*="colab"], a[class*="colab"] {
+  color: #252525 !important;
+  background-color: #fdde3c !important;
+  border-width: 0 !important;
+}

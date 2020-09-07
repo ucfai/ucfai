@@ -1,46 +1,37 @@
 ---
-name: Dillon Burns
-github: dillonnotdylan
-
+organizations:
+- name:
+  url: ''
 ucfai:
   roles:
-    - Coordinator
+  - Coordinator
   teams:
-    - 2020-2021
-
-labs:
-
+  - sp20
+  - fa20
+github: dillonnotdylan
 authors:
-  - dillonnotdylan
-
-role: Coordinator, Core
-
-organizations:
-
-bio: >-
-
+- dillonnotdylan
+user_groups:
+- Coordinator
+- sp20-core-coordinator
+- sp20-discussions-coordinator
+- sp20-coordinator
+- fa20-coordinator
+- fa20-gbms-coordinator
+- fa20-core-coordinator
+- fa20-discussions-coordinator
+title: Dillon Burns
+role: Coordinator
 interests:
-  - "..."
-
+- '...'
+bio:
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/dillonnotdylan
 education:
   courses:
-    - course: BSc in Computer Science
-      institution: University of Central Florida
-      year: 2021
-
-social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/dillonnotdylan"
-
-
-user_groups:
-  - Coordinators
-  - sp20-core-coordinator
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.

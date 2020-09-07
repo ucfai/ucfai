@@ -1,0 +1,11 @@
+// https://github.com/michalsnik/aos
+// https://css-tricks.com/aos-css-driven-scroll-animation-library/
+
+[data-aos="nav-fade-in"] {
+  background-color: rgba($sta-primary, 0) !important;
+  transition-property: background-color;
+}
+  
+[data-aos="nav-fade-in"].aos-animate {
+  background-color: rgba($sta-primary, 1) !important;
+}

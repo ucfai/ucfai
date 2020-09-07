@@ -1,51 +1,46 @@
 ---
-name: Brandon Silva
-github: brandons209
-
+organizations:
+- name:
+  url: ''
 ucfai:
   roles:
-    - Director
-    - Coordinator
+  - Coordinator
+  - Director
   teams:
-    - 2018-2019
-    - 2020-2021
-
-labs:
-
+  - sp19
+  - fa19
+  - sp20
+  - fa20
+  - sp21
+github: brandons209
 authors:
-  - brandons209
-
-role: Director, Core
-
-organizations:
-
-bio: >-
-
+- brandons209
+user_groups:
+- Coordinator
+- Director
+- Directors
+- sp19-core-coordinator
+- sp19-coordinator
+- fa19-core-director
+- fa19-director
+- sp20-director
+- sp20-core-director
+- fa20-gbms-director
+- fa20-director
+- fa20-coordinator
+- fa20-core-coordinator
+title: Brandon Silva
+role: Coordinator
 interests:
-  - "..."
-
+- '...'
+bio:
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/brandons209
 education:
   courses:
-    - course: BSc in Computer Engineering
-      institution: University of Central Florida
-      year: 2021
-
-social:
-  - icon: github
-    icon_pack: fab
-    link: "https://github.com/brandons209"
-
-
-user_groups:
-  - Directors
-  - Coordinators
-  - sp19-core-coordinator
-  - fa19-core-director
-  - sp20-core-director
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
 ---
-
-If you're looking for random paragraphs, you've come to the right place. When a random
-word or a random sentence isn't quite enough, the next logical step is to find a random
-paragraph. We created the Random Paragraph Generator with you in mind. The process is
-quite simple. Choose the number of random paragraphs you'd like to see and click the
-button. Your chosen number of paragraphs will instantly appear.

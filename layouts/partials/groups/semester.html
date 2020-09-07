@@ -1,0 +1,53 @@
+{{- $page := . -}}
+
+{{- $group := $.Scratch.Get "group" -}}
+{{- $semester := $.Scratch.Get "semester" -}}
+{{- $semDict := $.Scratch.Get "semDict" -}}
+{{- $fullname := index $semDict "fullname" -}}
+
+{{- $groupAsTitle := replace (replace $group "-" " ") "_" " " | title -}}
+
+<article class="article">
+  {{ partial "custom-header" $page }}
+
+  <div class="universal-wrapper">
+
+    <div class="article-abstract py-3">
+      <h2> This Semester's Plan </h2>
+      {{ $page.Summary }}
+    </div>
+
+    <div id="group-when-where" class="group-metadata group-when-where">
+      {{ partial "groups/when-where" $page }}
+    </div>
+
+    {{ if isset $page.Params "projects" }}
+    <div id="group-projects" class="group-metadata group-projects">
+      <h2> Ongoing Projects </h2>
+      {{ partial "groups/projects" $page }}
+    </div>
+    {{ end }}
+
+    <div id="group-syllabus" class="group-metadata group-syllabus">
+      <h2> Planned Meetings </h2>
+      {{ partial "groups/syllabus" $page }}
+    </div>
+
+    <div id="group-officers" class="group-metadata group-officers">
+      <h2> Officers, Guests, and Advisors </h2>
+      <div class="row row-cols-1 row-cols-md-2">
+      {{ partial "groups/officers" $page }}
+      </div>
+    </div>
+  </div>
+
+  <div class="universal-wrapper">
+    <div class="article-widget">
+      {{ partial "fancy-pager" $page }}
+    </div>
+  </div>
+
+    {{ partial "page_footer" . }}
+  </div>
+
+</article>

@@ -1,0 +1,35 @@
+---
+organizations:
+- name:
+  url: ''
+ucfai:
+  roles:
+  - Coordinator
+  teams:
+  - sp19
+  - fa20
+github: irene-l-tanner
+authors:
+- irene-l-tanner
+user_groups:
+- Coordinator
+- sp19-core-coordinator
+- sp19-coordinator
+- fa20-coordinator
+- fa20-gbms-coordinator
+- fa20-discussions-coordinator
+title: Irene Tanner
+role: Coordinator
+interests:
+- '...'
+bio:
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/irene-l-tanner
+education:
+  courses:
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
+---

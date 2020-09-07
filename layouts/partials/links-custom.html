@@ -1,0 +1,36 @@
+{{/* Requires a Dict with ["urls", "text"] keys */}}
+
+{{- $urls := .Params.urls -}}
+{{- $show := $.Scratch.Get "show-link-text" -}}
+
+{{- range $values := site.Data.config.buttons -}}
+  {{- $platform := index $values "platform" -}}
+  {{- $url := "" -}}
+  {{- with $urls -}}
+    {{ $url = index . $platform }}
+  {{- end -}}
+  {{- with $url -}}
+    {{- $txt := "" -}}
+    {{- with $show -}}
+      {{ $txt = index $values "btn-text" }}
+    {{- end -}}
+
+    {{- $cls := index $values "fa-class" -}}
+
+    {{- $scheme := (urls.Parse $url).Scheme }}
+    {{- $target := "" }}
+    {{- if not $scheme }}
+      {{- $url = $url | relLangURL }}
+    {{- else if in (slice "http" "https") $scheme }}
+      {{- $target = "target=\"_blank\" rel=\"noopener\"" }}
+    {{- end }}
+
+    <a class="btn btn-sm my-1 mr-1 btn-{{ $platform }}"
+       href="{{ $url | safeURL }}" {{- $target | safeHTMLAttr }}>
+      {{- $margin := "" -}}
+      {{- with $txt -}}{{ $margin = "mr-1" }}{{- end -}}
+      <i class="{{ $cls }} {{ $margin }} fa-fw"></i> 
+      {{- with $txt -}}{{ . }}{{- end -}}
+    </a>
+  {{- end }}
+{{- end -}}

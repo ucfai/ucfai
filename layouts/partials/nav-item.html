@@ -1,0 +1,60 @@
+{{ $page := .page }}
+{{ $current_page := .current }}
+{{ $archivedGroups := .archivedGroups }}
+
+{{ if not ($page.Name | in $archivedGroups) }}
+{{ if $page.HasChildren }}
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+    aria-haspopup="true">
+    {{- $page.Pre -}}<span>{{ $page.Name | safeHTML }}</span>{{- $page.Post -}}
+    <span class="caret"></span>
+  </a>
+  <div class="dropdown-menu">
+    {{ range $page.Children }}
+      <a href="{{ .URL | relLangURL }}"
+         class="dropdown-item" 
+         {{ if $.IsHome }} data-target="{{ .URL }}" {{ end }}>
+        {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+      </a>
+    {{ end }}
+  </div>
+</li>
+
+{{ else }}
+
+  {{ with $page }}
+    {{/* Set target for link. */}}
+    {{ $.Scratch.Set "target" "" }}
+    {{ if gt (len .URL) 4 }}
+      {{ if eq "http" (slicestr .URL 0 4) }}
+        {{ $.Scratch.Set "target" " target=\"_blank\" rel=\"noopener\"" }}
+      {{ end }}
+    {{ end }}
+  
+    {{/* Get active page. */}}
+    {{ $is_link_in_current_path := in $current_page.URL .URL }}
+    {{ $is_widget_page := or $current_page.IsHome (eq $current_page.Type "widget_page") }}
+    {{ $hash := findRE "#(.+)" .URL }}
+    {{ $is_same_page := $is_link_in_current_path }}
+    {{ if gt (len $hash) 0 }}
+      {{ $hash = index $hash 0 }}
+      {{ $hash_removed := replace .URL $hash "" }}
+      {{ if eq (len $hash_removed) 0 }}
+        {{ $hash_removed = "/" }}{{/* Add robustness for `/#SECTION` or `#SECTION` in `menus.toml`. */}}
+      {{ end }}
+      {{ $is_same_page = eq (path.Dir $current_page.URL) (path.Dir ($hash_removed|relLangURL)) }}
+    {{ end }}
+  
+    <li class="nav-item">
+      <a class="nav-link {{if $is_link_in_current_path }} active{{end}}"
+        href="{{ .URL | relLangURL }}"
+        {{ if and $is_widget_page $is_same_page }} data-target="{{ $hash }}"
+        {{ end }}{{ ($.Scratch.Get "target") | safeHTMLAttr }}>
+        {{- .Pre -}}<span>{{ .Name | safeHTML }}</span>{{- .Post -}}
+      </a>
+    </li>
+  {{ end }}
+
+{{ end }}
+{{ end }}
