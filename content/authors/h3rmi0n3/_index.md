@@ -16,11 +16,12 @@ authors:
 user_groups:
 - Coordinator
 - Vice President
+- sp20-gbms-coordinator
 - sp20-coordinator
 - fa20-vice-president
 - fa20-coordinator
-- fa20-gbms-coordinator
 - fa20-discussions-coordinator
+- fa20-gbms-coordinator
 title: Chloë Geller
 role: Coordinator
 interests:

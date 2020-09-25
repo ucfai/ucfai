@@ -1,35 +1,39 @@
 ---
 organizations:
-  - name: null
-    url: ""
+- name:
+  url: ''
 ucfai:
   roles:
-    - Coordinator
+  - Coordinator
   teams:
-    - sp20
-    - fa20
+  - fa19
+  - sp20
+  - fa20
 github: hevia
 authors:
-  - hevia
+- hevia
 user_groups:
-  - Coordinator
-  - sp20-coordinator
-  - sp20-discussions-coordinator
-  - fa20-projects-coordinator
-  - fa20-discussions-coordinator
-  - fa20-coordinator
+- Coordinator
+- fa19-coordinator
+- fa19-projects-coordinator
+- sp20-gbms-coordinator
+- sp20-coordinator
+- sp20-discussions-coordinator
+- fa20-coordinator
+- fa20-discussions-coordinator
+- fa20-projects-coordinator
 title: Anthony Hevia
 role: Coordinator
 interests:
-  - ...
-bio: null
+- '...'
+bio:
 social:
-  - icon: github
-    icon_pack: fab
-    link: https://github.com/hevia
+- icon: github
+  icon_pack: fab
+  link: https://github.com/hevia
 education:
   courses:
-    - course: BS in <UNK>
-      institution: Univeristy of Central Florida
-      year: YYYY
+  - course: BS in <UNK>
+    institution: Univeristy of Central Florida
+    year: YYYY
 ---

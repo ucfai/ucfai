@@ -5,6 +5,7 @@ organizations:
 ucfai:
   roles:
   - Coordinator
+  - Guest
   teams:
   - sp19
   - fa19
@@ -15,15 +16,18 @@ authors:
 - danielzgsilva
 user_groups:
 - Coordinator
-- sp19-core-coordinator
+- Guest
 - sp19-coordinator
-- fa19-coordinator
+- sp19-core-coordinator
 - fa19-core-coordinator
-- sp20-core-coordinator
+- fa19-coordinator
 - sp20-coordinator
+- sp20-core-coordinator
+- sp20-gbms-guest
+- sp20-guest
+- fa20-core-coordinator
 - fa20-coordinator
 - fa20-gbms-coordinator
-- fa20-core-coordinator
 title: Daniel Silva
 role: Coordinator
 interests:

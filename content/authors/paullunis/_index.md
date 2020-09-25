@@ -15,13 +15,14 @@ authors:
 user_groups:
 - Coordinator
 - Director
-- sp20-discussions-coordinator
+- sp20-gbms-coordinator
 - sp20-coordinator
-- fa20-discussions-director
+- sp20-discussions-coordinator
 - fa20-director
+- fa20-discussions-director
 - fa20-coordinator
-- fa20-gbms-coordinator
 - fa20-core-coordinator
+- fa20-gbms-coordinator
 title: Stefan Lunis
 role: Coordinator
 interests:

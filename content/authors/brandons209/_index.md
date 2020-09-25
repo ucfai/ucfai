@@ -19,16 +19,18 @@ user_groups:
 - Coordinator
 - Director
 - Directors
-- sp19-core-coordinator
 - sp19-coordinator
-- fa19-core-director
+- sp19-core-coordinator
 - fa19-director
+- fa19-core-director
 - sp20-director
 - sp20-core-director
-- fa20-gbms-director
+- sp20-coordinator
+- sp20-gbms-coordinator
 - fa20-director
-- fa20-coordinator
+- fa20-gbms-director
 - fa20-core-coordinator
+- fa20-coordinator
 title: Brandon Silva
 role: Coordinator
 interests:
