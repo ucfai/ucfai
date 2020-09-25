@@ -4,7 +4,7 @@ title: Groups
 menu_name: Groups
 
 menu:
-  main:
+  # main:
   #   weight: 3
   # groups:
   #   weight: 1
