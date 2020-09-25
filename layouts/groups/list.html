@@ -7,10 +7,16 @@
 {{- define "main" -}}
   {{- $page := . -}}
 
-  {{- if (isset $page.Params "frequency") }}
-    {{ partial "groups/semester" $page }}
-  {{- else }}
-    {{ partial "groups/landing" $page }}
-  {{- end }}
+  <article class="article pt-3">
+    {{ partial "custom-header" $page }}
+
+    <div class="universal-wrapper">
+      {{- if (isset $page.Params "frequency") }}
+        {{ partial "groups/semester" $page }}
+      {{- else }}
+        {{ partial "groups/landing" $page }}
+      {{- end }}
+    </div>
+  </article>
 
 {{- end -}}
