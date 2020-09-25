@@ -18,7 +18,7 @@ authors: [sirroboto]
 
 urls:
   youtube: ''
-  slides: ''
+  slides: https://docs.google.com/presentation/d/12wAEdGGhDOwcrkp0Mt4G1pdflhslG58_1Go5H2hfq64
   github: ''
   kaggle: ''
   colab: ''
@@ -31,9 +31,9 @@ cover: ''
 categories: [fa20]
 tags: [club]
 abstract: >-
-  Welcome to AI@UCF! We'll be introducing newcomers and returning members alike to
-  the club this Fall, sharing what we'll be up to. We'll be reviewing club structure,
-  how we'll be running our meetings and more!
+  Welcome to AI@UCF! We'll be introducing newcomers and returning members alike
+  to the club this Fall, sharing what we'll be up to. We'll be reviewing club
+  structure, how we'll be running our meetings and more!
 
 ---
 

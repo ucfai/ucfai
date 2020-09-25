@@ -18,7 +18,7 @@ authors: [brandons209]
 
 urls:
   youtube: ''
-  slides: 'https://docs.google.com/presentation/d/1hoIjjVXT190kAqDhVstlN8vFnPrUChP1UgiJQtJQiVo'
+  slides: https://docs.google.com/presentation/d/1hoIjjVXT190kAqDhVstlN8vFnPrUChP1UgiJQtJQiVo
   github: ''
   kaggle: ''
   colab: ''
@@ -32,12 +32,13 @@ categories: [fa20]
 tags: [ethics, ai ethics, future of ai, agi]
 abstract: >-
   Welcome to our first GBM meeting! This meeting will be heavily discussion-based,
-  talking about a variety of interesting AI ethical issues like use in medical fields,
-  politics, laws limiting AI, consciousness, and creating "human" AI. This is a great
-  way to dip your toes into a field of AI many people often joke about or just say
-  "AI
-  will take over the world." Can our society properly regulate and use AI in the future?
-  Come and discuss the answers to this question!
+  talking about a variety of interesting AI ethical issues like use in medical
+  fields,
+  politics, laws limiting AI, consciousness, and creating "human" AI. This is
+  a great way to dip your toes into a field of AI many people often joke about
+  or just say "AI
+  will take over the world." Can our society properly regulate and use AI in the
+  future? Come and discuss the answers to this question!
 
 ---
 
