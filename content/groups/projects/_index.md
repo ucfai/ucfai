@@ -11,8 +11,8 @@ header:
 menu_name: Projects
 
 menu:
-  main:
-    parent: Groups
+  # main:
+  #   parent: Groups
   groups:
     # parent: Groups
   projects:
