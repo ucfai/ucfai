@@ -11,8 +11,8 @@ header:
 menu_name: Core
 
 menu:
-  main:
-    parent: Groups
+  # main:
+  #   parent: Groups
   groups:
     # parent: Groups
   core:

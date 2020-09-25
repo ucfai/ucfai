@@ -1,6 +1,6 @@
 {{- $page := . }}
 
-{{ $statuses := slice "active" "archived" }}
+{{ $statuses := slice "active" "archived" "all" }}
 
 {{ $status := $.Scratch.Get "status" }}
 {{ $semester := $.Scratch.Get "semester" }}
@@ -13,9 +13,11 @@
   {{ range $onDisk := $onDiskGroups }}
     {{ $expected := printf "/groups/%s/%s/_index.md" $onDisk.Name $semester }}
     {{ $p := $.Site.GetPage $expected }}
-    {{ if $p | and (eq $status "active") }}
+    {{ if $p | and (eq $status "all") }}
+      {{ $groups = $groups | append $p.Parent }}
+    {{ else if $p | and (eq $status "active") }}
       {{ $groups = $groups | append $p }}
-    {{ else if not $p | and (eq $status "archived") }}
+    {{ else if not $p | and ((eq $status "archived") | or (eq $status "all")) }}
       {{ $p = path.Dir (path.Dir $expected) }}
       {{ $p = path.Join $p "_index.md" }}
       {{ $p = $page.GetPage $p }}

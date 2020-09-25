@@ -14,12 +14,12 @@ authors:
 user_groups:
 - Coordinator
 - sp20-core-coordinator
-- sp20-discussions-coordinator
 - sp20-coordinator
+- sp20-discussions-coordinator
 - fa20-coordinator
-- fa20-gbms-coordinator
-- fa20-core-coordinator
 - fa20-discussions-coordinator
+- fa20-core-coordinator
+- fa20-gbms-coordinator
 title: Dillon Burns
 role: Coordinator
 interests:

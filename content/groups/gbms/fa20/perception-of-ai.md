@@ -18,7 +18,7 @@ authors: [irene-l-tanner]
 
 urls:
   youtube: ''
-  slides: ''
+  slides: https://docs.google.com/presentation/d/1cAcy11oICV-vuMLJKSBfuu3u-fVDp4yAIuYYVQGozOs
   github: ''
   kaggle: ''
   colab: ''
@@ -31,10 +31,11 @@ cover: ''
 categories: [fa20]
 tags: [misconceptions, media, artificial intelligence, pop culture]
 abstract: >-
-  Ever watch a TV show or movie that depicts robots taking over the world? In this
-  meeting, we'll discuss how different forms of media perceive AI, from movies to
-  news outlets to global tech experts. We'll also be clearing up misconceptions about
-  the future of artificial intelligence (hint - robots are NOT taking over the world).
+  Ever watch a TV show or movie that depicts robots taking over the world? In
+  this meeting, we'll discuss how different forms of media perceive AI, from movies
+  to news outlets to global tech experts. We'll also be clearing up misconceptions
+  about the future of artificial intelligence (hint - robots are NOT taking over
+  the world).
 
 ---
 

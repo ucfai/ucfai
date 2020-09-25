@@ -3,6 +3,40 @@
 {{- define "main" -}}
 {{ $page := . }}
 
-{{ partial "page-with-metadata" $page }}
+  <article class="article pt-3">
+
+    {{- $page.Scratch.Set "show-link-text" true }}
+    {{ partial "custom-header" $page }}
+    {{- $page.Scratch.Delete "show-link-text" }}
+
+    <main id="article" class="universal-wrapper my-3">
+      {{- partial "embeds/papers" $page }}
+      {{- partial "embeds/youtube" $page }}
+      {{- partial "embeds/slides" $page }}
+      {{- $page.Content }}
+    </main>
+
+    <div class="universal-wrapper page-metadata">
+      <h2> Other Meetings in this Series </h2>
+      {{- $page.Scratch.Set "card-fill" "" }}
+      {{- $page.Scratch.Set "show-link-text" false }}
+      {{- $page.Scratch.Set "vertical" false -}}
+      {{- partial "fancy-pager" $page -}}
+      {{- $page.Scratch.Delete "card-fill" }}
+      {{- $page.Scratch.Delete "show-link-text" }}
+      {{- $page.Scratch.Delete "vertical" -}}
+    </div> 
+
+    <div class="universal-wrapper">
+      <h2> Contributing Authors </h2>
+      <div class="row row-cols-1 row-cols-md-2">
+      {{ $page.Scratch.Get "coordinator-role" }}
+      {{ range $author := $page.Params.authors }}
+        {{ partial "coordinator" $author }}
+      {{ end }}
+      </div>
+    </div>
+
+  </article>
 
 {{- end -}}

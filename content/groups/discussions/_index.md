@@ -11,8 +11,8 @@ header:
 menu_name: Discussions
 
 menu:
-  main:
-    parent: Groups
+  # main:
+  #   parent: Groups
   groups:
     # parent: Groups
   discussions:

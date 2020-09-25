@@ -1,8 +1,8 @@
 ---
-title: "Data Science: Fall 2019"
+title: 'Data Science: Fall 2019'
 
-location: <?UNK?>
-date: <?UNK?>
+location: BIO 209
+date: '2019-09-19 17:30:00'
 frequency: 1
 
 # Summarize the Group's content for this semester
@@ -17,7 +17,7 @@ projects: [cvdash, smash-bros, tbdrl]
 toc: true
 weight: 999941
 
-menu_name: "Data Science: Fall 2019"
+menu_name: 'Data Science: Fall 2019'
 
 menu:
   data-science-fa19:
@@ -27,6 +27,6 @@ menu:
     identifier: projects_fa19
 
 user_groups:
-  - fa19-projects-director
-  - fa19-projects-coordinator
+- fa19-projects-director
+- fa19-projects-coordinator
 ---

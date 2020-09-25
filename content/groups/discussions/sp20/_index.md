@@ -1,6 +1,6 @@
 ---
-title: "Intelligence: Spring 2020"
-linktitle: "Intelligence: Spring 2020"
+title: 'Intelligence: Spring 2020'
+linktitle: 'Intelligence: Spring 2020'
 
 location: BIO 209
 date: '2020-01-21 18:00:00'

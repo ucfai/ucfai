@@ -7,6 +7,7 @@ ucfai:
   - Coordinator
   teams:
   - sp19
+  - sp20
   - fa20
 github: irene-l-tanner
 authors:
@@ -15,9 +16,11 @@ user_groups:
 - Coordinator
 - sp19-core-coordinator
 - sp19-coordinator
+- sp20-gbms-coordinator
+- sp20-coordinator
 - fa20-coordinator
-- fa20-gbms-coordinator
 - fa20-discussions-coordinator
+- fa20-gbms-coordinator
 title: Irene Tanner
 role: Coordinator
 interests:

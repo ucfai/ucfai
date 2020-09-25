@@ -1,6 +1,6 @@
 ---
-title: "GBMs: Spring 2020"
-linktitle: "GBMs: Spring 2020"
+title: 'GBMs: Spring 2020'
+linktitle: 'GBMs: Spring 2020'
 
 location: ENG2 302
 date: '2020-01-13 18:00:00'

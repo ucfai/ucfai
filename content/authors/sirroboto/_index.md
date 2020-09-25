@@ -5,6 +5,7 @@ organizations:
 ucfai:
   roles:
   - Coordinator
+  - Director
   - President
   teams:
   - sp19
@@ -16,15 +17,18 @@ authors:
 - sirroboto
 user_groups:
 - Coordinator
+- Director
 - Presidents
 - sp19-vice-president
 - fa19-president
 - sp20-president
+- sp20-director
 - sp20-supplementary-director
+- sp20-gbms-director
 - fa20-president
+- fa20-core-coordinator
 - fa20-coordinator
 - fa20-gbms-coordinator
-- fa20-core-coordinator
 title: Justin TenEyck
 role: President
 interests:

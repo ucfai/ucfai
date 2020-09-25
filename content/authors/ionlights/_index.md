@@ -88,23 +88,27 @@ user_groups:
 - sp18-core-director
 - sp18-director
 - fa18-president
-- fa18-core-director
 - fa18-director
+- fa18-core-director
 - sp19-president
 - sp19-core-director
-- sp19-discussions-director
 - sp19-director
+- sp19-discussions-director
 - fa19-core-director
-- fa19-discussions-director
 - fa19-director
+- fa19-discussions-director
+- fa19-projects-coordinator
+- fa19-coordinator
 - fa19-core-coordinator
+- fa19-advisor
+- fa19-projects-advisor
 - fa19-core-guest
 - fa19-guest
 - sp20-advisor
 - sp20-guest
 - sp20-core-guest
-- fa20-advisor
 - fa20-core-advisor
+- fa20-advisor
 ---
 
 ## Briefly
