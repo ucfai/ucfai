@@ -24,7 +24,7 @@ urls:
   colab: ''
 
 papers:
-  ai-in-zelda: https://github.com/ucfai/discussions/raw/master/fa20/ai-in-zelda.pdf
+  ai-in-zelda: https://github.com/ucfai/discussions/raw/master/fa20/09-29-ai-in-zelda/ai-in-zelda.pdf
 
 location: Online
 cover: ''

@@ -24,7 +24,7 @@ urls:
   colab: ''
 
 papers:
-  useful-ml: https://github.com/ucfai/discussions/raw/master/fa20/
+  useful-ml: https://github.com/ucfai/discussions/raw/master/fa20/09-15-useful-ml/useful-ml.pdf
 location: Online
 cover: ''
 
