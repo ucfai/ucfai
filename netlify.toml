@@ -168,3 +168,8 @@ status = 301
   from = "/subscribe-newsletter"
   to = "http://eepurl.com/g9dlv1"
   status = 301
+  
+[[ redirects ]]
+  from = "/kh4"
+  to = "https://docs.google.com/presentation/d/12ARHKtpYKffJWSIrhGi_sQqvkizkQTfoJq_biYT0Pk0/edit"
+  status = 301
