@@ -96,7 +96,7 @@ status = 301
 
 [[ redirects ]]
   from = "/feedback"
-  to = "https://docs.google.com/forms/d/e/1FAIpQLSdOZLuDIJebQ5bLHsghTxEBjm57Eb6Oe-qQ48WmTeFv7uBdEw/viewform"
+  to = "https://forms.gle/rzoTSH4LRgD3Wt5C6"
   status = 301
 
 [[ redirects ]]
