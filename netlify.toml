@@ -136,7 +136,12 @@ status = 301
 
 [[ redirects ]]
   from = "/interest-meeting"
-  to = "https://ucf.zoom.us/rec/share/1cVeNezp73xOGKfR6n3ZX_EuJN_9X6a82nQZrqBfxRrXXdLNDzVcnnyJ9XHmWX_e"
+  to = "https://ucf.zoom.us/j/97313086893"
+  status = 301
+  
+[[ redirects ]]
+  from = "/linktree"
+  to = "https://linktr.ee/ucfai"
   status = 301
 
 [[ redirects ]]
