@@ -1,4 +1,4 @@
-semester: fa20
+semester: sp21
 officers:
 - President
 - Vice President
@@ -7,19 +7,30 @@ officers:
 - Advisor
 - Maintainer
 - Guest
+bot_taggable_roles:
+- Director
+- Coordinator
+- Guest
+- Advisor
+
 buttons:
-- platform: youtube
-  fa-class: fab fa-youtube
-  btn-text: Watch along on YouTube
+- platform: video
+  fa-class: fas fa-film
+  btn-text: Watch the video
 - platform: slides
   fa-class: fas fa-chalkboard
   btn-text: Take a look at the deck
 - platform: github
   fa-class: fab fa-github
   btn-text: View the Notebook on GitHub
+  url-repl: https://github.com/ucfai/%group%/blob/main/%semester%/%slug%
 - platform: kaggle
   fa-class: fab fa-kaggle
   btn-text: Follow along on Kaggle (recommended)
+  url-repl: https://kaggle.com/ucfaibot/%slug%
 - platform: colab
   fa-class: fas fa-infinity
   btn-text: Follow along on Google Colab
+  url-repl: https://colab.research.google.com/github/ucfai/%group%/blob/main/%semester%/%slug%
+
+raw_url_links: https://github.com/ucfai/%group%/raw/main/%semester%/%slug%
