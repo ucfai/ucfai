@@ -1,0 +1,15 @@
+{{ $page := .page }}
+{{ $semester := .semester }}
+
+{{ $classes := slice }}
+{{ if in $page.RelPermalink $semester.RelPermalink }}
+  {{ $classes = $classes | append "active" }}
+{{ end }}
+{{ if in $semester.RelPermalink site.Data.config.semester }}
+  {{ $classes = $classes | append "current" }}
+{{ end }}
+<li class="nav-item {{ delimit $classes " " }}">
+  <a class="nav-link" href="{{ $semester.RelPermalink }}">
+    {{ $semester.Title }}
+  </a>
+</li>

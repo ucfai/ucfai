@@ -117,7 +117,7 @@
       <div class="col">
         <h3> Service </h3>
         <ul class="ul-edu fa-ul">
-          {{ range $semester := $person.ucfai.teams }}
+          {{ range $semester := $person.teams }}
             {{ $roles := slice }}
             {{ range $group := $person.user_groups }}
               {{ $inSemester := in $group $semester }}

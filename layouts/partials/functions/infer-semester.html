@@ -13,4 +13,6 @@
   {{- $semester = . }}
 {{- end -}}
 
+{{ $page.Scratch.Set "semester" $semester }}
+
 {{ return $semester }}

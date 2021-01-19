@@ -1,0 +1,35 @@
+{{ $ := . }}
+{{ $page  := .}}
+
+<div class="container-md ">
+  <div id="groups-mega-menu" class="row row-cols-md-4 row-cols-1">
+    {{ $page.Scratch.Set "semester" (partial "functions/infer-semester" $page)}}
+    {{ $page.Scratch.Set "status" "all" }}
+
+    {{ $groups := partial "functions/get-groups" $page }}
+
+    {{ range $group := $groups }}
+      <div class="col offerings">
+          <h4> <a href="{{ $group.RelPermalink }}">{{ $group.Title }} </a></h4>
+        <ul>
+          {{ $semesters := $group.Pages | sort }}
+          {{ range $semester := (first 1 $semesters) }}
+            {{ partial "navigation/megamenu-item" (dict "page" . "semester" $semester )}}
+          {{ end }}
+          <li class="nav-item">
+          <details>
+            <summary class="nav-link">Previous Semesters</summary>
+            <ul>
+            {{ range $semester := (after 1 $semesters) }}
+              {{ partial "navigation/megamenu-item" (dict "page" . "semester" $semester )}}
+            {{ end }}
+            </ul>
+          </details>
+          </li>
+        </ul>
+      </div>
+    {{ end }}
+
+    {{ $page.Scratch.Delete "status" }}
+  </div>
+</div>

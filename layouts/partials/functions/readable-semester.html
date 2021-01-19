@@ -1,8 +1,10 @@
+{{ $page := . }}
+
 {{ $semester := "" }}
-{{ if isset . "semester" }}
-    {{ $semseter = .semester }}
+{{ if isset $page "semester" }}
+    {{ $semester = $page.semester }}
 {{ else }}
-    {{ $semester = .Scratch.Get "semester" }}
+    {{ $semester = $page.Scratch.Get "semester" }}
 {{ end }}
 
 {{ $semesterAbbrs := dict "fa" "Fall" "sp" "Spring" "su" "Summer" -}}

@@ -1,0 +1,52 @@
+{{ $page := . }}
+{{ $accepted_types := slice "archives" "groups" "hackpack" }}
+{{- if not .IsHome | and (in $accepted_types $page.Type) -}}
+<nav aria-label="breadcrumb">
+  <div class="universal-wrapper">
+    <ol class="breadcrumb px-0">
+      {{- $.Scratch.Add "path" "/" -}}
+      {{- range $i, $el := split .RelPermalink "/" -}}
+        {{- $.Scratch.Add "path" $el -}}
+        {{- if ne $el "" -}}
+          {{- $asPage := site.GetPage ($.Scratch.Get "path") -}}
+          {{ $dropdown := "" }}
+          {{ $toggle := ""}}
+          {{ if gt (len $asPage.Pages) 0 }}
+            {{ $dropdown = "dropdown" }}
+            {{ $toggle = "dropdown-toggle" }}
+          {{ end }}
+          <li class="breadcrumb-item {{ $dropdown -}}">
+            {{- $href := "#" -}}
+            {{- if ne ($.Scratch.Get "path") $page.RelPermalink }}
+                {{- $href = $.Scratch.Get "path" -}}
+            {{- end -}}
+            <span class="btn btn-primary breadcrumb-item {{ $toggle -}}" href="{{ $href }}">
+              {{- if not $toggle -}}
+              <i class="mr-1 fas fa-map-pin fa-sm"></i>
+              {{- else -}}
+              <i class="mr-1 fas fa-link fa-sm"></i>
+              {{- end -}}
+              {{ $asPage.LinkTitle }}
+              {{- with $toggle -}}
+              <i class="ml-1 fas fa-angle-down fa-sm"></i>
+              {{- end -}}
+            </span>
+            {{ with $asPage.Pages }}
+            <div class="dropdown-menu">
+            {{- range $subpage := . }}
+              <div class="dropdown-item">
+                <a href="{{ $subpage.RelPermalink }}">
+                  {{ $subpage.LinkTitle }}
+                </a>
+              </div>
+            {{- end }}
+            </div>
+            {{- end }}
+          </li>
+          {{- $.Scratch.Add "path" "/" -}}
+        {{- end -}}
+      {{- end -}}
+    </ol>
+  </div>
+</nav>
+{{- end -}}

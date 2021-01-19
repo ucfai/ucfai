@@ -7,15 +7,15 @@
   {{ $freq := $page.Params.frequency }}
 
   {{ if eq $freq 1 }}
-    {{ $date = $date | append "every" }}
+    {{ $date = $date | append "Every" }}
   {{ else if eq $freq 2 }}
-    {{ $date = $date | append "every other" }}
+    {{ $date = $date | append "Every other" }}
   {{ else }}
-    {{ $date = $date | append "occasionally on" }}
+    {{ $date = $date | append "Occasionally on" }}
   {{ end }}
 
   {{ with $page.Date }}
-    {{ $date = $date | append (.Format "Mon" | pluralize) }}
+    {{ $date = $date | append (.Format "Mon at") }}
     {{ $date = $date | append (.Format "03:04 PM") }}
   {{ end }}
 

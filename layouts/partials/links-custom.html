@@ -1,4 +1,5 @@
 {{/* Requires a Dict with ["urls", "text"] keys */}}
+{{- $page := . -}}
 
 {{- $urls := .Params.urls -}}
 {{- $show := $.Scratch.Get "show-link-text" -}}
@@ -17,13 +18,11 @@
 
     {{- $cls := index $values "fa-class" -}}
 
-    {{- $scheme := (urls.Parse $url).Scheme }}
-    {{- $target := "" }}
-    {{- if not $scheme }}
-      {{- $url = $url | relLangURL }}
-    {{- else if in (slice "http" "https") $scheme }}
-      {{- $target = "target=\"_blank\" rel=\"noopener\"" }}
-    {{- end }}
+    {{- $urlRegex := index $values "url-repl" -}}
+    {{ $regex := partial "functions/url-regex" (dict "page" $page "regex" $urlRegex "slug" $url) }}
+
+    {{ $url = $regex.url }}
+    {{ $target := $regex.target }}
 
     <a class="btn btn-sm my-1 mr-1 btn-{{ $platform }}"
        href="{{ $url | safeURL }}" {{- $target | safeHTMLAttr }}>

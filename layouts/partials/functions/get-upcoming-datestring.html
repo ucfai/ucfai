@@ -1,0 +1,28 @@
+{{ $page := . }}
+
+{{ $date := $page.Date }}
+{{ $dateStr := $date.Format "Mon, Jan 2 at 03:04 PM" }}
+
+{{ $tomorrow := time (div (sub now.Unix $date.Unix) 86400) }}
+
+{{/* Weeks start on Monday. Fight me. */}}
+{{ $nextMon := time now }}
+{{ range (seq 7) }}
+    {{ if ne $nextMon.Weekday "Mon" }}
+        {{ $nextMon = $nextMon.AddDate 0 0 1 }}
+    {{ end }}
+{{ end }}
+
+{{ if eq ($date.YearDay) (time now).YearDay }}
+    {{ $dateStr = $date.Format "Today at 03:04 PM" }}
+{{ else if eq (time (now.AddDate 0 0 1)).YearDay $date.YearDay }}
+    {{ $dateStr = $date.Format "Tomorrow at 03:04 PM" }}
+{{ else if lt $date.YearDay $nextMon.YearDay }}
+    {{ $dateStr = $date.Format "This Mon at 03:04 PM" }}
+{{ else if gt $date now }}
+    {{ $dateStr = $date.Format "Next Mon at 03:04 PM" }}
+{{ else }}
+    {{ $dateStr = $date.Format "Last met on Jan 02, 2006 at 03:04 PM" }}
+{{ end }}
+
+{{ return $dateStr }}

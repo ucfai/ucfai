@@ -1,0 +1,22 @@
+{{ $page := .page }}
+{{ $regex := .regex }}
+{{ $slug := .slug }}
+
+{{ $url := "" }}
+{{ with $regex }}
+    {{ $regex = replace $regex "%group%" ($page.Scratch.Get "group") }}
+    {{ $regex = replace $regex "%semester%" ($page.Scratch.Get "semester") }}
+    {{ $regex = replace $regex "%slug%" $slug }}
+    {{ $url = $regex }}
+{{ end }}
+
+{{ $scheme := (urls.Parse $url).Scheme }}
+{{ $target := "" }}
+
+{{ if not $scheme }}
+    {{ $url = $url | relLangURL }}
+{{ else if in (slice "http" "https") $scheme }}
+    {{ $target = "target\"_blank\" rel=\"noopener\"" }}
+{{ end }}
+
+{{ return (dict "url" $url "target" $target) }}

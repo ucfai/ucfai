@@ -3,8 +3,13 @@
 {{ with $page.Params.papers }}
 <div class="embedding embedding-toggle card-simple collapsed mb-3">
   <h2 class="mt-0"> Associated Papers </h2>
+  {{ $paperRegex := site.Data.config.raw_url_links }}
   {{ range $k, $v := . }}
-    <a href="{{ $v }}"> <i class="fas fa-external-link-alt"></i> {{ $k | humanize | title }}</a>
+    {{ $linkDict := dict "page" $page "regex" $paperRegex "slug" $v }}
+    {{ $link := partial "functions/url-regex" $linkDict }}
+    <a href="{{ $link.url | safeURL }}" {{- $link.target | safeHTMLAttr }}>
+      <i class="fas fa-external-link-alt"></i> {{ $k | humanize | title }}
+    </a>
   <!-- <figure class="embedded-16x9 embedded-papers m-0"> -->
   <!-- </figure> -->
   {{- end -}}
