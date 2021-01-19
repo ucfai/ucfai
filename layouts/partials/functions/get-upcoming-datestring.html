@@ -3,22 +3,22 @@
 {{ $date := $page.Date }}
 {{ $dateStr := $date.Format "Mon, Jan 2 at 03:04 PM" }}
 
-{{ $tomorrow := time (div (sub now.Unix $date.Unix) 86400) }}
+{{ $tomorrow := time (div (sub now.Unix $date.Unix) 86400) "America/New_York" }}
 
 {{/* Weeks start on Monday. Fight me. */}}
-{{ $nextMon := time now }}
+{{ $nextMon := time now "America/New_York" }}
 {{ range (seq 7) }}
     {{ if ne $nextMon.Weekday "Mon" }}
         {{ $nextMon = $nextMon.AddDate 0 0 1 }}
     {{ end }}
 {{ end }}
 
-{{ if eq ($date.YearDay) (time now).YearDay }}
+{{ if eq ($date.YearDay) (time now "America/New_York").YearDay }}
     {{ $dateStr = $date.Format "Today at 03:04 PM" }}
 {{ else if eq (time (now.AddDate 0 0 1)).YearDay $date.YearDay }}
     {{ $dateStr = $date.Format "Tomorrow at 03:04 PM" }}
-{{ else if lt $date.YearDay $nextMon.YearDay }}
-    {{ $dateStr = $date.Format "This Mon at 03:04 PM" }}
+{{ else if lt $date.YearDay (sub $nextMon.YearDay 1) }}
+    {{ $dateStr = $date.Format "This coming Mon at 03:04 PM" }}
 {{ else if gt $date now }}
     {{ $dateStr = $date.Format "Next Mon at 03:04 PM" }}
 {{ else }}
