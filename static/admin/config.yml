@@ -3,7 +3,7 @@ local_backend: true
 backend:
   name: github
   repo: ucfai/ucfai.org
-  branch: major-restructure
+  branch: release-hugo-academic-base
   use_graphql: true
 
 publish_mode: editorial_workflow
