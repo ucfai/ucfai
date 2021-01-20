@@ -11,7 +11,7 @@
     {{ partial "custom-header" $page }}
 
     <div class="universal-wrapper">
-      {{- if (isset $page.Params "frequency") }}
+      {{- with (where $page.Pages ".IsNode" false) }}
         {{ partial "groups/semester" $page }}
       {{- else }}
         {{ partial "groups/landing" $page }}

@@ -9,7 +9,7 @@
 {{- end -}}
 
 {{- $siblings := "" }}
-{{ if or (isset $page.Params "frequency") (eq $page.Type "archives") }}
+{{ if (gt (len (where $page.Pages ".IsNode" false)) 0) | or (eq $page.Type "archives") }}
   {{- $siblings = $page.Parent.Pages.ByWeight.Reverse }}
 {{ else }}
   {{- $siblings = $page.Parent.Pages.ByWeight }}
