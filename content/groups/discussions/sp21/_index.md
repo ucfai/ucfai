@@ -4,7 +4,6 @@ linktitle: 'Discussions: Spring 2021'
 
 date: '2021-01-26 18:00:00'
 location: Online
-frequency: <?UNK?>
 
 # Summarize the Group's content for this semester
 summary: >-
@@ -30,4 +29,9 @@ user_groups:
 - sp21-discussions-coordinator
 - sp21-discussions-guest
 - sp21-discussions-advisor
+abstract: >-
+  This group focuses on reading research papers and discussing it with your peers.
+  If you like hearing about new and interesting topics in the field than this is
+  a great place for you! Whether this is your first time reading a paper or you
+  have experience with research, we truly believe this group has something for everyone.
 ---
