@@ -1,17 +1,33 @@
 {{ $page := . }}
 {{ $date := "" }}
 
-{{ if isset $page.Params "frequency" }}
+{{ with $page.Pages }}
+  {{ $pages := sort $page.Pages ".Date" "asc" }}
+  {{ $first := index (first 1 $pages) 0 }}
+  {{ $last := index (last 1 $pages) 0 }}
+  {{ $diff := sub $last.Date.Unix $first.Date.Unix }}
+  {{ $diff = div $diff 86400 }}
+
+  {{ $nMeeting := float (len $pages) }}
+
   {{ $date = slice }}
+  {{ $norm := (div $diff $nMeeting) }}
+  {{ $margin := 3.5 }}
 
-  {{ $freq := $page.Params.frequency }}
+  {{ $evWeeklyMax := add 7 $margin }}
+  {{ $evWeeklyMin := sub 7 $margin }}
+  {{ $evWeekly := (ge $norm $evWeeklyMin) | and (lt $norm $evWeeklyMax) }}
 
-  {{ if eq $freq 1 }}
-    {{ $date = $date | append "Every" }}
-  {{ else if eq $freq 2 }}
-    {{ $date = $date | append "Every other" }}
+  {{ $biWeeklyMax := add 14. $margin }}
+  {{ $biWeeklyMin := sub 14. $margin }}
+  {{ $biWeekly := (ge $norm $biWeeklyMin) | and (lt $norm $biWeeklyMax) }}
+
+  {{ if $evWeekly }}
+    {{ $date = $date | append "every" }}
+  {{ else if $biWeekly }}
+    {{ $date = $date | append "every other" }}
   {{ else }}
-    {{ $date = $date | append "Occasionally on" }}
+    {{ $date = $date | append "occasionally on" }}
   {{ end }}
 
   {{ with $page.Date }}
