@@ -2,10 +2,9 @@
 organizations:
   - name: null
     url: ""
-ucfai:
-  roles:
+roles:
     - Coordinator
-  teams:
+teams:
     - fa18
     - fa19
 github: chaskane

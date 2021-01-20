@@ -2,11 +2,10 @@
 organizations:
   - name: Evolutionary Computation Lab
     url: https://cs.ucf.edu/~ecl
-ucfai:
-  roles:
+roles:
     - Advisor
     - Guest
-  teams:
+teams:
     - fa17
     - fa18
     - sp19

@@ -46,10 +46,9 @@ github: flyinactor91
 authors: [flyinactor91]
 
 # NOTE: If you spot an error, please reach out to one the Maintainers
-ucfai:
-  roles:
+roles:
   - Guest
-  teams:
+teams:
   - fa20
 user_groups:
 - Guest

@@ -2,10 +2,9 @@
 organizations:
 - name:
   url: ''
-ucfai:
-  roles:
+roles:
   - Coordinator
-  teams:
+teams:
   - sp20
   - fa20
 github: bb912

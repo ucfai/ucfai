@@ -2,10 +2,9 @@
 organizations:
   - name: null
     url: ""
-ucfai:
-  roles:
+roles:
     - Coordinator
-  teams: null
+teams: null
 github: jordanstarkey95
 authors:
   - jordanstarkey95

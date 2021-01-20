@@ -49,11 +49,10 @@ github: calvinyong
 authors: [calvinyong]
 
 # NOTE: If you spot an error, please reach out to one the Maintainers
-ucfai:
-  roles:
+roles:
   - Coordinator
   - Guest
-  teams:
+teams:
   - sp20
 
 user_groups:

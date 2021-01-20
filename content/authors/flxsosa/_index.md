@@ -2,12 +2,11 @@
 organizations:
   - name: null
     url: ""
-ucfai:
-  roles:
+roles:
     - Advisor
     - Coordinator
     - Director
-  teams:
+teams:
     - fa17
     - fa20
 github: flxsosa

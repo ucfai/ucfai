@@ -1,7 +1,7 @@
 ---
 # Replace this with your real name, if you'd like to.
 # Otherwise leave it as your GitHub username.
-title: Causallycausal
+title: Phongphattharasiri
 
 # What's your current, highest, role in AI@UCF?
 # Omit the Group if you're a Coordinator.
@@ -29,7 +29,7 @@ education:
 social:
 - icon: github  # A link to your GitHub profile
   icon_pack: fab
-  link: https://github.com/causallycausal
+  link: https://github.com/phongphattharasiri
 # Have a personal website? Paste the entire URL.
 # - icon: globe-americas
 #   icon_pack: fas
@@ -45,16 +45,13 @@ social:
 
 # `autobot` updates these ----------------------------------------------------
 # These must match and MUST be set to your GitHub username
-github: causallycausal
-authors: [causallycausal]
+github: phongphattharasiri
+authors: [phongphattharasiri]
 
 # NOTE: If you spot an error, please reach out to one the Maintainers
-roles:
-  - Coordinator
+roles: []
 teams:
-  - fa19
+- fa20
 user_groups:
 - Coordinator
-- fa19-projects-coordinator
-- fa19-coordinator
 ---

@@ -2,11 +2,10 @@
 organizations:
 - name:
   url: ''
-ucfai:
-  roles:
+roles:
   - Coordinator
   - Director
-  teams:
+teams:
   - sp20
   - fa20
 github: nspeer12

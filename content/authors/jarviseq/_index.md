@@ -2,10 +2,9 @@
 organizations:
 - name:
   url: ''
-ucfai:
-  roles:
+roles:
   - Coordinator
-  teams:
+teams:
   - sp19
   - fa19
   - sp20

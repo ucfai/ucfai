@@ -2,10 +2,9 @@
 organizations:
 - name:
   url: ''
-ucfai:
-  roles:
+roles:
   - Coordinator
-  teams:
+teams:
   - fa20
 github: dan100ws
 authors:

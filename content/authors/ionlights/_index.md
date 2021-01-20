@@ -57,23 +57,22 @@ social:
 github: ionlights
 authors: [ionlights]
 # NOTE: If you spot an error, please reach out to one the Maintainers
-ucfai:
-  roles:
-  - Advisor
-  - Coordinator
-  - Director
-  - Founder
-  - Guest
-  - Maintainer
-  - President
-  teams:
-  - fa17
-  - sp18
-  - fa18
-  - sp19
-  - fa19
-  - sp20
-  - fa20
+roles:
+- Advisor
+- Coordinator
+- Director
+- Founder
+- Guest
+- Maintainer
+- President
+teams:
+- fa17
+- sp18
+- fa18
+- sp19
+- fa19
+- sp20
+- fa20
 user_groups:
 - Advisor
 - Coordinator
@@ -82,11 +81,11 @@ user_groups:
 - Guest
 - President
 - fa17-vice-president
-- fa17-core-coordinator
 - fa17-coordinator
+- fa17-core-coordinator
 - sp18-president
-- sp18-core-director
 - sp18-director
+- sp18-core-director
 - fa18-president
 - fa18-director
 - fa18-core-director
@@ -98,17 +97,19 @@ user_groups:
 - fa19-director
 - fa19-discussions-director
 - fa19-projects-coordinator
-- fa19-coordinator
 - fa19-core-coordinator
+- fa19-coordinator
 - fa19-advisor
 - fa19-projects-advisor
 - fa19-core-guest
 - fa19-guest
 - sp20-advisor
-- sp20-guest
 - sp20-core-guest
+- sp20-guest
 - fa20-core-advisor
 - fa20-advisor
+- sp21-discussions-guest
+- sp21-guest
 ---
 
 ## Briefly

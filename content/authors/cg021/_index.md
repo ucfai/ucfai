@@ -2,10 +2,9 @@
 organizations:
   - name: null
     url: ""
-ucfai:
-  roles:
+roles:
     - Coordinator
-  teams:
+teams:
     - sp19
 github: cg021
 authors:

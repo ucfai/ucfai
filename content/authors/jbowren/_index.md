@@ -1,10 +1,9 @@
 ---
 organizations: []
-ucfai:
-  roles:
+roles:
   - Coordinator
   - Guest
-  teams:
+teams:
   - sp18
 github: jbowren
 authors:

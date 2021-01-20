@@ -2,12 +2,11 @@
 organizations:
 - name:
   url: ''
-ucfai:
-  roles:
+roles:
   - Coordinator
   - Director
   - Guest
-  teams:
+teams:
   - fa18
   - fa19
   - sp20
