@@ -2,7 +2,7 @@
 {{ $regex := .regex }}
 {{ $slug := .slug }}
 
-{{ $url := "" }}
+{{ $url := $slug }}
 {{ with $regex }}
     {{ $regex = replace $regex "%group%" ($page.Scratch.Get "group") }}
     {{ $regex = replace $regex "%semester%" ($page.Scratch.Get "semester") }}

@@ -24,6 +24,10 @@
     {{ $url = $regex.url }}
     {{ $target := $regex.target }}
 
+    {{ if in $url "google" | and (in $url "presentation") }}
+      {{ $url = replace $url "/embed" "/pub" }}
+    {{ end }}
+
     <a class="btn btn-sm my-1 mr-1 btn-{{ $platform }}"
        href="{{ $url | safeURL }}" {{- $target | safeHTMLAttr }}>
       {{- $margin := "" -}}
