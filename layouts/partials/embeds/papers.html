@@ -3,15 +3,19 @@
 {{ with $page.Params.papers }}
 <div class="embedding embedding-toggle card-simple collapsed mb-3">
   <h2 class="mt-0"> Associated Papers </h2>
+  <div class="row row-cols-md-2 row-cols-1">
   {{ $paperRegex := site.Data.config.raw_url_links }}
   {{ range $k, $v := . }}
-    {{ $linkDict := dict "page" $page "regex" $paperRegex "slug" $v }}
-    {{ $link := partial "functions/url-regex" $linkDict }}
-    <a href="{{ $link.url | safeURL }}" {{- $link.target | safeHTMLAttr }}>
-      <i class="fas fa-external-link-alt"></i> {{ $k | humanize | title }}
-    </a>
+    <div class="col text-center">
+      {{ $linkDict := dict "page" $page "regex" $paperRegex "slug" $v }}
+      {{ $link := partial "functions/url-regex" $linkDict }}
+      <a href="{{ $link.url | safeURL }}" {{- $link.target | safeHTMLAttr }}>
+        <i class="fas fa-external-link-alt"></i> {{ (replace $k ".pdf" "") | humanize | title }}
+      </a>
+    </div>
   <!-- <figure class="embedded-16x9 embedded-papers m-0"> -->
   <!-- </figure> -->
   {{- end -}}
+  </div>
 </div>
 {{ end }}
