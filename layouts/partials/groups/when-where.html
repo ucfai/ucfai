@@ -1,7 +1,7 @@
 {{- $datestring := partial "functions/infer-datestring" . | markdownify -}}
 
 {{- if in $datestring "TBD" }}
-  {{- $datestring = "We're in the process of getting meeting rooms and dates, **check back soon!*"}}
+  {{- $datestring = "We're in the process of getting meeting rooms and dates, **check back soon!**"}}
 {{- else }}
   {{- $datestring = printf "We usually meet, **%s** in **%s**." $datestring .Params.location }}
 {{- end }}

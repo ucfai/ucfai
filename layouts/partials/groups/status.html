@@ -16,7 +16,7 @@
     <div class="row row-cols-1 row-cols-md-{{ $nCols }}">
     {{- range $group := $groups }}
       {{ $group.Scratch.Set "show-group" $showGroup }}
-      {{ $group.Scratch.Set "pager" false}}
+      {{ $group.Scratch.Set "pager" false }}
       {{ partial "card" $group }}
       {{ $group.Scratch.Delete "pager" }}
       {{ $group.Scratch.Delete "show-group" }}
