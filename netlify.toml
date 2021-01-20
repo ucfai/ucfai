@@ -136,7 +136,12 @@ status = 301
 
 [[ redirects ]]
   from = "/interest-meeting"
-  to = "https://ucf.zoom.us/j/97313086893"
+  to = "https://www.youtube.com/watch?v=9JwJTMEzsmI"
+  status = 301
+  
+[[ redirects ]]
+  from = "/interest-meeting-pres"
+  to = "https://docs.google.com/presentation/d/1xaMzLUXs_v4vVrKGiNsLFuLhE1yhHOAtc4vilyKFgmA/edit?usp=sharing"
   status = 301
   
 [[ redirects ]]
