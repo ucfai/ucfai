@@ -16,7 +16,7 @@ menu:
 
 authors:
 - sirroboto
-papers: []
+papers: {}
 
 location: Online
 cover: ''

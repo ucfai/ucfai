@@ -30,4 +30,13 @@ user_groups:
 - sp21-gbms-coordinator
 - sp21-gbms-guest
 - sp21-gbms-advisor
+abstract: >-
+  Our general body meetings (GBMs) is for those from all backgrounds and knowledge
+  levels. In this group we explore the field of AI through discussion based meetings
+  about ethics, history, misconceptions, deep learning, and many others from an
+  outside perspective. AI isn't scary, and many people have negative views on it
+  based on how the media portrays it. Our GBMs will help break this down and explore
+  the implications of AI and where it stands today. If you enjoy high level informative
+  discussions with your peers, learning more about AI, and meeting new people, GBMs
+  is for you!
 ---

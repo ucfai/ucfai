@@ -8,7 +8,7 @@ lastmod: <?UNK?>
 draft: false
 toc: true
 
-weight: 6
+weight: 4
 
 menu:
   gbms_sp21:
@@ -16,7 +16,7 @@ menu:
 
 authors:
 - danielzgsilva
-papers: []
+papers: {}
 
 location: Online
 cover: ''

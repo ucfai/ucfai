@@ -17,7 +17,7 @@ menu:
 authors:
 - sirroboto
 - brandons209
-papers: []
+papers: {}
 
 location: Online
 cover: ''

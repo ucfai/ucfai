@@ -16,7 +16,7 @@ menu:
 
 authors:
 - sirroboto
-papers: []
+papers: {}
 
 location: Online
 cover: ''
@@ -32,7 +32,7 @@ abstract: >-
   structure, how we'll be running our meetings and more!
 
 urls:
-  video: ''
+  video: https://www.youtube.com/embed/9JwJTMEzsmI
   slides: https://docs.google.com/presentation/d/e/2PACX-1vQ00lPPqjtiIK6yDbUBSHZRDXstOC-EBml1EJoVoxC8128P284MiCdHFIzASER2MwVL1h9zxI8jyKgf/embed
 ---
 
