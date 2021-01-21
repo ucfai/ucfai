@@ -123,7 +123,7 @@ status = 301
 
 [[redirects]]
 from = "/interest-meeting-pres"
-to = "https://docs.google.com/presentation/d/1xaMzLUXs_v4vVrKGiNsLFuLhE1yhHOAtc4vilyKFgmA/edit?usp=sharing"
+to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
 status = 301
 
 [[redirects]]
