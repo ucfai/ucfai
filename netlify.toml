@@ -162,6 +162,6 @@ to = "http://eepurl.com/g9dlv1"
 status = 301
 
 [[redirects]]
-from = "/kh4"
-to = "https://docs.google.com/presentation/d/12ARHKtpYKffJWSIrhGi_sQqvkizkQTfoJq_biYT0Pk0/edit"
+from = "/youtube"
+to = "https://www.youtube.com/channel/UCyokaec6yvsotHXFz9pbcaA"
 status = 301
