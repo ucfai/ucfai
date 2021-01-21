@@ -15,15 +15,15 @@ authors:
 user_groups:
 - Coordinator
 - Vice President
-- sp20-gbms-coordinator
 - sp20-coordinator
+- sp20-gbms-coordinator
 - fa20-vice-president
 - fa20-coordinator
 - fa20-gbms-coordinator
 - fa20-discussions-coordinator
-- sp21-gbms-coordinator
 - sp21-discussions-coordinator
 - sp21-coordinator
+- sp21-gbms-coordinator
 title: Chloë Geller
 role: Coordinator
 interests:

@@ -22,14 +22,14 @@ user_groups:
 - fa19-president
 - sp20-president
 - sp20-director
-- sp20-supplementary-director
 - sp20-gbms-director
+- sp20-supplementary-director
 - fa20-president
-- fa20-gbms-coordinator
-- fa20-core-coordinator
 - fa20-coordinator
-- sp21-coordinator
+- fa20-core-coordinator
+- fa20-gbms-coordinator
 - sp21-gbms-coordinator
+- sp21-coordinator
 title: Justin TenEyck
 role: President
 interests:

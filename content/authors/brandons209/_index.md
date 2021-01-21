@@ -24,12 +24,12 @@ user_groups:
 - fa19-core-director
 - sp20-director
 - sp20-core-director
-- sp20-gbms-coordinator
 - sp20-coordinator
+- sp20-gbms-coordinator
 - fa20-gbms-director
 - fa20-director
-- fa20-core-coordinator
 - fa20-coordinator
+- fa20-core-coordinator
 - sp21-director
 - sp21-gbms-director
 title: Brandon Silva

@@ -20,15 +20,15 @@ user_groups:
 - sp19-coordinator
 - fa19-coordinator
 - fa19-core-coordinator
-- sp20-core-coordinator
 - sp20-coordinator
-- sp20-guest
+- sp20-core-coordinator
 - sp20-gbms-guest
-- fa20-core-coordinator
+- sp20-guest
 - fa20-coordinator
+- fa20-core-coordinator
 - fa20-gbms-coordinator
-- sp21-coordinator
 - sp21-gbms-coordinator
+- sp21-coordinator
 title: Daniel Silva
 role: Coordinator
 interests:
