@@ -1,4 +1,10 @@
 # Role Translation
+- id: ai@ucf
+  translation: AI@UCF
+- id: ucfai
+  translation: AI@UCF
+- id: course
+  translation: Core
 - id: core
   translation: Core
 - id: intelligence
@@ -11,6 +17,8 @@
   translation: Discussions
 - id: projects
   translation: Projects
+- id: gbms
+  translation: GBMs
 
 # Coordinator-types
 - id: coordinator

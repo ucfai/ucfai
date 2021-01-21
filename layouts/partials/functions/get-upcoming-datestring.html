@@ -11,7 +11,7 @@
 {{ $next := "" }}
 {{ if and (not $pager) $pages }}
     {{ $page := sort $pages ".Date" "desc" }}
-    {{ if gt (index $page 0) $today }}
+    {{ if gt (index $page 0).Date $today }}
         {{ $page = sort $pages ".Date" "asc" }}
         {{ $page = where $page ".Date" ">=" $today }}
     {{ end }}

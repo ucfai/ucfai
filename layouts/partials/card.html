@@ -18,7 +18,8 @@
 
     <h4 class="card-title mt-0">
       {{- $link := cond $showGroup $page.Parent $page }}
-      <a href="{{ $link.RelPermalink }}" rel="{{ $pager }}"> {{ $link.Title }} </a>
+      {{ $title := partial "functions/group-title" $link }}
+      <a href="{{ $link.RelPermalink }}" rel="{{ $pager }}"> {{ $title }} </a>
     </h4>
 
     {{ $hasProperLocation := $page.Params.location | and ($page.Params.location | ne "<?UNK?>") }}

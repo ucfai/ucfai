@@ -3,7 +3,7 @@
 {{ $page.Scratch.Set "pager" false }}
 
 <div id="syllabus" class="row row-cols-1 row-cols-md-2">
-  {{- range $meeting := $page.Pages -}}
+  {{- range $meeting := (sort $page.Pages ".Date" "asc") -}}
     {{ $meeting.Scratch.Set "pager" false }}
     {{- partial "card" $meeting -}}
     {{ $meeting.Scratch.Delete "pager" }}

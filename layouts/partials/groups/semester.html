@@ -5,11 +5,13 @@
 {{- $semDict := $.Scratch.Get "semDict" -}}
 {{- $fullname := index $semDict "fullname" -}}
 
-{{- $groupAsTitle := replace (replace $group "-" " ") "_" " " | title -}}
-
  <div class="article-abstract py-3">
-   <h2> This Semester's Plan </h2>
-   {{ $page.Summary }}
+  <h2> This Semester's Plan </h2>
+  {{ with $page.Params.abstract }}
+    {{ . }}
+  {{ else }}
+    {{ $page.Summary }}
+  {{ end }}
  </div>
 
  <div id="group-when-where" class="group-metadata group-when-where">

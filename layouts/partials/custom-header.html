@@ -3,6 +3,6 @@
 {{ $ncols := $page.Scratch.Get "multi-column" | default false }}
 
 <div class="universal-wrapper {{- if $ncols }} m-0 {{ end -}}">
-  <h1> {{ $page.Title }} </h1>
+  <h1> {{ partial "functions/group-title" $page }} </h1>
   {{ partial "custom-metadata" $page }}
 </div>

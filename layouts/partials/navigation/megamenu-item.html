@@ -10,6 +10,6 @@
 {{ end }}
 <li class="nav-item {{ delimit $classes " " }}">
   <a class="nav-link" href="{{ $semester.RelPermalink }}">
-    {{ $semester.Title }}
+    {{ partial "functions/group-title" $semester }}
   </a>
 </li>

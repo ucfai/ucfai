@@ -1,0 +1,13 @@
+{{ $title := .Title }}
+
+{{ if in $title ":" }}
+    {{ $title = split $title ":" }}
+
+    {{ $group := replace ((index $title 0) | lower ) " " "-" }}
+    {{ $group = i18n $group }}
+    {{ $semester := index $title 1 }}
+
+    {{ $title = printf "%s: %s" $group $semester }}
+{{ end }}
+
+{{ return ($title | title) }}
