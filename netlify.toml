@@ -142,17 +142,17 @@ to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
 status = 301
 
 [[redirects]]
-from = "/groups/gbm/meeting"
+from = "/gbm-meeting"
 to = "https://ucf.zoom.us/j/98719091390"
 status = 301
 
 [[redirects]]
-from = "/groups/discussions/meeting"
+from = "/discussions-meeting"
 to = "https://ucf.zoom.us/j/99073401370"
 status = 301
 
 [[redirects]]
-from = "/groups/projects/meeting"
+from = "/projects-meeting"
 to = "https://ucf.zoom.us/j/95302027830"
 status = 301
 
