@@ -1,0 +1,37 @@
+---
+summary: We're working on filling this out!
+lastmod: 2020-05-31T17:40:00E
+date: 2020-01-22T17:30:00E
+title: Fall 2017
+weight: 999947
+type: archives
+tags:
+  - fa17
+sponsors:
+  - cbmm
+menu:
+  archives:
+    parent: Archives
+---
+{{< alert note >}}
+
+**Mission:** Forge UCF into a hotspot for researchers and engineers passionate
+about computational intelligence and data science.
+
+{{< /alert>}}
+
+## A Brief History
+
+We were just founded by {{< mention flxsosa >}}, {{< mention ionlights >}}, and
+{{< mention dibaccory >}}. They sought to address a lack
+of accessible, undergraduate, curriculum at UCF. Additionally, as
+budding intelligence researchers themselves, they felt a profound lack
+of community among fellow researchers and students passionate about
+advancing the fields related to computational intelligence.
+
+## How We're Achieving the Mission
+
+To achieve our goals, we take a varied approach &ndash; appealing to newcomers
+and seasoned researchers/engineers alike. Currently, our active groups are, each with a distinct purpose:
+
+## Our Results, so Far
