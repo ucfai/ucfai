@@ -142,17 +142,17 @@ to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
 status = 301
 
 [[redirects]]
-from = "/gbm-meeting"
+from = "/groups/gbm/meeting"
 to = "https://ucf.zoom.us/j/98719091390"
 status = 301
 
 [[redirects]]
-from = "/discussions-meeting"
+from = "/groups/discussions/meeting"
 to = "https://ucf.zoom.us/j/99073401370"
 status = 301
 
 [[redirects]]
-from = "/projects-meeting"
+from = "/groups/projects/meeting"
 to = "https://ucf.zoom.us/j/95302027830"
 status = 301
 
@@ -162,6 +162,6 @@ to = "http://eepurl.com/g9dlv1"
 status = 301
 
 [[redirects]]
-from = "/youtube"
-to = "https://www.youtube.com/channel/UCyokaec6yvsotHXFz9pbcaA"
+from = "/kh4"
+to = "https://docs.google.com/presentation/d/12ARHKtpYKffJWSIrhGi_sQqvkizkQTfoJq_biYT0Pk0/edit"
 status = 301
