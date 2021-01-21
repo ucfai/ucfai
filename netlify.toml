@@ -118,12 +118,12 @@ status = 301
 
 [[redirects]]
 from = "/interest-meeting"
-to = "https://www.youtube.com/watch?v=9JwJTMEzsmI"
+to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
 status = 301
 
 [[redirects]]
 from = "/interest-meeting-pres"
-to = "https://docs.google.com/presentation/d/1xaMzLUXs_v4vVrKGiNsLFuLhE1yhHOAtc4vilyKFgmA/edit?usp=sharing"
+to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
 status = 301
 
 [[redirects]]
@@ -159,11 +159,6 @@ status = 301
 [[redirects]]
 from = "/subscribe-newsletter"
 to = "http://eepurl.com/g9dlv1"
-status = 301
-
-[[redirects]]
-from = "/kh4"
-to = "https://docs.google.com/presentation/d/12ARHKtpYKffJWSIrhGi_sQqvkizkQTfoJq_biYT0Pk0/edit"
 status = 301
 
 [[redirects]]
