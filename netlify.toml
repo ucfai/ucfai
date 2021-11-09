@@ -37,7 +37,7 @@ to = "https://discord.gg/7vwjC8P"
 status = 301
 
 [[redirects]]
-from = "/discord/accouncements"
+from = "/discord/announcements"
 to = "https://discord.com/channels/363524680851914752/363524782974828544"
 status = 301
 
@@ -62,8 +62,13 @@ to = "https://discord.com/channels/363524680851914752/580142880564445244"
 status = 301
 
 [[redirects]]
-from = "/calendar"
+from = "/google-calendar"
 to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
+status = 301
+
+[[redirects]]
+from = "/calendar"
+to = "https://calendar.google.com/calendar/embed?src=qpps71dsqp4q4sv0v0ivv19qk4%40group.calendar.google.com&ctz=America%2FNew_York"
 status = 301
 
 [[redirects]]
