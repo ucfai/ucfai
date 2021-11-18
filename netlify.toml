@@ -170,3 +170,8 @@ status = 301
 from = "/youtube"
 to = "https://www.youtube.com/channel/UCyokaec6yvsotHXFz9pbcaA"
 status = 301
+
+[[redirects]]
+from = "/drive"
+to = "https://drive.google.com/drive/folders/1vGyy2p8m7iUXxDK2ii8ZH2HUjoy6BRBp?usp=sharing"
+status = 301
