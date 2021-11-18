@@ -107,27 +107,12 @@ to = "https://www.instagram.com/_ucfai"
 status = 301
 
 [[redirects]]
-from = "/tshirts"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSd8_-Awm3ukHGytAWeKe3Ij3rRsKSgYW4m8_vygpw0hQ7jkIw/viewform"
-status = 301
-
-[[redirects]]
-from = "/forms/acm-w"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSd_fb5auM59_0icRKDNmc3iV6j3V8ZksDaob1pi3T2cr8s8Hw/viewform"
-status = 301
-
-[[redirects]]
 from = "/newsletter"
 to = "https://mailchi.mp/77de8f0b3e18/sept2020-newsletter"
 status = 301
 
 [[redirects]]
 from = "/interest-meeting"
-to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
-status = 301
-
-[[redirects]]
-from = "/interest-meeting-pres"
 to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
 status = 301
 
@@ -144,21 +129,6 @@ status = 301
 [[redirects]]
 from = "/event-interest"
 to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
-status = 301
-
-[[redirects]]
-from = "/gbm-meeting"
-to = "https://ucf.zoom.us/j/98719091390"
-status = 301
-
-[[redirects]]
-from = "/discussions-meeting"
-to = "https://ucf.zoom.us/j/99073401370"
-status = 301
-
-[[redirects]]
-from = "/projects-meeting"
-to = "https://ucf.zoom.us/j/93823882013?pwd=ZC9MOTNVMXNwUnh2TlIrakZNS1VKZz09"
 status = 301
 
 [[redirects]]
