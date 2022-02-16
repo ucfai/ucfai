@@ -37,31 +37,6 @@ to = "https://discord.gg/7vwjC8P"
 status = 301
 
 [[redirects]]
-from = "/discord/announcements"
-to = "https://discord.com/channels/363524680851914752/363524782974828544"
-status = 301
-
-[[redirects]]
-from = "/discord/gbms"
-to = "https://discord.com/channels/363524680851914752/713337547044028436"
-status = 301
-
-[[redirects]]
-from = "/discord/core"
-to = "https://discord.com/channels/363524680851914752/496942430193582080"
-status = 301
-
-[[redirects]]
-from = "/discord/discussions"
-to = "https://discord.com/channels/363524680851914752/518898052182966297"
-status = 301
-
-[[redirects]]
-from = "/discord/projects"
-to = "https://discord.com/channels/363524680851914752/580142880564445244"
-status = 301
-
-[[redirects]]
 from = "/google-calendar"
 to = "https://calendar.google.com/calendar?cid=cXBwczcxZHNxcDRxNHN2MHYwaXZ2MTlxazRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
 status = 301
@@ -72,13 +47,13 @@ to = "https://calendar.google.com/calendar/embed?src=qpps71dsqp4q4sv0v0ivv19qk4%
 status = 301
 
 [[redirects]]
-from = "/github"
-to = "https://github.com/ucfai"
+from = "/tasks"
+to = "https://keep.google.com/u/0/#NOTE/17E6BR5refzPVCtz0xjCvXJgAVidEF2LlfPFSo_Q2BPepkWeX4elEdy9QkP0o4g"
 status = 301
 
 [[redirects]]
-from = "/kaggle"
-to = "https://kaggle.com/ucfaibot"
+from = "/github"
+to = "https://github.com/ucfai"
 status = 301
 
 [[redirects]]
@@ -87,17 +62,7 @@ to = "https://forms.gle/rzoTSH4LRgD3Wt5C6"
 status = 301
 
 [[redirects]]
-from = "/signin"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
-status = 301
-
-[[redirects]]
-from = "/signup"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSejUfUuqBGQCExrcJcbPrPSQgcDfH4ebFzKlr6mKAONCQWk7w/viewform"
-status = 301
-
-[[redirects]]
-from = "/facebook-page"
+from = "/facebook"
 to = "https://facebook.com/ucfsigai"
 status = 301
 
@@ -107,13 +72,13 @@ to = "https://www.instagram.com/_ucfai"
 status = 301
 
 [[redirects]]
-from = "/newsletter"
-to = "https://mailchi.mp/77de8f0b3e18/sept2020-newsletter"
+from = "/kaggle"
+to = "https://kaggle.com/ucfaibot"
 status = 301
 
 [[redirects]]
-from = "/interest-meeting"
-to = "https://ucfai.org/groups/gbms/sp21/interest-meeting/"
+from = "/newsletter"
+to = "https://us19.campaign-archive.com/home/?u=f1da4378398d0f3af136bfb7f&id=5a2c1d8a24"
 status = 301
 
 [[redirects]]
@@ -124,11 +89,6 @@ status = 301
 [[redirects]]
 from = "/apply"
 to = "https://forms.gle/WZJv9ttNH3W9pQtQ9"
-status = 301
-
-[[redirects]]
-from = "/event-interest"
-to = "https://forms.gle/8jYpJ29kK8TqdX8X7"
 status = 301
 
 [[redirects]]
@@ -144,4 +104,14 @@ status = 301
 [[redirects]]
 from = "/drive"
 to = "https://drive.google.com/drive/folders/1vGyy2p8m7iUXxDK2ii8ZH2HUjoy6BRBp?usp=sharing"
+status = 301
+
+[[redirects]]
+from = "/signin"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
+status = 301
+
+[[redirects]]
+from = "/signup"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSejUfUuqBGQCExrcJcbPrPSQgcDfH4ebFzKlr6mKAONCQWk7w/viewform"
 status = 301
