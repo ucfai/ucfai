@@ -48,7 +48,7 @@ status = 301
 
 [[redirects]]
 from = "/tasks"
-to = "https://keep.google.com/u/0/#NOTE/17E6BR5refzPVCtz0xjCvXJgAVidEF2LlfPFSo_Q2BPepkWeX4elEdy9QkP0o4g"
+to = "https://keep.google.com/?note=17E6BR5refzPVCtz0xjCvXJgAVidEF2LlfPFSo_Q2BPepkWeX4elEdy9QkP0o4g&tid=true"
 status = 301
 
 [[redirects]]
