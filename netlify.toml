@@ -97,8 +97,8 @@ to = "https://forms.gle/WZJv9ttNH3W9pQtQ9"
 status = 301
 
 [[redirects]]
-from = "/subscribe-newsletter"
-to = "http://eepurl.com/g9dlv1"
+from = "/documentation"
+to = "https://www.notion.so/6c737c6e1ecf4af089db9761244b3533?v=8ba1fbced6544af2906e38be3b87cc82"
 status = 301
 
 [[redirects]]
