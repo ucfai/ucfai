@@ -112,6 +112,11 @@ to = "https://drive.google.com/drive/folders/1vGyy2p8m7iUXxDK2ii8ZH2HUjoy6BRBp?u
 status = 301
 
 [[redirects]]
+from = "/knightconnect"
+to = "https://knightconnect.campuslabs.com/engage/organization/ucfai"
+status = 301
+
+[[redirects]]
 from = "/signin"
 to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
 status = 301
