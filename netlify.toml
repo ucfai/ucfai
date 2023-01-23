@@ -130,3 +130,8 @@ status = 301
 from = "/signup"
 to = "https://docs.google.com/forms/d/e/1FAIpQLSejUfUuqBGQCExrcJcbPrPSQgcDfH4ebFzKlr6mKAONCQWk7w/viewform"
 status = 301
+
+[[redirects]]
+from = "/promo-slide"
+to = "https://docs.google.com/presentation/d/1O11hwpTto5Dp6VTSIPqoMDo00Aw-NX5FuFs1qevOXkk"
+status = 301
