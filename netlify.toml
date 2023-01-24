@@ -135,3 +135,8 @@ status = 301
 from = "/promo-slide"
 to = "https://docs.google.com/presentation/d/1O11hwpTto5Dp6VTSIPqoMDo00Aw-NX5FuFs1qevOXkk"
 status = 301
+
+[[redirects]]
+from = "/promo-image"
+to = "https://drive.google.com/file/d/1tDY81lTwhOyqZClN-hjb-T4nH61uMxV4/view?usp=share_link"
+status = 301
