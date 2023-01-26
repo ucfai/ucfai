@@ -57,11 +57,6 @@ to = "https://calendar.google.com/calendar/embed?src=qpps71dsqp4q4sv0v0ivv19qk4%
 status = 301
 
 [[redirects]]
-from = "/tasks"
-to = "https://keep.google.com/?note=17E6BR5refzPVCtz0xjCvXJgAVidEF2LlfPFSo_Q2BPepkWeX4elEdy9QkP0o4g&tid=true"
-status = 301
-
-[[redirects]]
 from = "/github"
 to = "https://github.com/ucfai"
 status = 301
@@ -122,16 +117,6 @@ to = "https://knightconnect.campuslabs.com/engage/organization/ucfai"
 status = 301
 
 [[redirects]]
-from = "/signin"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSdl1QoqkJLAtHiVpP4dn-t3RMHu8bPpZG_2Hh3eUbwkITz38g/viewform"
-status = 301
-
-[[redirects]]
-from = "/signup"
-to = "https://docs.google.com/forms/d/e/1FAIpQLSejUfUuqBGQCExrcJcbPrPSQgcDfH4ebFzKlr6mKAONCQWk7w/viewform"
-status = 301
-
-[[redirects]]
 from = "/promo-slide"
 to = "https://docs.google.com/presentation/d/1O11hwpTto5Dp6VTSIPqoMDo00Aw-NX5FuFs1qevOXkk"
 status = 301
@@ -139,4 +124,14 @@ status = 301
 [[redirects]]
 from = "/promo-image"
 to = "https://drive.google.com/file/d/1tDY81lTwhOyqZClN-hjb-T4nH61uMxV4/view?usp=share_link"
+status = 301
+
+[[redirects]]
+from = "/flyer"
+to = "https://drive.google.com/file/d/1X9QU3IUqPyNoS9a6dZsLHCCkpAzfPF1g/view?usp=sharing"
+status = 301
+
+[[redirects]]
+from = "/poster"
+to = "https://drive.google.com/file/d/1X9QU3IUqPyNoS9a6dZsLHCCkpAzfPF1g/view?usp=sharing"
 status = 301
