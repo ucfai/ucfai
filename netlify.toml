@@ -135,3 +135,8 @@ status = 301
 from = "/poster"
 to = "https://drive.google.com/file/d/1X9QU3IUqPyNoS9a6dZsLHCCkpAzfPF1g/view?usp=sharing"
 status = 301
+
+[[redirects]]
+from = "/shirt"
+to = "https://docs.google.com/forms/d/e/1FAIpQLSe9hl_fMxxsFskmVWDFXgag2v7vLiXbqlwTveArEpuw8oFz6w/viewform"
+status = 301
